@@ -125,13 +125,14 @@ Ideas for future update (NOT GUARANTEED IN ANY WAY, SHAPE, OR FORM.)
 	- Crulety-Free Veganlust: Props can drop pickups
 	- PURIST: more vanilla weapons
 	- EXPERIMENTALIST: more modded weapons
-	- Buckshot Back: Bullets get UPGRADED (regular -> heavy -> ultra)
+(DONE)	- Buckshot Back: Bullets get UPGRADED (regular -> heavy -> ultra)
 	- Absorbing Abs: Bolts absorb bullets, release them all when hitting a wall
 	- All melee weapons have superforce
 (DONE)	- Dead Rabbit: Difficulty+20
 (DONE)	- Wiggle Waist: All shots wiggle
 (DONE)	- Bring back Arcane Art
 (DONE)	- Energy mut that makes all energy weapons "hitscan": Run all events for them manually until they die (or like 15 frames happen) - mess with nexthurt on enemies it collides with to make sure it doesn't nerf weapons
+	- -1 reload frame for all weapons
  - FALLEN HERO: (Cursed Mutation) Gain two mutations, Future mutation sets are mostly cursed
  - ACHILLES TENDON: (Cursed Mutation) EVERYTHING TAKES MORE DAMAGE, BASED ON HOW MANY CURSED MUTATIONS YOU HAVE
  - Make muscle memory activate after dividing elbows
