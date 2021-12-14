@@ -36,10 +36,17 @@ script_ref_call(["mod", "lib", "getHooks"], "skill", mod_current);
 	}
 	with(instances_matching_gt(HeavyBullet, "id", _id)){
 		instance_change(UltraBullet, false);
+		damage += 11;
 	}
 	with(instances_matching_gt(BouncerBullet, "id", _id)){
 		instance_change(HeavyBullet, false);
+		speed *= 2;
+		damage += 3;
 	}
 	with(instances_matching_gt(Bullet1, "id", _id)){
 		instance_change(BouncerBullet, false);
+		rot = 0;
+		bounce = 0;
+		speed *= 0.5;
+		damage += 1;
 	}

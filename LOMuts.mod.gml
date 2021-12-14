@@ -21,7 +21,7 @@
 	global.canOutcast = false;
 	while(!global.libLoaded){wait(1);}
 	call(scr.add_setting, "LOMuts", "canMutTokens", "Mutation Tokens");
-	call(scr.autoupdate, "Relics", "GoldenEpsilon/LOMuts");
+	call(scr.autoupdate, "LOMuts", "GoldenEpsilon/LOMuts");
 
 
 #define step
