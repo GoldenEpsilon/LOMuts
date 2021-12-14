@@ -1,0 +1,12 @@
+/loadskill Precision Incision
+/loadskill Iron Skin
+/loadskill Diplomacy
+/loadskill Terrorism
+/loadskill Free Space
+/loadskill Cranial Valve
+/loadskill Arcane Arts
+/loadskill Laser Focus
+/loadskill Explosive Gaze
+/loadskill Wiggle Waist
+/loadskill Rabbit Ears
+/loadskill Buckshot Back

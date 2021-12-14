@@ -1,0 +1,118 @@
+Jsburg:
+	Mimicry
+	Rocket Casings
+	(Icon) Mimicry
+
+Nemo The Axolotl
+	Pressurized Lungs
+
+Anastas Smuggator
+	(Alt) Shocked Skin
+
+smashy:
+	Confidence
+	Compressing Fist
+	Double Vision
+	Dynamic Calves
+	Garment Regenerator
+	Muscle Memory
+	Sadism
+	Shocked Skin
+	Staked Chest
+	Waste Gland
+	(Alt) Mimicry (2)
+	(Ultra) Armory
+	(Ultra) Enlightenment
+	(Ultra) Galactic Style
+	(Ultra) Generalist
+	(Ultra) Positivity
+	(Ultra) Union
+	(Icon) Garment Regenerator
+	(Ultra Icon) Positivity
+
+soScary:
+	Filtering Teeth
+	Fractured Fingers
+	Sloppy Fingers
+	Toxic Thoughts
+	(Alt) Mimicry
+	(Ultra) Dolla Dolla
+	(Ultra) Existence
+	(Ultra) Fast Food
+	(Ultra) Fission
+	(Ultra) Galactic Style
+	(Ultra) Generalist
+	(Ultra) Union
+	(Icon) Confidence
+	(Icon) Dynamic Calves
+	(Icon) Filtering Teeth
+	(Icon) Fractured Fingers
+	(Icon) Sadism
+	(Icon) Shattered Skull
+	(Icon) Toxic Thoughts
+	(Ultra Icon) Dolla Dolla
+	(Ultra Icon) Fast Food
+	(Ultra Icon) Fission
+	(Ultra Icon) Galactic Style
+	(Ultra Icon) Generalist
+	(Ultra Icon) Union
+
+Golden Epsilon:
+	Energized Intestines
+	Scrap Arms
+	Steel Nerves
+	Thick Head
+	Unstable DNA
+	Neural Network
+	(Ultra) Adaptable
+	(Ultra) Intellect
+	(Ultra) Reincarnation
+	(Dev Icon) Brain Transfer
+	(Dev Icon) Double Vision
+	(Dev Icon) Dynamic Calves
+	(Dev Icon) Filtering Teeth
+	(Dev Icon) Fractured Fingers
+	(Dev Icon) Rocket Casings
+	(Dev Icon) Sadism
+	(Dev Icon) Scrap Arms
+	(Dev Icon) Shattered Skull
+	(Dev Icon) Toxic Thoughts
+	(Dev Art) Compressing Fist
+	(Dev Art) Confidence
+	(Dev Art) Duplicators
+	(Dev Art) Dynamic Calves
+	(Dev Art) Fractured Fingers
+	(Dev Art) Garment Regenerator
+	(Dev Art) Mimicry
+	(Dev Art) Muscle Memory
+	(Dev Art) Pressurized Lungs
+	(Dev Art) Rocket Casings
+	(Dev Art) Shocked Skin
+	(Dev Art) Sloppy Fingers
+	(Dev Art) Staked Chest
+	(Dev Art) Waste Gland
+	(Icon) Brain Transfer
+	(Icon) Double Vision
+	(Icon) Duplicators
+	(Icon) Energized Intestines
+	(Icon) Muscle Memory
+	(Icon) Pressurized Lungs
+	(Icon) Rocket Casings
+	(Icon) Scrap Arms
+	(Icon) Sloppy Fingers
+	(Icon) Staked Chest
+	(Icon) Steel Nerves
+	(Icon) Thick Head
+	(Icon) Unstable DNA
+	(Icon) Waste Gland
+	(Ultra Icon) Adaptable
+	(Ultra Icon) Armory
+	(Ultra Icon) Intellect
+	(Ultra Icon) Reincarnation
+	(Ultra Icon) Existence
+	
+Can't definitively find: 
+	(this is the kind of reason I made this list in the first place -_-)
+	(if you know/remember who did it lmk, I literally can't find the message)
+	Shattered Skull
+	(Icon) Shocked Skin

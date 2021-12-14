@@ -1,0 +1,227 @@
+Buglist:
+https://discord.com/channels/846661738803626014/882447494892642315/919129038566596688
+
+Ideas for future update (NOT GUARANTEED IN ANY WAY, SHAPE, OR FORM.)
+(DONE) - Add visual effects to Steel Nerves
+ - Add sounds to everything
+ - Make Heavy Heart refund the mutation point
+ - Make Garment Regenerator not work on rebel
+ - Fix union coop bugs
+ - Mutation that selects a random mutation and gives you a mutation token
+ - You cannot have a full selection of mutations that do not count as taking a mutation
+ - Effect: Deal 2 damage to yourself, reroll other mutations in this selection (this does not count as taking a mutation)
+ - Offering: Lose your primary weapon, heal to full health, reroll this mutation (this does not count as taking a mutation)
+ - Indecision: Choose a mutation randomly to take, gain 1 mutation token (this does not count as taking a mutation)
+ - Back Entrance: Pay a mutation token, visit the token shop right now (this does not count as taking a mutation)
+(DONE) - Effect: Gain 50 rads, take 1 damage (this does not count as taking a mutation)
+ - Effect: Pick from 4 effects out of a set of 8 (give it theming)
+ - Effect: Each level has a "safe zone" that lasts until you leave it, only you and your bullets can go through the wall of the safe zone
+ - Mutation tokens randomly appear in mutation sets (SEEDED), 50% chance for one to appear on any given set.
+	- Mutation tokens appear as an icon on one of the mutations, taking that mutation gives you the mutation token.
+	- When you enter a crown vault or loop with more than one mutation token, you get to select (like mutations) options for how you spend your mutation tokens:
+		- (0 TOKENS) LEAVE : FINISH SPENDING TOKENS AND LEAVE
+		- (1 TOKEN) BUY ORDNANCE : GET A LARGE WEAPON CHEST (it spawns next level)
+		- (1 TOKEN) BUY SUPPLIES : HEAL TO FULL, GAIN 250 RADS
+		- (1 TOKEN) BUY AMMO : GAIN AMMO (+25% MAX AMMO FOR EACH TYPE)
+		- (1 TOKEN) DISRESPECT : GAIN AN OUTCAST MUTATION
+		- (1 TOKEN) EXPERIMENT : REROLL A MUTATION AT RANDOM (one of your mutations gets rerolled, you get to pick a mutation after leaving the shop)
+		- (1 TOKEN) GAMBLE : GAMBLE A MUTATION TOKEN (50/50 chance of getting two tokens back)
+		- (2 TOKENS) REROLL : REROLL A MUTATION OUT OF FOUR (you get to pick one of four of your mutations to reroll, you get to pick a mutation after leaving the shop)
+		- (2 TOKENS) EXTRACT : LOSE 2 MUTATIONS, GAIN SOMEONE ELSE'S ULTRA MUTATION (pick a mutation out of four to lose twice, then Mimicry)
+		- (2 TOKENS) EMPOWER : LOSE 1 MUTATION, POWER UP 1 MUTATION (Thick Head)
+		- (2 TOKENS) REBEL : CHOOSE AN OUTCAST MUTATION
+		- (3 TOKENS) EVOLVE : GAIN A MUTATION (you get to pick a mutation after leaving the shop)
+		- (3 TOKENS) RESET : RESET TO LEVEL 1, LOSING MUTATIONS
+		- (3 TOKENS) BACKTRACK : HEAD BACK TO 1-1 (same loop)
+		- (4 TOKENS) REVOLT: GAIN ONE OUTCAST MUTATION OUT OF ALL OUTCAST MUTATIONS
+		- (4 TOKENS) BRIBE : HEAD TO YV'S CRIB (after leaving the shop you go to YV's Crib)
+		- (4 TOKENS) WARP : INSTANTLY LOOP (go to 1-1 with +1 loop)
+		- (5 TOKENS) INFUSE : GAIN SOMEONE ELSE'S ULTRA MUTATION (Mimicry)
+		- (6 TOKENS) REDEEM: CHOOSE ONE OUTCAST MUTATION, IT IS NOW A NORMAL MUTATION (previous redeemed outcast mutations lose status)
+		- (6 TOKENS) CAST DOWN: CHOOSE ONE NORMAL MUTATION, IT IS NOW AN OUTCAST MUTATION (previous cast down mutations return status)
+		- (6 TOKENS) ASCEND : GAIN ANOTHER ULTRA (only shows up if you are already at level ultra)
+		- (6 TOKENS) DESTABILIZE : REROLL ALL MUTATIONS
+	- When heading to the shop, you get LEAVE, a 1 token option, a 2-3 token option, and a 4+ token option, selected randomly.
+	
+ - Make unstable DNA halve future max health increases
+ - Make unstable DNA not appear at level ultra
+ - Mimicry should make enemies drop less rads
+ - test Feed Forward more
+ - fix Quasar Homing
+ - change vector to "vectors split"
+ - Change fractured fingers to work with (correct team) IDPD explosions
+ - Dynamic calves rn does not re-give max speed on revive, it should
+ - when you're firing an energy weapon you build up a protective field based on ammo usage
+ - Nuclear Horns: Transforms into a different Horn mutation on level transition, based on your weapon type.
+	- Melee Horns: Projectiles fire twice (copy the instance and put it in stasis until the original projectile disappears, don't let it last longer than the original instance)
+	- Bullet Horns: Enemies explode into bullets on death
+	- Shotgun Horns: Enemies take more damage up close
+	- Bolt Horns: Projectiles do more damage the further they travel
+	- Explosive Horns: Enemies have a chance to explode on death
+	- Energy Horns: When you fire a weapon, you shoot lasers.
+ - Sightlines: Gain two "Marking" Outcast mutations
+(DONE) - Alchemic Stomach: If you try to fire while out of ammo, it uses one of all other ammo types instead
+ - Slim Pickings: Gain 2 "Outcast" mutations.
+ - Loner: Choose 1 outcast mutation, it gets 2x power.
+ - Ruffled Feathers: +2 mutation options, outcast mutations appear in the mutation pool.
+(DONE) - Leprosy: -1 max hp, gain a random outcast mutation. (this does not count as taking a mutation)
+ - Crown of Outcasts: Preloop crown, +2 mutations per level, all mutations are outcast mutations
+ - (vagabonds compat) Excavate one outcast mutation.
+ - Every two unique bosses killed, gain an outcast mutation. (maybe buff to 3 if bosses+ is in there?)
+ - every two unique areas you clear, you get a random outcast mutation
+ - Outcast mutations: Bad ideas that didn't make the list. Should be roughly 1/2 power of a good mut, should be badly designed, should have dev art.
+	- Lasers Bounce
+	- You don't take damage from fire/explosions at full health
+(DONE)	- Iron Skin: when at full health the next hit deals 1 damage
+	- Your active ability is now a melee attack
+	- at 1 health you gain a massive speed boost
+	- you regen slowly over time
+	- enemies deal no contact damage
+	- toxic, fire, and electricity deal double damage
+	- see in the dark
+	- faster rate of fire, lose your secondary weapon at the start of every level
+	- faster max speed, slower acceleration
+	- phase through thin walls
+	- killing enemies with melee gives you more rads
+	- bolts can pierce walls
+	- all projectiles bounce once
+	- Explosions explode twice
+	- shells actively home
+	- explosives create lasers
+	- explosives you create are teamed
+(DONE)	- Diplomacy: moving enemy projectiles become bandit bullets
+(DONE)	- Terrorism: your moving projectiles become bandit bullets
+	- Women Love Me: Destroyed enemy bullets can drop medkits
+	- Fish Fear Me: Enemies are passively pushed away from you
+	- Tractor Beam from isaac
+	- Third Arm: When an enemy comes into close range your secondary weapon fires (if it's reloaded)
+(DONE)	- Laser Eyes: At the start of the level, one enemy is marked. Marked enemies take double damage. The mark shifts when the enemy dies.
+(DONE)	- Explosive Gaze: At the start of the level, five enemies are marked. Marked enemies explode on death.
+	- Damage from toxic marks enemies. Marked enemies take damage over time.
+	- If a laser sight hovers over an enemy, the enemy becomes Marked. Marked enemies are slowed.
+	- (TE compat) Friendly Eyelashes: When an enemy is under half health, there's a 50% chance it gets marked. marked enemies are charmed.
+	- (TE compat) Lurking Mind: Flamethrowers now shoot quazar beams.
+	- (TE compat) At the start of the level, two enemies are marked. Marked enemies give temporary mutations on death.
+	- (TE compat) Temporary mutations last longer
+	- All characters can airhorn. Airhorn destroys bullets around you.
+(DONE)	- Blank: Becomes a random outcast mutation upon picking it.
+	- Spawn a chest that activates all "start of level" effects
+	- At the start of the level, spawn a stationary turret you can use
+	- At the start of the level, one of your ammo types at random gets completely filled
+	- Strange Transformation: Replace your active ability with another mutant's
+	- +2 max HP, Spawn 3 health chests every level
+	- +2 max HP, health chests heal more
+	- +2 max HP, obtaining a health chest at full health gives temporary invulnerability
+	- You can overheal
+	- Picking up a chest marks an enemy. Marked enemies drop health pickups on death.
+	- Picking up a new weapon marks an enemy. Killing a marked enemy gives you temporary infinite ammo. (Make picking up a new weapon a lib hook)
+	- See enemy health (extra stacks let you see alarms)
+	- The final 10 enemies in a level take damage over time
+	- Enemies explode based on their health
+	- Pickups are worth more at lower health
+	- Shotguns also fire other projectiles (flame shells, bolts, splinters, bullets, lasers, plasma, all with weighted chances)
+	- All projectiles work like nukes
+	- Rubber Rounds: Enemy shots have a chance to bounce and become teamed to you
+	- Crulety-Free Veganlust: Props can drop pickups
+	- PURIST: more vanilla weapons
+	- EXPERIMENTALIST: more modded weapons
+	- Buckshot Back: Bullets get UPGRADED (regular -> heavy -> ultra)
+	- Absorbing Abs: Bolts absorb bullets, release them all when hitting a wall
+	- All melee weapons have superforce
+(DONE)	- Dead Rabbit: Difficulty+20
+(DONE)	- Wiggle Waist: All shots wiggle
+(DONE)	- Bring back Arcane Art
+(DONE)	- Energy mut that makes all energy weapons "hitscan": Run all events for them manually until they die (or like 15 frames happen) - mess with nexthurt on enemies it collides with to make sure it doesn't nerf weapons
+ - FALLEN HERO: (Cursed Mutation) Gain two mutations, Future mutation sets are mostly cursed
+ - ACHILLES TENDON: (Cursed Mutation) EVERYTHING TAKES MORE DAMAGE, BASED ON HOW MANY CURSED MUTATIONS YOU HAVE
+ - Make muscle memory activate after dividing elbows
+ - Mutation: chests have a buffing aura around them, pick up the chest for a temporary boost
+ - Change Unstable DNA: Gain two mutations that change every area
+ - TEMPORARY: have mimicry take away the last mutation you got
+ - CHESTBURSTER: WHEN YOU TAKE DAMAGE, SPAWN AN ALLY
+ 
+ 
+ - For the original Unstable DNA and Mimicry effects:
+    - There is an Evolution Shrine in the vaults
+	- you can trade in mutation tokens for rerolls (it shows what it rerolls into)
+	- If you break it, it curses you, the curse starts affecting you the level after you reach ultra
+	    - instead of "Level Up" or anything, it says "SHRINE DESECRATED#CHOOSE YOUR CURSE"
+	- When the curse affects you, you choose between Unstable DNA, Mimicry, and two other effects
+		- Options:
+		  - Discombobulation (reset to level 1, keeping all mutations.)
+		  - Mimicry (choose another mutant's ultra mutation to take)
+		  - Corruption (All your current mutations get doubled in power)
+		  - Heresy (Lose all your current mutations. Choose replacement mutations from the outcast pool.)
+	- The curse caused by breaking the death totem affects enemies in some way
+	    - curse ideas:
+		  - drastically increased health for all enemies?
+		  - lowered pickup drop rate?
+		  - lowered rads?
+		  - bosses randomly spawning?
+		  - chance for double bosses?
+		  - increased amounts of IDPD?
+		  - greater elite chance?
+		  - more enemy variety? (when a bandit spawns, spawn a bunch of random enemies at that location)
+		  - faster alarms
+		  - enemies do more damage
+		
+		Spaz input: increased hp, faster alarms, greater elite chance, random enemies, and double bosses
+		
+		Loop 1:
+			- Doubled enemy health
+			- Increased enemy variety
+		
+		Loop 2:
+			- All previous effects
+			- Bosses are doubled
+			- Bosses can rarely (1%) spawn instead of enemies (their area)
+			- Alarms are increased to 1.2x
+			- Elite chance increases (10% chance for any non-elite enemy to be elite)
+		
+		Loop 3:
+			- All previous effects
+			- Regular/elite IDPD spawn alongside the freaks
+			- Bosses can rarely (boss chance/10) spawn as a boss from a different area
+			- Alarms are increased to 1.5x
+			- Pickups have a 25% chance of disappearing
+			- Movespeed of all enemies is multiplied by 1.5 (capping at 20)
+		
+		Loop 4:
+			- All previous effects
+			- Elite chance increases more (up to a 25% chance)
+			- Enemy variety increases even more
+			- boss chance increases to a base 2%
+			- Alarms are increased to 2x
+			
+		Loop 5:
+			- All previous effects
+			- regular/elite IDPD gain "shields" (like halo), multiplying their max health by 10
+			- Pickups have a 50% chance of disappearing
+			- Movespeed of all enemies is increased to 2x (capping at 20)
+			- All enemy projectiles are faster (2x) (movescan)
+			
+		Loop 6:
+			- All previous effects
+			- bosses gain "shields" (like halo, but orange), multiplying their max health by 10
+			- All objects not teamed to the player or created by the player are teamed to the enemy "no friendly fire"
+			
+		Loop 7:
+			- All previous effects
+			- Rad drops are cut to 10%
+			- All enemy projectiles are even faster (3x) (movescan)
+			
+		Loop 8:
+			- All previous effects
+			- Pickups have a 90% chance of disappearing
+			
+		Loop 9:
+			- All previous effects
+			- Enemies of the same type combine into a single enemy with faster alarms and more health (up to 5 at once, they must be in close proximity)
+			
+		Loop 10:
+			- All previous effects
+			- Bosses of the same type combine into a single boss with faster alarms and more health (up to 5 at once, they must be in close proximity)
+			- IDPD shields increase from 10x to 30x
+			- All enemy projectiles are even faster (5x) (movescan)
+			
+		Past loop 10 there are no new effects, but IDPD shields increase by 10 (so from 30x to 40x in loop 11) per loop

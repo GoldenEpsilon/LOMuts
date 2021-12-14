@@ -1,0 +1,48 @@
+Note if you're reading this to know what mimicry can and can't do:
+The ones that say "already working" or "partially working" rely on unused player slots to function properly.
+There is no guarantee that they won't break player 3/4's ultras and possibly passives if you take them in a large lobby.
+(player 4 if you take one ultra with mimicry, player 3 if you take two. (thick skull))
+
+already working for mimicry:
+Confiscate
+Ambidextrous
+Get Loaded
+Refined Taste
+Anomaly
+Meltdown
+Distance
+
+Partially working for mimicry:
+Detachment (max HP isn't lost)
+Back 2 Bizniz/Ima Gun God (brings you to mansion)
+Regurgitate (you can't pick the chests up that are created in time)
+
+Implemented for mimicry:
+gun warrant
+fortress
+Ima Gun God
+Personal Guard
+Detachment fix
+Stalker
+monster style (always active)
+plant's ultras create/destroy a tangleseed at your feet when you use your active
+Riot spawns 2+2*loop allies on level start
+brain capacity (automatic activation)
+projectile style will activate per projectile for one second. Have fun, anyone who tries to use this one.
+Intimacy gives you toxic gas that is on your team
+
+todo for mimicry:
+Super Blast armor gives everyone super blast armor
+Back 2 Bizniz gives you random pop pops
+
+might do for mimicry:
+Super Portal Strike auto-strikes the enemy with the most health when it comes on screen once per level.
+Determination throws your weapon when out of ammo with the recall
+Damnation auto-procs when out of ammo
+
+Probably won't do anything with for mimicry:
+juggernaut gives all characters a shield on active usage, with the slowed movement speed
+Harder to Kill gives everyone the 1 second per kill at 0 health, up to 3 seconds (counts down even when not headless)
+
+yeah... probably not for mimicry unless I do all others:
+modded ultras. I don't even want to look at them rn.
