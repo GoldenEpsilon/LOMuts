@@ -180,10 +180,10 @@
 	}
 	
 	with(instances_matching(SkillIcon, "MutationToken", true)){
-		if("tokenIndex" not in self){
+		if(addy != 0 || "tokenIndex" not in self){
 			tokenIndex = 0;
 		}
-		draw_sprite(global.token, max(tokenIndex, 0), bbox_right-1, bbox_top-1+addy);
+		draw_sprite_ext(global.token, max(tokenIndex, 0), bbox_right-1, bbox_top-1+(addy ? 1 : 0), 1, 1, 0, addy ? c_gray : c_white, 1);
 		if(tokenIndex > 7){
 			tokenIndex = -25;
 		}
