@@ -10,3 +10,4 @@
 /loadskill Wiggle Waist
 /loadskill Rabbit Ears
 /loadskill Buckshot Back
+/loadskill Absorbing Abs
