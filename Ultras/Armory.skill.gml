@@ -28,7 +28,7 @@
 					direction = i - 45;
 					image_angle = direction - 45;
 					team = other.team;
-					damage = 2;
+					damage = 4;
 					force = 5;
 					candeflect = false;
 					on_hit = sword_hit;
@@ -44,5 +44,5 @@
 
 #define sword_hit
 if projectile_canhit_melee(other){
-	projectile_hit(other,damage,force,direction - 45)
+	projectile_hit(other,damage,force,direction - 30)
 }

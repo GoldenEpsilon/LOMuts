@@ -58,7 +58,8 @@ with(instances_matching_le(enemy, "my_health", 0)){
 						image_speed = 0.4;
 						sprite_index = global.sprRocketExplo;
 						hitid = [sprite_index, "ROCKET AMMO"];
-						mask_index = mskSmallExplosion;
+						mask_index = other.mask_index;
+						image_blend = other.image_blend;
 						on_wall = rocketWall;
 						on_hit = rocketHit;
 						on_step = rocketStep;
@@ -77,6 +78,8 @@ with(instances_matching_le(enemy, "my_health", 0)){
 						sprite_index = other.sprite_index;
 						image_xscale = other.image_xscale;
 						image_yscale = other.image_yscale;
+						mask_index = other.mask_index;
+						image_blend = other.image_blend;
 						team = other.team;
 						WasteGland = irandom(1);
 					}

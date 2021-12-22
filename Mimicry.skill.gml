@@ -57,7 +57,7 @@ global.canActivate = 1;
 	}
 	var i = 0;
 	while(!is_undefined(skill_get_at(i))){i++}
-	skill_set(skill_get_at(i-1), 0);
+	skill_set(skill_get_at(i-2), 0);
 	
 
 #define game_start

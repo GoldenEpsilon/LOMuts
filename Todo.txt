@@ -126,7 +126,7 @@ Ideas for future update (NOT GUARANTEED IN ANY WAY, SHAPE, OR FORM.)
 	- PURIST: more vanilla weapons
 	- EXPERIMENTALIST: more modded weapons
 (DONE)	- Buckshot Back: Bullets get UPGRADED (regular -> heavy -> ultra)
-	- Absorbing Abs: Bolts absorb bullets, release them all when hitting a wall
+(DONE)	- Absorbing Abs: Bolts absorb bullets, release them all when hitting a wall
 	- All melee weapons have superforce
 (DONE)	- Dead Rabbit: Difficulty+20
 (DONE)	- Wiggle Waist: All shots wiggle
