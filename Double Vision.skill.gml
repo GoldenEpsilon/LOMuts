@@ -1,7 +1,7 @@
 #define init
 global.sprSkillIcon = sprite_add("Sprites/Main/Double Vision.png", 1, 12, 16)
 global.sprSkillHUD = sprite_add("Sprites/Icons/Double Vision Icon.png", 1, 8, 8)
-global.modifier = 8;
+global.modifier = 6;
 global.acc = 20;
 
 #define skill_name

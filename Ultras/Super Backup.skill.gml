@@ -231,6 +231,7 @@ if(timer < 0){
 			_target = noone;
 			_follow = noone;
 			superbackup = true;
+			strikechance = 256;
 			with(instance_create(x,y,CustomObject)){
 				name = "outline";
 				target = other;

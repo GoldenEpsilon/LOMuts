@@ -301,7 +301,6 @@
 				|| !mod_script_call("skill", _skill, "skill_temp")
 			){
 				array_push(toChoose, _skill)
-				i--;
 			}
 		}
 	}

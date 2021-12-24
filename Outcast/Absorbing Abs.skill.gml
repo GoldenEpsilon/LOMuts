@@ -24,22 +24,21 @@ global.bolts = [];
 	return true;
 
 #define skill_tip
-	return "Can't stop the wiggles";
+	return "Shlorp";
 	
 #define skill_take
 	sound_play(sndMut);
 
 #define step
 	for(var i = 0; i < array_length(global.bolts); i++){
-		if(!instance_exists(global.bolts[i][@4]) || !object_is_ancestor(global.bolts[i][@4].object_index, projectile)){
-			with(global.bolts[i][@5]){
+		if(!instance_exists(global.bolts[i][@3]) || !object_is_ancestor(global.bolts[i][@3].object_index, projectile)){
+			with(global.bolts[i][@4]){
 				x = global.bolts[i][@0];
 				y = global.bolts[i][@1];
 				var prevDir = direction;
 				direction = global.bolts[i][@2]+180 + random_range(-10, 10);
 				image_angle += direction-prevDir;
 				instance_change(prevObj, 0);
-				team = global.bolts[i][@3];
 				prevObj = null;
 				speed = deactivate_speed;
 				image_speed = deactivate_image_speed;
@@ -49,12 +48,12 @@ global.bolts = [];
 			}
 			global.bolts = call(scr.array_delete, global.bolts, i);
 		}else{
-			with(global.bolts[i][@4]){
+			with(global.bolts[i][@3]){
 				global.bolts[i][@0] = x;
 				global.bolts[i][@1] = y;
 				global.bolts[i][@2] = direction;
-				global.bolts[i][@3] = team;
 				with(call(scr.instances_meeting, x, y, instances_matching_ne(projectile, "team", team))){
+					team = other.team;
 					prevObj = object_index;
 					deactivate_speed = speed;
 					deactivate_image_speed = image_speed;
@@ -66,7 +65,7 @@ global.bolts = [];
 					image_speed = 0;
 					image_index = 1;
 					image_alpha = 0;
-					array_push(global.bolts[i][@5], self);
+					array_push(global.bolts[i][@4], self);
 				}
 			}
 		}
@@ -75,10 +74,10 @@ global.bolts = [];
 #define update(_id)
 	with(Player){
 		with(instances_matching(instances_matching(instances_matching_gt(projectile, "id", _id), "team", team), "ammo_type", 3)){
-			array_push(global.bolts, [x, y, direction, team, self, []]);
+			array_push(global.bolts, [x, y, direction, self, []]);
 		}
 		with(instances_matching(instances_matching_gt([Bolt, HeavyBolt, UltraBolt, Disc, Seeker], "id", _id), "team", team)){
-			array_push(global.bolts, [x, y, direction, team, self, []]);
+			array_push(global.bolts, [x, y, direction, self, []]);
 		}
 	}
 
