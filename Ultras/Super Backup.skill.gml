@@ -30,7 +30,7 @@ with(instances_matching(RogueStrike, "superbackup", null)){
 			_y = y;
 			wait(0);
 		}
-		repeat(1 + (1 + skill_get(mut_throne_butt)) * GameCont.loops){
+		repeat(2 + (1 + skill_get(mut_throne_butt)) * GameCont.loops){
 			var temp = instance_nearest(_x + irandom(100) - 50,_y + irandom(100) - 50,Floor);
 			_x = temp.x + temp.sprite_width/2;
 			_y = temp.y + temp.sprite_height/2;
@@ -48,7 +48,7 @@ with(instances_matching(RogueStrike, "superbackup", null)){
 		exit;
 	}
 }
-with(instances_matching(Grunt, "superbackup", true)){
+with(instances_matching(enemy, "superbackup", true)){
 	 // Shh, don't tell yokin but this is taken from Parrot in NTTE
 	var	_lastDir = direction;
 		
@@ -224,8 +224,22 @@ with(instances_matching(Grunt, "superbackup", true)){
 #define SuperBackup_step
 timer -= current_time_scale;
 if(timer < 0){
+	var list = [Grunt, Grunt, Grunt, Grunt];
+	if(GameCont.loops >= 1){
+		array_push(list, Inspector);
+		array_push(list, Shielder);
+	}
+	if(GameCont.loops >= 2){
+		array_push(list, EliteGrunt);
+		array_push(list, EliteInspector);
+		array_push(list, EliteShielder);
+	}
+	if(GameCont.loops >= 3){
+		list = [PopoFreak];
+	}
 	repeat(irandom(1)+1){
-		with(instance_create(x,y,Grunt)){
+		with(instance_create(x,y,/*Grunt*/list[irandom(array_length(list)-1))){
+			my_health *= 2;
 			team = other.team;
 			index = other.index;
 			_target = noone;
@@ -248,6 +262,7 @@ if(!instance_exists(target)){
 	instance_destroy();
 	exit;
 }
+sprite_index = target.sprite_index;
 d3d_set_fog(1, player_get_color(target.index), 0, 0);
 target.x++;
 with(target){image_xscale *= right; draw_self(); image_xscale *= right;}
