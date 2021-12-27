@@ -238,7 +238,7 @@ if(timer < 0){
 		list = [PopoFreak];
 	}
 	repeat(irandom(1)+1){
-		with(instance_create(x,y,/*Grunt*/list[irandom(array_length(list)-1))){
+		with(instance_create(x,y,/*Grunt*/list[irandom(array_length(list)-1)])){
 			my_health *= 2;
 			team = other.team;
 			index = other.index;
@@ -262,16 +262,15 @@ if(!instance_exists(target)){
 	instance_destroy();
 	exit;
 }
-sprite_index = target.sprite_index;
 d3d_set_fog(1, player_get_color(target.index), 0, 0);
 target.x++;
-with(target){image_xscale *= right; draw_self(); image_xscale *= right;}
+with(target){image_xscale *= right; if("roll" in self){image_angle += roll} draw_self(); if("roll" in self){image_angle -= roll} image_xscale *= right;}
 target.x-=2;
-with(target){image_xscale *= right; draw_self(); image_xscale *= right;}
+with(target){image_xscale *= right; if("roll" in self){image_angle += roll} draw_self(); if("roll" in self){image_angle -= roll} image_xscale *= right;}
 target.x++;
 target.y++;
-with(target){image_xscale *= right; draw_self(); image_xscale *= right;}
+with(target){image_xscale *= right; if("roll" in self){image_angle += roll} draw_self(); if("roll" in self){image_angle -= roll} image_xscale *= right;}
 target.y-=2;
-with(target){image_xscale *= right; draw_self(); image_xscale *= right;}
+with(target){image_xscale *= right; if("roll" in self){image_angle += roll} draw_self(); if("roll" in self){image_angle -= roll} image_xscale *= right;}
 target.y++;
 d3d_set_fog(0, 0, 0, 0);
