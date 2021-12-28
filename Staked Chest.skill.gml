@@ -22,6 +22,9 @@ global.sprSkillHUD = sprite_add("Sprites/Icons/Staked Chest Icon.png", 1, 8, 8)
 	
 #define skill_take
 	sound_play(sndMutTriggerFingers)
+
+#define skill_chest_type
+	return 3;
 	
 #define step
 
