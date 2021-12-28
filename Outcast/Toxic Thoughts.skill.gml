@@ -1,6 +1,6 @@
 #define init
-global.sprSkillIcon = sprite_add("Sprites/Main/Toxic Thoughts.png", 1, 12, 16)
-global.sprSkillHUD = sprite_add("Sprites/Icons/Toxic Thoughts Icon.png", 1, 8, 8)
+global.sprSkillIcon = sprite_add("../Sprites/Main/Toxic Thoughts.png", 1, 12, 16)
+global.sprSkillHUD = sprite_add("../Sprites/Icons/Toxic Thoughts Icon.png", 1, 8, 8)
 
 #define skill_name
 	return "Toxic Thoughts";

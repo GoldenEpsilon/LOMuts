@@ -16,6 +16,12 @@ script_ref_call(["mod", "lib", "getHooks"], "skill", mod_current);
 #define skill_icon
 	return global.sprSkillHUD;
 
+#define skill_avail
+	return false;
+
+#define skill_outcast
+	return true;
+
 #define skill_tip
 	return "Off Rhythm";
 	

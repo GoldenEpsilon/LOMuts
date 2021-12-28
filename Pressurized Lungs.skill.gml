@@ -33,6 +33,10 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 
 #define late_step
 var teams = [];
+/*with(instances_matching_ne([Flame, TrapFire], "pressurized", true)){
+	pressurized = true;
+	damage = round(damage/2);
+}*/
 with(Player){
 	array_push(teams, team);
 	with(instances_matching(Flame, "creator", self)){
@@ -53,15 +57,15 @@ with(enemy){
 	var _team = team;
 	with(call(scr.instance_rectangle_bbox, bbox_left, bbox_top, bbox_right, bbox_bottom, instances_matching_ne(enemy, "team", team))){
 		if("pressurized" not in self){pressurized = 0;}
-		if(speed < 1 && pressurized > 10){
-			with(call(scr.superforce_push, self, 6 + 6 * skill_get(mod_current), other.direction, 0.1, 1, 1, 1)){
+		pressurized += 2 * current_time_scale;
+		if(pressurized > 30){
+			with(call(scr.superforce_push, self, 2 + 6 * skill_get(mod_current), other.direction, 0.1, 1, 0.5, 1)){
 				hook_step = script_ref_create(pressurized_step);
 				hook_wallhit = script_ref_create(pressurized_wall);
 				realTeam = _team;
-				pressurized = 0;
+				other.pressurized = 0;
 			}
 		}else if(speed > 1 && angle_difference(direction, other.direction) > 90){
-			pressurized += 2 * current_time_scale;
 			speed = max(speed - skill_get(mod_current) * current_time_scale, 1);
 		}
 	}

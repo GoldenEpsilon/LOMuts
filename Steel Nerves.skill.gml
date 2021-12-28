@@ -7,7 +7,7 @@ global.burst = sprite_add("Sprites/SteelNervesBurst.png", 4, 16, 16)
 	return "Steel Nerves";
 	
 #define skill_text
-	return "You can only take damage#up to 1/2 your max HP per hit";
+	return "You can only take damage#up to 2/3 your max HP per hit";
 
 #define skill_button
 	sprite_index = global.sprSkillIcon;
@@ -61,10 +61,10 @@ script_bind_end_step(custom_step2, 0);
 with Player {
 	if("steelNerves" not in self){
 		nervesMax = maxhealth;
-		steelNerves = (nervesMax+skill_get(mod_current)-1)/(1+skill_get(mod_current));
+		steelNerves = (nervesMax+skill_get(mod_current))/(2+skill_get(mod_current));
 	}
 	if(maxhealth != nervesMax){
-		steelNerves += (maxhealth - nervesMax)/2;
+		steelNerves += (maxhealth - nervesMax)*2/3;
 		nervesMax = maxhealth;
 	}
 	OldHealth = my_health;
@@ -78,7 +78,7 @@ instance_destroy();
 with Player {
 	if("steelNerves" in self && "changedCanDie" in self && "OldHealth" in self){
 		if (my_health < OldHealth){
-			if(my_health < floor(OldHealth-steelNerves) && OldHealth > floor(OldHealth-steelNerves)){
+			if(my_health < ceil(OldHealth-steelNerves) && OldHealth > floor(OldHealth-steelNerves)){
 				sound_play_pitchvol(sndHitMetal, 0.3, 3);
 				with(instance_create(x,y,Effect)){
 					sprite_index = global.burst;

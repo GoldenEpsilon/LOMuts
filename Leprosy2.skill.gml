@@ -8,18 +8,18 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 	return "Leprosy";
 	
 #define skill_text
-	return "-1 max hp#gain a random outcast mutation#(this does not take a mutation)";
+	return "take one damage#reroll the random outcast mutation#(this does not take a mutation)";
 
 #define skill_button
 	sprite_index = global.sprSkillIcon;
 	
 #define skill_icon
 	return global.sprSkillHUD;
-	
-#define skill_sacrifice return false; //metamorphosis compat thing
 
 #define skill_avail
-	return (!instance_is(self, CustomObject) && !instance_is(self, CustomProp)) || instance_exists(Loadout);
+	return false;
+	
+#define skill_sacrifice return false; //metamorphosis compat thing
 
 #define skill_tip
 	return "I feel icky...";
@@ -34,10 +34,10 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 	sound_play(sndMut);
 	var hasHealth = 0;
 	with(Player){
-		if(maxhealth > 1){
+		if(my_health > 1){
 			hasHealth = 1;
-			maxhealth = max(1, maxhealth - 1);
-			if(my_health > maxhealth){my_health = maxhealth;lsthealth = maxhealth;}
+			my_health = max(1, my_health - 1);
+			lsthealth = my_health;
 		}
 	}
 	if(hasHealth){
@@ -48,18 +48,17 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 				array_push(_outcasts, self);
 			}
 		}
+		var i = 0;
+		while(!is_undefined(skill_get_at(i))){i++}
+		while(i > 0 && (!is_string(skill_get_at(i)) || !mod_script_exists("skill", skill_get_at(i), "skill_outcast") || !mod_script_call("skill", skill_get_at(i), "skill_outcast"))){
+			i--;
+		}
+		skill_set(skill_get_at(i), 0);
 		if(array_length(_outcasts)){
-			var chosen = _outcasts[call(scr.seeded_random, GameCont.level + GameCont.mutindex, 0, array_length(_outcasts)-1, 1)]
+			var chosen = _outcasts[call(scr.seeded_random, GameCont.level + GameCont.mutindex + Player.my_health, 0, array_length(_outcasts)-1, 1)]
 			skill_set(chosen, 1);
-			with(SkillIcon){
-				if(skill == mod_current){
-					skill = "Leprosy2";
-					text = mod_script_call("skill", "Leprosy2", "skill_text");
-				}
-			}
 		}else{
 			trace("No muts left in outcast pool, refunding");
-			maxhealth++;
 			my_health++;
 		}
 	}
