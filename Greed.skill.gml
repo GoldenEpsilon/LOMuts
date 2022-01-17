@@ -32,5 +32,6 @@ global.sprSkillHUD = sprite_add("Sprites/Main/Greed Icon.png", 1, 8, 8)
 	sound_play(sndMut);
 	with(Player){
 		my_health--;
+		lsthealth--;
 	}
 	GameCont.rad += 50;
