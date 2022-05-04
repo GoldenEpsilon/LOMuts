@@ -33,8 +33,6 @@
 /loadskill Neural Network/Recurrent Neural Network
 /loadskill Neural Network/Support Vector Machines
 /loadskill Alchemic Stomach
-/loadskill Leprosy
-/loadskill Leprosy2
 /loadskill Greed
 
 /loadmod Ultras/cultra

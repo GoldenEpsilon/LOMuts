@@ -8,7 +8,7 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 	return "Leprosy";
 	
 #define skill_text
-	return "-1 max hp#gain a random outcast mutation#(this does not take a mutation)";
+	return "-2 max hp#gain a random outcast mutation#(this does not take a mutation)";
 
 #define skill_button
 	sprite_index = global.sprSkillIcon;
@@ -27,6 +27,9 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 #define skill_temp
 	return 1;
 
+#define skill_outcast
+	return 1;
+
 #define skill_reusable
 	return 1;
 	
@@ -34,9 +37,10 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 	sound_play(sndMut);
 	var hasHealth = 0;
 	with(Player){
-		if(maxhealth > 1){
+		if(maxhealth > 2){
 			hasHealth = 1;
-			maxhealth = max(1, maxhealth - 1);
+			maxhealth = max(1, maxhealth - 2);
+			prevhealth = my_health;
 			if(my_health > maxhealth){my_health = maxhealth;lsthealth = maxhealth;}
 		}
 	}
@@ -59,8 +63,8 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 			}
 		}else{
 			trace("No muts left in outcast pool, refunding");
-			maxhealth++;
-			my_health++;
+			maxhealth += 2;
+			my_health = prevhealth;
 		}
 	}
 

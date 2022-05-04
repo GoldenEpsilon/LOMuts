@@ -47,17 +47,17 @@ with(Player){
 	if("compOldAmmo" in self){
 		for(var i = 0; i < array_length(ammo); i++){
 			if(ammo[i] < compOldAmmo[i]){
-				var val = (ammo[i] - compOldAmmo[i])/2 + compAmmoRemainder[i];
-				ammo[i] += floor(val) * skill_get(mod_current);
-				compAmmoRemainder[i] = val - floor(val) * skill_get(mod_current)
+				var val = ((ammo[i] - compOldAmmo[i])/2) * skill_get(mod_current) + compAmmoRemainder[i];
+				ammo[i] += floor(val);
+				compAmmoRemainder[i] = val - floor(val)
 				if(ammo[i] < 0){ammo[i] = 0;}
 			}
 		}
 		if(reload > compOldReload && wep == compOldWep && (is_string(wep) || is_object(wep) || wep > 0) && weapon_get_cost(wep) == 0){
-			reload *= 1.5 * skill_get(mod_current);
+			reload *= 1 + 0.5 * skill_get(mod_current);
 		}
 		if(breload > compOldBReload && wep == compOldWep && (is_string(bwep) || is_object(wep) || bwep > 0) && weapon_get_cost(bwep) == 0){
-			breload *= 1.5 * skill_get(mod_current);
+			breload *= 1 + 0.5 * skill_get(mod_current);
 		}
 	}
 }

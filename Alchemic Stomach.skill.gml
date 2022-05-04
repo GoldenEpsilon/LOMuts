@@ -33,7 +33,7 @@ global.sprSkillHUD = sprite_add("Sprites/Outcast/Blank Icon.png", 1, 8, 8)
 					if(ammo[type] > 0){
 						var amnt = floor((min(min(ammo[type], ceil(typ_amax[type]/10)), (weapon_get_cost(wep)*2 - ammo[weapon_get_type(wep)])*typ_amax[type])/typ_amax[type])*typ_amax[weapon_get_type(wep)]);
 						ammo[type] -= ceil((amnt/typ_amax[weapon_get_type(wep)])*typ_amax[type]);
-						ammo[weapon_get_type(wep)] += amnt * (skill_get(mod_current))/2;
+						ammo[weapon_get_type(wep)] += ceil(amnt * (skill_get(mod_current))/2);
 					}
 				}
 			}
@@ -48,7 +48,7 @@ global.sprSkillHUD = sprite_add("Sprites/Outcast/Blank Icon.png", 1, 8, 8)
 					if(ammo[type] > 0){
 						var amnt = min(min(ammo[type], 5), weapon_get_cost(bwep)*2 - ammo[weapon_get_type(bwep)]);
 						ammo[type] -= amnt;
-						ammo[weapon_get_type(bwep)] += amnt * (skill_get(mod_current))/2;
+						ammo[weapon_get_type(bwep)] += ceil(amnt * (skill_get(mod_current))/2);
 					}
 				}
 			}

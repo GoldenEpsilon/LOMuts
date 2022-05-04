@@ -133,6 +133,7 @@ Ideas for future update (NOT GUARANTEED IN ANY WAY, SHAPE, OR FORM.)
 (DONE)	- Bring back Arcane Art
 (DONE)	- Energy mut that makes all energy weapons "hitscan": Run all events for them manually until they die (or like 15 frames happen) - mess with nexthurt on enemies it collides with to make sure it doesn't nerf weapons
 	- -1 reload frame for all weapons
+	- All weapons are burst
  - FALLEN HERO: (Cursed Mutation) Gain two mutations, Future mutation sets are mostly cursed
  - ACHILLES TENDON: (Cursed Mutation) EVERYTHING TAKES MORE DAMAGE, BASED ON HOW MANY CURSED MUTATIONS YOU HAVE
  - Make muscle memory activate after dividing elbows
