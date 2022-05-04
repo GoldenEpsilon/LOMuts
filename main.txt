@@ -35,6 +35,7 @@
 /loadskill Alchemic Stomach
 /loadskill Greed
 /loadskill Ruffled Feathers
+/loadskill Bursted Chest
 
 /loadmod Ultras/cultra
 /loadskill Ultras/Adaptable

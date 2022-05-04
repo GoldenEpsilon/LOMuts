@@ -1,12 +1,12 @@
 #define init
-global.sprSkillIcon = sprite_add("Sprites/Main/Garment Regenerator.png", 1, 12, 16)
-global.sprSkillHUD = sprite_add("Sprites/Icons/Garment Regenerator Icon.png", 1, 8, 8)
+global.sprSkillIcon = sprite_add("Sprites/Outcast/Blank.png", 1, 12, 16)
+global.sprSkillHUD = sprite_add("Sprites/Outcast/Blank Icon.png", 1, 8, 8)
 
 #define skill_name
-	return "Garment Regenerator";
+	return "Bursted Chest";
 	
 #define skill_text
-	return "When you take damage,#@rheal@s half of it back after a second.";
+	return "When you take damage,#create an @wally@s";
 
 #define skill_button
 	sprite_index = global.sprSkillIcon;
@@ -28,17 +28,15 @@ global.sprSkillHUD = sprite_add("Sprites/Icons/Garment Regenerator Icon.png", 1,
 	sound_play(sndMutant10Slct);
 	
 #define step
-
 with Player {
 	if (fork()) {
 		var OldHealth = my_health;
+		var tempTeam = team;
 		wait 0
 		if(instance_exists(self) && my_health < OldHealth){
-			var healHealth = floor((OldHealth - max(my_health,0))/2)
-			wait(60 / skill_get(mod_current));
-			if(instance_exists(self)){
-				my_health += healHealth;
-				my_health = min(my_health, maxhealth);
+			with(instance_create(x,y,Ally)){
+				creator = other;
+				team = tempTeam;
 			}
 		}
 		exit

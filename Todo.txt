@@ -7,7 +7,6 @@ Ideas for future update (NOT GUARANTEED IN ANY WAY, SHAPE, OR FORM.)
  - Make Heavy Heart refund the mutation point
  - Make Garment Regenerator not work on rebel
  - Fix union coop bugs
- - Mutation that selects a random mutation and gives you a mutation token
  - You cannot have a full selection of mutations that do not count as taking a mutation
  - Effect: Deal 2 damage to yourself, reroll other mutations in this selection (this does not count as taking a mutation)
  - Offering: Lose your primary weapon, heal to full health, reroll this mutation (this does not count as taking a mutation)
@@ -63,13 +62,11 @@ Ideas for future update (NOT GUARANTEED IN ANY WAY, SHAPE, OR FORM.)
 (DONE) - Alchemic Stomach: If you try to fire while out of ammo, it uses one of all other ammo types instead
  - Slim Pickings: Gain 2 "Outcast" mutations.
  - Loner: Choose 1 outcast mutation, it gets 2x power.
- - Ruffled Feathers: +2 mutation options, outcast mutations appear in the mutation pool.
+(DONE) - Ruffled Feathers: +2 mutation options, outcast mutations appear in the mutation pool.
 (DONE) - Leprosy: -1 max hp, gain a random outcast mutation. (this does not count as taking a mutation)
- - Crown of Outcasts: Preloop crown, +2 mutations per level, all mutations are outcast mutations
+ - Crown of Outcasts: Preloop crown, 2 mutations per level instead of 1, all mutations are outcast mutations
  - (vagabonds compat) Excavate one outcast mutation.
- - Every two unique bosses killed, gain an outcast mutation. (maybe buff to 3 if bosses+ is in there?)
- - every two unique areas you clear, you get a random outcast mutation
- - Outcast mutations: Bad ideas that didn't make the list. Should be roughly 1/2 power of a good mut, should be badly designed, should have dev art.
+ - Outcast mutations: Chaotic ideas. Dev art is just fine here.
 	- Lasers Bounce
 	- You don't take damage from fire/explosions at full health
 (DONE)	- Iron Skin: when at full health the next hit deals 1 damage
@@ -79,7 +76,7 @@ Ideas for future update (NOT GUARANTEED IN ANY WAY, SHAPE, OR FORM.)
 	- enemies deal no contact damage
 	- toxic, fire, and electricity deal double damage
 	- see in the dark
-	- faster rate of fire, lose your secondary weapon at the start of every level
+	- faster rate of fire, lose your secondary weapon at the start of every level (maybe make it a cursed mut?)
 	- faster max speed, slower acceleration
 	- phase through thin walls
 	- killing enemies with melee gives you more rads
@@ -97,15 +94,15 @@ Ideas for future update (NOT GUARANTEED IN ANY WAY, SHAPE, OR FORM.)
 	- Third Arm: When an enemy comes into close range your secondary weapon fires (if it's reloaded)
 (DONE)	- Laser Eyes: At the start of the level, one enemy is marked. Marked enemies take double damage. The mark shifts when the enemy dies.
 (DONE)	- Explosive Gaze: At the start of the level, five enemies are marked. Marked enemies explode on death.
-	- Damage from toxic marks enemies. Marked enemies take damage over time.
+(DONE)	- Damage from toxic marks enemies. Marked enemies take damage over time.
 	- If a laser sight hovers over an enemy, the enemy becomes Marked. Marked enemies are slowed.
-	- (TE compat) Friendly Eyelashes: When an enemy is under half health, there's a 50% chance it gets marked. marked enemies are charmed.
+(DONE)	- (TE compat) Friendly Eyelashes: When an enemy is under half health, there's a chance it gets marked. marked enemies are charmed for a short while.
 	- (TE compat) Lurking Mind: Flamethrowers now shoot quazar beams.
 	- (TE compat) At the start of the level, two enemies are marked. Marked enemies give temporary mutations on death.
 	- (TE compat) Temporary mutations last longer
 	- All characters can airhorn. Airhorn destroys bullets around you.
 (DONE)	- Blank: Becomes a random outcast mutation upon picking it.
-	- Spawn a chest that activates all "start of level" effects
+(HALF)	- Spawn a chest that activates all "start of level" effects
 	- At the start of the level, spawn a stationary turret you can use
 	- At the start of the level, one of your ammo types at random gets completely filled
 	- Strange Transformation: Replace your active ability with another mutant's
@@ -122,7 +119,7 @@ Ideas for future update (NOT GUARANTEED IN ANY WAY, SHAPE, OR FORM.)
 	- Shotguns also fire other projectiles (flame shells, bolts, splinters, bullets, lasers, plasma, all with weighted chances)
 	- All projectiles work like nukes
 	- Rubber Rounds: Enemy shots have a chance to bounce and become teamed to you
-	- Crulety-Free Veganlust: Props can drop pickups
+(DONE)	- Crulety-Free Veganlust: Props can drop pickups
 	- PURIST: more vanilla weapons
 	- EXPERIMENTALIST: more modded weapons
 (DONE)	- Buckshot Back: Bullets get UPGRADED (regular -> heavy -> ultra)
@@ -138,9 +135,9 @@ Ideas for future update (NOT GUARANTEED IN ANY WAY, SHAPE, OR FORM.)
  - ACHILLES TENDON: (Cursed Mutation) EVERYTHING TAKES MORE DAMAGE, BASED ON HOW MANY CURSED MUTATIONS YOU HAVE
  - Make muscle memory activate after dividing elbows
  - Mutation: chests have a buffing aura around them, pick up the chest for a temporary boost
- - Change Unstable DNA: Gain two mutations that change every area
+ - Change Unstable DNA: Gain two mutations that change every area //make this a new mutation instead, maybe even make it one mutation that changes randomly
  - TEMPORARY: have mimicry take away the last mutation you got
- - CHESTBURSTER: WHEN YOU TAKE DAMAGE, SPAWN AN ALLY
+(DONE) - CHESTBURSTER: WHEN YOU TAKE DAMAGE, SPAWN AN ALLY
  
  
  - For the original Unstable DNA and Mimicry effects:

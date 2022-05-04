@@ -47,7 +47,7 @@
 	}
 
 #define draw
-	with(instances_matching(enemy, "marked", true)){
+	with(instances_matching(hitme, "marked", true)){
 		if("markTimer" not in self){
 			markTimer = 10;
 		}

@@ -15,7 +15,7 @@
 		{name: "BUY AMMO", desc: "GAIN AMMO#(+25% MAX AMMO FOR EACH TYPE)", cost: 1, icon: global.blank, on_select: script_ref_create(tokenshop_ammo)},
 		{name: "DISRESPECT", desc: "GAIN A RANDOM#OUTCAST MUTATION", cost: 1, icon: global.blank, on_select: script_ref_create(tokenshop_disrespect)},
 		{name: "EXPERIMENT", desc: "REROLL A MUTATION#AT RANDOM", cost: 1, icon: global.blank, on_select: script_ref_create(tokenshop_experiment)},
-		{name: "GAMBLE", desc: "GAMBLE A#MUTATION TOKEN", cost: 1, icon: global.blank, on_select: script_ref_create(tokenshop_gamble)},
+		//{name: "GAMBLE", desc: "GAMBLE A#MUTATION TOKEN", cost: 1, icon: global.blank, on_select: script_ref_create(tokenshop_gamble)},
 		//{name: "REROLL", desc: "REROLL A MUTATION#OUT OF FOUR", cost: 2, icon: global.blank, on_select: script_ref_create(tokenshop_reroll)},
 		//{name: "EXTRACT", desc: "LOSE 2 MUTATIONS#GAIN SOMEONE ELSE'S#ULTRA MUTATION", cost: 2, icon: global.blank, on_select: script_ref_create(tokenshop_extract)},
 		{name: "EMPOWER", desc: "LOSE 1 MUTATION#POWER UP 1 MUTATION", cost: 2, icon: global.blank, on_select: script_ref_create(tokenshop_empower)},
@@ -79,7 +79,7 @@
 				if((button_pressed(index, "fire") && point_in_rectangle(mouse_x[index], mouse_y[index], other.bbox_left, other.bbox_top, other.bbox_right, other.bbox_bottom)) || 
 				button_pressed(index, "key" + string(other.num+1)) || 
 				(other.creator.select == other.num && button_pressed(index, "okay"))){
-					global.mutTokens++;
+					global.mutTokens+=3;
 				}
 			}
 		}

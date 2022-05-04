@@ -15,3 +15,6 @@
 /loadskill Toxic Thoughts
 /loadskill Leprosy
 /loadskill Leprosy2
+/loadskill Putrid Haze
+/loadskill Friendly Eyelashes
+/loadskill Crulety-Free Veganlust
