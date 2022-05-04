@@ -12,7 +12,6 @@ if(is_string(s) && is_real(real(s))){
 global.timer = 0;
 global.stackSet = 0;
 
-global.texts = ["haha","+4 @rMAX HP@s","MORE @wSPEED@s#WALK NORMAL ON ALL TERRAIN","ATTRACT @wDROPS@s AND @gRADS@s FROM FURTHER","MORE @rHP@s AND @yAMMO@s DROPS","TB MACHINE @rB@sROKE","SOME KILLS REGENERATE @yAMMO@s","SOME KILLS REGENERATE @rHP@s","@wENEMIES@s TOUCHING YOU TAKE DAMAGE","MORE @rHP@s FROM MEDKITS","HIGHER @yAMMO@s MAX","LESS ENEMY @rHP@s","SLOWER @wENEMY BULLETS@s","MORE @wMELEE@s RANGE","@wNO DAMAGE@s FROM EXPLOSIONS AND FIRE#WHEN UNDER 4 @rHP@s","@wSHELLS@s BOUNCE FURTHER","MOST HIT @wBULLETS@s BECOME @yAMMO@s","@wENERGY WEAPONS@s DEAL MORE DAMAGE","GET @rFULL HP@s AND SOME @yAMMO@s","BETTER @wACCURACY@s","@wCORPSES@s FLY & HIT HARDER","HOMING @wBOLTS@s","HIGHER @wRATE OF FIRE@s#AS @rHP@s GETS LOWER","@wKILLS@s LOWER YOUR @wRELOAD TIME@s","@wDAMAGE@s TAKEN IS DEALT TO#ALL @wENEMIES@s ON SCREEN","@gMUTATE@s LATER","PUSH THROUGH A LIMITED NUMBER OF @wWALLS@s#","PREVENTS @wDEATH@s ONCE#RECHARGES AT FULL @rHP@s IN THE NEXT AREA","EXTRA @wCHEST@s SPAWN","MORE WEAPON DROPS"]
 chat_comp_add("extramuts", "sets the number of extra mutation choices");
 wait(18);
 trace("Extra mutation options: " + string(global.stacks));
@@ -33,94 +32,98 @@ if(command == "extramuts"){
 }
 
 #define step
-if(instance_exists(LevCont) && !instance_exists(CrownIcon) && !instance_exists(EGSkillIcon)){
-	if(global.stackSet == 0){
-		global.target=global.stacks+LevCont.maxselect + 1;
-	
-		global.stackSet = 1;
-	}
-}else{
-	global.stackSet = 0;
-}
-
-if instance_exists(SkillIcon) && (!is_string(SkillIcon.skill) || !mod_script_exists("skill", SkillIcon.skill, "skill_avail") || mod_script_call("skill", SkillIcon.skill, "skill_avail")) && !instance_exists(EGSkillIcon) && LevCont.maxselect > 2 {
-
-	if(global.timer < 10){
-		global.timer++;
-		exit;
-	}
-
-	var sis=instance_number(SkillIcon)
-
-	if sis<global.target && sis >= 4 && skill_decide() != -1 {
-	
-		with instance_create(0,0,SkillIcon){
-			bonusbutton=1
-			p = 0
-			skill=0
-			tskill = skill_decide();
-			while(array_length_1d(instances_matching(SkillIcon,"skill",tskill)) > 0 || skill_get(tskill) > 0 || !skill_get_active(tskill)){
-				tskill = skill_decide();
-			}
-			skill=tskill
-			
-			num = 1//instance_number(SkillIcon)/1.25 - global.target/4
-			creator = LevCont
-			//visible = 1 //most important bit, its invisble by default
-			name  = skill_get_name(skill)
-			if is_real(skill){
-				if(skill >= 0){
-					sprite_index = sprSkillIcon
-					image_index = skill
-					text = global.texts[skill]
-				}
-			}else{
-				mod_script_call("skill",skill,"skill_button")
-				text = mod_script_call("skill",skill,"skill_text")
-			}
-		}
+//Grillskills compat (turn off extra mutation options if grillskills is enabled
+if(!("mutation_animation" in LevCont)){
+	if(instance_exists(LevCont) && !instance_exists(CrownIcon) && !instance_exists(EGSkillIcon)){
+		if(global.stackSet == 0 || array_length(instances_matching(SkillIcon, "extramuts", 1)) == 0){
+			global.target=global.stacks+LevCont.maxselect + 1;
 		
-		global.temp=0
+			global.stackSet = 1;
+		}
+	}else{
+		global.stackSet = 0;
+	}
+
+	if instance_exists(SkillIcon) && (!is_string(SkillIcon.skill) || !mod_script_exists("skill", SkillIcon.skill, "skill_avail") || mod_script_call("skill", SkillIcon.skill, "skill_avail")) && !instance_exists(EGSkillIcon) && LevCont.maxselect > 2 {
+
+		if(global.timer < 10){
+			global.timer++;
+			exit;
+		}
+
+		var sis=instance_number(SkillIcon)
+
+		if sis<global.target && sis >= 4 && skill_decide() != -1 {
+		
+			with instance_create(0,0,SkillIcon){
+				bonusbutton=1
+				p = 0
+				skill=0
+				tskill = skill_decide();
+				while(array_length_1d(instances_matching(SkillIcon,"skill",tskill)) > 0 || skill_get(tskill) > 0 || !skill_get_active(tskill)){
+					tskill = skill_decide();
+				}
+				skill=tskill
+				
+				num = 1//instance_number(SkillIcon)/1.25 - global.target/4
+				creator = LevCont
+				//visible = 1 //most important bit, its invisble by default
+				name  = skill_get_name(skill)
+				if is_real(skill){
+					if(skill >= 0){
+						sprite_index = sprSkillIcon
+						image_index = skill
+						text = skill_get_text(skill);
+					}
+				}else{
+					mod_script_call("skill",skill,"skill_button")
+					text = mod_script_call("skill",skill,"skill_text")
+				}
+			}
+			
+			global.temp=0
+			with SkillIcon{
+				place=(instance_number(SkillIcon)-global.temp)
+				num = (instance_number(SkillIcon)-1-global.temp)/*place/(1+1/global.target)-global.target/3*/
+
+				global.temp+=1
+			}
+
+		}
 		with SkillIcon{
-			place=(instance_number(SkillIcon)-global.temp)
-			num = (instance_number(SkillIcon)-1-global.temp)/*place/(1+1/global.target)-global.target/3*/
-
-			global.temp+=1
+			extramuts = 1;
+			if("bonusbutton" in self && bonusbutton == 1){
+				with(LevCont){maxselect = instance_number(SkillIcon)-1;}
+			}
+			if variable_instance_exists(self,"place")
+				with instances_matching(SkillIcon,"place",place-1)
+					if visible
+						other.visible=1
+		
 		}
-
+	}else{
+		global.timer = 0;
 	}
-	with SkillIcon{
-		if("bonusbutton" in self && bonusbutton == 1){
-			with(LevCont){maxselect = instance_number(SkillIcon)-1;}
+
+	//thank you squiddy
+
+	#define skill_get_avail(_skill)
+	if (((is_real(_skill) && floor(_skill) == _skill) || (is_string(_skill) && mod_exists("skill", _skill))) && skill_get_active(_skill)){
+		if (_skill != mut_heavy_heart || skill_get(mut_heavy_heart) != 0 || (GameCont.wepmuts >= 3 && !GameCont.wepmuted)){
+			if (!is_string(_skill) || !mod_script_exists("skill", _skill, "skill_avail") || mod_script_call("skill", _skill, "skill_avail")){
+				return true;
+			}
 		}
-		if variable_instance_exists(self,"place")
-			with instances_matching(SkillIcon,"place",place-1)
-				if visible
-					other.visible=1
-	
 	}
-}else{
-	global.timer = 0;
-}
 
-//thank you squiddy
-
-#define skill_get_avail(_skill)
-if (((is_real(_skill) && floor(_skill) == _skill) || (is_string(_skill) && mod_exists("skill", _skill))) && skill_get_active(_skill)){
-	if (_skill != mut_heavy_heart || skill_get(mut_heavy_heart) != 0 || (GameCont.wepmuts >= 3 && !GameCont.wepmuted)){
-		if (!is_string(_skill) || !mod_script_exists("skill", _skill, "skill_avail") || mod_script_call("skill", _skill, "skill_avail")){
+	else if (is_string(_skill)){
+		if (mod_script_exists("mod", "fake skills", "fake_skill_get_avail") && mod_script_call("mod", "fake skills", "fake_skill_get_avail", _skill)){
 			return true;
 		}
 	}
-}
 
-else if (is_string(_skill)){
-	if (mod_script_exists("mod", "fake skills", "fake_skill_get_avail") && mod_script_call("mod", "fake skills", "fake_skill_get_avail", _skill)){
-		return true;
-	}
+	return false;
 }
-
-return false;
 
 #define skill_get_list
 /// skill_get_list(_list, _avail = true)
