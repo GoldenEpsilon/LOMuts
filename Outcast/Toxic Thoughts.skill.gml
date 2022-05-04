@@ -14,6 +14,9 @@ global.sprSkillHUD = sprite_add("../Sprites/Icons/Toxic Thoughts Icon.png", 1, 8
 #define skill_icon
 	return global.sprSkillHUD;
 
+#define skill_avail
+	return true;
+
 #define skill_tip
 	return choose("Blame the player#not the game", "Indifferent to ballguys");
 	

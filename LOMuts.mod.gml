@@ -23,6 +23,13 @@
 	call(scr.add_setting, "LOMuts", "canMutTokens", "Mutation Tokens");
 	call(scr.autoupdate, "LOMuts", "GoldenEpsilon/LOMuts");
 
+#define game_start
+	var _skills = mod_get_names("skill");
+	with(_skills){
+		if(!skill_get(self) && mod_script_exists("skill", self, "skill_outcast") && mod_script_call("skill", self, "skill_outcast")){
+			skill_set_active(self, false);
+		}
+	}
 
 #define step
 	with(SkillIcon){

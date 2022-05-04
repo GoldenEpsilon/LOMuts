@@ -15,7 +15,7 @@ global.sprSkillHUD = sprite_add("../Sprites/Outcast/Blank Icon.png", 1, 8, 8)
 	return global.sprSkillHUD;
 
 #define skill_avail
-	return false;
+	return true;
 
 #define skill_outcast
 	return true;

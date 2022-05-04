@@ -34,6 +34,7 @@
 /loadskill Neural Network/Support Vector Machines
 /loadskill Alchemic Stomach
 /loadskill Greed
+/loadskill Ruffled Feathers
 
 /loadmod Ultras/cultra
 /loadskill Ultras/Adaptable

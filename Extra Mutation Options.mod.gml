@@ -3,7 +3,8 @@
 
 #define init
 global.stacks = 0;
-global.target=global.stacks+4 + 1;
+global.extrastacks = 0;
+global.target=global.stacks + global.extrastacks + 4 + 1;
 if(!file_loaded("settings.txt")){wait file_load("settings.txt");}
 var s = string_load("settings.txt");
 if(is_string(s) && is_real(real(s))){
@@ -16,6 +17,9 @@ chat_comp_add("extramuts", "sets the number of extra mutation choices");
 wait(18);
 trace("Extra mutation options: " + string(global.stacks));
 trace("Use /extramuts [value] to set the number of extra mutation choices");
+
+#define game_start
+	global.extrastacks = 0;
 
 #define chat_command(command, parameter, player)
 if(command == "extramuts"){
@@ -36,7 +40,7 @@ if(command == "extramuts"){
 if(!("mutation_animation" in LevCont)){
 	if(instance_exists(LevCont) && !instance_exists(CrownIcon) && !instance_exists(EGSkillIcon)){
 		if(global.stackSet == 0 || array_length(instances_matching(SkillIcon, "extramuts", 1)) == 0){
-			global.target=global.stacks+LevCont.maxselect + 1;
+			global.target=global.stacks + global.extrastacks + LevCont.maxselect + 1;
 		
 			global.stackSet = 1;
 		}
@@ -104,10 +108,11 @@ if(!("mutation_animation" in LevCont)){
 	}else{
 		global.timer = 0;
 	}
+}
 
 	//thank you squiddy
 
-	#define skill_get_avail(_skill)
+#define skill_get_avail(_skill)
 	if (((is_real(_skill) && floor(_skill) == _skill) || (is_string(_skill) && mod_exists("skill", _skill))) && skill_get_active(_skill)){
 		if (_skill != mut_heavy_heart || skill_get(mut_heavy_heart) != 0 || (GameCont.wepmuts >= 3 && !GameCont.wepmuted)){
 			if (!is_string(_skill) || !mod_script_exists("skill", _skill, "skill_avail") || mod_script_call("skill", _skill, "skill_avail")){
@@ -123,7 +128,6 @@ if(!("mutation_animation" in LevCont)){
 	}
 
 	return false;
-}
 
 #define skill_get_list
 /// skill_get_list(_list, _avail = true)

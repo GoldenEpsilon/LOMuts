@@ -16,7 +16,7 @@ global.burst = sprite_add("../Sprites/SteelNervesBurst.png", 4, 16, 16)
 	return global.sprSkillHUD;
 
 #define skill_avail
-	return false;
+	return true;
 
 #define skill_outcast
 	return true;

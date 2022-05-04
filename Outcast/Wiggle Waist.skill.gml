@@ -17,7 +17,7 @@ script_ref_call(["mod", "lib", "getHooks"], "skill", mod_current);
 	return global.sprSkillHUD;
 
 #define skill_avail
-	return false;
+	return true;
 
 #define skill_outcast
 	return true;
