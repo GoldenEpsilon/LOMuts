@@ -24,7 +24,6 @@ Ideas for future update (NOT GUARANTEED IN ANY WAY, SHAPE, OR FORM.)
 		- (1 TOKEN) BUY AMMO : GAIN AMMO (+25% MAX AMMO FOR EACH TYPE)
 		- (1 TOKEN) DISRESPECT : GAIN AN OUTCAST MUTATION
 		- (1 TOKEN) EXPERIMENT : REROLL A MUTATION AT RANDOM (one of your mutations gets rerolled, you get to pick a mutation after leaving the shop)
-		- (1 TOKEN) GAMBLE : GAMBLE A MUTATION TOKEN (50/50 chance of getting two tokens back)
 		- (2 TOKENS) REROLL : REROLL A MUTATION OUT OF FOUR (you get to pick one of four of your mutations to reroll, you get to pick a mutation after leaving the shop)
 		- (2 TOKENS) EXTRACT : LOSE 2 MUTATIONS, GAIN SOMEONE ELSE'S ULTRA MUTATION (pick a mutation out of four to lose twice, then Mimicry)
 		- (2 TOKENS) EMPOWER : LOSE 1 MUTATION, POWER UP 1 MUTATION (Thick Head)
@@ -35,11 +34,11 @@ Ideas for future update (NOT GUARANTEED IN ANY WAY, SHAPE, OR FORM.)
 		- (4 TOKENS) REVOLT: GAIN ONE OUTCAST MUTATION OUT OF ALL OUTCAST MUTATIONS
 		- (4 TOKENS) BRIBE : HEAD TO YV'S CRIB (after leaving the shop you go to YV's Crib)
 		- (4 TOKENS) WARP : INSTANTLY LOOP (go to 1-1 with +1 loop)
-		- (5 TOKENS) INFUSE : GAIN SOMEONE ELSE'S ULTRA MUTATION (Mimicry)
-		- (6 TOKENS) REDEEM: CHOOSE ONE OUTCAST MUTATION, IT IS NOW A NORMAL MUTATION (previous redeemed outcast mutations lose status)
-		- (6 TOKENS) CAST DOWN: CHOOSE ONE NORMAL MUTATION, IT IS NOW AN OUTCAST MUTATION (previous cast down mutations return status)
-		- (6 TOKENS) ASCEND : GAIN ANOTHER ULTRA (only shows up if you are already at level ultra)
+		- (5 TOKENS) REDEEM: CHOOSE ONE OUTCAST MUTATION, IT IS NOW A NORMAL MUTATION (previous redeemed outcast mutations lose status)
+		- (5 TOKENS) CAST DOWN: CHOOSE ONE NORMAL MUTATION, IT IS NOW AN OUTCAST MUTATION (previous cast down mutations return status)
 		- (6 TOKENS) DESTABILIZE : REROLL ALL MUTATIONS
+		- (7 TOKENS) INFUSE : GAIN SOMEONE ELSE'S ULTRA MUTATION (Mimicry)
+		- (9 TOKENS) ASCEND : GAIN ANOTHER ULTRA (only shows up if you are already at level ultra)
 	- When heading to the shop, you get LEAVE, a 1 token option, a 2-3 token option, and a 4+ token option, selected randomly.
 	
  - Make unstable DNA halve future max health increases
@@ -60,8 +59,8 @@ Ideas for future update (NOT GUARANTEED IN ANY WAY, SHAPE, OR FORM.)
 	- Energy Horns: When you fire a weapon, you shoot lasers.
  - Sightlines: Gain two "Marking" Outcast mutations
 (DONE) - Alchemic Stomach: If you try to fire while out of ammo, it uses one of all other ammo types instead
- - Slim Pickings: Gain 2 "Outcast" mutations.
- - Loner: Choose 1 outcast mutation, it gets 2x power.
+(DONE) - Slim Pickings: Gain 2 "Outcast" mutations.
+(DONE) - Loner: Choose 1 outcast mutation, it gets 2x power.
 (DONE) - Ruffled Feathers: +2 mutation options, outcast mutations appear in the mutation pool.
 (DONE) - Leprosy: -1 max hp, gain a random outcast mutation. (this does not count as taking a mutation)
  - Crown of Outcasts: Preloop crown, 2 mutations per level instead of 1, all mutations are outcast mutations

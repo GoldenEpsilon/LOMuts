@@ -59,27 +59,39 @@ with(creator){
 			if(!instance_exists(self)){continue;}
 			event_perform(ev_step, ev_step_normal);
 			if(!instance_exists(self)){continue;}
+			for(var i = 0; i < 4; i++){//alarms for projectiles don't go past 3
+				if(alarm_get(i) > 0){
+					alarm_set(i, alarm_get(i) - current_time_scale);
+					if(alarm_get(i) <= 0){
+						event_perform(ev_alarm, i);
+					}
+				}
+			}
 			with(instance_create(x,y,Effect)){
 				sprite_index = other.sprite_index;
 				image_index = other.image_index;
 				image_speed = 0;
 				image_xscale = other.image_xscale * size;
 				image_yscale = other.image_yscale * size;
+				image_alpha = other.image_alpha * size;
 				image_angle = other.image_angle;
 				if(fork()){
 					if(instance_exists(self)){
 						image_xscale *= 0.8;
 						image_yscale *= 0.8;
+						image_alpha *= 0.8;
 					}
 					wait(1);
 					if(instance_exists(self)){
 						image_xscale *= 0.8;
 						image_yscale *= 0.8;
+						image_alpha *= 0.8;
 					}
 					wait(1);
 					if(instance_exists(self)){
 						image_xscale *= 0.8;
 						image_yscale *= 0.8;
+						image_alpha *= 0.8;
 					}
 					wait(1);
 					if(instance_exists(self)){

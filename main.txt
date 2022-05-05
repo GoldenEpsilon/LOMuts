@@ -36,6 +36,8 @@
 /loadskill Greed
 /loadskill Ruffled Feathers
 /loadskill Bursted Chest
+/loadskill Slim Pickings
+/loadskill Loner
 
 /loadmod Ultras/cultra
 /loadskill Ultras/Adaptable

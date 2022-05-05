@@ -31,21 +31,23 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 	var _skills = mod_get_names("skill");
 	var _outcasts = [];
 	with(_skills){
-		if(!skill_get(self) && mod_script_exists("skill", self, "skill_outcast") && mod_script_call("skill", self, "skill_outcast")){
+		if(!skill_get(self) && mod_script_exists("skill", self, "skill_outcast") && mod_script_call("skill", self, "skill_outcast") && mod_script_exists("skill", self, "skill_avail") && mod_script_call("skill", self, "skill_avail")){
 			array_push(_outcasts, self);
 		}
 	}
-	if(array_length(_outcasts)){
-		var chosen = _outcasts[call(scr.seeded_random, GameCont.level + GameCont.mutindex, 0, array_length(_outcasts)-1, 1)]
-		array_push(global.givenSkills, chosen);
-		skill_set(chosen, 1);
-	}else{
-		trace("No muts left in outcast pool, refunding");
-		GameCont.skillpoints++;
+	while(array_length(global.givenSkills) < skill_get(mod_current)){
+		if(array_length(_outcasts)){
+			var chosen = _outcasts[call(scr.seeded_random, GameCont.level + GameCont.mutindex, 0, array_length(_outcasts)-1, 1)]
+			array_push(global.givenSkills, chosen);
+			skill_set(chosen, 1);
+		}else{
+			trace("No muts left in outcast pool, refunding");
+			GameCont.skillpoints++;
+		}
 	}
 	
 #define skill_lose
-	if(array_length(global.givenSkills)){
+	while(array_length(global.givenSkills)){
 		skill_set(global.givenSkills[0], 1);
 		global.givenSkills = call(scr.array_delete, global.givenSkills, 0);
 	}

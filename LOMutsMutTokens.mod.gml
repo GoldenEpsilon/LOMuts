@@ -15,21 +15,21 @@
 		{name: "BUY AMMO", desc: "GAIN AMMO#(+25% MAX AMMO FOR EACH TYPE)", cost: 1, icon: global.blank, on_select: script_ref_create(tokenshop_ammo)},
 		{name: "DISRESPECT", desc: "GAIN A RANDOM#OUTCAST MUTATION", cost: 1, icon: global.blank, on_select: script_ref_create(tokenshop_disrespect)},
 		{name: "EXPERIMENT", desc: "REROLL A MUTATION#AT RANDOM", cost: 1, icon: global.blank, on_select: script_ref_create(tokenshop_experiment)},
-		//{name: "GAMBLE", desc: "GAMBLE A#MUTATION TOKEN", cost: 1, icon: global.blank, on_select: script_ref_create(tokenshop_gamble)},
 		//{name: "REROLL", desc: "REROLL A MUTATION#OUT OF FOUR", cost: 2, icon: global.blank, on_select: script_ref_create(tokenshop_reroll)},
 		//{name: "EXTRACT", desc: "LOSE 2 MUTATIONS#GAIN SOMEONE ELSE'S#ULTRA MUTATION", cost: 2, icon: global.blank, on_select: script_ref_create(tokenshop_extract)},
 		{name: "EMPOWER", desc: "LOSE 1 MUTATION#POWER UP 1 MUTATION", cost: 2, icon: global.blank, on_select: script_ref_create(tokenshop_empower)},
 		//{name: "REBEL", desc: "GAIN AN OUTCAST MUTATION", cost: 2, icon: global.blank, on_select: script_ref_create(tokenshop_rebel)},
 		{name: "EVOLVE", desc: "GAIN A MUTATION", cost: 3, icon: global.blank, on_select: script_ref_create(tokenshop_evolve)},
 		{name: "RESET", desc: "RESET TO LEVEL 1#LOSING MUTATIONS", cost: 3, icon: global.blank, on_select: script_ref_create(tokenshop_reset)},
-		//{name: "BACKTRACK", desc: "HEAD BACK TO 1-1", cost: 3, icon: global.blank, on_select: script_ref_create(tokenshop_backtrack)},
+		//{name: "BACKTRACK", desc: "HEAD BACK TO 1-1#NEXT TIME YOU REACH 7-1", cost: 3, icon: global.blank, on_select: script_ref_create(tokenshop_backtrack)},
+		//{name: "WARP", desc: "INSTANTLY LOOP", cost: 3, icon: global.blank, on_select: script_ref_create(tokenshop_warp)},
 		//{name: "REVOLT", desc: "GAIN ONE OUTCAST MUTATION#OUT OF ALL OUTCAST MUTATIONS", cost: 4, icon: global.blank, on_select: script_ref_create(tokenshop_revolt)},
 		//{name: "BRIBE", desc: "HEAD TO YV'S CRIB", cost: 4, icon: global.blank, on_select: script_ref_create(tokenshop_bribe)},
-		//{name: "WARP", desc: "INSTANTLY LOOP", cost: 4, icon: global.blank, on_select: script_ref_create(tokenshop_warp)},
-		//{name: "INFUSE", desc: "GAIN SOMEONE ELSE'S ULTRA MUTATION", cost: 5, icon: global.blank, on_select: script_ref_create(tokenshop_infuse)},
-		//{name: "REDEEM", desc: "CHOOSE ONE OUTCAST MUTATION#IT IS NOW A NORMAL MUTATION", cost: 6, icon: global.blank, on_select: script_ref_create(tokenshop_redeem)},
-		//{name: "ASCEND", desc: "GAIN ANOTHER ULTRA", cost: 6, icon: global.blank, on_select: script_ref_create(tokenshop_ascend)},
+		//{name: "REDEEM", desc: "CHOOSE ONE OUTCAST MUTATION#IT IS NOW A NORMAL MUTATION", cost: 4, icon: global.blank, on_select: script_ref_create(tokenshop_redeem)},
+		//{name: "CAST DOWN", desc: "CHOOSE ONE NORMAL MUTATION#IT IS NOW AN OUTCAST MUTATION", cost: 4, icon: global.blank, on_select: script_ref_create(tokenshop_cast_down)},
 		{name: "DESTABILIZE", desc: "REROLL ALL MUTATIONS", cost: 6, icon: global.blank, on_select: script_ref_create(tokenshop_destabilize)},
+		//{name: "INFUSE", desc: "GAIN SOMEONE ELSE'S ULTRA MUTATION", cost: 8, icon: global.blank, on_select: script_ref_create(tokenshop_infuse)},
+		//{name: "ASCEND", desc: "GAIN ANOTHER ULTRA", cost: 9, icon: global.blank, on_select: script_ref_create(tokenshop_ascend)},
 	];
 	
 	while(!mod_exists("mod", "lib")){wait(1);}
@@ -238,7 +238,7 @@
 	var _skills = mod_get_names("skill");
 	var _outcasts = [];
 	with(_skills){
-		if(!skill_get(self) && mod_script_exists("skill", self, "skill_outcast") && mod_script_call("skill", self, "skill_outcast")){
+		if(!skill_get(self) && mod_script_exists("skill", self, "skill_outcast") && mod_script_call("skill", self, "skill_outcast") && mod_script_exists("skill", self, "skill_avail") && mod_script_call("skill", self, "skill_avail")){
 			array_push(_outcasts, self);
 		}
 	}

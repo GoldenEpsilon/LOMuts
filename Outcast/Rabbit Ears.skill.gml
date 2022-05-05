@@ -1,6 +1,10 @@
 #define init
 global.sprSkillIcon = sprite_add("../Sprites/Outcast/Blank.png", 1, 12, 16)
 global.sprSkillHUD = sprite_add("../Sprites/Outcast/Blank Icon.png", 1, 8, 8)
+global.stacks = 0;
+
+#define game_start
+	global.stacks = 0;
 
 #define skill_name
 	return "Rabbit Ears";
@@ -25,7 +29,9 @@ global.sprSkillHUD = sprite_add("../Sprites/Outcast/Blank Icon.png", 1, 8, 8)
 	
 #define skill_take
 	sound_play(sndMut);
-	GameCont.hard += 20;
+	GameCont.hard += 20 * (skill_get(mod_current) - global.stacks);
+	global.stacks = skill_get(mod_current);
 
 #define skill_lose
-	GameCont.hard -= 20;
+	GameCont.hard -= 20 * skill_get(mod_current);
+	global.stacks = skill_get(mod_current);

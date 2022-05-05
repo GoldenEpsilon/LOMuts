@@ -19,7 +19,7 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 #define skill_sacrifice return false; //metamorphosis compat thing
 
 #define skill_avail
-	return (!instance_is(self, CustomObject) && !instance_is(self, CustomProp)) || instance_exists(Loadout);
+	return instance_exists(Loadout);
 
 #define skill_tip
 	return "I feel icky...";
@@ -48,7 +48,7 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 		var _skills = mod_get_names("skill");
 		var _outcasts = [];
 		with(_skills){
-			if(!skill_get(self) && mod_script_exists("skill", self, "skill_outcast") && mod_script_call("skill", self, "skill_outcast")){
+			if(!skill_get(self) && mod_script_exists("skill", self, "skill_outcast") && mod_script_call("skill", self, "skill_outcast") && mod_script_exists("skill", self, "skill_avail") && mod_script_call("skill", self, "skill_avail")){
 				array_push(_outcasts, self);
 			}
 		}

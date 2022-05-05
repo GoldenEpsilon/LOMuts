@@ -42,7 +42,7 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 		var _speed = 0;
 		var _num = array_length(shellList);
 		with(shellList){
-			_spread = max(angle_difference(other.gunangle, direction), _spread);
+			_spread = max(angle_difference(other.gunangle, direction) / (0.5+0.5*skill_get(mod_current)), _spread);
 			_speed += speed;
 		}
 		_speed /= _num;

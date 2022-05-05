@@ -29,7 +29,7 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 	sound_play(sndMut);
 
 #define level_start
-	repeat(5){
+	repeat(5 * skill_get(mod_current)){
 		with(call(scr.instance_random, instances_matching_ne(enemy, "marked", true))){
 			marked = true;
 		}
