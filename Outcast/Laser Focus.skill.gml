@@ -29,8 +29,10 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 	sound_play(sndMut);
 
 #define level_start
-	with(call(scr.instance_random, instances_matching_ne(enemy, "marked", true))){
-		marked = true;
+	repeat(skill_get(mod_current)){
+		with(call(scr.instance_random, instances_matching_ne(enemy, "marked", true))){
+			marked = true;
+		}
 	}
 
 #define step
@@ -39,7 +41,7 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 			prevHealth = my_health;
 		}
 		if(my_health < prevHealth){
-			my_health -= prevHealth - my_health;
+			my_health -= (prevHealth - my_health) * skill_get(mod_current);
 		}
 		prevHealth = my_health;
 		if(my_health <= 0){

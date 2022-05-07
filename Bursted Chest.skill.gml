@@ -33,10 +33,11 @@ with Player {
 		var OldHealth = my_health;
 		var tempTeam = team;
 		wait 0
-		if(instance_exists(self) && my_health < OldHealth){
+		if(instance_exists(self) && my_health < OldHealth && array_length(instances_matching(instances_matching(Ally, "name", "Bursted"), "creator", self)) < skill_get(mod_current) * 4){
 			with(instance_create(x,y,Ally)){
 				creator = other;
 				team = tempTeam;
+				name = "Bursted";
 			}
 		}
 		exit

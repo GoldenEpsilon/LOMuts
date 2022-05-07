@@ -35,7 +35,9 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 		if(fork()){
 			wait(0);
 			if(!instance_exists(self)){
-				with(instance_nearest(x,y,Corpse){pickup_drop(30, 0, 1);}
+				repeat(skill_get(mod_current)){
+					with(instance_nearest(x,y,Corpse){pickup_drop(30, 0, 1);}
+				}
 			}
 			exit;
 		}

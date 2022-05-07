@@ -34,7 +34,7 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 			if("toxicmark" not in self){
 				toxicmark = 0;
 			}
-			toxicmark += current_time_scale;
+			toxicmark += current_time_scale * skill_get(mod_current);
 			if(toxicmark > 10){
 				marked = true;
 			}
@@ -42,7 +42,7 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 	}
 	with(instances_matching(enemy, "marked", true)){
 		if(call(scr.chance_ct, 1, 10)){
-			projectile_hit_raw(self, 1, 0);
+			projectile_hit_raw(self, skill_get(mod_current), 0);
 		}
 	}
 

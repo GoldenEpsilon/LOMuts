@@ -30,12 +30,12 @@ global.sprSkillHUD = sprite_add("../Sprites/Outcast/Blank Icon.png", 1, 8, 8)
 	with(instances_matching_ne(enemy, "markcheck", true)){
 		if(my_health < maxhealth / 2){
 			markcheck = true;
-			if(irandom(9) == 1){
+			if(irandom(9 / skill_get(mod_current)) == 0){
 				marked = true;
 			}
 		}
 	}
 	with(instances_matching(instances_matching_ne(enemy, "markedcharm", true), "marked", true)){
 		markedcharm = true;
-		mod_script_call("race", "parrot", "charm_instance_raw", self, true).time = 150;
+		mod_script_call("race", "parrot", "charm_instance_raw", self, true).time = 135 + skill_get(mod_current) * 15;
 	}
