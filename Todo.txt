@@ -70,7 +70,7 @@ Ideas for future update (NOT GUARANTEED IN ANY WAY, SHAPE, OR FORM.)
 	- You don't take damage from fire/explosions at full health
 (DONE)	- Iron Skin: when at full health the next hit deals 1 damage
 	- Your active ability is now a melee attack
-	- at 1 health you gain a massive speed boost
+(DONE)	- at 1 health you gain a massive speed boost
 	- you regen slowly over time
 	- enemies deal no contact damage
 	- toxic, fire, and electricity deal double damage
@@ -81,9 +81,9 @@ Ideas for future update (NOT GUARANTEED IN ANY WAY, SHAPE, OR FORM.)
 	- killing enemies with melee gives you more rads
 	- bolts can pierce walls
 	- all projectiles bounce once
-	- Explosions explode twice
-	- shells actively home
-	- explosives create lasers
+(DONE)	- Explosions explode twice
+(DONE)	- shells actively home
+(DONE)	- explosives create lasers
 	- explosives you create are teamed
 (DONE)	- Diplomacy: moving enemy projectiles become bandit bullets
 (DONE)	- Terrorism: your moving projectiles become bandit bullets

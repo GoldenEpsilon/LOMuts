@@ -19,3 +19,7 @@
 /loadskill Friendly Eyelashes
 /loadskill Cruelty-Free Veganlust
 /loadskill Groupthink
+/loadskill Survivor's Instinct
+/loadskill Disco Nose
+/loadskill Explosive Ears
+/loadskill Telekinetic Tears

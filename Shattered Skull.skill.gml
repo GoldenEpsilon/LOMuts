@@ -48,7 +48,7 @@ with(instances_matching_ne(instances_matching_ne([Bullet2, FlameShell, HeavySlug
 }
 with(instances_matching_ne(CustomProjectile, "ShatteredSkull", 1)){
 	ShatteredSkull = 1;
-	if("is_slug" in self && is_slug && damage >= 1){
+	if(("is_slug" in self && is_slug || "is_shell" in self && is_shell) && damage >= 1){
 		repeat(max(irandom(sqrt(damage)), 0) * skill_get(mod_current)){
 			var split = instance_clone();
 			split.team = team;

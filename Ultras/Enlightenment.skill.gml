@@ -28,7 +28,18 @@ with(ThrownWep){
 			}
 		}
 		if(nearest > 0){
-			direction -= angle_difference(direction, point_direction(x,y,nearest.x,nearest.y)) * max(min(speed * 0.05, 1), 0.1);
+			if(abs(angle_difference(point_direction(x,y,nearest.x,nearest.y), direction)) <= current_time_scale*10){
+				direction = point_direction(x,y,nearest.x,nearest.y);
+				image_angle = point_direction(x,y,nearest.x,nearest.y);
+			}
+			else if(angle_difference(point_direction(x,y,nearest.x,nearest.y), direction) > 0){
+				direction+=current_time_scale*15;
+				image_angle+=current_time_scale*15;
+			}
+			else{
+				direction-=current_time_scale*15;
+				image_angle-=current_time_scale*15;
+			}
 		}
 	}
 }

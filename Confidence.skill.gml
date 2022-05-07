@@ -34,7 +34,7 @@ global.sprSkillHUD = sprite_add("Sprites/Icons/Confidence Icon.png", 1, 8, 8)
 	
 #define skill_lose
 with(Player){
-	if(my_health < maxhealth && confidence > 0){
+	if(confidence > 0){
 		confidence = 0;
 		maxspeed -= 0.5 * skill_get(mod_current);
 		reloadspeed -= 0.3 * skill_get(mod_current);
@@ -45,8 +45,8 @@ with(Player){
 	if("confidence" not in self){
 		confidence = 0;
 	}
-	if(my_health >= maxhealth && confidence == 0){
-		confidence = 8;
+	if(my_health >= maxhealth && confidence <= 0){
+		confidence = 1;
 		maxspeed += 0.5 * skill_get(mod_current);
 		reloadspeed += 0.3 * skill_get(mod_current);
 	}
@@ -55,7 +55,6 @@ with(Player){
 		maxspeed -= 0.5 * skill_get(mod_current);
 		reloadspeed -= 0.3 * skill_get(mod_current);
 	}
-	if(confidence > 1){confidence-= 1;}
 }
 script_bind_step(custom_step, 0);
 #define custom_step
