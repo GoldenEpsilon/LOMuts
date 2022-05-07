@@ -32,7 +32,7 @@ script_ref_call(["mod", "lib", "getHooks"], "skill", mod_current);
 	with(Player){
 		if("rouletteprevreload" not in self){rouletteprevreload = reload;}
 		if(reload > rouletteprevreload){
-			reload *= random_range(0.4, 1.5);
+			reload *= random_range(0.4 - skill_get(mod_current) * 0.1, 1.5);
 		}
 		rouletteprevreload = reload;
 	}

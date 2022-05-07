@@ -40,6 +40,7 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 			image_xscale *= (0.5+min(max(damage/3, 0.9), 10))/1.5;
 			image_yscale *= (0.5+min(max(damage/3, 0.9), 10))/1.5;
 			friction = 0;
+			team = other.team;
 		}
 	}
 

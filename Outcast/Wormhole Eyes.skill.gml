@@ -1,6 +1,7 @@
 #define init
 global.sprSkillIcon = sprite_add("../Sprites/Outcast/Blank.png", 1, 12, 16)
 global.sprSkillHUD = sprite_add("../Sprites/Outcast/Blank Icon.png", 1, 8, 8)
+global.sprCanister = sprite_add("../Sprites/Outcast/Blank Icon.png", 1, 8, 10)
 while(!mod_exists("mod", "lib")){wait(1);}
 script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 global.spawnChest = false;
@@ -36,7 +37,7 @@ global.spawnChest = false;
 	if(!instance_exists(GenCont) && global.spawnChest){
 		global.spawnChest = false;
 		with(call(scr.instance_random, Floor)){
-			instance_create(x,y,Turret);
+			instance_create(x + sprite_width/2,y + sprite_height/2,CustomProp).sprite_index = global.sprCanister;
 		}
 	}
 	if(instance_number(Turret) == 0){

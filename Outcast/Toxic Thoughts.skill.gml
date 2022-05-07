@@ -14,6 +14,9 @@ global.sprSkillHUD = sprite_add("../Sprites/Icons/Toxic Thoughts Icon.png", 1, 8
 #define skill_icon
 	return global.sprSkillHUD;
 
+#define skill_outcast
+	return true;
+
 #define skill_avail
 	return true;
 

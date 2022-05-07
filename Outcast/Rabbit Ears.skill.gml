@@ -10,7 +10,7 @@ global.stacks = 0;
 	return "Rabbit Ears";
 	
 #define skill_text
-	return "Difficulty +20#(more @renemies@s, better @wweapons@s)";
+	return "Difficulty +10#(more @renemies@s, better @wweapons@s)";
 
 #define skill_button
 	sprite_index = global.sprSkillIcon;
@@ -29,9 +29,9 @@ global.stacks = 0;
 	
 #define skill_take
 	sound_play(sndMut);
-	GameCont.hard += 20 * (skill_get(mod_current) - global.stacks);
+	GameCont.hard += 10 * (skill_get(mod_current) - global.stacks);
 	global.stacks = skill_get(mod_current);
 
 #define skill_lose
-	GameCont.hard -= 20 * skill_get(mod_current);
+	GameCont.hard -= 10 * skill_get(mod_current);
 	global.stacks = skill_get(mod_current);

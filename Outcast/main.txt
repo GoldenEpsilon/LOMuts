@@ -17,4 +17,5 @@
 /loadskill Leprosy2
 /loadskill Putrid Haze
 /loadskill Friendly Eyelashes
-/loadskill Crulety-Free Veganlust
+/loadskill Cruelty-Free Veganlust
+/loadskill Groupthink

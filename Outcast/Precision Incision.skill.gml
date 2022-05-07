@@ -36,7 +36,7 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 #define update(_id)
 	with(Player){
 		if(weapon_get_type(wep) == 5){
-			with(instances_matching(instances_matching_ne(instances_matching_gt(projectile, "id", _id), "PIhitscan_check", true), "creator", self)){
+			with(instances_matching(instances_matching_ne(instances_matching_ne(instances_matching_gt(projectile, "id", _id), "ammo_type", -1), "PIhitscan_check", true), "creator", self)){
 				PIhitscan_check = true;
 				PIhitscan = 1;
 				run_hitscan(self);
@@ -44,7 +44,12 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 		}else{
 			with(instances_matching(instances_matching_ne(instances_matching_gt(projectile, "id", _id), "PIhitscan_check", true), "creator", self)){
 				PIhitscan_check = true;
-				PIhitscan = 0;
+				if(ammo_type == 5){
+					PIhitscan = 1;
+					run_hitscan(self);
+				}else{
+					PIhitscan = 0;
+				}
 			}
 		}
 	}

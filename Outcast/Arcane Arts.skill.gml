@@ -148,6 +148,8 @@ with(Player){
 					direction = random(360);
 					image_angle = direction;
 					speed = creator.size;
+					team = creator.team;
+					image_blend = c_green;
 				}
 			}
 		}
@@ -163,7 +165,9 @@ with(Player){
 			creator = other;
 			direction = random(360);
 			image_angle = direction;
-			speed = creator.size;
+			speed = creator.size / 2;
+			team = creator.team;
+			image_blend = c_green;
 		}
 	}
 	
