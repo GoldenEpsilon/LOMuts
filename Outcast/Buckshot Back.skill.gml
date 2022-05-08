@@ -29,26 +29,30 @@ script_ref_call(["mod", "lib", "getHooks"], "skill", mod_current);
 	sound_play(sndMut);
 	
 #define update(_id)
-	repeat(skill_get(mod_current)){
-		with(instances_matching_gt(UltraBullet, "id", _id)){
-			damage += 10;
-			image_xscale += 0.5;
-			image_yscale += 0.5;
-		}
-		with(instances_matching_gt(HeavyBullet, "id", _id)){
-			instance_change(UltraBullet, false);
-			damage += 11;
-		}
-		with(instances_matching_gt(BouncerBullet, "id", _id)){
-			instance_change(HeavyBullet, false);
-			speed *= 2;
-			damage += 3;
-		}
-		with(instances_matching_gt(Bullet1, "id", _id)){
-			instance_change(BouncerBullet, false);
-			rot = 0;
-			bounce = 0;
-			speed *= 0.5;
-			damage += 1;
+	with(instances_matching_gt([Bullet1, BouncerBullet, HeavyBullet, UltraBullet], "id", _id)){
+		repeat(skill_get(mod_current)){
+			switch(object_index){
+				case Bullet1:
+					instance_change(BouncerBullet, false);
+					rot = 5;
+					bounce = 0;
+					speed *= 0.5;
+					damage += 1;
+					break;
+				case BouncerBullet:
+					instance_change(HeavyBullet, false);
+					speed *= 2;
+					damage += 3;
+					break;
+				case HeavyBullet:
+					instance_change(UltraBullet, false);
+					damage += 11;
+					break;
+				case UltraBullet:
+					damage += 10;
+					image_xscale += 0.5;
+					image_yscale += 0.5;
+					break;
+			}
 		}
 	}
