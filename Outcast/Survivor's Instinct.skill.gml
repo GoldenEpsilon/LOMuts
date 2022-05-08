@@ -14,6 +14,9 @@ global.sprSkillHUD = sprite_add("../Sprites/Outcast/Blank Icon.png", 1, 8, 8)
 #define skill_icon
 	return global.sprSkillHUD;
 
+#define skill_outcast
+	return true;
+
 #define skill_tip
 	return "Run, run, as fast as you can#you can't catch me, I'm the @qmutation man!";
 	

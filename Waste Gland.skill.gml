@@ -36,7 +36,7 @@ with(SmallExplosion){
 		var _x = x;
 		var _y = y;
 		if(fork()){
-			wait(1);
+			wait(3);
 			with(instance_create(_x + irandom(16) - 8,_y + irandom(16) - 8,ToxicGas)){
 				speed/=2;
 			}
@@ -50,7 +50,7 @@ with(Explosion){
 		var _x = x;
 		var _y = y;
 		if(fork()){
-			wait(1);
+			wait(3);
 			repeat(6){
 				with(instance_create(_x + irandom(16) - 8,_y + irandom(16) - 8,ToxicGas)){
 					speed /= 2;

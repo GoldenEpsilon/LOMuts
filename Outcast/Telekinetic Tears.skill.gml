@@ -15,6 +15,9 @@ global.sprDiscoLaser = sprite_add("../Sprites/DiscoLaser.png", 1, 2, 3)
 #define skill_icon
 	return global.sprSkillHUD;
 
+#define skill_outcast
+	return true;
+
 #define skill_tip
 	return "Sweat and tears#on every shell";
 	
