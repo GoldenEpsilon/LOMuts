@@ -33,6 +33,13 @@ global.bolts = [];
 	for(var i = 0; i < array_length(global.bolts); i++){
 		if(!instance_exists(global.bolts[i][@3]) || !object_is_ancestor(global.bolts[i][@3].object_index, projectile)){
 			with(global.bolts[i][@4]){
+				if(!instance_exists(self)){
+					break;
+				}
+				if(prevObj == undefined){
+					instance_destroy();
+					break;
+				}
 				x = global.bolts[i][@0];
 				y = global.bolts[i][@1];
 				var prevDir = direction;
