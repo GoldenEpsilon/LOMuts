@@ -45,7 +45,6 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 		}
 		prevHealth = my_health;
 		if(my_health <= 0){
-			marked = false;
 			with(call(scr.instance_random, instances_matching_ne(enemy, "marked", true))){
 				marked = true;
 			}

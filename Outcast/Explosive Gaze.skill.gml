@@ -38,7 +38,6 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 #define step
 	with(instances_matching(enemy, "marked", true)){
 		if(my_health <= 0){
-			marked = false;
 			instance_create(x,y,Explosion);
 		}
 	}
