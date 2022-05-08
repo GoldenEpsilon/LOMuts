@@ -28,7 +28,7 @@ global.sprSkillHUD = sprite_add("../Sprites/Outcast/Blank Icon.png", 1, 8, 8)
 
 #define step
 	with(instances_matching_ne(enemy, "markcheck", true)){
-		if(my_health < maxhealth / 2){
+		if("my_health" in self && my_health < maxhealth / 2){
 			markcheck = true;
 			if(irandom(9 / skill_get(mod_current)) == 0){
 				marked = true;

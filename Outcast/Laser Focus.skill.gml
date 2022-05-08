@@ -37,16 +37,18 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 
 #define step
 	with(instances_matching(enemy, "marked", true)){
-		if("prevHealth" not in self){
+		if("my_health" in self){
+			if("prevHealth" not in self){
+				prevHealth = my_health;
+			}
+			if(my_health < prevHealth){
+				my_health -= (prevHealth - my_health) * skill_get(mod_current);
+			}
 			prevHealth = my_health;
-		}
-		if(my_health < prevHealth){
-			my_health -= (prevHealth - my_health) * skill_get(mod_current);
-		}
-		prevHealth = my_health;
-		if(my_health <= 0){
-			with(call(scr.instance_random, instances_matching_ne(enemy, "marked", true))){
-				marked = true;
+			if(my_health <= 0){
+				with(call(scr.instance_random, instances_matching_ne(enemy, "marked", true))){
+					marked = true;
+				}
 			}
 		}
 	}

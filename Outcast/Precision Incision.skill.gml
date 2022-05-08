@@ -44,7 +44,7 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 		}else{
 			with(instances_matching(instances_matching_ne(instances_matching_gt(projectile, "id", _id), "PIhitscan_check", true), "creator", self)){
 				PIhitscan_check = true;
-				if(ammo_type == 5){
+				if("ammo_type" in self && ammo_type == 5){
 					PIhitscan = 1;
 					run_hitscan(self);
 				}else{
