@@ -10,7 +10,7 @@
 		script_ref_call(["mod", "lib", "getRef"], "mod", mod_current, "scr");
 
 		//This is where you put what modules you want to load.
-		var modules = ["libImprovements", "libMuts", "libStats", "libSettings", "libWeps", "libAutoUpdate"];
+		var modules = ["libImprovements", "libMuts", "libStats", "libSettings", "libWeps", "libPickups", "libAutoUpdate"];
 		with(modules) call(scr.import, self);
 		//Lib is done loading, set the global variable.
 		global.libLoaded = true;

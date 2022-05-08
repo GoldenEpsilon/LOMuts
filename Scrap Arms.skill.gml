@@ -2,6 +2,8 @@
 global.sprSkillIcon = sprite_add("Sprites/Main/Scrap Arms.png", 1, 12, 16)
 global.sprSkillHUD = sprite_add("Sprites/Icons/Scrap Arms Icon.png", 1, 8, 8)
 global.sprScrap = sprite_add("Sprites/ScrapPackage.png", 1, 4, 5)
+while(!mod_exists("mod", "lib")){wait(1);}
+script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 
 #define skill_name
 	return "Scrap Arms";
@@ -43,53 +45,38 @@ global.sprScrap = sprite_add("Sprites/ScrapPackage.png", 1, 4, 5)
 with(instances_matching_le(enemy, "my_health", 0)){
 	if("ScrapArms" not in self && instance_nearest(x,y,Player) != noone && (irandom(4 / (skill_get(mut_rabbit_paw)+1)) == 0 && (weapon_get_type(instance_nearest(x,y,Player).wep) == 1 || weapon_get_type(instance_nearest(x,y,Player).bwep) == 1))){
 		ScrapArms = true;
-		with(instance_create(x,y,CustomObject)){
+		with(call(scr.obj_create, x, y, "LibPickup")){
 			name = "ScrapArmsPickup";
 			sprite_index = global.sprScrap;
-			timer = 200;
-			on_draw = ScrapArmsDraw;
+			on_open = script_ref_create(ScrapGet)
+			alarm0 = 200;
+			pickno = 16 * skill_get(mod_current) + skill_get("magazinefingers")*6;
 		}
 	}
 }
-with(instances_matching(CustomObject, "name", "ScrapArmsPickup")){
-	if(image_index == 0){image_speed = 0;}
-	if(instance_nearest(x,y,Player) != noone){
-		var dist = distance_to_object(Player);
-		var near = instance_nearest(x,y,Player);
-		var pickno = 16 * skill_get(mod_current) + skill_get("magazinefingers")*6;
-		if(dist < 25 * (1+skill_get(mut_plutonium_hunger)) || instance_exists(Portal)){
-			move_towards_point(near.x, near.y + near.sprite_height/2, 6);
+#define ScrapGet
+	sound_play_pitchvol(sndShotReload, 1.4, 2)
+	if(fork()){
+		other.reloadspeed += 0.2;
+		wait(25);
+		if(instance_exists(other)){
+			other.reloadspeed -= 0.2;
 		}
-		if(dist < 5 && "grabbed" not in self){
-			sound_play_pitchvol(sndShotReload, 1.4, 2)
-			if(fork()){
-				near.reloadspeed += 0.2;
-				wait(25);
-				if(instance_exists(near)){
-					near.reloadspeed -= 0.2;
-				}
-				exit;
-			}
-			near.breload = max(near.breload - 5, 0);
-			near.ammo[1] += pickno;
-			near.ammo[1] = min(near.ammo[1], near.typ_amax[1]);
-			with(instance_create(near.x, near.y, PopupText)) {
-				if(near.ammo[1] >= near.typ_amax[1]) mytext = "MAX BULLETS";
-				else mytext = "+"+string(pickno)+" BULLETS"
-			}
-			grabbed = true;
-			instance_destroy();
-			continue;
-		}
+		exit;
 	}
-	if("timer" not in self){timer = 300 * (1+skill_get("Filtering Teeth"));}
-	timer--;
-	if(timer < 40){image_alpha = 0;}
-	if(timer < 30){image_alpha = 1;}
-	if(timer < 20){image_alpha = 0;}
-	if(timer < 10){image_alpha = 1;}
-	if(timer <= 0){instance_destroy();}
-}
+	other.breload = max(other.breload - 5, 0);
+	other.ammo[1] += pickno;
+	other.ammo[1] = min(other.ammo[1], other.typ_amax[1]);
+	var ismax = other.ammo[1] >= other.typ_amax[1];
+	with(instance_create(other.x, other.y, PopupText)) {
+		if(ismax) mytext = "MAX BULLETS";
+		else mytext = "+"+string(other.pickno)+" BULLETS"
+	}
+	return false;
 
 #define ScrapArmsDraw
 draw_self();
+
+//These are macros to slot in to make it easier to call lib functions.
+#macro scr global.scr
+#macro call script_ref_call
