@@ -29,7 +29,7 @@ with(instances_matching(Explosion, "laserdisco", null)){
 	laserdisco = 1;
 	if(fork()){
 		wait(3)
-		if(instance_exists(self)){
+		if(instance_exists(self) && "team" in self){
 			for(var i = 0; i < 360; i += 60 / skill_get(mod_current)){
 				with instance_create(x,y,EnemyLaser){
 					alarm0 = 1;

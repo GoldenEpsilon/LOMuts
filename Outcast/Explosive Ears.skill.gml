@@ -43,6 +43,7 @@ with(instances_matching(Explosion, "explosiveearsdoubled", null)){
 			wait(0)
 			if(!instance_exists(self) || image_index > 4){
 				with _repeat {
+					laserdisco = null;
 					instance_change(_object_index, 1);
 					explosiveearsdoubled = 1;
 					image_speed = _image_speed;
