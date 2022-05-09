@@ -44,6 +44,7 @@ lq_set(global.sprites, "Armory", [sprite_add("Sprites/Main/Ultras/Armory.png", 1
 lq_set(global.sprites, "Generalist", [sprite_add("Sprites/Main/Ultras/Generalist.png", 1, 12, 16), sprite_add("Sprites/Alt/Ultras/Generalist.png", 1, 12, 16)]);
 lq_set(global.sprites, "Union", [sprite_add("Sprites/Main/Ultras/Union.png", 1, 12, 16), sprite_add("Sprites/Alt/Ultras/Union.png", 1, 12, 16)]);
 lq_set(global.sprites, "Existence", [sprite_add("Sprites/Main/Ultras/Existence.png", 1, 12, 16), sprite_add("Sprites/Alt/Ultras/Existence.png", 1, 12, 16)]);
+lq_set(global.sprites, "Reincarnation", [sprite_add("Sprites/Main/Ultras/Reincarnation.png", 1, 12, 16), sprite_add("Sprites/Alt/Ultras/Reincarnation.png", 1, 12, 16)]);
 
 lq_set(global.sprites, "Laser Focus", [sprite_add("Sprites/Outcast/Laser Focus.png", 1, 12, 16), sprite_add("Sprites/Outcast/Alt/Laser Focus.png", 1, 12, 16)]);
 lq_set(global.sprites, "Terrorism", [sprite_add("Sprites/Outcast/Terrorism.png", 1, 12, 16), sprite_add("Sprites/Outcast/Alt/Terrorism.png", 1, 12, 16)]);
