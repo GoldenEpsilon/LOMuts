@@ -7,7 +7,7 @@ global.sprDiscoLaser = sprite_add("../Sprites/DiscoLaser.png", 1, 2, 3)
 	return "Explosive Ears";
 	
 #define skill_text
-	return "explosions explode#twice";
+	return "Cluster explosions";
 
 #define skill_button
 	sprite_index = global.sprSkillIcon;
@@ -19,7 +19,7 @@ global.sprDiscoLaser = sprite_add("../Sprites/DiscoLaser.png", 1, 2, 3)
 	return true;
 
 #define skill_tip
-	return "'Splode one get one free!";
+	return "Like firecrackers";
 	
 #define skill_take
 	sound_play(sndMut);
@@ -27,30 +27,34 @@ global.sprDiscoLaser = sprite_add("../Sprites/DiscoLaser.png", 1, 2, 3)
 #define step
 with(instances_matching(Explosion, "explosiveearsdoubled", null)){
 	explosiveearsdoubled = 1;
-	if(fork()){
-		var _repeat = instance_copy(self);
-		with(_repeat){
-			instance_change(Wind, 0);
-			speed = 0;
-			image_speed = 0;
-			image_index = 1;
-			image_alpha = 0;
-		}
-		while(true){
+	repeat(skill_get(mod_current) * 5){
+		if(fork()){
 			var _object_index = object_index;
+			var _sprite_index = sprite_index;
 			var _image_speed = image_speed;
 			var _image_alpha = image_alpha;
-			wait(0)
-			if(!instance_exists(self) || image_index > 4){
-				with _repeat {
-					laserdisco = null;
-					instance_change(_object_index, 1);
-					explosiveearsdoubled = 1;
-					image_speed = _image_speed;
-					image_index = 0;
-					image_alpha = _image_alpha;
+			var _x = x;
+			var _y = y;
+			while(true){
+				wait(0)
+				if(!instance_exists(self) || image_index > 8 || irandom(7) == 0){
+					with instance_create(_x,_y,_object_index) {
+						explosiveearsdoubled = 1;
+						sprite_index = _sprite_index;
+						var dir = random(360);
+						var len = sqrt(random_range(0.25, 1)) * sprite_width / 3 * image_xscale;
+						x = _x + lengthdir_x(len, dir);
+						y = _y + lengthdir_y(len, dir);
+						image_xscale = image_xscale / 2
+						image_yscale = image_yscale / 2
+						laserdisco = null;
+						explosiveearsdoubled = 1;
+						image_speed = _image_speed;
+						image_index = 0;
+						image_alpha = _image_alpha;
+					}
+					exit;
 				}
-				exit;
 			}
 		}
 	}

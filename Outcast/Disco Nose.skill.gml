@@ -30,11 +30,13 @@ with(instances_matching(Explosion, "laserdisco", null)){
 	if(fork()){
 		wait(3)
 		if(instance_exists(self) && "team" in self){
-			for(var i = 0; i < 360; i += 60 / skill_get(mod_current)){
+			var ang = random(360);
+			sound_play(sndLaser);
+			for(var i = 0; i < 360; i += 360 / ((sprite_width * image_xscale / 8) * skill_get(mod_current))){
 				with instance_create(x,y,EnemyLaser){
 					alarm0 = 1;
-					direction = other.direction + i;
-					image_angle = other.direction + i;
+					direction = other.direction + i + ang;
+					image_angle = other.direction + i + ang;
 					hitid = [sprite_index, "THE DISCO"];
 					team = other.team;
 					creator = other;

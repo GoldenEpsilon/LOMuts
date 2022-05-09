@@ -5,7 +5,7 @@ while(!mod_exists("mod", "lib")){wait(1);}
 script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 
 #define skill_name
-	return "Crulety-Free Veganlust";
+	return "Cruelty-Free Veganlust";
 	
 #define skill_text
 	return "Props can drop pickups";

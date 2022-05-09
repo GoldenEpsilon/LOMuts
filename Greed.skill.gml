@@ -33,5 +33,6 @@ global.sprSkillHUD = sprite_add("Sprites/Icons/Greed Icon.png", 1, 8, 8)
 	with(Player){
 		my_health--;
 		lsthealth--;
+		lasthit = [global.sprSkillHUD, "GREED"];
 	}
 	GameCont.rad += 50;
