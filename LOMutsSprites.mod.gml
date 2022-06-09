@@ -177,6 +177,8 @@ if(is_real(_name) && array_length(_sprites) > 0){
 		}
 	}else{
 		sprite_replace_image(sprSkillIcon, _sprites[lq_get(global.spriteChoices, _name)], _name, 12, 16);
+		//I need to replace mutNone to fix the hitbox
+		sprite_replace_image(sprSkillIcon, "Sprites/Extras/mutNone.png", 0, 12, 16);
 	}
 }else if(mod_exists("skill", _name) && array_length(_sprites) > 0){
 	mod_variable_set("skill", _name, "sprSkillAnim", noone);
