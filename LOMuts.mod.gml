@@ -22,6 +22,7 @@
 	while(!global.libLoaded){wait(1);}
 	call(scr.add_setting, "LOMuts", "canMutTokens", "Mutation Tokens");
 	call(scr.autoupdate, "LOMuts", "GoldenEpsilon/LOMuts");
+	game_start();
 
 #define game_start
 	var _skills = mod_get_names("skill");

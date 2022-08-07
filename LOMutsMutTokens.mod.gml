@@ -52,7 +52,7 @@
 
 #define step
 	if(mod_variable_get("mod", "LOMuts", "canMutTokens")){
-		if(GameCont.mutindex > global.mutindex){
+		if("mutindex" in GameCont && GameCont.mutindex > global.mutindex){
 			global.mutindex = GameCont.mutindex;
 			if(fork()){
 				wait(0);

@@ -32,25 +32,40 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 #define skill_take
 	sound_play(sndMutTriggerFingers)
 	
-#define late_step
-with(Player){
-	with(instances_matching_ne(instances_matching([Bullet2, FlameShell, HeavySlug, UltraShell, Slug], "team", team), "ShockedSkin", true)){
-		with(call(scr.instances_meeting, x+hspeed_raw, y+vspeed_raw, instances_matching_ne(hitme, "team", team))){
-			other.ShockedSkin = true;
-			with(call(scr.superforce_push, self, (other.force) * skill_get(mod_current), other.direction, 1, true, true, false, script_ref_create(merge))){
-				hook_wallhit = script_ref_create(wallHit);
+#define update(_id)
+	with(Player){
+		with(instances_matching_ne(instances_matching_gt(instances_matching([Bullet2, FlameShell, HeavySlug, UltraShell, Slug], "creator", self), "id", _id), "ShockedSkin", true)){
+			if(fork()){
+				var _x = x + hspeed + lengthdir_x(sprite_width/4, direction);
+				var _y = y + vspeed + lengthdir_y(sprite_width/4, direction);
+				var _t = team;
+				var _oi = object_index;
+				var _damage = damage;
+				var _xscale = image_xscale;
+				var _yscale = image_yscale;
+				while(instance_exists(self) && speed > 0){
+					_x = x + hspeed + lengthdir_x(sprite_width/4, direction);
+					_y = y + vspeed + lengthdir_y(sprite_width/4, direction);
+					_t = team;
+					wait(0);
+				}
+				repeat(_damage){
+					if(irandom(2) == 0){
+						with(instance_create(_x,_y,_oi)){
+							ShockedSkin = true;
+							direction = random(360);
+							speed = 10;
+							team = _t;
+							damage = 1;
+							image_xscale = _xscale / 2;
+							image_yscale = _yscale / 2;
+						}
+					}
+				}
+				exit;
 			}
 		}
 	}
-	with(instances_matching_ne(instances_matching(instances_matching(CustomProjectile, "is_shell", true), "team", team), "ShockedSkin", true)){
-		with(call(scr.instances_meeting, x+hspeed_raw, y+vspeed_raw, instances_matching_ne(hitme, "team", team))){
-			other.ShockedSkin = true;
-			with(call(scr.superforce_push, self, (other.force) * skill_get(mod_current), other.direction, 1, true, true, false, script_ref_create(merge))){
-				hook_wallhit = script_ref_create(wallHit);
-			}
-		}
-	}
-}
 
 #define wallHit
 return true;

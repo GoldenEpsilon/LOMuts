@@ -23,3 +23,6 @@
 /loadskill Disco Nose
 /loadskill Explosive Ears
 /loadskill Telekinetic Tears
+/loadskill Purist
+/loadskill Experimentalist
+/loadskill Rubber Rounds

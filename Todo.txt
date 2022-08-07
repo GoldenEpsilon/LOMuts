@@ -41,9 +41,6 @@ Ideas for future update (NOT GUARANTEED IN ANY WAY, SHAPE, OR FORM.)
 		- (9 TOKENS) ASCEND : GAIN ANOTHER ULTRA (only shows up if you are already at level ultra)
 	- When heading to the shop, you get LEAVE, a 1 token option, a 2-3 token option, and a 4+ token option, selected randomly.
 	
- - Make unstable DNA halve future max health increases
- - Make unstable DNA not appear at level ultra
- - Mimicry should make enemies drop less rads
  - test Feed Forward more
  - fix Quasar Homing
  - change vector to "vectors split"
@@ -91,13 +88,13 @@ Ideas for future update (NOT GUARANTEED IN ANY WAY, SHAPE, OR FORM.)
 	- Fish Fear Me: Enemies are passively pushed away from you
 	- Tractor Beam from isaac
 	- Third Arm: When an enemy comes into close range your secondary weapon fires (if it's reloaded)
-(DONE)	- Laser Eyes: At the start of the level, one enemy is marked. Marked enemies take double damage. The mark shifts when the enemy dies.
+(DONE)	- Laser Eyes: At the start of the level, one enemy is marked. Marked enemies take extra damage (+1). The mark shifts when the enemy dies.
 (DONE)	- Explosive Gaze: At the start of the level, five enemies are marked. Marked enemies explode on death.
 (DONE)	- Damage from toxic marks enemies. Marked enemies take damage over time.
-	- If a laser sight hovers over an enemy, the enemy becomes Marked. Marked enemies are slowed.
+	- If a laser sight hovers over an enemy, the enemy becomes Marked. Marked enemies drop more pickups.
 (DONE)	- (TE compat) Friendly Eyelashes: When an enemy is under half health, there's a chance it gets marked. marked enemies are charmed for a short while.
 	- (TE compat) Lurking Mind: Flamethrowers now shoot quazar beams.
-	- (TE compat) At the start of the level, two enemies are marked. Marked enemies give temporary mutations on death.
+	- (TE compat) At the start of the level, three enemies are Marked. Marked enemies can give temporary mutations on death. (25% chance)
 	- (TE compat) Temporary mutations last longer
 	- All characters can airhorn. Airhorn destroys bullets around you.
 (DONE)	- Blank: Becomes a random outcast mutation upon picking it.
@@ -108,19 +105,21 @@ Ideas for future update (NOT GUARANTEED IN ANY WAY, SHAPE, OR FORM.)
 	- +2 max HP, Spawn 3 health chests every level
 	- +2 max HP, health chests heal more
 	- +2 max HP, obtaining a health chest at full health gives temporary invulnerability
+	- +2 max HP, health chests give ammo
+	- +2 max HP, health chests give a one-use shield
 	- You can overheal
 	- Picking up a chest marks an enemy. Marked enemies drop health pickups on death.
 	- Picking up a new weapon marks an enemy. Killing a marked enemy gives you temporary infinite ammo. (Make picking up a new weapon a lib hook)
 	- See enemy health (extra stacks let you see alarms)
-	- The final 10 enemies in a level take damage over time
+	- The final 10 enemies in a level are Marked.
 	- Enemies explode based on their health
 	- Pickups are worth more at lower health
 	- Shotguns also fire other projectiles (flame shells, bolts, splinters, bullets, lasers, plasma, all with weighted chances)
 	- All projectiles work like nukes
-	- Rubber Rounds: Enemy shots have a chance to bounce and become teamed to you
+(DONE)	- Rubber Rounds: Enemy shots have a chance to bounce and become teamed to you
 (DONE)	- Crulety-Free Veganlust: Props can drop pickups
-	- PURIST: more vanilla weapons
-	- EXPERIMENTALIST: more modded weapons
+(DONE)	- PURIST: more vanilla weapons
+(DONE)	- EXPERIMENTALIST: more modded weapons
 (DONE)	- Buckshot Back: Bullets get UPGRADED (regular -> heavy -> ultra)
 (DONE)	- Absorbing Abs: Bolts absorb bullets, release them all when hitting a wall
 	- All melee weapons have superforce
@@ -130,6 +129,16 @@ Ideas for future update (NOT GUARANTEED IN ANY WAY, SHAPE, OR FORM.)
 (DONE)	- Energy mut that makes all energy weapons "hitscan": Run all events for them manually until they die (or like 15 frames happen) - mess with nexthurt on enemies it collides with to make sure it doesn't nerf weapons
 	- -1 reload frame for all weapons
 	- All weapons are burst
+	- Bosses drop a bunch of chests
+	- Trapper's Watch: The enemies with the lowest health at the start of a level are Marked. Marked enemies are slowed.
+	- Mindworm: (Brain Worm from isaac) Your projectiles can turn 90 degrees once to target enemies
+	- Bosses are Marked. Marked enemies have higher max health. (125%)
+	- At the start of the level, three enemies are Marked. Marked enemies take double damage.
+	- When a Marked enemy dies, nearby enemies are Marked. Marked enemies act faster.
+	- Marked enemies act slower. Marks move from enemy to enemy.
+	- Marked enemies are stationary. Marks fade over time.
+	- Firing your primary reloads your secondary
+	- The Parasite from isaac
  - FALLEN HERO: (Cursed Mutation) Gain two mutations, Future mutation sets are mostly cursed
  - ACHILLES TENDON: (Cursed Mutation) EVERYTHING TAKES MORE DAMAGE, BASED ON HOW MANY CURSED MUTATIONS YOU HAVE
  - Make muscle memory activate after dividing elbows

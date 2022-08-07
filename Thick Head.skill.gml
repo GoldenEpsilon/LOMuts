@@ -27,7 +27,7 @@ global.skill = [];
 	return choose("Durr hurr more#mutation more gooder", "Not everything works");
 
 #define skill_avail
-	return skill_get_at(6) != null && instance_exists(Loadout);
+	return skill_get_at(4) != null;
 
 #define skill_temp
 	return 1;
