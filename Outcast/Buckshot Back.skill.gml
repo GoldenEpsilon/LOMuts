@@ -22,8 +22,9 @@ script_ref_call(["mod", "lib", "getHooks"], "skill", mod_current);
 #define skill_outcast
 	return true;
 
+
 #define skill_tip
-	return "Can't stop the wiggles";
+	return "You don't wanna know#what it costs to fire this gun.";
 	
 #define skill_take
 	sound_play(sndMut);

@@ -26,3 +26,4 @@
 /loadskill Purist
 /loadskill Experimentalist
 /loadskill Rubber Rounds
+/loadskill Bursted Chest

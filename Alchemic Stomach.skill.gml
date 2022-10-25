@@ -1,6 +1,6 @@
 #define init
 global.sprSkillIcon = sprite_add("Sprites/Main/Alchemic Stomach.png", 1, 12, 16)
-global.sprSkillHUD = sprite_add("Sprites/Outcast/Blank Icon.png", 1, 8, 8)
+global.sprSkillHUD = sprite_add("Sprites/Icons/Alchemic Stomach Icon.png", 1, 8, 8)
 
 #define skill_name
 	return "Alchemic Stomach";

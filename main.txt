@@ -35,7 +35,6 @@
 /loadskill Alchemic Stomach
 /loadskill Greed
 /loadskill Ruffled Feathers
-/loadskill Bursted Chest
 /loadskill Slim Pickings
 /loadskill Loner
 

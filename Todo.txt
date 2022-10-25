@@ -53,7 +53,7 @@ Ideas for future update (NOT GUARANTEED IN ANY WAY, SHAPE, OR FORM.)
 	- Shotgun Horns: Enemies take more damage up close
 	- Bolt Horns: Projectiles do more damage the further they travel
 	- Explosive Horns: Enemies have a chance to explode on death
-	- Energy Horns: When you fire a weapon, you shoot lasers.
+	- Charged Horns: When you fire a weapon, you shoot lasers.
  - Sightlines: Gain two "Marking" Outcast mutations
 (DONE) - Alchemic Stomach: If you try to fire while out of ammo, it uses one of all other ammo types instead
 (DONE) - Slim Pickings: Gain 2 "Outcast" mutations.
