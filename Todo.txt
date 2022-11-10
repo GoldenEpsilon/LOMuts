@@ -47,6 +47,7 @@ Ideas for future update (NOT GUARANTEED IN ANY WAY, SHAPE, OR FORM.)
  - Change fractured fingers to work with (correct team) IDPD explosions
  - Dynamic calves rn does not re-give max speed on revive, it should
  - when you're firing an energy weapon you build up a protective field based on ammo usage
+ - effect: Pick a mutation with an opposite twin, flip all twinned mutations to their twin. (kinda like how hades has the two sides of the mirror)
  - Nuclear Horns: Transforms into a different Horn mutation on level transition, based on your weapon type.
 	- Melee Horns: Projectiles fire twice (copy the instance and put it in stasis until the original projectile disappears, don't let it last longer than the original instance)
 	- Bullet Horns: Enemies explode into bullets on death
