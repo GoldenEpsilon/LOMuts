@@ -8,7 +8,7 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 	return "Laser Focus";
 	
 #define skill_text
-	return "One enemy is @rmarked@s per level#@rMarked@s enemies take @extra damage@s#and the mark @wshifts@s when they die";
+	return "One enemy is @rmarked@s per level#@rMarked@s enemies take @wextra damage@s#and the mark @wshifts@s when they die";
 
 #define skill_button
 	sprite_index = global.sprSkillIcon;
