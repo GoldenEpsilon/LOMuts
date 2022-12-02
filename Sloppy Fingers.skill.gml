@@ -7,7 +7,7 @@ script_ref_call(["mod", "lib", "getHooks"], "skill", mod_current);
 	return "Sloppy Fingers";
 	
 #define skill_text
-	return "Faster Reload (-1 @wframes@s)#Less Accuracy";
+	return "Faster Reload (-3 @wframes@s)#Less Accuracy";
 
 #define skill_button
 	sprite_index = global.sprSkillIcon;
@@ -37,7 +37,7 @@ script_ref_call(["mod", "lib", "getHooks"], "skill", mod_current);
 	with(Player){
 		if("sloppyprevreload" not in self){sloppyprevreload = reload;}
 		if(reload > sloppyprevreload){
-			reload -= 1;
+			reload -= 3;
 		}
 		sloppyprevreload = reload;
 	}
