@@ -7,7 +7,7 @@ script_ref_call(["mod", "lib", "getHooks"], "skill", mod_current);
 	return "Sloppy Fingers";
 	
 #define skill_text
-	return "Faster Reload (-3 @wframes@s)#Less Accuracy";
+	return "Faster Reload, Less Accuracy#This effect ramps up as you fire";
 
 #define skill_button
 	sprite_index = global.sprSkillIcon;
@@ -16,28 +16,28 @@ script_ref_call(["mod", "lib", "getHooks"], "skill", mod_current);
 	return global.sprSkillHUD;
 
 #define skill_tip
-	return choose("Whoops!", "Not even eyesight fixes sloppiness");
-	
-#define skill_take
-	sound_play(sndMutTriggerFingers);
-	if instance_exists(Player) {
-		with Player {
-			accuracy *= 1.5;
-		}
-	}
-	
-#define skill_lose
-	if instance_exists(Player) {
-		with Player {
-			accuracy /= 1.5;
-		}
-	}
+	return choose("Whoops!", "Better eyesight can#help sloppiness");
 
 #define late_step
 	with(Player){
-		if("sloppyprevreload" not in self){sloppyprevreload = reload;}
+		if("sloppyprevreload" not in self){sloppyprevreload = 0;}
+		if("sloppyderampspeed" not in self){sloppyderampspeed = 0;}
+		if("sloppyramp" not in self){sloppyramp = 1;}
+		if("sloppyprevramp" not in self){sloppyprevramp = sloppyramp;}
+	
+		sloppyprevramp = sloppyramp;
+		
+		accuracy /= sloppyprevramp;
+		reloadspeed /= sloppyprevramp;
+		
 		if(reload > sloppyprevreload){
-			reload -= 3;
+			sloppyramp = min(sloppyramp + abs(reload * 0.01) + 0.01, 2);
+			sloppyderampspeed = 0;
 		}
 		sloppyprevreload = reload;
+		sloppyramp = max(sloppyramp - sloppyderampspeed, 1);
+		sloppyderampspeed = min(sloppyderampspeed + 0.00025, 1);
+	
+		accuracy *= sloppyramp;
+		reloadspeed *= sloppyramp;
 	}
