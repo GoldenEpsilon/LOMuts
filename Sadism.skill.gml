@@ -37,7 +37,7 @@ with(Player){
 	}
 	for(var i = 1; i < array_length(ammo); i++){
 		if(ammo[i] < sadismOldAmmo[i]){
-			sadism += (sadismOldAmmo[i] - ammo[i]) / (i == 1 ? 5 : 1);
+			sadism += (sadismOldAmmo[i] - ammo[i]) / (i == 1 ? 4 : 1);
 		}
 	}
 	if(sadism >= 30 / skill_get(mod_current)){
