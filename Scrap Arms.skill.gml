@@ -50,7 +50,7 @@ with(instances_matching_le(enemy, "my_health", 0)){
 			sprite_index = global.sprScrap;
 			on_open = script_ref_create(ScrapGet)
 			alarm0 = 200;
-			pickno = 16 * skill_get(mod_current) + skill_get("magazinefingers")*6;
+			pickno = 16 * skill_get(mod_current);
 		}
 	}
 }
@@ -64,13 +64,14 @@ with(instances_matching_le(enemy, "my_health", 0)){
 		}
 		exit;
 	}
-	other.breload = max(other.breload - 5, 0);
-	other.ammo[1] += pickno;
+	other.breload = max(other.breload - 5 * skill_get(mod_current), 0);
+	var amount = ceil((pickno * other.typ_ammo[1]) / 32);
+	other.ammo[1] += amount;
 	other.ammo[1] = min(other.ammo[1], other.typ_amax[1]);
 	var ismax = other.ammo[1] >= other.typ_amax[1];
 	with(instance_create(other.x, other.y, PopupText)) {
 		if(ismax) mytext = "MAX BULLETS";
-		else mytext = "+"+string(other.pickno)+" BULLETS"
+		else mytext = "+"+string(amount)+" BULLETS"
 	}
 	return false;
 

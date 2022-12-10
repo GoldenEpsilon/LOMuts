@@ -6,7 +6,7 @@ global.sprSkillHUD = sprite_add("Sprites/Outcast/Blank Icon.png", 1, 8, 8)
 	return "Ruffled Feathers";
 	
 #define skill_text
-	return "+2 @wmutation options@s#outcast mutations appear#in the mutation pool.";
+	return `+2 @wmutation options@s#@(color:${make_color_rgb(84, 58, 24)})outcast@s mutations appear#this rerolls at level @gultra@s`;
 
 #define skill_button
 	sprite_index = global.sprSkillIcon;
@@ -36,4 +36,11 @@ global.sprSkillHUD = sprite_add("Sprites/Outcast/Blank Icon.png", 1, 8, 8)
 				skill_set_active(self, false);
 			}
 		}
+	}
+
+#define step
+	if(GameCont.level >= 10){
+		GameCont.skillpoints += skill_get(mod_current);
+		skill_set(mod_current, 0);
+		audio_sound_set_track_position(sound_play_pitchvol(sndMutant15Cnfm, 2.5, 0.2),0.4);
 	}
