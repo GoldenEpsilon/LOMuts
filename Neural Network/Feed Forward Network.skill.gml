@@ -68,6 +68,7 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 				}
 				with(instance_create(_x,_y,_oi)){
 					feed_forward = _f + 1;
+					image_alpha = (skill_get(mod_current) + 1 - feed_forward) / (skill_get(mod_current) + 1)
 					if(feed_forward >= skill_get(mod_current)){
 						FeedForward = true;
 					}
