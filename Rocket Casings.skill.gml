@@ -38,6 +38,7 @@ with(Player){
 			var _x = x + hspeed + lengthdir_x(sprite_width/4, direction);
 			var _y = y + vspeed + lengthdir_y(sprite_width/4, direction);
 			var _t = team;
+			var _d = damage;
 			while(instance_exists(self)){
 				_x = x + hspeed + lengthdir_x(sprite_width/4, direction);
 				_y = y + vspeed + lengthdir_y(sprite_width/4, direction);
@@ -48,14 +49,13 @@ with(Player){
 				rocketcasings = true;
 				duplicators = true;
 				pyroflammable = true;
-				damage = 2 * skill_get(mod_current);
+				damage = ceil(sqrt(_d)) * skill_get(mod_current);
 				force = 3 * skill_get(mod_current);
 				timer = 8;
 				team = _t;
 				image_speed = 0.4;
 				sprite_index = global.sprRocketExplo;
-				if(object_index == HeavyBullet || object_index == UltraBullet){
-					damage *= 2;
+				if(damage > 4){
 					force *= 2;
 					sprite_index = global.sprRocketExploGreen;
 				}
@@ -75,7 +75,7 @@ with(Player){
 		}
 	}
 	with(instances_matching(instances_matching_ne(CustomProjectile,"rocketcasings",true),"team",team)){
-		if("proj_subtype" in self && proj_subtype == "bullet"){
+		if(("ammo_type" in self && ammo_type == 1) || ("is_bullet" in self && is_bullet == true)){
 			speed = speed + 3;
 			force = force * 2;
 			rocketcasings = true;
@@ -92,14 +92,13 @@ with(Player){
 			with(instance_create(_x,_y,CustomProjectile)){
 				rocketcasings = true;
 				duplicators = true;
-				damage = 2 * skill_get(mod_current);
+				damage = ceil(sqrt(_d)) * skill_get(mod_current);
 				force = 3 * skill_get(mod_current);
 				timer = 8;
 				team = _t;
 				image_speed = 0.4;
 				sprite_index = global.sprRocketExplo;
-				if("proj_variant" in self && (proj_variant == "heavy" || proj_variant == "ultra")){
-					damage *= 2;
+				if(damage > 4){
 					force *= 2;
 					sprite_index = global.sprRocketExploGreen;
 				}

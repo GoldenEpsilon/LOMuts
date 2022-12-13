@@ -38,7 +38,10 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 	
 #define update(_id)
 	with(Player){
-		with(instances_matching_ne(instances_matching_gt(instances_matching([LightningSlash, EnergySlash, EnergyShank, EnergyHammerSlash], "creator", int64(self)), "id", _id), "FeedForward", true)){
+		with(instances_matching_ne(instances_matching_gt(instances_matching([LightningSlash, EnergySlash, EnergyShank, EnergyHammerSlash, CustomSlash], "creator", int64(self)), "id", _id), "FeedForward", true)){
+			if(!(object_index == CustomSlash && "is_melee" in self && is_melee && "ammo_type" in self && ammo_type == 5)){
+				continue;
+			}
 			if(fork()){
 				var _x = x + hspeed + lengthdir_x(sprite_width/4, direction);
 				var _y = y + vspeed + lengthdir_y(sprite_width/4, direction);

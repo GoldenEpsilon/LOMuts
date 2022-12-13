@@ -34,7 +34,7 @@ global.sprIcon = sprite_add("../Sprites/Icons/Neural Network/" + mod_current + "
 with(Player){
 	with(instances_matching(instances_matching([PlasmaBall, PlasmaBig, PlasmaHuge, CustomObject],"plasmabounce",null),"team",team)){
 		plasmabounce = 0;
-		if(object_index != CustomObject || "name" in self && string_count("Plasma", name)){
+		if(object_index != CustomObject || "is_plasma" in self && is_plasma){
 			plasmabounce = 1 + 1 * skill_get(mod_current);
 		}
 	}
