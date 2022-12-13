@@ -51,7 +51,7 @@ with(Player){
 				}
 				with(instances_matching_le(enemy, "my_health", 0)){
 					if(abs(x - _x) + abs(y - _y) < sprite_width + sprite_height){
-						repeat(skill_get(mod_current) * 2){
+						repeat(skill_get(mod_current) * 3){
 							with(mod_script_call("mod", "defpack tools", "create_plasmite", _x,_y)){
 								recurrent = _r + 1;
 								duplicators = true;

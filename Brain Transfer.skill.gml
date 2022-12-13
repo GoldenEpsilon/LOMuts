@@ -7,7 +7,7 @@ global.troll = false;
 	return "Brain Transfer";
 	
 #define skill_text
-	return "@wReroll@s all weapon mutations";
+	return "@wReroll@s all weapon mutations#(This mutation is also refunded)";
 
 #define skill_button
 	sprite_index = global.sprSkillIcon;
@@ -16,15 +16,13 @@ global.troll = false;
 	return global.sprSkillHUD;
 
 #define skill_avail
-	return GameCont.wepmuts >= 3 && (!instance_is(self, CustomObject) && !instance_is(self, CustomProp)) || instance_exists(Loadout);
+	return GameCont.wepmuts >= 2 && (!instance_is(self, CustomObject) && !instance_is(self, CustomProp)) || instance_exists(Loadout);
 
 #define skill_tip
 	return "Refreshing";
 
 #define skill_temp
 	return 1;
-	
-#define skill_bodypart return 1
 	
 #define skill_take
 	var rerolledMuts = 1;

@@ -48,8 +48,8 @@ with(Player){
 				rocketcasings = true;
 				duplicators = true;
 				pyroflammable = true;
-				damage = skill_get(mod_current);
-				force = skill_get(mod_current);
+				damage = 2 * skill_get(mod_current);
+				force = 3 * skill_get(mod_current);
 				timer = 8;
 				team = _t;
 				image_speed = 0.4;
@@ -92,8 +92,8 @@ with(Player){
 			with(instance_create(_x,_y,CustomProjectile)){
 				rocketcasings = true;
 				duplicators = true;
-				damage = skill_get(mod_current);
-				force = skill_get(mod_current);
+				damage = 2 * skill_get(mod_current);
+				force = 3 * skill_get(mod_current);
 				timer = 8;
 				team = _t;
 				image_speed = 0.4;

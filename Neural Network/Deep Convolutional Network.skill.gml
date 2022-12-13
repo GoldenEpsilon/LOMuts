@@ -47,7 +47,7 @@ with(Player){
 				if(abs(_turn) > 90 && abs(_angle) > 1){
 					_turn = abs(_turn) * sign(_angle);
 				}
-				bend += clamp(_turn, -5 * skill_get(mod_current), 5 * skill_get(mod_current)) * current_time_scale;
+				bend += clamp(_turn, -9 * skill_get(mod_current), 9 * skill_get(mod_current)) * current_time_scale;
 			}
 		}
 	}

@@ -25,8 +25,6 @@ global.bind_step = noone;
 #define skill_take
 	sound_play(sndMutTriggerFingers)
 	
-#define skill_bodypart return 3
-	
 #define skill_lose
 with(global.bind_step){
 	instance_destroy();
@@ -44,14 +42,14 @@ if(!instance_exists(global.bind_step)){
 }
 #define late_step
 with(instances_matching([Bolt, HeavyBolt, ToxicBolt, Seeker, Splinter, Disc, UltraBolt, SplinterBurst, CustomProjectile], "speed", 0)){
-	if((object_index == CustomProjectile || object_index == CustomSlash) && (mask_index != mskBolt && mask_index != mskHeavyBolt || !("name" in self && is_string(name) && (string_count("bolt", string_lower(name)) > 0 || string_count("arrow", string_lower(name)) > 0)))){
+	if((object_index == CustomProjectile || object_index == CustomSlash) && ammo_type != 3){
 		continue;
 	}
 	if("eitimer" not in self){eitimer = 0;}
 	if((eitimer * skill_get(mod_current)) % 12 == 0){
 		with instance_create(x,y,Lightning){
 			alarm0 = 4;
-			ammo = 8;
+			ammo = max(other.damage/2, 6);
 			var nearest = instance_nearest(x,y,enemy);
 			if(nearest == noone){
 				nearest = creator;

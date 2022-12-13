@@ -1,12 +1,18 @@
 #define init
 global.sprButton = sprite_add("../Sprites/Main/Neural Network/" + mod_current + ".png", 1, 12, 16)
 global.sprIcon = sprite_add("../Sprites/Icons/Neural Network/" + mod_current + " Icon.png", 1, 8, 8)
+while(!mod_exists("mod", "lib")){wait(1);}
+script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
+
+//These are macros to slot in to make it easier to call lib functions.
+#macro scr global.scr
+#macro call script_ref_call
 
 #define skill_name
 	return "Feed Forward Network";
 	
 #define skill_text
-	return "Energy @wMelee@s weapons#@yrefund@s on @wkill@s";
+	return "Energy @wMelee@s weapons#@wecho@s";
 
 #define skill_button
 	sprite_index = global.sprButton;
@@ -30,34 +36,40 @@ global.sprIcon = sprite_add("../Sprites/Icons/Neural Network/" + mod_current + "
 #define skill_neural  
 	return true;
 	
-#define step
-with(Player){
-	with(instances_matching(instances_matching([EnergySlash, EnergyShank, EnergyHammerSlash], "feedRefund", null),"team",team)){
-		if(instance_exists(creator) && creator.object_index == Player){
-			feedRefund = 1;
-			feedRefundWep = other.wep;
-			feedRefundCost = weapon_get_cost(feedRefundWep);
-			feedRefundType = weapon_get_type(feedRefundWep);
-			feedRefundRem = 0;
-		}else{
-			feedRefund = 2;
-		}
-	}
-	with(instances_matching(instances_matching([EnergySlash, EnergyShank, EnergyHammerSlash], "feedRefund", 1),"team",team)){
-		if(instance_exists(creator) && creator.object_index == Player){
-			var _x = x + hspeed + lengthdir_x(sprite_width/4, direction);
-			var _y = y + vspeed + lengthdir_y(sprite_width/4, direction);
-			with(instances_matching_le(enemy, "my_health", 0)){
-				if(abs(x - _x) + abs(y - _y) < sprite_width + sprite_height){
-					var val = other.feedRefundCost * skill_get(mod_current) + other.feedRefundRem;
-					other.creator.ammo[other.feedRefundType] += floor(val);
-					other.feedRefundRem = val - floor(val);
-					other.creator.ammo[other.feedRefundType] = min(other.creator.ammo[other.feedRefundType], other.creator.typ_amax[other.feedRefundType]);
-					other.feedRefund = 2;
+#define update(_id)
+	with(Player){
+		with(instances_matching_ne(instances_matching_gt(instances_matching([LightningSlash, EnergySlash, EnergyShank, EnergyHammerSlash], "creator", int64(self)), "id", _id), "FeedForward", true)){
+			if(fork()){
+				var _x = x + hspeed + lengthdir_x(sprite_width/4, direction);
+				var _y = y + vspeed + lengthdir_y(sprite_width/4, direction);
+				var _t = team;
+				var _oi = object_index;
+				var _damage = damage;
+				var _xscale = image_xscale;
+				var _yscale = image_yscale;
+				var _direction = direction;
+				var _image_angle = image_angle;
+				while(instance_exists(self) && speed > 0){
+					_x = x + hspeed + lengthdir_x(sprite_width/4, direction);
+					_y = y + vspeed + lengthdir_y(sprite_width/4, direction);
+					_direction = direction;
+					_image_angle = image_angle;
+					_t = team;
+					wait(0);
 				}
+				repeat(irandom(2) + 3){
+					with(instance_create(_x,_y,_oi)){
+						FeedForward = true;
+						direction = _direction;
+						image_angle = _image_angle;
+						speed = 3;
+						team = _t;
+						damage = _damage;
+						image_xscale = _xscale;
+						image_yscale = _yscale;
+					}
+				}
+				exit;
 			}
-		}else{
-			feedRefund = 2;
 		}
 	}
-}

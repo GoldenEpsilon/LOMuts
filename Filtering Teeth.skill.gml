@@ -26,7 +26,7 @@ global.sprSkillHUD = sprite_add("Sprites/Icons/Filtering Teeth Icon.png", 1, 8, 
 with(Pickup){
 	if("filtered" not in self){
 		filtered = true;
-		alarm0 *= 1 + skill_get(mod_current) * 3;
+		alarm0 *= 1 + skill_get(mod_current) * 4;
 	}
 }
 

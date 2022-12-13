@@ -35,7 +35,7 @@ with(Player){
 	with(instances_matching(instances_matching([PlasmaBall, PlasmaBig, PlasmaHuge, CustomObject],"plasmabounce",null),"team",team)){
 		plasmabounce = 0;
 		if(object_index != CustomObject || "name" in self && string_count("Plasma", name)){
-			plasmabounce = 1 * skill_get(mod_current);
+			plasmabounce = 1 + 1 * skill_get(mod_current);
 		}
 	}
 	with(instances_matching(instances_matching_ge(projectile,"plasmabounce",1),"team",team)){

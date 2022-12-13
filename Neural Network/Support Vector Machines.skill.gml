@@ -6,7 +6,7 @@ global.sprIcon = sprite_add("../Sprites/Icons/Neural Network/" + mod_current + "
 	return "Support Vector Machines";
 	
 #define skill_text
-	return `@(color:${c_aqua})Vectors@s are @wwider@s`;
+	return `@(color:${c_aqua})Vectors@s deal double @wdamage@s`;
 
 #define skill_button
 	sprite_index = global.sprButton;
@@ -36,14 +36,9 @@ script_bind_step(custom_step, 0);
 with(Player){
 	with(instances_matching(instances_matching(CustomProjectile,"vectormachine",null),"team",team)){
 		vectormachine = 1;
-		if("name" in self && is_string(name) && name == "Vector"){
-			image_xscale *= 2 * skill_get(mod_current);
-			defbloom.yscale *= 2 * skill_get(mod_current)/1.5;
-			image_yscale *= 1.5 * skill_get(mod_current);
+		if("name" in self && is_string(name) && (name == "Vector" || name == "vector beam")){
+			damage *= 2 * skill_get(mod_current);
 		}
-	}
-	with(instances_matching(instances_matching(CustomProjectile,"name","vector beam"),"team",team)){
-		image_yscale *= 2 * skill_get(mod_current);
 	}
 }
 instance_destroy();

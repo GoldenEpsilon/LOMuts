@@ -6,7 +6,7 @@ global.sprSkillHUD = sprite_add("Sprites/Outcast/Blank Icon.png", 1, 8, 8)
 	return "Ruffled Feathers";
 	
 #define skill_text
-	return `+2 @wmutation options@s#@(color:${make_color_rgb(84, 58, 24)})outcast@s mutations appear#this rerolls at level @gultra@s`;
+	return `+4 @wmutation options@s#@(color:${make_color_rgb(84, 58, 24)})outcast@s mutations appear#this rerolls at level @gultra@s`;
 
 #define skill_button
 	sprite_index = global.sprSkillIcon;
@@ -19,7 +19,7 @@ global.sprSkillHUD = sprite_add("Sprites/Outcast/Blank Icon.png", 1, 8, 8)
 	
 #define skill_take
 	sound_play(sndMut);
-	mod_variable_set("mod", "Extra Mutation Options", "extrastacks", mod_variable_get("mod", "Extra Mutation Options", "extrastacks") + 2);
+	mod_variable_set("mod", "Extra Mutation Options", "extrastacks", mod_variable_get("mod", "Extra Mutation Options", "extrastacks") + 4);
 	var _skills = mod_get_names("skill");
 	with(_skills){
 		if(!skill_get(self) && mod_script_exists("skill", self, "skill_outcast") && mod_script_call("skill", self, "skill_outcast")){
@@ -28,7 +28,7 @@ global.sprSkillHUD = sprite_add("Sprites/Outcast/Blank Icon.png", 1, 8, 8)
 	}
 	
 #define skill_lose
-	mod_variable_set("mod", "Extra Mutation Options", "extrastacks", mod_variable_get("mod", "Extra Mutation Options", "extrastacks") - 2);
+	mod_variable_set("mod", "Extra Mutation Options", "extrastacks", mod_variable_get("mod", "Extra Mutation Options", "extrastacks") - 4);
 	if(!skill_get(mod_current)){
 		var _skills = mod_get_names("skill");
 		with(_skills){

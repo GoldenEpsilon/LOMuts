@@ -35,7 +35,7 @@ with(instances_matching_le(enemy, "my_health", 0)){
 		temp = instance_nearest(x,y,list[i]);
 		if(temp >= 0 && distance_to_object(list[i]) < sqrt(sqr((sprite_width*image_xscale)/2)+sqr((sprite_height*image_yscale)/2))){
 			with(temp){
-				if((object_index == CustomProjectile || object_index == CustomSlash) && (mask_index != mskBolt && mask_index != mskHeavyBolt || !("name" in self && is_string(name) && (string_count("bolt", string_lower(name)) > 0 || string_count("arrow", string_lower(name)) > 0)))){
+				if((object_index == CustomProjectile || object_index == CustomSlash) && ammo_type != 3){
 					continue;
 				}
 				for(var i = 36; i < 396; i += 72 / skill_get(mod_current)){

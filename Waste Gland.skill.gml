@@ -6,7 +6,7 @@ global.sprSkillHUD = sprite_add("Sprites/Icons/Waste Gland Icon.png", 1, 8, 8)
 	return "Waste Gland";
 	
 #define skill_text
-	return "@wExplosions@s are @wtoxic@s#Toxic clouds @wavoid@s you";
+	return "@wExplosions@s are @wtoxic@s#Toxic clouds @wavoid@s you#and move towards enemies";
 
 #define skill_button
 	sprite_index = global.sprSkillIcon;
@@ -79,6 +79,17 @@ with(ToxicGas){
 	}else{
 		continue;
 	}
+	if(speed < 3){
+		var nearestEnemy = instance_nearest(x,y,enemy);
+		if(!(nearestEnemy == -4 ||nearestEnemy.object_index == FrogQueen || nearestEnemy.object_index == SuperFrog || nearestEnemy.object_index == Exploder)){
+			var _x = nearestEnemy.x;
+			var _y = nearestEnemy.y;
+			var d = distance_to_point(nearestEnemy.x, nearestEnemy.y);
+			if(nearestEnemy != -4 && d < 100){
+				motion_add(point_direction(x, y, _x, _y), 1 * skill_get(mod_current));
+			}
+		}
+	}
 	if(instance_exists(Player)){
 		if(image_xscale < 0.25 && image_yscale < 0.25){
 			damage = 1;
@@ -87,7 +98,7 @@ with(ToxicGas){
 		if(dist < 100){
 			var inst = instance_nearest(x,y,Player);
 			var prevSpeed = speed;
-			motion_add(point_direction(inst.x,inst.y,x,y), min(50/dist, 0.15) * max(instance_number(ToxicGas)/maxTox, 1) * skill_get(mod_current));
+			motion_add(point_direction(inst.x,inst.y,x,y), min(100/dist, 0.45) * max(instance_number(ToxicGas)/maxTox, 1) * skill_get(mod_current));
 			if(speed < prevSpeed || speed > 3){
 				speed *= 0.6 / skill_get(mod_current);
 			}

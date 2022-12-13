@@ -12,7 +12,7 @@
 /loadskill Buckshot Back
 /loadskill Absorbing Abs
 /loadskill Roulette Trigger
-/loadskill Toxic Thoughts
+//loadskill Toxic Thoughts
 /loadskill Leprosy
 /loadskill Leprosy2
 /loadskill Putrid Haze

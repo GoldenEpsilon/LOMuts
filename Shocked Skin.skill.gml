@@ -13,7 +13,7 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 	return "Shocked Skin";
 	
 #define skill_text
-	return "@wShells@s burst#on @wImpact@s";
+	return "Shells @wBURST@s";
 
 #define skill_button
 	sprite_index = global.sprSkillIcon;
@@ -27,14 +27,12 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 #define skill_tip
 	return "Shock absorption";
 	
-#define skill_bodypart return 2
-	
 #define skill_take
 	sound_play(sndMutTriggerFingers)
 	
 #define update(_id)
 	with(Player){
-		with(instances_matching_ne(instances_matching_gt(instances_matching([Bullet2, FlameShell, HeavySlug, UltraShell, Slug], "creator", self), "id", _id), "ShockedSkin", true)){
+		with(instances_matching_ne(instances_matching_gt(instances_matching([Bullet2, FlameShell, HeavySlug, UltraShell, Slug, HyperSlug], "creator", int64(self)), "id", _id), "ShockedSkin", true)){
 			if(fork()){
 				var _x = x + hspeed + lengthdir_x(sprite_width/4, direction);
 				var _y = y + vspeed + lengthdir_y(sprite_width/4, direction);
@@ -49,26 +47,18 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 					_t = team;
 					wait(0);
 				}
-				repeat(_damage){
-					if(irandom(2) == 0){
-						with(instance_create(_x,_y,_oi)){
-							ShockedSkin = true;
-							direction = random(360);
-							speed = 10;
-							team = _t;
-							damage = 1;
-							image_xscale = _xscale / 2;
-							image_yscale = _yscale / 2;
-						}
+				repeat(irandom(2) + 3){
+					with(instance_create(_x,_y,_oi)){
+						ShockedSkin = true;
+						direction = random(360);
+						speed = 10;
+						team = _t;
+						damage = ceil(_damage/2);
+						image_xscale = _xscale / 2;
+						image_yscale = _yscale / 2;
 					}
 				}
 				exit;
 			}
 		}
 	}
-
-#define wallHit
-return true;
-
-#define merge(curr, prev)
-	curr.superforce += prev.superforce;

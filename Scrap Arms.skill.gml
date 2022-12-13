@@ -1,7 +1,7 @@
 #define init
 global.sprSkillIcon = sprite_add("Sprites/Main/Scrap Arms.png", 1, 12, 16)
 global.sprSkillHUD = sprite_add("Sprites/Icons/Scrap Arms Icon.png", 1, 8, 8)
-global.sprScrap = sprite_add("Sprites/ScrapPackage.png", 1, 4, 5)
+global.sprScrap = sprite_add("Sprites/ScrapPackage.png", 1, 6, 6)
 while(!mod_exists("mod", "lib")){wait(1);}
 script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 
@@ -41,9 +41,8 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 	}
 	
 #define step
-
 with(instances_matching_le(enemy, "my_health", 0)){
-	if("ScrapArms" not in self && instance_nearest(x,y,Player) != noone && (irandom(4 / (skill_get(mut_rabbit_paw)+1)) == 0 && (weapon_get_type(instance_nearest(x,y,Player).wep) == 1 || weapon_get_type(instance_nearest(x,y,Player).bwep) == 1))){
+	if("ScrapArms" not in self && instance_nearest(x,y,Player) != noone && (irandom(3 / (skill_get(mut_rabbit_paw)+1)) == 0 && (weapon_get_type(instance_nearest(x,y,Player).wep) == 1 || weapon_get_type(instance_nearest(x,y,Player).bwep) == 1))){
 		ScrapArms = true;
 		with(call(scr.obj_create, x, y, "LibPickup")){
 			name = "ScrapArmsPickup";
@@ -54,13 +53,14 @@ with(instances_matching_le(enemy, "my_health", 0)){
 		}
 	}
 }
+
 #define ScrapGet
 	sound_play_pitchvol(sndShotReload, 1.4, 2)
 	if(fork()){
-		other.reloadspeed += 0.2;
+		other.reloadspeed /= 2;
 		wait(25);
 		if(instance_exists(other)){
-			other.reloadspeed -= 0.2;
+			other.reloadspeed *= 2;
 		}
 		exit;
 	}

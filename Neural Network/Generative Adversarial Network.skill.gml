@@ -1,13 +1,13 @@
 #define init
 global.sprButton = sprite_add("../Sprites/Main/Neural Network/" + mod_current + ".png", 1, 12, 16)
 global.sprIcon = sprite_add("../Sprites/Icons/Neural Network/" + mod_current + " Icon.png", 1, 8, 8)
-global.sprBurningLaser = sprite_add("../Sprites/BurningLaser.png", 1, 2, 3)
+global.sprBurningLaser = sprite_add("../Sprites/BurningLaser.png", 6, 2, 3)
 
 #define skill_name
 	return "Generative Adversarial Network";
 	
 #define skill_text
-	return "@wLasers@s @rBURN@s";
+	return "@wLasers@s @rBURN@s#and are @wWIDER@s";
 
 #define skill_button
 	sprite_index = global.sprButton;
@@ -37,6 +37,10 @@ script_bind_step(custom_step, 0);
 with(Laser){
 	if(object_index != Laser){
 		continue;
+	}
+	if("neural" not in self){
+		neural = 1;
+		image_yscale *= 1.2;
 	}
 	var laser = id;
 	if(sprite_index == sprLaser){
