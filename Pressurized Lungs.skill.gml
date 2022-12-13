@@ -51,7 +51,7 @@ with(instances_matching(Flame, "creator", -4)){
 		pressurizedPush();
 	}
 }
-with(instances_matching(instances_matching(instances_matching(CustomProjectile, "is_fire", true), "creator", -4)){
+with(instances_matching(instances_matching(CustomProjectile, "is_fire", true), "creator", -4)){
 	if(array_find_index(teams, team) >= 0){
 		pressurizedPush();
 	}
