@@ -82,9 +82,17 @@ with(Player){
 #define fire_step
 	if(!instance_exists(creator)){
 		if(size >= 2){
-			instance_create(x,y,Explosion);
+			with(instance_create(x,y,SmallExplosion)){
+				creator = other;
+				team = creator.team;
+				image_blend = c_gray;
+			}
 		}else if(size >= 1){
-			instance_create(x,y,SmallExplosion);
+			with(instance_create(x,y,SmallExplosion)){
+				creator = other;
+				team = creator.team;
+				image_blend = c_gray;
+			}
 		}
 		instance_destroy();
 		exit;
@@ -144,7 +152,16 @@ with(Player){
 #define toxic_step
 	if(!instance_exists(creator)){
 		if(size >= 2){
-			instance_create(x,y,ToxicGrenade);
+			repeat(15){
+				with(instance_create(x,y,ToxicGas)){
+					creator = other;
+					direction = random(360);
+					image_angle = direction;
+					speed = creator.size * 2;
+					team = creator.team;
+					image_blend = c_green;
+				}
+			}
 		}else if(size >= 1){
 			repeat(5){
 				with(instance_create(x,y,ToxicGas)){

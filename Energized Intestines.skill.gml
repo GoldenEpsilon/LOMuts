@@ -42,7 +42,7 @@ if(!instance_exists(global.bind_step)){
 }
 #define late_step
 with(instances_matching([Bolt, HeavyBolt, ToxicBolt, Seeker, Splinter, Disc, UltraBolt, SplinterBurst, CustomProjectile], "speed", 0)){
-	if((object_index == CustomProjectile || object_index == CustomSlash) && ammo_type != 3){
+	if((object_index == CustomProjectile || object_index == CustomSlash) && "ammo_type" in self && ammo_type != 3){
 		continue;
 	}
 	if("eitimer" not in self){eitimer = 0;}

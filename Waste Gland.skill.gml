@@ -6,7 +6,7 @@ global.sprSkillHUD = sprite_add("Sprites/Icons/Waste Gland Icon.png", 1, 8, 8)
 	return "Waste Gland";
 	
 #define skill_text
-	return "@wExplosions@s are @wtoxic@s#Toxic clouds @wavoid@s you#and move towards enemies";
+	return "@wExplosions@s are @wtoxic@s#Toxic clouds @wavoid@s you#and move towards @wenemies@s";
 
 #define skill_button
 	sprite_index = global.sprSkillIcon;

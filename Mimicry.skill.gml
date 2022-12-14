@@ -57,6 +57,11 @@ global.canActivate = 1;
 	}
 	var i = 0;
 	while(!is_undefined(skill_get_at(i))){i++}
+	while(is_string(skill) && mod_script_exists("skill", skill_get_at(i-2), "skill_sacrifice") && mod_script_call("skill", skill_get_at(i-2), "skill_sacrifice")){i--}
+	if(is_undefined(skill_get_at(i))){
+		trace("Hey. You don't have any removable mutations.");
+		return;
+	}
 	skill_set(skill_get_at(i-2), 0);
 	
 

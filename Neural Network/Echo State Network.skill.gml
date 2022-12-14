@@ -6,7 +6,7 @@ global.sprIcon = sprite_add("../Sprites/Icons/Neural Network/" + mod_current + "
 	return "Echo State Network";
 	
 #define skill_text
-	return "@bElectricity@s does more @wdamage@s#jumps between @wenemies@s";
+	return "@bElectricity@s does more @wdamage@s#and @wjumps@s between enemies";
 
 #define skill_button
 	sprite_index = global.sprButton;
@@ -35,7 +35,7 @@ global.sprIcon = sprite_add("../Sprites/Icons/Neural Network/" + mod_current + "
 with(Lightning){
 	if("neural" not in self){
 		neural = 1;
-		damage *= 2;
+		damage *= 1 + skill_get(mod_current);
 	}
 	var enem = instance_nearest(x,y,enemy);
 	if(enem != -4 && distance_to_point(enem.x,enem.y) < 10 + 10 * skill_get(mod_current)){
