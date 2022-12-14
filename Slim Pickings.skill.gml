@@ -8,7 +8,7 @@ global.skill = [];
 	return "Slim Pickings";
 	
 #define skill_text
-	return "Gain 2 Outcast mutations";
+	return "Choose 2 Outcast mutations";
 
 #define skill_button
 	sprite_index = global.sprSkillIcon;

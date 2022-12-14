@@ -8,7 +8,7 @@ global.skill = [];
 	return "Loner";
 	
 #define skill_text
-	return "Gain 1 Outcast mutation#It has 2x power";
+	return "Choose 1 Outcast mutation#It has 2x power";
 
 #define skill_button
 	sprite_index = global.sprSkillIcon;

@@ -33,6 +33,7 @@ global.sprSkillHUD = sprite_add("../Sprites/Outcast/Blank Icon.png", 1, 8, 8)
 with(Player){
 	with(instances_matching_ne(projectile, "team", team)){
 		if(fork()){
+			wait(0);
 			var _t = other.team;
 			wait(0);
 			if(instance_exists(self) && team == _t && "arcanecheck" not in self){

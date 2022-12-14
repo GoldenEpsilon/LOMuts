@@ -30,7 +30,23 @@ global.alarms = [0,0,0,0,0,0,0,0,0,0,0,0];
 	sound_play(sndMut);
 
 #define step
+	var list = [];
+	var maxTox = 100;
+	repeat(min(maxTox, instance_number(ToxicGas))){
+		array_push(list, irandom(instance_number(ToxicGas)));
+	}
+	array_sort(list, true);
+	var _i = -1;
+	var _i2 = 0;
 	with(enemy){
+		_i++;
+		if(_i == list[_i2]){
+			while(_i == list[_i2] && _i2 + 1 < array_length(list)){
+				_i2++;
+			}
+		}else{
+			continue;
+		}
 		for(var i = 0; i < 7; i++){
 			var alrm = alarm_get(i);
 			if(("alarm"+string(i)) in self){

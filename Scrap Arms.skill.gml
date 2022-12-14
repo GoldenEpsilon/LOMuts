@@ -57,10 +57,10 @@ with(instances_matching_le(enemy, "my_health", 0)){
 #define ScrapGet
 	sound_play_pitchvol(sndShotReload, 1.4, 2)
 	if(fork()){
-		other.reloadspeed /= 2;
+		other.reloadspeed *= 2;
 		wait(25);
 		if(instance_exists(other)){
-			other.reloadspeed *= 2;
+			other.reloadspeed /= 2;
 		}
 		exit;
 	}
