@@ -34,6 +34,9 @@ with(Player){
 	with(instances_matching_ne(projectile, "team", team)){
 		if(fork()){
 			wait(0);
+			if(!instance_exists(other)){
+				exit;
+			}
 			var _t = other.team;
 			wait(0);
 			if(instance_exists(self) && team == _t && "arcanecheck" not in self){
