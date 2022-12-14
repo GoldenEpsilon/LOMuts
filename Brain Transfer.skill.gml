@@ -23,6 +23,8 @@ global.troll = false;
 
 #define skill_temp
 	return 1;
+
+#define skill_sacrifice return false; //metamorphosis compat thing
 	
 #define skill_take
 	var rerolledMuts = 1;
