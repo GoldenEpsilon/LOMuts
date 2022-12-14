@@ -14,6 +14,7 @@
 		{name: "BUY SUPPLIES", desc: "HEAL TO FULL#GAIN 250 RADS", cost: 1, icon: global.blank, on_select: script_ref_create(tokenshop_supplies)},
 		{name: "BUY AMMO", desc: "GAIN AMMO#(+25% MAX AMMO FOR EACH TYPE)", cost: 1, icon: global.blank, on_select: script_ref_create(tokenshop_ammo)},
 		{name: "EXPERIMENT", desc: "REROLL A MUTATION#AT RANDOM", cost: 1, icon: global.blank, on_select: script_ref_create(tokenshop_experiment)},
+		//{name: "RETRAIN", desc: "CHOOSE A DIFFERENT#NEURAL NETWORK", cost: 1, icon: global.blank, on_select: script_ref_create(tokenshop_retrain)},
 		{name: "DISRESPECT", desc: "GAIN A RANDOM#OUTCAST MUTATION", cost: 2, icon: global.blank, on_select: script_ref_create(tokenshop_disrespect)},
 		//{name: "REROLL", desc: "CHOOSE A MUTATION#TO REROLL RANDOMLY", cost: 2, icon: global.blank, on_select: script_ref_create(tokenshop_reroll)},
 		{name: "RESET", desc: "RESET TO LEVEL 1#LOSING MUTATIONS", cost: 2, icon: global.blank, on_select: script_ref_create(tokenshop_reset)},
@@ -359,6 +360,8 @@
 #define tokenshop_decide
 
 #define tokenshop_ascend
+
+#define tokenshop_retrain
 
 #define tokenshop_transmute
 

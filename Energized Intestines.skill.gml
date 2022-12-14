@@ -41,7 +41,7 @@ if(!instance_exists(global.bind_step)){
 	global.bind_step = script_bind_end_step(late_step, 0);
 }
 #define late_step
-with(instances_matching([Bolt, HeavyBolt, ToxicBolt, Seeker, Splinter, Disc, UltraBolt, SplinterBurst, CustomProjectile], "speed", 0)){
+with(instances_matching([Bolt, HeavyBolt, ToxicBolt, Seeker, Splinter, Disc, UltraBolt, CustomProjectile], "speed", 0)){
 	if((object_index == CustomProjectile || object_index == CustomSlash) && "ammo_type" in self && ammo_type != 3){
 		continue;
 	}
