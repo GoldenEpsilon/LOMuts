@@ -13,7 +13,7 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 	return "Shocked Skin";
 	
 #define skill_text
-	return "Shells @wBURST@s";
+	return "Shells create @belectricity@s";
 
 #define skill_button
 	sprite_index = global.sprSkillIcon;
@@ -37,26 +37,26 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 				var _x = x + hspeed + lengthdir_x(sprite_width/4, direction);
 				var _y = y + vspeed + lengthdir_y(sprite_width/4, direction);
 				var _t = team;
-				var _oi = object_index;
 				var _damage = damage;
-				var _xscale = image_xscale;
-				var _yscale = image_yscale;
 				while(instance_exists(self) && speed > 0){
 					_x = x + hspeed + lengthdir_x(sprite_width/4, direction);
 					_y = y + vspeed + lengthdir_y(sprite_width/4, direction);
 					_t = team;
 					wait(0);
 				}
-				repeat(irandom(2) + 3){
-					with(instance_create(_x,_y,_oi)){
-						ShockedSkin = true;
-						direction = random(360);
-						speed = 10;
-						team = _t;
-						damage = ceil(_damage/2);
-						image_xscale = _xscale / 2;
-						image_yscale = _yscale / 2;
+				with instance_create(_x,_y,Lightning){
+					alarm0 = 4;
+					ammo = max(_damage/2, 1);
+					var nearest = instance_nearest(x,y,enemy);
+					if(nearest == noone){
+						nearest = creator;
 					}
+					if(nearest != noone){
+						image_angle = point_direction(x,y,nearest.x,nearest.y);
+					}else{
+						image_angle = other.image_angle;
+					}
+					team = _t;
 				}
 				exit;
 			}

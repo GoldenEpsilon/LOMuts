@@ -6,7 +6,7 @@ global.sprIcon = sprite_add("../Sprites/Icons/Neural Network/" + mod_current + "
 	return "Echo State Network";
 	
 #define skill_text
-	return "@bElectricity@s does more @wdamage@s#and @wjumps@s between enemies";
+	return "@bElectricity@s @warcs@s towards enemies";
 
 #define skill_button
 	sprite_index = global.sprButton;
@@ -32,14 +32,24 @@ global.sprIcon = sprite_add("../Sprites/Icons/Neural Network/" + mod_current + "
 	
 #define step
 
-with(Lightning){
-	if("neural" not in self){
-		neural = 1;
-		damage *= 1 + skill_get(mod_current);
-	}
-	var enem = instance_nearest(x,y,enemy);
-	if(enem != -4 && distance_to_point(enem.x,enem.y) < 10 + 10 * skill_get(mod_current)){
-		x = enem.x;
-		y = enem.y;
+with(instances_matching_ne(Lightning, "echostate", true)){
+	if(instance_exists(self) && object_index == Lightning){
+		var enem = instance_nearest(x,y,enemy);
+		if(enem != -4 && instance_nearest(enem.x,enem.y, Lightning) == self && distance_to_point(enem.x,enem.y) < 40 * skill_get(mod_current)){
+			echostate = true;
+			var newID = instance_create(0, 0, DramaCamera);
+			with(instance_create(x,y,Lightning)){
+				echostate = true;
+				creator = other.creator;
+				team = other.team;
+				direction = point_direction(x,y,enem.x,enem.y);
+				image_angle = direction;
+				ammo = other.ammo + 3 * skill_get(mod_current);
+				event_perform(ev_alarm, 0);
+			}
+			with(instances_matching_ge(Lightning, "id", newID)){
+				echostate = true;
+			}
+		}
 	}
 }
