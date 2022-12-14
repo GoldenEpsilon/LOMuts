@@ -356,8 +356,6 @@
 
 #define tokenshop_redeem
 
-#define tokenshop_reroll
-
 #define tokenshop_decide
 
 #define tokenshop_ascend
