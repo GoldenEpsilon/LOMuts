@@ -29,14 +29,14 @@ lq_set(global.sprites, "Toxic Thoughts", [sprite_add("Sprites/Main/Toxic Thought
 lq_set(global.sprites, "Unstable DNA", [sprite_add("Sprites/Main/Unstable DNA.png", 1, 12, 16), sprite_add("Sprites/Dev Art/Unstable DNA.png", 1, 12, 16)]);
 lq_set(global.sprites, "Waste Gland", [sprite_add("Sprites/Main/Waste Gland.png", 1, 12, 16), sprite_add("Sprites/Dev Art/Waste Gland.png", 1, 12, 16)]);
 lq_set(global.sprites, "Neural Network", [sprite_add("Sprites/Main/Neural Network.png", 1, 12, 16), sprite_add("Sprites/Dev Icon/Neural Network.png", 1, 12, 16)]);
-lq_set(global.sprites, "Deep Convolutional Network", [sprite_add("Sprites/Main/Neural Network/Deep Convolutional Network.png", 1, 12, 16), sprite_add("Sprites/Dev Icon/Deep Convolutional Network.png", 1, 12, 16)]);
-lq_set(global.sprites, "Deep Residual Network", [sprite_add("Sprites/Main/Neural Network/Deep Residual Network.png", 1, 12, 16), sprite_add("Sprites/Dev Icon/Deep Residual Network.png", 1, 12, 16)]);
-lq_set(global.sprites, "Echo State Network", [sprite_add("Sprites/Main/Neural Network/Echo State Network.png", 1, 12, 16), sprite_add("Sprites/Dev Icon/Echo State Network.png", 1, 12, 16)]);
-lq_set(global.sprites, "Feed Forward Network", [sprite_add("Sprites/Main/Neural Network/Feed Forward Network.png", 1, 12, 16), sprite_add("Sprites/Dev Icon/Feed Forward Network.png", 1, 12, 16)]);
-lq_set(global.sprites, "Generative Adversarial Network", [sprite_add("Sprites/Main/Neural Network/Generative Adversarial Network.png", 1, 12, 16), sprite_add("Sprites/Dev Icon/Generative Adversarial Network.png", 1, 12, 16)]);
-lq_set(global.sprites, "Markov Chain", [sprite_add("Sprites/Main/Neural Network/Markov Chain.png", 1, 12, 16), sprite_add("Sprites/Dev Icon/Markov Chain.png", 1, 12, 16)]);
-lq_set(global.sprites, "Recurrent Neural Network", [sprite_add("Sprites/Main/Neural Network/Recurrent Neural Network.png", 1, 12, 16), sprite_add("Sprites/Dev Icon/Recurrent Neural Network.png", 1, 12, 16)]);
-lq_set(global.sprites, "Support Vector Machines", [sprite_add("Sprites/Main/Neural Network/Support Vector Machines.png", 1, 12, 16), sprite_add("Sprites/Dev Icon/Support Vector Machines.png", 1, 12, 16)]);
+lq_set(global.sprites, "Deep Convolutional Network", [sprite_add("Sprites/Main/Neural Network/Deep Convolutional Network.png", 1, 12, 16), sprite_add("Sprites/Dev Icon/Neural Network/Deep Convolutional Network.png", 1, 12, 16)]);
+lq_set(global.sprites, "Deep Residual Network", [sprite_add("Sprites/Main/Neural Network/Deep Residual Network.png", 1, 12, 16), sprite_add("Sprites/Dev Icon/Neural Network/Deep Residual Network.png", 1, 12, 16)]);
+lq_set(global.sprites, "Echo State Network", [sprite_add("Sprites/Main/Neural Network/Echo State Network.png", 1, 12, 16), sprite_add("Sprites/Dev Icon/Neural Network/Echo State Network.png", 1, 12, 16)]);
+lq_set(global.sprites, "Feed Forward Network", [sprite_add("Sprites/Main/Neural Network/Feed Forward Network.png", 1, 12, 16), sprite_add("Sprites/Dev Icon/Neural Network/Feed Forward Network.png", 1, 12, 16)]);
+lq_set(global.sprites, "Generative Adversarial Network", [sprite_add("Sprites/Main/Neural Network/Generative Adversarial Network.png", 1, 12, 16), sprite_add("Sprites/Dev Icon/Neural Network/Generative Adversarial Network.png", 1, 12, 16)]);
+lq_set(global.sprites, "Markov Chain", [sprite_add("Sprites/Main/Neural Network/Markov Chain.png", 1, 12, 16), sprite_add("Sprites/Dev Icon/Neural Network/Markov Chain.png", 1, 12, 16)]);
+lq_set(global.sprites, "Recurrent Neural Network", [sprite_add("Sprites/Main/Neural Network/Recurrent Neural Network.png", 1, 12, 16), sprite_add("Sprites/Dev Icon/Neural Network/Recurrent Neural Network.png", 1, 12, 16)]);
+lq_set(global.sprites, "Support Vector Machines", [sprite_add("Sprites/Main/Neural Network/Support Vector Machines.png", 1, 12, 16), sprite_add("Sprites/Dev Icon/Neural Network/Support Vector Machines.png", 1, 12, 16)]);
 
 lq_set(global.sprites, "Fast Food", [{icon:sprite_add("Sprites/Main/Ultras/Fast Food.png", 1, 12, 16),anim:sprite_add("Sprites/Main/Ultras/Fast Food Anim.png", 11, 21, 26)}, sprite_add("Sprites/Alt/Ultras/Fast Food.png", 1, 12, 16), sprite_add("Sprites/Main/Ultras/Fast Food.png", 1, 12, 16)]);
 lq_set(global.sprites, "Intellect", [sprite_add("Sprites/Main/Ultras/Intellect.png", 1, 12, 16), sprite_add("Sprites/Dev Art/Ultras/Intellect.png", 1, 12, 16)]);
