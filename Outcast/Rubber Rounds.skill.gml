@@ -30,11 +30,13 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 
 #define step
 	with(Player){
-		with(instances_matching(instances_matching_ne(projectile, "team", team),"rubber",null)){
-			rubber = random_range(0, skill_get(mod_current)) > 0.5;
-			if(rubber){
-				rubberowner = other;
-				rubbercol = player_get_color(rubberowner.index);
+		with(instances_matching(instances_matching_ne(instances_matching_ne(projectile, "team", 0), "team", team),"rubber",null)){
+			if(object_index != TrapFire && object_index != EnemySlash){
+				rubber = random_range(0, skill_get(mod_current)) > 0.5;
+				if(rubber){
+					rubberowner = other;
+					rubbercol = player_get_color(rubberowner.index);
+				}
 			}
 		}
 	}
@@ -42,6 +44,7 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 		if(instance_exists(rubberowner)){
 			if(rubber == 1){
 				if(place_meeting(x + hspeed, y + vspeed, Wall)){
+					image_blend = rubbercol;
 					team = rubberowner.team;
 					instance_create(x, y, ImpactWrists).image_blend = rubbercol;
 					rubber = 0;

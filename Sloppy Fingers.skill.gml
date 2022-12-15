@@ -28,7 +28,7 @@ script_ref_call(["mod", "lib", "getHooks"], "skill", mod_current);
 		sloppyprevramp = sloppyramp;
 		
 		accuracy /= sloppyprevramp;
-		reloadspeed *= sloppyprevramp;
+		reloadspeed /= sloppyprevramp;
 		
 		if(reload > sloppyprevreload){
 			sloppyramp = min(sloppyramp + abs(reload * 0.01) + 0.01, 2);
@@ -39,5 +39,5 @@ script_ref_call(["mod", "lib", "getHooks"], "skill", mod_current);
 		sloppyderampspeed = min(sloppyderampspeed + 0.00025, 1);
 	
 		accuracy *= sloppyramp;
-		reloadspeed /= sloppyramp;
+		reloadspeed *= sloppyramp;
 	}
