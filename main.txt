@@ -37,6 +37,8 @@
 /loadskill Ruffled Feathers
 /loadskill Slim Pickings
 /loadskill Loner
+/loadskill Leprosy
+/loadskill Leprosy2
 
 /loadmod Ultras/cultra
 /loadskill Ultras/Adaptable

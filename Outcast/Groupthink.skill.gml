@@ -32,8 +32,8 @@ global.alarms = [0,0,0,0,0,0,0,0,0,0,0,0];
 #define step
 	var list = [];
 	var maxTox = 100;
-	repeat(min(maxTox, instance_number(ToxicGas))){
-		array_push(list, irandom(instance_number(ToxicGas)));
+	repeat(min(maxTox, instance_number(enemy))){
+		array_push(list, irandom(instance_number(enemy)));
 	}
 	array_sort(list, true);
 	var _i = -1;

@@ -13,8 +13,8 @@
 /loadskill Absorbing Abs
 /loadskill Roulette Trigger
 //loadskill Toxic Thoughts
-/loadskill Leprosy
-/loadskill Leprosy2
+//loadskill Leprosy
+//loadskill Leprosy2
 /loadskill Putrid Haze
 /loadskill Friendly Eyelashes
 /loadskill Cruelty-Free Veganlust

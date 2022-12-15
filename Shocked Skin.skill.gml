@@ -44,8 +44,8 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 					_t = team;
 					wait(0);
 				}
+				var newID = instance_create(0, 0, DramaCamera);
 				with instance_create(_x,_y,Lightning){
-					alarm0 = 4;
 					ammo = max(_damage/2, 1);
 					var nearest = instance_nearest(x,y,enemy);
 					if(nearest == noone){
@@ -57,6 +57,10 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 						image_angle = other.image_angle;
 					}
 					team = _t;
+					event_perform(ev_alarm, 0);
+				}
+				with(instances_matching_ge(Lightning, "id", newID)){
+					damage = ceil(sqrt(_damage));
 				}
 				exit;
 			}
