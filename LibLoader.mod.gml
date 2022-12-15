@@ -42,7 +42,7 @@ if(!mod_exists("mod", "lib")){
 	global.err = false;
 	if(!global.err){
 		//Check internet connection
-		file_download("http://worldclockapi.com/api/json/est/now", "ping.txt");
+		file_download("https://api.github.com/zen", "ping.txt");
 		var d = 0;
 		while (!file_loaded("ping.txt")){
 			if d++ > 150 {
@@ -59,13 +59,13 @@ if(!mod_exists("mod", "lib")){
 		if(is_undefined(str)){
 			trace("Cannot connect to the internet, using already downloaded files");
 			global.err = true;
-		}else{
+		}/*else{
 			var json = json_decode(str)
 			if(json == json_error){
 				trace("Cannot connect to the internet, using already downloaded files");
 				global.err = true;
 			}
-		}
+		}*/
 	}
 	
 	if(mod_exists("mod", "lib")){exit;}

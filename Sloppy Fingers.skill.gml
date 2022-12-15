@@ -18,26 +18,33 @@ script_ref_call(["mod", "lib", "getHooks"], "skill", mod_current);
 #define skill_tip
 	return choose("Whoops!", "Better eyesight can#help sloppiness");
 
+#define update(_id)
+	with(Player){
+		with(instances_matching(instances_matching(instances_matching_ge(projectile, "id", _id), "creator", id), "direction", gunangle)){
+			direction += random_range(-other.accuracy * 2, other.accuracy * 2)
+		}
+	}
+
 #define late_step
 	with(Player){
 		if("sloppyprevreload" not in self){sloppyprevreload = 0;}
 		if("sloppyderampspeed" not in self){sloppyderampspeed = 0;}
-		if("sloppyramp" not in self){sloppyramp = 1;}
-		if("sloppyprevramp" not in self){sloppyprevramp = sloppyramp;}
-	
-		sloppyprevramp = sloppyramp;
+		if("sloppyaccuracyramp" not in self){sloppyaccuracyramp = 1;}
+		if("sloppyreloadramp" not in self){sloppyreloadramp = 1;}
 		
-		accuracy /= sloppyprevramp;
-		reloadspeed /= sloppyprevramp;
+		accuracy /= sloppyaccuracyramp;
+		reloadspeed /= sloppyreloadramp;
 		
 		if(reload > sloppyprevreload){
-			sloppyramp = min(sloppyramp + abs(reload * 0.01) + 0.01, 2);
+			sloppyaccuracyramp = min(sloppyaccuracyramp + (abs(reload * 0.005) + 0.01) * 2, (4 * 3) / (3 + skill_get(mut_eagle_eyes)));
+			sloppyreloadramp = min(sloppyreloadramp + abs(reload * 0.005) + 0.01, 2);
 			sloppyderampspeed = 0;
 		}
 		sloppyprevreload = reload;
-		sloppyramp = max(sloppyramp - sloppyderampspeed, 1);
+		sloppyaccuracyramp = max(sloppyaccuracyramp - sloppyderampspeed * 2, 1);
+		sloppyreloadramp = max(sloppyreloadramp - sloppyderampspeed, 1);
 		sloppyderampspeed = min(sloppyderampspeed + 0.00025, 1);
 	
-		accuracy *= sloppyramp;
-		reloadspeed *= sloppyramp;
+		accuracy *= sloppyaccuracyramp;
+		reloadspeed *= sloppyreloadramp;
 	}
