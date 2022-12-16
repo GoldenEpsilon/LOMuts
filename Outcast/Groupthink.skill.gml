@@ -1,5 +1,5 @@
 #define init
-global.sprSkillIcon = sprite_add("../Sprites/Outcast/Blank.png", 1, 12, 16)
+global.sprSkillIcon = sprite_add("../Sprites/Outcast/Groupthink.png", 1, 12, 16)
 global.sprSkillHUD = sprite_add("../Sprites/Outcast/Blank Icon.png", 1, 8, 8)
 while(!mod_exists("mod", "lib")){wait(1);}
 script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");

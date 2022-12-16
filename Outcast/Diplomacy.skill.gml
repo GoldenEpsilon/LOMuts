@@ -32,7 +32,7 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 	
 #define update(_id)
 	with(Player){
-		with(instances_matching_ne(instances_matching_gt(instances_matching_gt(instances_matching_ne(instances_matching_gt(projectile, "id", _id), "ammo_type", -1), "speed", 0), "damage", 0), "team", team)){
+		with(instances_matching_ne(instances_matching_ne(instances_matching_gt(instances_matching_gt(instances_matching_ne(instances_matching_gt(projectile, "id", _id), "ammo_type", -1), "speed", 0), "damage", 0), "team", 0), "team", team)){
 			instance_change(EnemyBullet1, false);
 			damage = (damage + 3*(skill_get(mod_current)-1))/skill_get(mod_current);
 			speed = (speed + 4*(skill_get(mod_current)-1))/skill_get(mod_current);

@@ -1,5 +1,5 @@
 #define init
-global.sprSkillIcon = sprite_add("../Sprites/Outcast/Blank.png", 1, 12, 16)
+global.sprSkillIcon = sprite_add("../Sprites/Outcast/Rubber Rounds.png", 1, 12, 16)
 global.sprSkillHUD = sprite_add("../Sprites/Outcast/Blank Icon.png", 1, 8, 8)
 while(!mod_exists("mod", "lib")){wait(1);}
 script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
@@ -31,8 +31,8 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 #define step
 	with(Player){
 		with(instances_matching(instances_matching_ne(instances_matching_ne(projectile, "team", 0), "team", team),"rubber",null)){
-			if(object_index != TrapFire && object_index != EnemySlash){
-				rubber = random_range(0, skill_get(mod_current)) > 0.5;
+			if(object_index != TrapFire && object_index != EnemySlash && object_index != EnemyLaser){
+				rubber = random_range(0, 1 + skill_get(mod_current)) > 1.5;
 				if(rubber){
 					rubberowner = other;
 					rubbercol = player_get_color(rubberowner.index);

@@ -27,3 +27,4 @@
 /loadskill Experimentalist
 /loadskill Rubber Rounds
 /loadskill Bursted Chest
+/loadskill Shivering Spine
