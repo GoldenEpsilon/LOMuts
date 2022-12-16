@@ -57,8 +57,6 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 					}
 					if(nearest != noone){
 						image_angle = point_direction(x,y,nearest.x,nearest.y);
-					}else{
-						image_angle = other.image_angle;
 					}
 					team = _t;
 				}
