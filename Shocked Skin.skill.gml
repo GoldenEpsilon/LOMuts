@@ -32,8 +32,8 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 	
 #define update(_id)
 	with(Player){
-		with(instances_matching_ne(instances_matching_gt(instances_matching([Bullet2, FlameShell, HeavySlug, UltraShell, Slug, HyperSlug], "creator", int64(self)), "id", _id), "ShockedSkin", true)){
-			if(fork()){
+		with(instances_matching_ne(instances_matching_gt(instances_matching([Bullet2, FlameShell, HeavySlug, UltraShell, Slug, HyperSlug, CustomProjectile], "creator", int64(self)), "id", _id), "ShockedSkin", true)){
+			if((object_index != CustomProjectile || ("is_shell" in self && is_shell)) && fork()){
 				var _x = x + hspeed + lengthdir_x(sprite_width/4, direction);
 				var _y = y + vspeed + lengthdir_y(sprite_width/4, direction);
 				var _t = team;
@@ -46,8 +46,9 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 				}
 				var newID = instance_create(0, 0, DramaCamera);
 				with instance_create(_x,_y,Lightning){
-					ammo = max(_damage/2, 1);
+					ammo = min(max(_damage/2, 1), 20);
 					damage = ceil(sqrt(_damage));
+					team = _t;
 					with(self){
 						event_perform(ev_alarm, 0);
 					}
@@ -58,7 +59,6 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 					if(nearest != noone){
 						image_angle = point_direction(x,y,nearest.x,nearest.y);
 					}
-					team = _t;
 				}
 				with(instances_matching_ge(Lightning, "id", newID)){
 					damage = ceil(sqrt(_damage));

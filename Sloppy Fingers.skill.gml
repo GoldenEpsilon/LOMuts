@@ -47,4 +47,9 @@ script_ref_call(["mod", "lib", "getHooks"], "skill", mod_current);
 	
 		accuracy *= sloppyaccuracyramp;
 		reloadspeed *= sloppyreloadramp;
+		
+		if(random(2) + 1 < sloppyreloadramp){
+			instance_create(x,y,Smoke).direction = random(360);
+			instance_create(x,y,Sweat).direction = random(360);
+		}
 	}

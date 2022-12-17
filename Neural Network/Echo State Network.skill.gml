@@ -44,7 +44,7 @@ with(instances_matching_ne(Lightning, "echostate", true)){
 				team = other.team;
 				direction = point_direction(x,y,enem.x,enem.y);
 				image_angle = direction;
-				ammo = other.ammo + 3 * skill_get(mod_current);
+				ammo = min(other.ammo + 3 * skill_get(mod_current), 20);
 				event_perform(ev_alarm, 0);
 			}
 			with(instances_matching_ge(Lightning, "id", newID)){

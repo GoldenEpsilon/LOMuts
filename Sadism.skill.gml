@@ -34,9 +34,10 @@ with(Player){
 	if("sadism" not in self){
 		sadism = 0;
 		sadismOldAmmo = ammo;
+		sadismOldAmmoMax = typ_amax;
 	}
 	for(var i = 1; i < array_length(ammo); i++){
-		if(ammo[i] < sadismOldAmmo[i]){
+		if(ammo[i] < (sadismOldAmmo[i] - sadismOldAmmoMax[i] - typ_amax[i])){
 			sadism += (sadismOldAmmo[i] - ammo[i]) / (i == 1 ? 4 : 1);
 		}
 	}
@@ -48,7 +49,9 @@ with(Player){
 }
 with(Player){
 	sadismOldAmmo = [];
+	sadismOldAmmoMax = [];
 	for(var i = 0; i < array_length(ammo); i++){
 		array_push(sadismOldAmmo, real(ammo[i]));
+		array_push(sadismOldAmmoMax, real(typ_amax[i]));
 	}
 }

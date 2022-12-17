@@ -38,9 +38,11 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 		}
 	}
 	with(teams){
-		with(instances_matching(instances_matching_gt(instances_matching_gt(instances_matching_ne(instances_matching_gt(projectile, "id", _id), "ammo_type", -1), "speed", 0), "damage", 0), "team", self)){
-			speed *= 1 + skill_get(mod_current) * 0.25;
-			friction *= 2 / (2 + skill_get(mod_current));
+		if(instance_exists(self)){
+			with(instances_matching(instances_matching_gt(instances_matching_gt(instances_matching_ne(instances_matching_gt(projectile, "id", _id), "ammo_type", -1), "speed", 0), "damage", 0), "team", self)){
+				speed *= 1 + skill_get(mod_current) * 0.25;
+				friction *= 2 / (2 + skill_get(mod_current));
+			}
 		}
 	}
 

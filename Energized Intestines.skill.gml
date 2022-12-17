@@ -49,7 +49,7 @@ with(instances_matching([Bolt, HeavyBolt, ToxicBolt, Seeker, Splinter, Disc, Ult
 	if((eitimer * skill_get(mod_current)) % 12 == 0){
 		with instance_create(x,y,Lightning){
 			alarm0 = 4;
-			ammo = max(other.damage/2, 6);
+			ammo = min(max(other.damage/2, 6), 20);
 			var nearest = instance_nearest(x,y,enemy);
 			if(nearest == noone){
 				nearest = creator;
