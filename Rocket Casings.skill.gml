@@ -29,27 +29,34 @@ global.sprRocketExploGreen = sprite_add("Sprites/RocketExploGreen.png", 7, 12, 1
 script_bind_step(custom_step, 0);
 #define custom_step
 with(Player){
-	with(instances_matching(instances_matching_ne([Bullet1,UltraBullet,HeavyBullet,BouncerBullet],"rocketcasings",true),"team",team)){
+	with(instances_matching(instances_matching_ne([Bullet1,UltraBullet,HeavyBullet,BouncerBullet,CustomProjectile],"rocketcasings",true),"team",team)){
 		if(object_index == Bullet1 && skill_get("excitedneurons")){continue;}
+		if((object_index == CustomProjectile || object_index == CustomSlash) && !((("ammo_type" in self && ammo_type == 1) || ("is_bullet" in self && is_bullet == true)))){
+			rocketcasings = true;
+			continue;
+		}
 		speed = speed + 3;
 		force = force * 2;
 		rocketcasings = true;
 		if(fork()){
-			var _x = x + hspeed + lengthdir_x(sprite_width/4, direction);
-			var _y = y + vspeed + lengthdir_y(sprite_width/4, direction);
+			var _x = x + hspeed;
+			var _dirx = lengthdir_x(sprite_width/4, direction);
+			var _y = y + vspeed;
+			var _diry = lengthdir_y(sprite_width/4, direction);
 			var _t = team;
 			var _d = damage;
 			while(instance_exists(self)){
 				_x = x + hspeed + lengthdir_x(sprite_width/4, direction);
 				_y = y + vspeed + lengthdir_y(sprite_width/4, direction);
+				_dirx = lengthdir_x(sprite_width/4, direction);
+				_diry = lengthdir_y(sprite_width/4, direction);
 				_t = team;
 				wait(0);
 			}
-			with(instance_create(_x,_y,CustomProjectile)){
+			with(instance_create(_x + _dirx,_y + _diry,CustomProjectile)){
 				rocketcasings = true;
 				duplicators = true;
-				pyroflammable = true;
-				damage = ceil(sqrt(_d)) * skill_get(mod_current);
+				damage = floor(sqrt(_d)) * skill_get(mod_current);
 				force = 3 * skill_get(mod_current);
 				timer = 8;
 				team = _t;
@@ -64,7 +71,7 @@ with(Player){
 				on_wall = rocketWall;
 				on_hit = rocketHit;
 				on_step = rocketStep;
-				with(instance_create(x,y,SmallExplosion)){
+				with(instance_create(_x - _dirx * 2,_y - _diry * 2,SmallExplosion)){
 					image_alpha = 0;
 					image_speed = 0.4;
 					sprite_index = global.sprRocketExplo;
@@ -72,50 +79,6 @@ with(Player){
 				}
 			}
 			exit;
-		}
-	}
-	with(instances_matching(instances_matching_ne(CustomProjectile,"rocketcasings",true),"team",team)){
-		if(("ammo_type" in self && ammo_type == 1) || ("is_bullet" in self && is_bullet == true)){
-			speed = speed + 3;
-			force = force * 2;
-			rocketcasings = true;
-			if(fork()){
-				var _x = x + hspeed + lengthdir_x(sprite_width/4, direction);
-				var _y = y + vspeed + lengthdir_y(sprite_width/4, direction);
-				var _t = team;
-				while(instance_exists(self)){
-					_x = x + hspeed + lengthdir_x(sprite_width/4, direction);
-					_y = y + vspeed + lengthdir_y(sprite_width/4, direction);
-					_t = team;
-					wait(0);
-				}
-			with(instance_create(_x,_y,CustomProjectile)){
-				rocketcasings = true;
-				duplicators = true;
-				damage = ceil(sqrt(_d)) * skill_get(mod_current);
-				force = 3 * skill_get(mod_current);
-				timer = 8;
-				team = _t;
-				image_speed = 0.4;
-				sprite_index = global.sprRocketExplo;
-				if(damage > 4){
-					force *= 2;
-					sprite_index = global.sprRocketExploGreen;
-				}
-				hitid = [sprite_index, "ROCKET AMMO"];
-				mask_index = mskSmallExplosion;
-				on_wall = rocketWall;
-				on_hit = rocketHit;
-				on_step = rocketStep;
-				with(instance_create(x,y,SmallExplosion)){
-					image_alpha = 0;
-					image_speed = 0.4;
-					sprite_index = global.sprRocketExplo;
-					mask_index = mskNone;
-				}
-			}
-				exit;
-			}
 		}
 	}
 }

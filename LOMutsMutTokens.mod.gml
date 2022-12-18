@@ -72,7 +72,7 @@
 				if(irandom(1)){
 					var choice = irandom(instance_number(SkillIcon) - 1);
 					with(SkillIcon){
-						if(choice == 0 && noinput <= 0 && (is_real(skill) || !mod_script_call("skill", skill, "skill_reusable"))){
+						if(choice == 0 && noinput <= 0 && (is_real(skill) || !mod_script_call("skill", skill, "skill_reusable") || ("NoToken" in self && NoToken))){
 							MutationToken = true;
 						}
 						choice--;
