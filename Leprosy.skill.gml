@@ -8,7 +8,7 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 	return "Leprosy";
 	
 #define skill_text
-	return "-2 max hp#gain a random outcast mutation#(this does not take a mutation)";
+	return `-2 max hp#gain a random @(color:${make_color_rgb(84, 58, 24)})outcast@s mutation#(this does not take a mutation)`;
 
 #define skill_button
 	sprite_index = global.sprSkillIcon;

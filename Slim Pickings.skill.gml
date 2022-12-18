@@ -8,7 +8,7 @@ global.skill = [];
 	return "Slim Pickings";
 	
 #define skill_text
-	return "Choose 2 @(color:${make_color_rgb(84, 58, 24)})outcast@s mutations";
+	return `Choose 2 @(color:${make_color_rgb(84, 58, 24)})outcast@s mutations`;
 
 #define skill_button
 	sprite_index = global.sprSkillIcon;
