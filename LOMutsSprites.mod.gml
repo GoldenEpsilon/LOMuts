@@ -25,8 +25,8 @@ lq_set(global.sprites, "Sloppy Fingers", [sprite_add("Sprites/Main/Sloppy Finger
 lq_set(global.sprites, "Staked Chest", [sprite_add("Sprites/Main/Staked Chest.png", 1, 12, 16), sprite_add("Sprites/Dev Art/Staked Chest.png", 1, 12, 16)]);
 lq_set(global.sprites, "Steel Nerves", [sprite_add("Sprites/Main/Steel Nerves.png", 1, 12, 16), sprite_add("Sprites/Dev Art/Steel Nerves.png", 1, 12, 16)]);
 lq_set(global.sprites, "Thick Head", [sprite_add("Sprites/Main/Thick Head.png", 1, 12, 16), sprite_add("Sprites/Dev Art/Thick Head.png", 1, 12, 16)]);
-lq_set(global.sprites, "Toxic Thoughts", [sprite_add("Sprites/Main/Toxic Thoughts.png", 1, 12, 16), sprite_add("Sprites/Dev Icon/Toxic Thoughts.png", 1, 12, 16), sprite_add("Sprites/Alt/Toxic Thoughts.png", 1, 12, 16)]);
-lq_set(global.sprites, "Unstable DNA", [sprite_add("Sprites/Main/Unstable DNA.png", 1, 12, 16), sprite_add("Sprites/Dev Art/Unstable DNA.png", 1, 12, 16)]);
+//lq_set(global.sprites, "Toxic Thoughts", [sprite_add("Sprites/Main/Toxic Thoughts.png", 1, 12, 16), sprite_add("Sprites/Dev Icon/Toxic Thoughts.png", 1, 12, 16), sprite_add("Sprites/Alt/Toxic Thoughts.png", 1, 12, 16)]);
+//lq_set(global.sprites, "Unstable DNA", [sprite_add("Sprites/Main/Unstable DNA.png", 1, 12, 16), sprite_add("Sprites/Dev Art/Unstable DNA.png", 1, 12, 16)]);
 lq_set(global.sprites, "Waste Gland", [sprite_add("Sprites/Main/Waste Gland.png", 1, 12, 16), sprite_add("Sprites/Dev Art/Waste Gland.png", 1, 12, 16)]);
 lq_set(global.sprites, "Neural Network", [sprite_add("Sprites/Main/Neural Network.png", 1, 12, 16), sprite_add("Sprites/Dev Icon/Neural Network.png", 1, 12, 16)]);
 lq_set(global.sprites, "Deep Convolutional Network", [sprite_add("Sprites/Main/Neural Network/Deep Convolutional Network.png", 1, 12, 16), sprite_add("Sprites/Dev Icon/Neural Network/Deep Convolutional Network.png", 1, 12, 16)]);
@@ -47,7 +47,7 @@ lq_set(global.sprites, "Existence", [sprite_add("Sprites/Main/Ultras/Existence.p
 lq_set(global.sprites, "Reincarnation", [sprite_add("Sprites/Main/Ultras/Reincarnation.png", 1, 12, 16), sprite_add("Sprites/Alt/Ultras/Reincarnation.png", 1, 12, 16)]);
 
 lq_set(global.sprites, "Laser Focus", [sprite_add("Sprites/Outcast/Laser Focus.png", 1, 12, 16), sprite_add("Sprites/Outcast/Alt/Laser Focus.png", 1, 12, 16)]);
-lq_set(global.sprites, "Terrorism", [sprite_add("Sprites/Outcast/Terrorism.png", 1, 12, 16), sprite_add("Sprites/Outcast/Alt/Terrorism.png", 1, 12, 16)]);
+//lq_set(global.sprites, "Terrorism", [sprite_add("Sprites/Outcast/Terrorism.png", 1, 12, 16), sprite_add("Sprites/Outcast/Alt/Terrorism.png", 1, 12, 16)]);
 
 global.spriteChoices = {}
 wait(file_load("MutArt.txt"));

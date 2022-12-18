@@ -9,7 +9,7 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 	return "Free Space";
 	
 #define skill_text
-	return "Get a random outcast mutation";
+	return "Get a random @(color:${make_color_rgb(84, 58, 24)})outcast@s mutation";
 
 #define skill_button
 	sprite_index = global.sprSkillIcon;

@@ -53,7 +53,7 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 					sleep(5);
 					view_shake_at(x, y, 5);
 					direction += random_range(-2, 2);
-					sound_play_pitchvol(sndCanBounce2, random_range(0.4, 0.5), 3);
+					sound_play_pitchvol(sndCanBounce2, random_range(0.3, 0.6), 1);
 				}
 			}else{
 				with(instance_create(x, y, BoltTrail)){
