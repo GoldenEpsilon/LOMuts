@@ -9,7 +9,7 @@ global.alarms = [0,0,0,0,0,0,0,0,0,0,0,0];
 	return "Groupthink";
 	
 #define skill_text
-	return "All enemies#share @ralarms@s";
+	return "All enemies#share @ractions@s";
 
 #define skill_button
 	sprite_index = global.sprSkillIcon;

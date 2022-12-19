@@ -52,6 +52,15 @@ global.bolts = [];
 				sprite_index = deactivate_sprite_index;
 				image_index = deactivate_image_index;
 				image_alpha = deactivate_image_alpha;
+				if(skill_get(mod_current) > 1){
+					repeat(skill_get(mod_current) - 1){
+						with(instance_copy(self)){
+							var prevDir = direction;
+							direction = global.bolts[i][@2]+180 + random_range(-10, 10);
+							image_angle += direction-prevDir;
+						}
+					}
+				}
 			}
 			global.bolts = call(scr.array_delete, global.bolts, i);
 		}else{
@@ -59,7 +68,14 @@ global.bolts = [];
 				global.bolts[i][@0] = x;
 				global.bolts[i][@1] = y;
 				global.bolts[i][@2] = direction;
+				with(instance_create(x, y, BoltTrail)){
+					image_blend = player_get_color(other.index);
+					image_xscale = other.speed;
+					image_yscale = other.sprite_width / 5;
+					image_angle = other.direction;
+				}
 				with(call(scr.instances_meeting, x, y, instances_matching_ne(projectile, "team", team))){
+					with(instance_create(x, y, ImpactWrists)){}
 					team = other.team;
 					prevObj = object_index;
 					deactivate_speed = speed;

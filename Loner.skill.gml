@@ -22,6 +22,9 @@ global.skill = [];
 #define skill_avail
 	return true;
 
+#define skill_sacrifice
+	return false;
+
 #define game_start
 	global.skill = []; //reset the skill tracker thing
 	

@@ -15,7 +15,7 @@
 		{name: "LEAVE", desc: "FINISH SPENDING TOKENS#AND LEAVE", cost: 0, icon: global.blank, on_select: script_ref_create(tokenshop_exit)},
 		{name: "BUY ORDNANCE", desc: "GET A#GIANT WEAPON CHEST", cost: 1, icon: global.blank, on_select: script_ref_create(tokenshop_ordnance)},
 		{name: "BUY SUPPLIES", desc: "HEAL TO FULL#GAIN 250 RADS", cost: 1, icon: global.blank, on_select: script_ref_create(tokenshop_supplies)},
-		{name: "BUY AMMO", desc: "GAIN AMMO#(+25% MAX AMMO FOR EACH TYPE)", cost: 1, icon: global.blank, on_select: script_ref_create(tokenshop_ammo)},
+		{name: "BUY AMMO", desc: "GAIN AMMO#(+10% MAX AMMO FOR EACH TYPE)", cost: 1, icon: global.blank, on_select: script_ref_create(tokenshop_ammo)},
 		{name: "EXPERIMENT", desc: "REROLL A MUTATION AT RANDOM", cost: 1, icon: global.blank, on_select: script_ref_create(tokenshop_experiment)},//todo: make the outcome random
 		//{name: "RETRAIN", desc: "CHOOSE A DIFFERENT#NEURAL NETWORK", cost: 1, icon: global.blank, on_select: script_ref_create(tokenshop_retrain)},
 		{name: "DISRESPECT", desc: "GAIN A RANDOM#OUTCAST MUTATION", cost: 2, icon: global.blank, on_select: script_ref_create(tokenshop_disrespect)},//todo: make it like leprosy
@@ -279,8 +279,8 @@
 #define tokenshop_ammo
 	with(Player){
 		for(var i = 0; i < array_length(ammo); i++){
-			ammo[i] += ceil(typ_amax[i] * 0.25);
-			typ_amax[i] += ceil(typ_amax[i] * 0.25);
+			ammo[i] += ceil(typ_amax[i] * 0.10);
+			typ_amax[i] += ceil(typ_amax[i] * 0.10);
 		}
 	}
 
