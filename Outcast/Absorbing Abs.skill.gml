@@ -42,9 +42,6 @@ global.bolts = [];
 				}
 				x = global.bolts[i][@0];
 				y = global.bolts[i][@1];
-				var prevDir = direction;
-				direction = global.bolts[i][@2]+180 + random_range(-10, 10);
-				image_angle += direction-prevDir;
 				instance_change(prevObj, 0);
 				prevObj = null;
 				speed = deactivate_speed;
@@ -52,12 +49,19 @@ global.bolts = [];
 				sprite_index = deactivate_sprite_index;
 				image_index = deactivate_image_index;
 				image_alpha = deactivate_image_alpha;
-				if(skill_get(mod_current) > 1){
-					repeat(skill_get(mod_current) - 1){
-						with(instance_copy(self)){
-							var prevDir = direction;
-							direction = global.bolts[i][@2]+180 + random_range(-10, 10);
-							image_angle += direction-prevDir;
+				image_xscale = deactivate_image_xscale;
+				image_yscale = deactivate_image_yscale;
+				if(fork()){
+					wait(0);
+					abs_absorbed = true;
+					team = absorb_team;
+					if(skill_get(mod_current) > 1){
+						repeat(skill_get(mod_current) - 1){
+							with(instance_copy(self)){
+								var prevDir = direction;
+								direction = global.bolts[i][@2]+180 + random_range(-10, 10);
+								image_angle += direction-prevDir;
+							}
 						}
 					}
 				}
@@ -68,23 +72,24 @@ global.bolts = [];
 				global.bolts[i][@0] = x;
 				global.bolts[i][@1] = y;
 				global.bolts[i][@2] = direction;
-				with(instance_create(x, y, BoltTrail)){
-					if("creator" in other){
-						image_blend = player_get_color(other.creator.index);
-					}
-					image_xscale = other.speed;
-					image_yscale = other.sprite_width / 5;
-					image_angle = other.direction;
-				}
 				with(call(scr.instances_meeting, x, y, instances_matching_ne(projectile, "team", team))){
+					if("team" not in self){
+						continue;
+					}
 					with(instance_create(x, y, ImpactWrists)){}
-					team = other.team;
+					absorb_team = other.team;
+					var prevDir = direction;
+					direction = global.bolts[i][@2]+180 + random_range(-10, 10);
+					image_angle += direction-prevDir;
+					trail_color = (instance_exists(other.creator) && "index" in other.creator) ? player_get_color(other.creator.index) : c_white
 					prevObj = object_index;
 					deactivate_speed = speed;
 					deactivate_image_speed = image_speed;
 					deactivate_sprite_index = sprite_index;
 					deactivate_image_index = image_index;
 					deactivate_image_alpha = image_alpha;
+					deactivate_image_xscale = image_xscale;
+					deactivate_image_yscale = image_yscale;
 					instance_change(Wind, 0);
 					speed = 0;
 					image_speed = 0;
@@ -93,6 +98,14 @@ global.bolts = [];
 					array_push(global.bolts[i][@4], self);
 				}
 			}
+		}
+	}
+	with(instances_matching(projectile, "abs_absorbed", true)){
+		with(instance_create(x, y, BoltTrail)){
+			image_blend = other.trail_color;
+			image_xscale = other.speed;
+			image_yscale = other.sprite_width / 5;
+			image_angle = other.direction;
 		}
 	}
 	
