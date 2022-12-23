@@ -44,7 +44,7 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 		var _skills = mod_get_names("skill");
 		var _outcasts = [];
 		with(_skills){
-			if(!skill_get(self) && mod_script_exists("skill", self, "skill_outcast") && mod_script_call("skill", self, "skill_outcast")){
+			if(!skill_get(self) && mod_script_exists("skill", self, "skill_outcast") && mod_script_call("skill", self, "skill_outcast") && mod_script_exists("skill", self, "skill_avail") && mod_script_call("skill", self, "skill_avail")){
 				array_push(_outcasts, self);
 			}
 		}

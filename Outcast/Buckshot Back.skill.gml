@@ -57,3 +57,14 @@ script_ref_call(["mod", "lib", "getHooks"], "skill", mod_current);
 			}
 		}
 	}
+	with(instances_matching_gt(instances_matching(CustomProjectile, "is_bullet", 1), "id", _id)){
+		if("buckshot_upgrade" in self){
+			script_ref_call(buckshot_upgrade, x, y);
+			instance_destroy();
+		}else{
+			damage *= 1.5;
+			damage = ceil(damage);
+			image_xscale += 0.5;
+			image_yscale += 0.5;
+		}
+	}

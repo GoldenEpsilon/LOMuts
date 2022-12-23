@@ -1,7 +1,7 @@
 #define init
 global.sprSkillIcon = sprite_add("../Sprites/Outcast/Blank.png", 1, 12, 16)
 global.sprSkillHUD = sprite_add("../Sprites/Outcast/Blank Icon.png", 1, 8, 8)
-global.sprDiscoLaser = sprite_add("../Sprites/DiscoLaser.png", 1, 2, 3)
+global.sprDiscoLaser = sprite_add("../Sprites/DiscoLaser.png", 14, 2, 3)
 
 #define skill_name
 	return "Disco Nose";
@@ -40,8 +40,8 @@ with(instances_matching(Explosion, "laserdisco", null)){
 					hitid = [sprite_index, "THE DISCO"];
 					team = other.team;
 					creator = other;
-					image_blend = make_color_hsv(random(255), 255, 255);
 					sprite_index = global.sprDiscoLaser;
+					image_index = irandom(image_number);
 				}
 			}
 		}

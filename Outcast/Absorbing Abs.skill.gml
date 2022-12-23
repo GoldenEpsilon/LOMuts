@@ -69,7 +69,9 @@ global.bolts = [];
 				global.bolts[i][@1] = y;
 				global.bolts[i][@2] = direction;
 				with(instance_create(x, y, BoltTrail)){
-					image_blend = player_get_color(other.index);
+					if("creator" in other){
+						image_blend = player_get_color(other.creator.index);
+					}
 					image_xscale = other.speed;
 					image_yscale = other.sprite_width / 5;
 					image_angle = other.direction;
