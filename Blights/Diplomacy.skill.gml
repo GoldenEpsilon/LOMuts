@@ -8,7 +8,7 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 	return "Diplomacy";
 	
 #define skill_text
-	return "Moving @wenemy projectiles@s#become @rbandit bullets@s";
+	return "Moving @wenemy projectiles@s#become @rbandit bullets@s#(Stacks increase damage)";
 
 #define skill_button
 	sprite_index = global.sprSkillIcon;
@@ -34,7 +34,7 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 	with(Player){
 		with(instances_matching_ne(instances_matching_ne(instances_matching_gt(instances_matching_gt(instances_matching_ne(instances_matching_gt(projectile, "id", _id), "ammo_type", -1), "speed", 0), "damage", 0), "team", 0), "team", team)){
 			instance_change(EnemyBullet1, false);
-			damage = (damage + 3*(skill_get(mod_current)-1))/skill_get(mod_current);
+			damage = (damage + (2+skill_get(mod_current))*(skill_get(mod_current)-1))/skill_get(mod_current);
 			speed = (speed + 4*(skill_get(mod_current)-1))/skill_get(mod_current);
 			image_angle = direction;
 			image_xscale *= (0.5+min(max(damage/3, 0.9), 10))/1.5;
