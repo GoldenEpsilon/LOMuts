@@ -1,7 +1,6 @@
 #define init
 global.sprSkillIcon = sprite_add("Sprites/Main/Shocked Skin.png", 1, 12, 16)
 global.sprSkillHUD = sprite_add("Sprites/Icons/Shocked Skin Icon.png", 1, 8, 8)
-global.sprShellShock = sprite_add("Sprites/ShellShock.png", 3, 12, 12)
 while(!mod_exists("mod", "lib")){wait(1);}
 script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 

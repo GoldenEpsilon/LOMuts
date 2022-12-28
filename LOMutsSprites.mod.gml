@@ -9,7 +9,7 @@ lq_set(global.sprites, "Confidence", [sprite_add("Sprites/Main/Confidence.png", 
 lq_set(global.sprites, "Double Vision", [sprite_add("Sprites/Main/Double Vision.png", 1, 12, 16), sprite_add("Sprites/Dev Icon/Double Vision.png", 1, 12, 16)]);
 lq_set(global.sprites, "Duplicators", [sprite_add("Sprites/Main/Duplicators.png", 1, 12, 16),sprite_add("Sprites/Dev Art/Duplicators.png", 1, 12, 16)]);
 lq_set(global.sprites, "Dynamic Calves", [sprite_add("Sprites/Main/Dynamic Calves.png", 1, 12, 16), sprite_add("Sprites/Dev Icon/Dynamic Calves.png", 1, 12, 16), sprite_add("Sprites/Dev Art/Dynamic Calves.png", 1, 12, 16), sprite_add("Sprites/Alt/Dynamic Calves.png", 1, 12, 16)]);
-lq_set(global.sprites, "Energized Intestines", [sprite_add("Sprites/Main/Energized Intestines.png", 1, 12, 16),sprite_add("Sprites/Dev Icon/Energized Intestines.png", 1, 12, 16)]);
+lq_set(global.sprites, "Energized Intestines", [sprite_add("Sprites/Main/Energized Intestines.png", 1, 12, 16),sprite_add("Sprites/Dev Icon/Energized Intestines.png", 1, 12, 16), sprite_add("Sprites/Alt/Energized Intestines.png", 1, 12, 16)]);
 lq_set(global.sprites, "Filtering Teeth", [sprite_add("Sprites/Main/Filtering Teeth.png", 1, 12, 16), sprite_add("Sprites/Dev Icon/Filtering Teeth.png", 1, 12, 16)]);
 lq_set(global.sprites, "Fractured Fingers", [sprite_add("Sprites/Main/Fractured Fingers.png", 1, 12, 16), sprite_add("Sprites/Dev Art/Fractured Fingers.png", 1, 12, 16), sprite_add("Sprites/Dev Icon/Fractured Fingers.png", 1, 12, 16), sprite_add("Sprites/Alt/Fractured Fingers.png", 1, 12, 16)]);
 lq_set(global.sprites, "Garment Regenerator", [sprite_add("Sprites/Main/Garment Regenerator.png", 1, 12, 16), sprite_add("Sprites/Dev Art/Garment Regenerator.png", 1, 12, 16)]);
@@ -47,7 +47,10 @@ lq_set(global.sprites, "Existence", [sprite_add("Sprites/Main/Ultras/Existence.p
 lq_set(global.sprites, "Reincarnation", [sprite_add("Sprites/Main/Ultras/Reincarnation.png", 1, 12, 16), sprite_add("Sprites/Alt/Ultras/Reincarnation.png", 1, 12, 16)]);
 
 lq_set(global.sprites, "Laser Focus", [sprite_add("Sprites/Outcast/Laser Focus.png", 1, 12, 16), sprite_add("Sprites/Outcast/Alt/Laser Focus.png", 1, 12, 16)]);
-//lq_set(global.sprites, "Terrorism", [sprite_add("Sprites/Outcast/Terrorism.png", 1, 12, 16), sprite_add("Sprites/Outcast/Alt/Terrorism.png", 1, 12, 16)]);
+lq_set(global.sprites, "Cruelty-Free Veganlust", [sprite_add("Sprites/Outcast/Cruelty-Free Veganlust.png", 1, 12, 16), sprite_add("Sprites/Outcast/Alt/Cruelty-Free Veganlust.png", 1, 12, 16)]);
+lq_set(global.sprites, "Iron Skin", [sprite_add("Sprites/Outcast/Iron Skin.png", 1, 12, 16), sprite_add("Sprites/Outcast/Alt/Iron Skin.png", 1, 12, 16)]);
+
+lq_set(global.sprites, "Terrorism", [sprite_add("Sprites/Blights/Terrorism.png", 1, 12, 16), sprite_add("Sprites/Blights/Alt/Terrorism.png", 1, 12, 16)]);
 
 global.spriteChoices = {}
 wait(file_load("MutArt.txt"));
@@ -164,7 +167,7 @@ if (argument0 == "mutartname"){
 with(instances_matching([SkillIcon, EGSkillIcon], "LOMutsAnimCheck", true)){LOMutsAnimCheck = false;}
 var _spr = lq_defget(global.spriteChoices, _name, 0)
 var _sprites = lq_defget(global.sprites, _name, [])
-if(is_real(_name) && array_length(_sprites) > 0){
+if(string(real(_name)) == _name && array_length(_sprites) > 0){
 	lq_set(global.spriteChoices, _name, (_spr + _amount + array_length(_sprites)) % array_length(_sprites));
 	if(_sprites[lq_get(global.spriteChoices, _name)] == ""){
 	}else if(_sprites[lq_get(global.spriteChoices, _name)] == "reset"){

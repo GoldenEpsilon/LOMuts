@@ -65,7 +65,7 @@ with(enemy){
 	var _team = team;
 	with(call(scr.instance_rectangle_bbox, bbox_left, bbox_top, bbox_right, bbox_bottom, instances_matching_ne(enemy, "team", team))){
 		if("pressurized" not in self){pressurized = 0;}
-		pressurized += 5 * current_time_scale;
+		pressurized += 2 * current_time_scale;
 		if(pressurized > 30){
 			with(call(scr.superforce_push, self, 4 + 8 * skill_get(mod_current), other.direction, 0.1, 1, 0.5, 1)){
 				hook_step = script_ref_create(pressurized_step);

@@ -7,14 +7,9 @@
 /loadskill Arcane Arts
 /loadskill Laser Focus
 /loadskill Explosive Gaze
-/loadskill Wiggle Waist
 /loadskill Rabbit Ears
 /loadskill Buckshot Back
 /loadskill Absorbing Abs
-/loadskill Roulette Trigger
-//loadskill Toxic Thoughts
-//loadskill Leprosy
-//loadskill Leprosy2
 /loadskill Putrid Haze
 /loadskill Friendly Eyelashes
 /loadskill Cruelty-Free Veganlust
@@ -28,3 +23,4 @@
 /loadskill Rubber Rounds
 /loadskill Bursted Chest
 /loadskill Shivering Spine
+//loadskill Bloated Back

@@ -1,6 +1,7 @@
 #define init
 global.sprSkillIcon = sprite_add("../Sprites/Outcast/Blank.png", 1, 12, 16)
 global.sprSkillHUD = sprite_add("../Sprites/Outcast/Blank Icon.png", 1, 8, 8)
+global.absorb = sprite_add("../Sprites/absorb.png", 5, 24, 24)
 while(!mod_exists("mod", "lib")){wait(1);}
 script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 global.bolts = [];
@@ -49,19 +50,13 @@ global.bolts = [];
 				sprite_index = deactivate_sprite_index;
 				image_index = deactivate_image_index;
 				image_alpha = deactivate_image_alpha;
-				image_xscale = deactivate_image_xscale;
-				image_yscale = deactivate_image_yscale;
-				if(fork()){
-					wait(0);
-					abs_absorbed = true;
-					team = absorb_team;
-					if(skill_get(mod_current) > 1){
-						repeat(skill_get(mod_current) - 1){
-							with(instance_copy(self)){
-								var prevDir = direction;
-								direction = global.bolts[i][@2]+180 + random_range(-10, 10);
-								image_angle += direction-prevDir;
-							}
+				abs_absorbed = true;
+				if(skill_get(mod_current) > 1){
+					repeat(skill_get(mod_current) - 1){
+						with(instance_copy(self)){
+							var prevDir = direction;
+							direction = global.bolts[i][@2]+180 + random_range(-10, 10);
+							image_angle += direction-prevDir;
 						}
 					}
 				}
@@ -76,8 +71,8 @@ global.bolts = [];
 					if("team" not in self){
 						continue;
 					}
-					with(instance_create(x, y, ImpactWrists)){}
-					absorb_team = other.team;
+					with(instance_create(x, y, ImpactWrists)){sprite_index = global.absorb;}
+					team = other.team;
 					var prevDir = direction;
 					direction = global.bolts[i][@2]+180 + random_range(-10, 10);
 					image_angle += direction-prevDir;
@@ -88,8 +83,6 @@ global.bolts = [];
 					deactivate_sprite_index = sprite_index;
 					deactivate_image_index = image_index;
 					deactivate_image_alpha = image_alpha;
-					deactivate_image_xscale = image_xscale;
-					deactivate_image_yscale = image_yscale;
 					instance_change(Wind, 0);
 					speed = 0;
 					image_speed = 0;

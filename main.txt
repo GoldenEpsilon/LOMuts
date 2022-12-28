@@ -60,11 +60,12 @@
 /loadmod Extra Mutation Options
 /loadmod LOMuts
 /loadmod LOMutsSprites
-
 /loadmod LOMutsMutTokens
+/loadmod LOMutsStackIndicator
 
 /loadmod LibLoader
 
 /load Outcast
+/load Blights
 
 /load main2
