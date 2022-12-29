@@ -8,8 +8,13 @@
 		}
 	}
 	i = 0;
+	var ultra_count = array_length(ultras_get())
+	var patience_offset = 0;
 	draw_set_font(fntSmall);
 	while(skill_get_at(i) != null){
+		if(skill_get_at(i) == GameCont.hud_patience){
+			patience_offset++;
+		}
 		var _columns;
 		var y_reversed;
 		var start_x;
@@ -54,15 +59,17 @@
 				break;
 			}
 		}
+		var offsetx = 16 * ((i + ultra_count - patience_offset) % _columns);
+		var offsety = floor((i + ultra_count - patience_offset) / _columns) * 16 * y_reversed;
 		var drawn = 0;
 		if(real(skill_get(skill_get_at(i))) > 1){
 			var drawn = 1;
-			draw_text_nt(start_x - 8 - 16 * ((i + array_length(ultras_get())) % _columns), 14 + floor((i + array_length(ultras_get())) / _columns) * 16 * y_reversed, "@(color:" + string(make_color_rgb(150, 255, 0)) + ")" + string(real(skill_get(skill_get_at(i)))));
+			draw_text_nt(start_x - 8 - offsetx, 14 + offsety, "@(color:" + string(make_color_rgb(150, 255, 0)) + ")" + string(real(skill_get(skill_get_at(i)))));
 		}
 		if(!drawn){
 			for(j = 0; j < player_count; j++){
-				if(point_in_rectangle(mouse_x[j]-view_xview[j],mouse_y[j]-view_yview[j],start_x - 8 - 16 * ((i + array_length(ultras_get())) % _columns),floor((i + array_length(ultras_get())) / _columns) * 16 * y_reversed,start_x + 8 - 16 * ((i + array_length(ultras_get())) % _columns),16 + floor((i + array_length(ultras_get())) / _columns) * 16 * y_reversed)){
-					draw_text_nt(start_x - 8 - 16 * ((i + array_length(ultras_get())) % _columns), 14 + floor((i + array_length(ultras_get())) / _columns) * 16 * y_reversed, "@(color:" + string(make_color_rgb(150, 255, 0)) + ")" + string(real(skill_get(skill_get_at(i)))));
+				if(point_in_rectangle(mouse_x[j]-view_xview[j],mouse_y[j]-view_yview[j],start_x - 8 - offsetx,offsety,start_x + 8 - offsetx,16 + offsety)){
+					draw_text_nt(start_x - 8 - offsetx, 14 + offsety, "@(color:" + string(make_color_rgb(150, 255, 0)) + ")" + string(real(skill_get(skill_get_at(i)))));
 				}
 			}
 		}

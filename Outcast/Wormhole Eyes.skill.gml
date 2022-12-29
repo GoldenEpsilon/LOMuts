@@ -1,16 +1,16 @@
 #define init
 global.sprSkillIcon = sprite_add("../Sprites/Outcast/Blank.png", 1, 12, 16)
 global.sprSkillHUD = sprite_add("../Sprites/Outcast/Blank Icon.png", 1, 8, 8)
-global.sprCanister = sprite_add("../Sprites/Outcast/Blank Icon.png", 1, 8, 10)
+global.sprCanister = sprite_add("../Sprites/PortalCanister.png", 3, 8, 10)
+global.spawnChest = false;
 while(!mod_exists("mod", "lib")){wait(1);}
 script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
-global.spawnChest = false;
 
 #define skill_name
 	return "Wormhole Eyes";
 	
 #define skill_text
-	return 'Portal Canisters spawn,#which activate @w"start of level"@s effects#@qWIP';
+	return 'Portal Canisters spawn,#which activate @w"start of level"@s effects';
 
 #define skill_button
 	sprite_index = global.sprSkillIcon;
@@ -40,20 +40,42 @@ global.spawnChest = false;
 			instance_create(x + sprite_width/2,y + sprite_height/2,CustomProp).sprite_index = global.sprCanister;
 		}
 	}
-	if(instance_number(Turret) == 0){
+	if(instance_number(GoldChest) == 0){
 		with(call(scr.instance_random, Floor)){
-			instance_create(x,y,Turret);
-		}
-		for(var i = 0; !is_undefined(skill_get_at(i)); i++){
-			var _skill = skill_get_at(i);
-			if(is_string(_skill) && mod_script_exists("skill", _skill, "level_start")){
-				mod_script_call("skill", _skill, "level_start");
-			}
+			instance_create(x,y,GoldChest);
 		}
 		with(Player){
-			if(is_string(mod_script_exists("race", race, "level_start"))){
-				mod_script_call("race", race, "level_start");
+			tempx = x;
+			tempy = y;
+		}
+		var newID = instance_create(0, 0, DramaCamera);
+		with(instance_create(0,0,GameObject)){
+			spawn_y = 0;
+			safedist = 0;
+			agol = 0;
+			rgol = 0;
+			gol = 0;
+			wgol = 0;
+			spawn_x = 0;
+			safespawn = 0;
+			tip = "";
+			goal = 0;
+			visible = false;
+			instance_change(GenCont, 0);
+			visible = false;
+			wait(0);
+			visible = false;
+			wait(0);
+			trace(visible);
+			event_perform(ev_alarm, 1);
+			while(instance_exists(GenCont)){
+				wait(0);
 			}
+			//with(instances_matching_ge(GameObject, "id", newID)){instance_destroy();}
+		}
+		with(Player){
+			x = tempx;
+			y = tempy;
 		}
 	}
 
