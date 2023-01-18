@@ -6,7 +6,7 @@ global.sprSkillHUD = sprite_add("../Sprites/Blights/Damocles Tendon Icon.png", 1
 	return "Damocles Tendon";
 	
 #define skill_text
-	return "When you take damage,#there is a @w5%@s chance to #@rlose max health@s";
+	return "When you take damage,#there is a @w5%@s chance to #@rlose recoverable max health@s";
 
 #define skill_button
 	sprite_index = global.sprSkillIcon;

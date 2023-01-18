@@ -29,6 +29,9 @@ global.bolts = [];
 	
 #define skill_take
 	sound_play(sndMut);
+	
+#define skill_wepspec
+	return 1;
 
 #define step
 	for(var i = 0; i < array_length(global.bolts); i++){
@@ -54,6 +57,9 @@ global.bolts = [];
 				if(skill_get(mod_current) > 1){
 					repeat(skill_get(mod_current) - 1){
 						with(instance_copy(self)){
+							team = other.team;
+							abs_absorbed = true;
+							trail_color = other.trail_color;
 							var prevDir = direction;
 							direction = global.bolts[i][@2]+180 + random_range(-10, 10);
 							image_angle += direction-prevDir;

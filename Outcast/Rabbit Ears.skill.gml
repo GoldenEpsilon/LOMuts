@@ -33,5 +33,5 @@ global.stacks = 0;
 	global.stacks = skill_get(mod_current);
 
 #define skill_lose
-	GameCont.hard -= 10 * skill_get(mod_current);
+	GameCont.hard += 10 * (skill_get(mod_current) - global.stacks);
 	global.stacks = skill_get(mod_current);

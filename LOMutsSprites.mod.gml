@@ -49,6 +49,8 @@ lq_set(global.sprites, "Reincarnation", [sprite_add("Sprites/Main/Ultras/Reincar
 lq_set(global.sprites, "Laser Focus", [sprite_add("Sprites/Outcast/Laser Focus.png", 1, 12, 16), sprite_add("Sprites/Outcast/Alt/Laser Focus.png", 1, 12, 16)]);
 lq_set(global.sprites, "Cruelty-Free Veganlust", [sprite_add("Sprites/Outcast/Cruelty-Free Veganlust.png", 1, 12, 16), sprite_add("Sprites/Outcast/Alt/Cruelty-Free Veganlust.png", 1, 12, 16)]);
 lq_set(global.sprites, "Iron Skin", [sprite_add("Sprites/Outcast/Iron Skin.png", 1, 12, 16), sprite_add("Sprites/Outcast/Alt/Iron Skin.png", 1, 12, 16)]);
+lq_set(global.sprites, "Bursted Chest", [sprite_add("Sprites/Outcast/Bursted Chest.png", 1, 12, 16), sprite_add("Sprites/Outcast/Alt/Bursted Chest.png", 1, 12, 16)]);
+lq_set(global.sprites, "Groupthink", [sprite_add("Sprites/Outcast/Groupthink.png", 1, 12, 16), sprite_add("Sprites/Outcast/Alt/Groupthink.png", 1, 12, 16)]);
 
 lq_set(global.sprites, "Terrorism", [sprite_add("Sprites/Blights/Terrorism.png", 1, 12, 16), sprite_add("Sprites/Blights/Alt/Terrorism.png", 1, 12, 16)]);
 

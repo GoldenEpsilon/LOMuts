@@ -81,7 +81,7 @@ with(Player){
 
 #define fire_step
 	if(!instance_exists(creator)){
-		if(size >= 2){
+		if(size >= 3){
 			with(instance_create(x,y,SmallExplosion)){
 				creator = other;
 				team = creator.team;
@@ -113,7 +113,7 @@ with(Player){
 
 #define electric_step
 	if(!instance_exists(creator)){
-		if(size >= 2){
+		if(size >= 3){
 			with(instance_create(x,y,LightningBall)){
 				creator = other;
 				team = creator.team;
@@ -151,7 +151,7 @@ with(Player){
 
 #define toxic_step
 	if(!instance_exists(creator)){
-		if(size >= 2){
+		if(size >= 3){
 			repeat(15){
 				with(instance_create(x,y,ToxicGas)){
 					creator = other;

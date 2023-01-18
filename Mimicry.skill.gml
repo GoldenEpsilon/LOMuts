@@ -57,7 +57,13 @@ global.canActivate = 1;
 	}
 	var i = 0;
 	while(!is_undefined(skill_get_at(i))){i++}
-	while(is_string(skill_get_at(i)) && mod_script_exists("skill", skill_get_at(i-2), "skill_sacrifice") && mod_script_call("skill", skill_get_at(i-2), "skill_sacrifice")){i--}
+	while(is_string(skill_get_at(i)) && 
+		(
+			(mod_script_exists("skill", skill_get_at(i-2), "skill_sacrifice") && mod_script_call("skill", skill_get_at(i-2), "skill_sacrifice")) ||
+			(mod_script_exists("skill", skill_get_at(i-2), "skill_outcast") && mod_script_call("skill", skill_get_at(i-2), "skill_outcast")) ||
+			(mod_script_exists("skill", skill_get_at(i-2), "skill_blight") && mod_script_call("skill", skill_get_at(i-2), "skill_blight"))
+		))
+		{i--}
 	if(is_undefined(skill_get_at(i-2))){
 		trace("Hey. You don't have any removable mutations.");
 		return;
@@ -149,6 +155,33 @@ global.takenUltras = [];
 							continue;
 						}
 						var ult = mod_script_call("skill", modskills[i], "skill_ultra");
+						if(is_string(ult) && (mod_exists("race", ult) || string_count(string_lower(ult), "fish crystal eyes melting plant venuz steroids robot chicken rebel horror rogue skeleton frog")) || is_real(ult) && ult != -1){
+							var skip = false;
+							with(Player){
+								if(ult == race){
+									skip = true;
+									break;
+								}
+								with(global.takenUltras){
+									if(self[0] != string_lower(other.race)){
+										continue;
+									}
+									if(self[1] == modskills[i]){
+										skip = true;
+										break;
+									}
+								}
+								if(skip){
+									break;
+								}
+							}
+							if(skip){
+								continue;
+							}
+							array_push(ultraList,modskills[i])
+						}
+					}else if(mod_exists("skill", modskills[i]) && mod_script_exists("skill", modskills[i], "skill_mimicry")){
+						var ult = mod_script_call("skill", modskills[i], "skill_mimicry");
 						if(is_string(ult) && (mod_exists("race", ult) || string_count(string_lower(ult), "fish crystal eyes melting plant venuz steroids robot chicken rebel horror rogue skeleton frog")) || is_real(ult) && ult != -1){
 							var skip = false;
 							with(Player){

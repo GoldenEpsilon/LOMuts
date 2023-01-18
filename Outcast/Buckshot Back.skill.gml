@@ -1,6 +1,8 @@
 #define init
 global.sprSkillIcon = sprite_add("../Sprites/Outcast/Buckshot Back.png", 1, 12, 16)
 global.sprSkillHUD = sprite_add("../Sprites/Outcast/Buckshot Back Icon.png", 1, 8, 8)
+global.sprUpgUltraBullet = sprite_add("../Sprites/UpgradedUltraBullet.png", 2, 12, 12)
+global.sprUpgUltraBullet2 = sprite_add("../Sprites/UpgradedUltraBullet2.png", 2, 12, 12)
 while(!mod_exists("mod", "lib")){wait(1);}
 script_ref_call(["mod", "lib", "getHooks"], "skill", mod_current);
 
@@ -21,6 +23,9 @@ script_ref_call(["mod", "lib", "getHooks"], "skill", mod_current);
 
 #define skill_outcast
 	return true;
+	
+#define skill_wepspec
+	return 1;
 
 
 #define skill_tip
@@ -51,8 +56,14 @@ script_ref_call(["mod", "lib", "getHooks"], "skill", mod_current);
 					break;
 				case UltraBullet:
 					damage += 10;
-					image_xscale += 0.5;
-					image_yscale += 0.5;
+					if(sprite_index == global.sprUpgUltraBullet){
+						sprite_index = global.sprUpgUltraBullet2;
+					}else if(sprite_index == sprUltraBullet){
+						sprite_index = global.sprUpgUltraBullet;
+					}else{
+						image_xscale += 0.25;
+						image_yscale += 0.25;
+					}
 					break;
 			}
 		}

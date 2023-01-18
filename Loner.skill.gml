@@ -1,6 +1,6 @@
 #define init
-global.sprSkillIcon = sprite_add("Sprites/Outcast/Blank.png", 1, 12, 16)
-global.sprSkillHUD = sprite_add("Sprites/Outcast/Blank Icon.png", 1, 8, 8)
+global.sprSkillIcon = sprite_add("Sprites/Main/Loner.png", 1, 12, 16)
+global.sprSkillHUD = sprite_add("Sprites/Icons/Loner Icon.png", 1, 8, 8)
 global.chosen = [];
 global.skill = [];
 

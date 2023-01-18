@@ -32,7 +32,7 @@
 		//{name: "DECIDE", text: "LOSE 1 MUTATION#GAIN ONE MUTATION OUT OF ALL MUTATIONS", cost: 3, icon: global.spr_blank, on_select: script_ref_create(tokenshop_decide)},
 		//{name: "BACKTRACK", text: "HEAD BACK TO 1-1#NEXT TIME YOU REACH 7-1", cost: 3, icon: global.spr_blank, on_select: script_ref_create(tokenshop_backtrack)},
 		//{name: "REBEL", text: "GAIN AN OUTCAST MUTATION", cost: 4, icon: global.spr_blank, on_select: script_ref_create(tokenshop_rebel)},
-		//{name: "EVOLVE", text: "GAIN TWO BLIGHTS#GAIN A MUTATION", cost: 4, icon: global.spr_blank, on_select: script_ref_create(tokenshop_evolve)},
+		{name: "EVOLVE", text: "LOSE A MUTATION#GAIN A MUTATION", cost: 4, icon: global.spr_experiment, on_select: script_ref_create(tokenshop_evolve)},
 		//{name: "WARP", text: "INSTANTLY LOOP", cost: 4, icon: global.spr_blank, on_select: script_ref_create(tokenshop_warp)},
 		//{name: "REDEEM", text: "CHOOSE ONE OUTCAST MUTATION#IT IS NOW PERMANENTLY A NORMAL MUTATION#(PREVIOUSLY REDEEMED MUTATIONS BECOME OUTCAST)", cost: 4, icon: global.spr_blank, on_select: script_ref_create(tokenshop_redeem)},
 		//{name: "CAST DOWN", text: "CHOOSE ONE NORMAL MUTATION#IT IS NOW PERMANENTLY AN OUTCAST MUTATION#(PREVIOUSLY CAST DOWN MUTATIONS BECOME NORMAL)", cost: 4, icon: global.spr_blank, on_select: script_ref_create(tokenshop_cast_down)},
@@ -104,7 +104,7 @@
 		if((global.prevLoops < GameCont.loops || global.forceShopOpen) && fork()){
 			global.cancelOpen = false;
 			global.forceShopOpen = false;
-			global.mutTokens += 2;
+			global.mutTokens += 3;
 			global.prevLoops = GameCont.loops;
 			global.openingShop = 1;
 			GameCont.endpoints++;
@@ -745,9 +745,6 @@
 					//skill_create(mutList[irandom(array_length(mutList) - 1)], instance_number(mutbutton));
 				}
 			}
-		}else{
-			trace("you have no mutations, refunding");
-			global.mutTokens += 2;
 		}
 	}
 
@@ -760,7 +757,123 @@
 #define tokenshop_rebel
 
 #define tokenshop_evolve
-	GameCont.skillpoints++;
+	var toChoose = []
+	for(var i = 0; !is_undefined(skill_get_at(i)); i++){
+		var _skill = skill_get_at(i);
+		if(skill_get_active(_skill)){
+			if(
+				!is_string(_skill)
+				|| ((!mod_script_exists("skill", _skill, "skill_avail")
+				|| mod_script_call("skill", _skill, "skill_avail"))
+				&& (!mod_script_exists("skill", _skill, "skill_temp")
+				|| !mod_script_call("skill", _skill, "skill_temp"))
+				&& (!mod_script_exists("skill", _skill, "skill_sacrifice")
+				|| mod_script_call("skill", _skill, "skill_sacrifice")))
+			){
+				array_push(toChoose, _skill)
+			}
+		}
+	}
+	if(array_length(toChoose) < 2){
+		trace("Not enough applicable mutations, refunding");
+		global.mutTokens += 4;
+		return;
+	}
+	with(LevCont){
+		altpick = true;
+			
+		//this is the list of mutations the player has
+		var mutList = toChoose;
+		
+		//this is a list of the mutations we're using
+		global.chosen = [];
+		
+		var s = mod_variable_get("mod", "Extra Mutation Options", "target");
+
+		if(array_length(mutList) > 0){
+			 // Add skills until full
+			for(var f = 0; f < s; f++) {
+				var attempts = 0;
+				while(attempts < 15){
+					var r = irandom(array_length(mutList) - 1);
+					var test = true;
+					for(var i = 0; i < array_length(global.chosen); i++){
+						if(mutList[r] == global.chosen[i]){
+							test = false;
+							break;
+						}
+					}
+					if(test){
+						custom_option_create(array_length(global.chosen), s, mutList[r], script_ref_create(select_evolve));
+						array_push(global.chosen, mutList[r]);
+						//skill_create(mutList[r], instance_number(mutbutton));
+						break;
+					}
+					attempts++;
+				}
+				if(attempts == 15){
+					var r = irandom(array_length(mutList) - 1);
+					custom_option_create(array_length(global.chosen), s, mutList[r], script_ref_create(select_evolve));
+					array_push(global.chosen, mutList[r]);
+					//skill_create(mutList[irandom(array_length(mutList) - 1)], instance_number(mutbutton));
+				}
+			}
+		}else{
+			trace("you have no mutations, refunding");
+			global.mutTokens += 2;
+		}
+	}
+
+#define select_evolve(_button)
+	skill_set(_button.skill, skill_get(_button.skill) - 1);
+	with(instances_matching(instances_matching(CustomObject, "name", "tokenshopOption"), "alt", true)){
+		instance_destroy();
+	}
+	with(LevCont){
+		altpick = true;
+			
+		//this is the list of mutations the player has
+		var mutList = call(scr.get_skills, true);;
+		
+		//this is a list of the mutations we're using
+		global.chosen = [];
+		
+		var s = mod_variable_get("mod", "Extra Mutation Options", "target");
+
+		if(array_length(mutList) > 0){
+			 // Add skills until full
+			for(var f = 0; f < s; f++) {
+				var attempts = 0;
+				while(attempts < 15){
+					var r = irandom(array_length(mutList) - 1);
+					var test = true;
+					for(var i = 0; i < array_length(global.chosen); i++){
+						if(mutList[r] == global.chosen[i]){
+							test = false;
+							break;
+						}
+					}
+					if(test){
+						custom_option_create(array_length(global.chosen), s, mutList[r], script_ref_create(select_evolve2));
+						array_push(global.chosen, mutList[r]);
+						break;
+					}
+					attempts++;
+				}
+				if(attempts == 15){
+					var r = irandom(array_length(mutList) - 1);
+					custom_option_create(array_length(global.chosen), s, mutList[r], script_ref_create(select_evolve2));
+					array_push(global.chosen, mutList[r]);
+				}
+			}
+		}
+	}
+
+#define select_evolve2(_button)
+	skill_set(_button.skill, 1);
+	with(LevCont){
+		altpick = false;
+	}
 
 #define tokenshop_reset
 	for(var i = 0; !is_undefined(skill_get_at(i)); i++){

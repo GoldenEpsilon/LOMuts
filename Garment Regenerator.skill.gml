@@ -33,7 +33,7 @@ with Player {
 	if (fork()) {
 		var OldHealth = my_health;
 		wait 0
-		if(instance_exists(self) && my_health < OldHealth){
+		if(instance_exists(self) && my_health < OldHealth && my_health != lsthealth){
 			var healHealth = floor((OldHealth - max(my_health,0))/2)
 			wait(60 / skill_get(mod_current));
 			if(instance_exists(self)){

@@ -1,6 +1,7 @@
 #define init
 global.sprSkillIcon = sprite_add("../Sprites/Blights/Angry Eyebrows.png", 1, 12, 16)
 global.sprSkillHUD = sprite_add("../Sprites/Blights/Angry Eyebrows Icon.png", 1, 8, 8)
+global.sprBullet = sprite_add("../Sprites/RevengeBullet.png", 1, 8, 8)
 
 #define skill_name
 	return "Angry Eyebrows";
@@ -34,10 +35,16 @@ if(instance_exists(Player)){
 			repeat(amount){
 				with(instance_create(x,y,EnemyBullet2)){
 					speed = 6;
+					sprite_index = global.sprBullet;
 					team = other.team;
 					creator = other;
 					direction = point_direction(x, y, instance_nearest(x,y,Player).x, instance_nearest(x,y,Player).y) + random_range(amount*-5,amount*5);
 					image_angle = direction;
+					if(other.object_index == CustomEnemy && "name" in other){
+						hitid = [other.spr_dead, object_get_name(other.name) + "'s REVENGE"];
+					}else{
+						hitid = [other.spr_dead, object_get_name(other.object_index) + "'s REVENGE"];
+					}
 				}
 			}
 		}

@@ -75,6 +75,7 @@
 		}
 		i++;
 	}
+	draw_set_font(fntM);
 	
 #define draw_pause
 

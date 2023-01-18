@@ -29,7 +29,12 @@ with(instances_matching(Explosion, "laserdisco", null)){
 	laserdisco = 1;
 	if(fork()){
 		wait(3)
-		if(instance_exists(self) && "team" in self){
+		if(instance_exists(self)){
+			if("creator" in self && instance_exists(creator) && "team" in creator){
+				team = creator.team;
+			}else if(("team" not in self || team <= 0) && instance_exists(Player)){
+				team = instance_nearest(x,y,Player).team;
+			}
 			var ang = random(360);
 			sound_play(sndLaser);
 			for(var i = 0; i < 360; i += 360 / ((sprite_width * image_xscale / 8) * skill_get(mod_current))){

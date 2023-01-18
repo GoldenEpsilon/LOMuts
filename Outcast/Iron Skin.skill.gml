@@ -71,7 +71,7 @@ with Player {
 					exit;
 				}
 			}
-			my_health = OldHealth - 1;
+			my_health = min(OldHealth - 1, max(maxhealth, my_health));
 		}
 		if(changedCanDie){
 			candie = 1;

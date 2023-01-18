@@ -62,17 +62,22 @@ with(Player){
 				wait(0);
 			}
 			with(instance_create(_x + _dirx,_y + _diry,CustomProjectile)){
+				hitframe = -1;
 				rocketcasings = true;
 				duplicators = true;
-				damage = floor(sqrt(_d)) * skill_get(mod_current);
+				damage = 1 * skill_get(mod_current);
 				force = 3 * skill_get(mod_current);
 				timer = 8;
 				team = _t;
 				image_speed = 0.4;
 				sprite_index = global.sprRocketExplo;
-				if(damage > 4){
+				if(_d > 20){
 					force *= 2;
+					damage = 4 * skill_get(mod_current);
 					sprite_index = global.sprRocketExploGreen;
+				}else if(_d > 5){
+					force *= 1.5;
+					damage = 2 * skill_get(mod_current);
 				}
 				hitid = [sprite_index, "ROCKET AMMO"];
 				mask_index = mskSmallExplosion;
@@ -103,7 +108,10 @@ instance_destroy();
 
 #define rocketWall
 #define rocketHit
-projectile_hit(other, damage, force, direction);
+if(hitframe == -1 || hitframe == current_frame){
+	projectile_hit(other, damage, force, direction);
+	hitframe = current_frame;
+}
 #define rocketStep
 timer--;
 if(timer < 0 && instance_exists(self)){

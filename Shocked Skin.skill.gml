@@ -12,7 +12,7 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 	return "Shocked Skin";
 	
 #define skill_text
-	return "Shells create @belectricity@s";
+	return "@wShells@s create @belectricity@s";
 
 #define skill_button
 	sprite_index = global.sprSkillIcon;

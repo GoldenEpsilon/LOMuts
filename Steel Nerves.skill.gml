@@ -7,7 +7,7 @@ global.burst = sprite_add("Sprites/SteelNervesBurst.png", 4, 16, 16)
 	return "Steel Nerves";
 	
 #define skill_text
-	return "You can only take damage#up to 2/3 your max HP per hit";
+	return "You can only take @wdamage@s#up to @w2/3@s your max @rHP@s per hit";
 
 #define skill_button
 	sprite_index = global.sprSkillIcon;

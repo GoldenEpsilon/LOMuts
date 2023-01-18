@@ -21,6 +21,9 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 
 #define skill_outcast
 	return true;
+	
+#define skill_wepspec
+	return 1;
 
 #define skill_tip
 	return "Pew Pew";

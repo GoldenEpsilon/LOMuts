@@ -10,7 +10,6 @@
 /loadskill Rabbit Ears
 /loadskill Buckshot Back
 /loadskill Absorbing Abs
-/loadskill Putrid Haze
 /loadskill Friendly Eyelashes
 /loadskill Cruelty-Free Veganlust
 /loadskill Groupthink

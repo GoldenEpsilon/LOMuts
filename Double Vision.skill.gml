@@ -37,15 +37,23 @@ with(Player){
 					creator = -4;
 				}
 				if(object_index != Laser){
-					var r = random_range(-global.acc,global.acc);
+					var acc = 1;
+					if("creator" in self && instance_exists(creator) && "accuracy" in creator){
+						acc = creator.accuracy;
+					}
+					var r = random_range(-global.acc * acc,global.acc * acc);
 					direction += r;
 					image_angle += r;
 				}else{
 					x -= lengthdir_x(image_xscale*2,direction);
 					y -= lengthdir_y(image_xscale*2,direction);
 					with instance_create(x,y,Laser){
+						var acc = 1;
+						if("creator" in self && instance_exists(creator) && "accuracy" in creator){
+							acc = creator.accuracy;
+						}
 						alarm0 = 1;
-						var r = random_range(-global.acc,global.acc);
+						var r = random_range(-global.acc * acc,global.acc * acc);
 						direction = other.direction + r;
 						image_angle = other.image_angle + r;
 						hitid = [sprite_index, "LASER"];

@@ -41,7 +41,6 @@ Ideas for future update (NOT GUARANTEED IN ANY WAY, SHAPE, OR FORM.)
 		- (9 TOKENS) ASCEND : GAIN ANOTHER ULTRA (only shows up if you are already at level ultra)
 	- When heading to the shop, you get LEAVE, a 1 token option, a 2-3 token option, and a 4+ token option, selected randomly.
 	
- - test Feed Forward more
  - fix Quasar Homing
  - change vector to "vectors split"
  - Change fractured fingers to work with (correct team) IDPD explosions
@@ -116,7 +115,7 @@ Ideas for future update (NOT GUARANTEED IN ANY WAY, SHAPE, OR FORM.)
 	- Enemies explode based on their health
 	- Pickups are worth more at lower health
 	- Shotguns also fire other projectiles (flame shells, bolts, splinters, bullets, lasers, plasma, all with weighted chances)
-	- All projectiles work like nukes
+	- All projectiles work like nukes (following cursor)
 (DONE)	- Rubber Rounds: Enemy shots have a chance to bounce and become teamed to you
 (DONE)	- Crulety-Free Veganlust: Props can drop pickups
 (DONE)	- PURIST: more vanilla weapons
