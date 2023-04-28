@@ -17,6 +17,9 @@ script_ref_call(["mod", "lib", "getHooks"], "skill", mod_current);
 
 #define skill_tip
 	return choose("Whoops!", "Better eyesight can#help sloppiness");
+	
+#define skill_type
+	return "offensive";
 
 #define update(_id)
 	with(Player){

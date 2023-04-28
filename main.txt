@@ -67,5 +67,6 @@
 
 /load Outcast
 /load Blights
+/load Crown
 
 /load main2

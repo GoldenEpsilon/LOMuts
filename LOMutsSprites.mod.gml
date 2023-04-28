@@ -169,7 +169,7 @@ if (argument0 == "mutartname"){
 with(instances_matching([SkillIcon, EGSkillIcon], "LOMutsAnimCheck", true)){LOMutsAnimCheck = false;}
 var _spr = lq_defget(global.spriteChoices, _name, 0)
 var _sprites = lq_defget(global.sprites, _name, [])
-if(string(real(_name)) == _name && array_length(_sprites) > 0){
+if(string(real(_name)) == string(_name) && array_length(_sprites) > 0){
 	lq_set(global.spriteChoices, _name, (_spr + _amount + array_length(_sprites)) % array_length(_sprites));
 	if(_sprites[lq_get(global.spriteChoices, _name)] == ""){
 	}else if(_sprites[lq_get(global.spriteChoices, _name)] == "reset"){

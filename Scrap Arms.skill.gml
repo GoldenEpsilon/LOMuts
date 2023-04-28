@@ -9,7 +9,7 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 	return "Scrap Arms";
 	
 #define skill_text
-	return "@wscraps@s @y(+ammo +firerate)@s#drop from enemies#when you have bullet weapons";
+	return "@wscraps@s @y(+bullets +firerate)@s#drop from enemies";
 
 #define skill_button
 	sprite_index = global.sprSkillIcon;
@@ -22,6 +22,9 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 
 #define skill_tip
 	return choose("Scrap's useful", "Scraps give some#extra reload");
+	
+#define skill_type
+	return "ammo";
 	
 #define skill_take
 	sound_play(sndMut)
@@ -42,7 +45,7 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 	
 #define step
 with(instances_matching_le(enemy, "my_health", 0)){
-	if("ScrapArms" not in self && instance_nearest(x,y,Player) != noone && (irandom(5 / (skill_get(mut_rabbit_paw)*0.4+1)) == 0 && (weapon_get_type(instance_nearest(x,y,Player).wep) == 1 || weapon_get_type(instance_nearest(x,y,Player).bwep) == 1))){
+	if("ScrapArms" not in self && instance_nearest(x,y,Player) != noone && (irandom(25 / (skill_get(mut_rabbit_paw)*0.4+1)) == 0)){
 		ScrapArms = true;
 		with(call(scr.obj_create, x, y, "LibPickup")){
 			name = "ScrapArmsPickup";

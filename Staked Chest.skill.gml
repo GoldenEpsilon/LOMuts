@@ -20,6 +20,9 @@ global.sprSkillHUD = sprite_add("Sprites/Icons/Staked Chest Icon.png", 1, 8, 8)
 #define skill_tip
 	return "These things hurt";
 	
+#define skill_type
+	return "offensive";
+	
 #define skill_take
 	sound_play(sndMutTriggerFingers)
 

@@ -23,6 +23,9 @@ global.sprSkillHUD = sprite_add("../Sprites/Outcast/Blank Icon.png", 1, 8, 8)
 #define skill_tip
 	return "*flutter flutter*";
 	
+#define skill_type
+	return "outcast";
+	
 #define skill_take(_num)
 	sound_play(sndMut);
 

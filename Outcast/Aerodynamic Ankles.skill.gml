@@ -29,6 +29,9 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 #define skill_tip
 	return "Be with the wind";
 	
+#define skill_type
+	return "outcast";
+	
 #define skill_bodypart return 2
 	
 #define skill_take

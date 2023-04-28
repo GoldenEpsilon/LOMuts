@@ -25,6 +25,9 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 #define skill_tip
 	return "It's the terror of knowing#what this world is about";
 	
+#define skill_type
+	return "utility";
+	
 #define skill_take
 	sound_play(sndMut)
 	sound_play(sndMutant1Slct)
@@ -65,13 +68,13 @@ with(enemy){
 	var _team = team;
 	with(call(scr.instance_rectangle_bbox, bbox_left, bbox_top, bbox_right, bbox_bottom, instances_matching_ne(enemy, "team", team))){
 		if("pressurized" not in self){pressurized = 0;}
-		pressurized += 5 * current_time_scale;
+		pressurized += 2 * current_time_scale;
 		if(pressurized > 30){
 			with(call(scr.superforce_push, self, 4 + 8 * skill_get(mod_current), other.direction, 0.2, 1, 0.5, 1)){
 				hook_step = script_ref_create(pressurized_step);
 				hook_wallhit = script_ref_create(pressurized_wall);
 				realTeam = _team;
-				other.pressurized = 0;
+				other.pressurized = -60;
 			}
 		}else if(speed > 1 && angle_difference(direction, other.direction) > 90){
 			speed = max(speed - skill_get(mod_current) * current_time_scale, 1);

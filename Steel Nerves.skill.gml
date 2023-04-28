@@ -18,6 +18,9 @@ global.burst = sprite_add("Sprites/SteelNervesBurst.png", 4, 16, 16)
 #define skill_tip
 	return "You've got nerves of steel.";
 	
+#define skill_type
+	return "defensive";
+	
 #define skill_take
 	sound_play(sndMut);
 	with(Player){
@@ -79,6 +82,7 @@ with Player {
 	if("steelNerves" in self && "changedCanDie" in self && "OldHealth" in self){
 		if (my_health < OldHealth){
 			if(my_health < ceil(OldHealth-steelNerves) && OldHealth > floor(OldHealth-steelNerves)){
+				nexthurt += 12;
 				sound_play_pitchvol(sndHitMetal, 0.3, 3);
 				with(instance_create(x,y,Effect)){
 					sprite_index = global.burst;

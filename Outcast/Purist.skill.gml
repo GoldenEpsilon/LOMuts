@@ -9,7 +9,7 @@ global.check = array_length(mod_get_names("weapon")) > 30;
 	return "Purist";
 	
 #define skill_text
-	return "More @wvanilla@s weapons";
+	return "More @wvanilla@s weapons#Gain more @yammo@s";
 
 #define skill_button
 	sprite_index = global.sprSkillIcon;
@@ -26,8 +26,23 @@ global.check = array_length(mod_get_names("weapon")) > 30;
 #define skill_tip
 	return "Inexperimental";
 	
+#define skill_type
+	return "outcast";
+	
 #define skill_take
 	sound_play(sndMut);
+	with Player {
+		for(var i = 0; i < array_length(typ_amax); i++){
+			typ_ammo[i] += 5;
+		}
+	}
+	
+#define skill_lose
+	with(Player){
+		for(var i = 0; i < array_length(typ_amax); i++){
+			typ_ammo[i] -= 5;
+		}
+	}
 	
 #define update(_id)
 	with(instances_matching_ne(instances_matching_gt(WepPickup, "id", _id), "ammo", 0)){

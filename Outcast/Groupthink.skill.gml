@@ -26,6 +26,9 @@ global.alarms = [0,0,0,0,0,0,0,0,0,0,0,0];
 #define skill_tip
 	return "2+2=5";
 	
+#define skill_type
+	return "outcast";
+	
 #define skill_take
 	sound_play(sndMut);
 

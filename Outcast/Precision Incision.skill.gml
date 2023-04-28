@@ -28,6 +28,9 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 #define skill_tip
 	return "Pew Pew";
 	
+#define skill_type
+	return "outcast";
+	
 #define skill_take
 	sound_play(sndMut);
 	

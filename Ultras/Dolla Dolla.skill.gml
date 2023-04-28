@@ -13,7 +13,7 @@
 #define skill_mimicry return true;
 
 #define step
-with(Player){
+with(instances_matching(Player, "race", mod_current)){
 	OldAmmo = [];
 	for(var i = 0; i < array_length(ammo); i++){
 		array_push(OldAmmo, real(ammo[i]));
@@ -21,7 +21,7 @@ with(Player){
 }
 script_bind_step(custom_step, -5);
 #define custom_step
-with(Player){
+with(instances_matching(Player, "race", mod_current)){
 	if("dupAmmoRemainder" not in self){
 		dupAmmoRemainder = [];
 		for(var i = 0; i < array_length(ammo); i++){

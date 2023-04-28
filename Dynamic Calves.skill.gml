@@ -17,13 +17,14 @@ global.sprSkillHUD = sprite_add("Sprites/Icons/Dynamic Calves Icon.png", 1, 8, 8
 #define skill_tip
 	return "CHOO CHOO#I'M A TRAIN";
 	
+#define skill_type
+	return "utility";
+	
 #define skill_take
 	sound_play(sndMutRabbitPaw);
 	with(Player){
 		maxspeed+=0.3;
 	}
-	
-#define skill_bodypart return 2
 	
 #define skill_lose
 	with(Player){

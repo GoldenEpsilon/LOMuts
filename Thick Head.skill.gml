@@ -25,6 +25,9 @@ global.skill = [];
 
 #define skill_tip
 	return choose("Durr hurr more#mutation more gooder", "Not everything works");
+	
+#define skill_type
+	return "utility";
 
 #define skill_avail
 	return skill_get_at(4) != null;

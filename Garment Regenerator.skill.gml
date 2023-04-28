@@ -17,6 +17,9 @@ global.sprSkillHUD = sprite_add("Sprites/Icons/Garment Regenerator Icon.png", 1,
 #define skill_tip
 	return "Warm";
 	
+#define skill_type
+	return "defensive";
+	
 #define skill_take
 	sound_play(sndMut);
 	sound_play_pitch(sndMutant10Hurt, 0.95);

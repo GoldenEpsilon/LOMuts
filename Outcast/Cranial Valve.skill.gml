@@ -29,7 +29,10 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 	return 1;
 
 #define skill_tip
-	return "When's NT3";
+	return "Nuclear Throne 3 Confirmed";
+	
+#define skill_type
+	return "outcast";
 	
 #define skill_take
 	sound_play(sndMut);

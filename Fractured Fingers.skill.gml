@@ -21,6 +21,9 @@ global.sprRocketExplo = sprite_add("Sprites/RocketExplo.png", 7, 12, 12)
 #define skill_tip
 	return "Explosion babies";
 	
+#define skill_type
+	return "offensive";
+	
 #define skill_take
 	sound_play(sndMut)
 	sound_play(sndMutant3Slct)
@@ -29,8 +32,6 @@ global.sprRocketExplo = sprite_add("Sprites/RocketExplo.png", 7, 12, 12)
 	sound_play(sndExplosion)
 	wait(2)
 	sound_play(sndMutant3Hurt)
-	
-#define skill_bodypart return 2
 	
 #define step
 
@@ -46,9 +47,12 @@ with(instances_matching_le(enemy, "my_health", 0)){
 				FracturedFingers++;
 			}
 			if(distance_to_object(other) < sqrt(sqr((sprite_width*image_xscale)/2)+sqr((sprite_height*image_yscale)/2)) && other.FracturedFingers <= skill_get(mod_current)){
+				other.x += 10000;
+				var _inst = instance_nearest(x,y,enemy);
+				other.x -= 10000;
 				other.FracturedFingers++;
 				if("rocketcasings" in self && rocketcasings){
-					with(instance_create(x + lengthdir_x(32,point_direction(x,y,other.x,other.y)),y + lengthdir_y(32,point_direction(x,y,other.x,other.y)),CustomProjectile)){
+					with(instance_create(x + lengthdir_x(32,point_direction(x,y,_inst.x,_inst.y)),y + lengthdir_y(32,point_direction(x,y,_inst.x,_inst.y)),CustomProjectile)){
 						FracturedFingers = other.FracturedFingers + 1;
 						rocketcasings = true;
 						duplicators = true;
@@ -71,7 +75,7 @@ with(instances_matching_le(enemy, "my_health", 0)){
 						exit;
 					}
 				}else{
-					with(instance_create(x + lengthdir_x(sprite_width,point_direction(x,y,other.x,other.y)),y + lengthdir_y(sprite_width,point_direction(x,y,other.x,other.y)),object_index)){
+					with(instance_create(x + lengthdir_x(sprite_width,point_direction(x,y,_inst.x,_inst.y)),y + lengthdir_y(sprite_width,point_direction(x,y,_inst.x,_inst.y)),object_index)){
 						if("name" in other){name = other.name}
 						FracturedFingers = other.FracturedFingers + 1;
 						damage = other.damage;

@@ -17,6 +17,9 @@ global.sprSkillHUD = sprite_add("Sprites/Icons/Confidence Icon.png", 1, 8, 8)
 #define skill_tip
 	return "I CAN TAKE ON EVERYTHING!";
 	
+#define skill_type
+	return "offensive";
+	
 #define skill_take
 	sound_play(sndMut);
 	sound_play_pitch(sndMutant6Cnfm, 1.4);

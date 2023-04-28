@@ -1,6 +1,10 @@
 #define init
 global.sprSkillIcon = sprite_add("Sprites/Main/Ruffled Feathers.png", 1, 12, 16)
 global.sprSkillHUD = sprite_add("Sprites/Icons/Ruffled Feathers Icon.png", 1, 8, 8)
+global.stacks = 0;
+
+#define game_start
+	global.stacks = 0;
 
 #define skill_name
 	return "Ruffled Feathers";
@@ -17,26 +21,19 @@ global.sprSkillHUD = sprite_add("Sprites/Icons/Ruffled Feathers Icon.png", 1, 8,
 #define skill_tip
 	return "Impressive, I know.#Very few can achieve a mastery of the sky.";
 	
+#define skill_type
+	return "utility";
+	
 #define skill_take
 	sound_play(sndMut);
-	mod_variable_set("mod", "Extra Mutation Options", "extrastacks", mod_variable_get("mod", "Extra Mutation Options", "extrastacks") + 2);
-	var _skills = mod_get_names("skill");
-	with(_skills){
-		if(!skill_get(self) && mod_script_exists("skill", self, "skill_outcast") && mod_script_call("skill", self, "skill_outcast")){
-			skill_set_active(self, true);
-		}
-	}
+	mod_variable_set("mod", "Extra Mutation Options", "extrastacks", mod_variable_get("mod", "Extra Mutation Options", "extrastacks") + 2 * (skill_get(mod_current) - global.stacks));
+	mod_variable_set("mod", "LOMuts", "canOutcast", mod_variable_get("mod", "LOMuts", "canOutcast") + 1 * (skill_get(mod_current) - global.stacks));
+	global.stacks = skill_get(mod_current);
 	
 #define skill_lose
-	mod_variable_set("mod", "Extra Mutation Options", "extrastacks", mod_variable_get("mod", "Extra Mutation Options", "extrastacks") - 2);
-	if(!skill_get(mod_current)){
-		var _skills = mod_get_names("skill");
-		with(_skills){
-			if(!skill_get(self) && mod_script_exists("skill", self, "skill_outcast") && mod_script_call("skill", self, "skill_outcast")){
-				skill_set_active(self, false);
-			}
-		}
-	}
+	mod_variable_set("mod", "Extra Mutation Options", "extrastacks", mod_variable_get("mod", "Extra Mutation Options", "extrastacks") + 2 * (skill_get(mod_current) - global.stacks));
+	mod_variable_set("mod", "LOMuts", "canOutcast", mod_variable_get("mod", "LOMuts", "canOutcast") + 1 * (skill_get(mod_current) - global.stacks));
+	global.stacks = skill_get(mod_current);
 
 #define step
 	if(GameCont.level >= 10){

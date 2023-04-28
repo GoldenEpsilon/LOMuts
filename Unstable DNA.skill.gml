@@ -21,6 +21,9 @@ global.sprSkillHUD = sprite_add("Sprites/Icons/Unstable DNA Icon.png", 1, 8, 8)
 
 #define skill_tip
 	return "I don't feel so good...";
+	
+#define skill_type
+	return "utility";
 
 #define skill_temp
 	return 1;

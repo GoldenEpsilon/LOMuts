@@ -22,6 +22,9 @@ global.bind_step = noone;
 #define skill_tip
 	return "It's rave time";
 	
+#define skill_type
+	return "offensive";
+	
 #define skill_take
 	sound_play(sndMutTriggerFingers)
 	

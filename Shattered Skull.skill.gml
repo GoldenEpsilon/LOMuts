@@ -20,6 +20,9 @@ global.sprSkillHUD = sprite_add("Sprites/Icons/Shattered Skull Icon.png", 1, 8, 
 #define skill_tip
 	return "360 No Scope";
 	
+#define skill_type
+	return "offensive";
+	
 #define skill_bodypart return 1
 	
 #define skill_take

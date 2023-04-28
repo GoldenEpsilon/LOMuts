@@ -29,6 +29,9 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 #define skill_tip
 	return "Three Blefts make a Blight";
 	
+#define skill_type
+	return "outcast";
+	
 //code stolen from Prismatic Iris in Defpack
 #define skill_take(_num)
 	if(_num > 0 && instance_exists(LevCont)){

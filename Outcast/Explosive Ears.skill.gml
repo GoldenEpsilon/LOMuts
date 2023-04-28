@@ -21,6 +21,9 @@ global.sprDiscoLaser = sprite_add("../Sprites/DiscoLaser.png", 1, 2, 3)
 #define skill_tip
 	return "Like firecrackers";
 	
+#define skill_type
+	return "outcast";
+	
 #define skill_take
 	sound_play(sndMut);
 

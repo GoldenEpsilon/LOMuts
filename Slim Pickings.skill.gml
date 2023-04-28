@@ -1,5 +1,5 @@
 #define init
-global.sprSkillIcon = sprite_add("Sprites/Main/Blank Utility.png", 1, 12, 16)
+global.sprSkillIcon = sprite_add("Sprites/Main/Slim Pickings.png", 1, 12, 16)
 global.sprSkillHUD = sprite_add("Sprites/Icons/Blank Utility Icon.png", 1, 8, 8)
 global.chosen = [];
 global.skill = [];
@@ -18,6 +18,9 @@ global.skill = [];
 
 #define skill_tip
 	return "The scraps of broken creations";
+	
+#define skill_type
+	return "utility";
 
 #define skill_avail
 	return true;

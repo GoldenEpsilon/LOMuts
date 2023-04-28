@@ -22,6 +22,9 @@ global.sprRocketExploGreen = sprite_add("Sprites/RocketExploGreen.png", 7, 12, 1
 #define skill_tip
 	return "WHOOSH";
 	
+#define skill_type
+	return "offensive";
+	
 #define skill_take
 	sound_play(sndMut); sound_mutation_play();
 	
@@ -65,6 +68,7 @@ with(Player){
 				hitframe = -1;
 				rocketcasings = true;
 				duplicators = true;
+				pyroflammable = true;
 				damage = 1 * skill_get(mod_current);
 				force = 3 * skill_get(mod_current);
 				timer = 8;

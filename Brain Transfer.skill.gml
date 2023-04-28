@@ -19,7 +19,10 @@ global.troll = false;
 	return GameCont.wepmuts >= 2 && (!instance_is(self, CustomObject) && !instance_is(self, CustomProp)) || instance_exists(Loadout);
 
 #define skill_tip
-	return "Refreshing";
+	return "Time to @qchange your mind";
+	
+#define skill_type
+	return "utility";
 
 #define skill_temp
 	return 1;

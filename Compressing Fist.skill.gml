@@ -17,7 +17,8 @@ global.sprSkillHUD = sprite_add("Sprites/Icons/Compressing Fist Icon.png", 1, 8,
 #define skill_tip
 	return "Fused ammo is surprisingly effective";
 	
-#define skill_bodypart return 2
+#define skill_type
+	return "offensive";
 	
 #define skill_take
 	sound_play(sndMut);

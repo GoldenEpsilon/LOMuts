@@ -9,7 +9,7 @@ global.check = array_length(mod_get_names("weapon")) > 30;
 	return "Experimentalist";
 	
 #define skill_text
-	return "More @dmodded@s weapons";
+	return "More @dmodded@s weapons#Fire @wfaster@s";
 
 #define skill_button
 	sprite_index = global.sprSkillIcon;
@@ -26,8 +26,19 @@ global.check = array_length(mod_get_names("weapon")) > 30;
 #define skill_tip
 	return "Impure";
 	
+#define skill_type
+	return "outcast";
+	
 #define skill_take
 	sound_play(sndMut);
+	with Player {
+		reloadspeed += 0.2;
+	}
+	
+#define skill_lose
+	with(Player){
+		reloadspeed -= 0.2;
+	}
 	
 #define update(_id)
 	with(instances_matching_ne(instances_matching_gt(WepPickup, "id", _id), "ammo", 0)){

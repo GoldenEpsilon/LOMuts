@@ -17,6 +17,9 @@ global.sprSkillHUD = sprite_add("Sprites/Icons/Sadism Icon.png", 1, 8, 8)
 #define skill_tip
 	return "Yummy casings";
 	
+#define skill_type
+	return "defensive";
+	
 #define skill_take
 	sound_play(sndMut);
 	sound_play(sndMutant5Slct);
@@ -37,7 +40,7 @@ with(Player){
 		sadismOldAmmoMax = typ_amax;
 	}
 	for(var i = 1; i < array_length(ammo); i++){
-		if(ammo[i] < (sadismOldAmmo[i] - sadismOldAmmoMax[i] - typ_amax[i])){
+		if(ammo[i] < (sadismOldAmmo[i] - (sadismOldAmmoMax[i] - typ_amax[i]))){
 			sadism += (sadismOldAmmo[i] - ammo[i]) / (i == 1 ? 4 : 1);
 		}
 	}

@@ -25,6 +25,9 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 #define skill_tip
 	return "It's beginning to look a lot like#@qTHE DEMISE OF YOUR ENEMIES";
 	
+#define skill_type
+	return "outcast";
+	
 #define skill_take
 	sound_play(sndMut);
 

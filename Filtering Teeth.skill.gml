@@ -17,6 +17,9 @@ global.sprSkillHUD = sprite_add("Sprites/Icons/Filtering Teeth Icon.png", 1, 8, 
 #define skill_tip
 	return "Five second rule";
 	
+#define skill_type
+	return "ammo";
+	
 #define skill_take
 	sound_play(sndMut); sound_mutation_play();
 	

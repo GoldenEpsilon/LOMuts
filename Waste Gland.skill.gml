@@ -25,6 +25,9 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 #define skill_tip
 	return "Let's Waste them all";
 	
+#define skill_type
+	return "offensive";
+	
 #define skill_take
 	sound_play(sndMutTriggerFingers)
 	with(Player){
@@ -54,6 +57,7 @@ with(SmallExplosion){
 			wait(3);
 			with(instance_create(_x + irandom(8) - 4,_y + irandom(8) - 4,ToxicGas)){
 				speed/=2;
+				GETweaked = true;
 			}
 			exit;
 		}
@@ -69,6 +73,7 @@ with(Explosion){
 			repeat(6){
 				with(instance_create(_x + irandom(16) - 8,_y + irandom(16) - 8,ToxicGas)){
 					speed /= 2;
+					GETweaked = true;
 				}
 				wait(1);
 			}
@@ -95,7 +100,7 @@ with(ToxicGas){
 		continue;
 	}
 	var nearestEnemy = instance_nearest(x,y,enemy);
-	if(!(nearestEnemy == -4 ||nearestEnemy.object_index == FrogQueen || nearestEnemy.object_index == SuperFrog || nearestEnemy.object_index == Exploder) && distance_to_object(enemy) < 200){
+	if(!(nearestEnemy == -4 ||nearestEnemy.object_index == FrogQueen || nearestEnemy.object_index == SuperFrog || nearestEnemy.object_index == Exploder) && point_distance(x, y, nearestEnemy.x, nearestEnemy.y) < 100){
 		motion_add(point_direction(x, y, nearestEnemy.x, nearestEnemy.y), 0.5 * max(instance_number(ToxicGas)/maxTox, 1) * skill_get(mod_current));
 		x+=1000;
 		nearestTox = instance_nearest(x-1000,y,ToxicGas);

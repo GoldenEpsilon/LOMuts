@@ -23,6 +23,9 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 
 #define skill_tip
 	return "I feel icky...";
+	
+#define skill_type
+	return "reusable";
 
 #define skill_temp
 	return 1;

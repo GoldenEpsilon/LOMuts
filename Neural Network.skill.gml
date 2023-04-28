@@ -6,9 +6,6 @@
 #define skill_wepspec
 	return 1;
 
-#define game_start
-	global.num = 0;
-
 #define skill_name
 	return "NEURAL NETWORK";
 
@@ -24,8 +21,11 @@
 #define skill_sacrifice return false; //metamorphosis compat thing
 
 #define skill_tip
-	global.num += random(200) + 100
+	global.num += random(2000) + 500
 	return "GENERATION " + string(global.num);
+	
+#define skill_type
+	return "offensive";
 
 #define skill_avail
 	var s = mod_get_names("skill"); // Store all skills

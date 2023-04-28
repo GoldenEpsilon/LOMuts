@@ -21,7 +21,7 @@
 		{name: "RESTOCK", text: "REROLL ALL SHOP OPTIONS", cost: 0, icon: global.spr_restock, on_select: script_ref_create(tokenshop_restock)},
 		{name: "BUY ORDNANCE", text: "GET A#GIANT WEAPON CHEST", cost: 1, icon: global.spr_ordnance, on_select: script_ref_create(tokenshop_ordnance)},
 		{name: "BUY SUPPLIES", text: "HEAL TO FULL#GAIN 250 RADS", cost: 1, icon: global.spr_supplies, on_select: script_ref_create(tokenshop_supplies)},
-		{name: "BUY AMMO", text: "GAIN AMMO#(+10% MAX AMMO FOR EACH TYPE)", cost: 1, icon: global.spr_ammo, on_select: script_ref_create(tokenshop_ammo)},
+		{name: "BUY AMMO", text: "GAIN AMMO", cost: 1, icon: global.spr_ammo, on_select: script_ref_create(tokenshop_ammo)},
 		{name: "RETRAIN", text: "CHOOSE A DIFFERENT#NEURAL NETWORK", cost: 1, icon: global.spr_blank, on_select: script_ref_create(tokenshop_retrain)},
 		{name: "EXPERIMENT", text: "REROLL A RANDOM MUTATION", cost: 2, icon: global.spr_experiment, on_select: script_ref_create(tokenshop_experiment)},
 		{name: "DISRESPECT", text: "GAIN AN OUTCAST MUTATION#AND A BLIGHT", cost: 2, icon: global.spr_blank, on_select: script_ref_create(tokenshop_disrespect)},
@@ -79,7 +79,7 @@
 				if(irandom(1)){
 					var choice = irandom(instance_number(SkillIcon) - 1);
 					with(SkillIcon){
-						if(choice == 0 && noinput <= 0 && (is_real(skill) || !mod_script_call("skill", skill, "skill_reusable") || ("NoToken" in self && NoToken))){
+						if(choice == 0 && noinput <= 0 && (is_real(skill) || !mod_script_call("skill", skill, "skill_reusable")) && !("NoToken" in self && NoToken)){
 							MutationToken = true;
 						}
 						choice--;
@@ -126,6 +126,7 @@
 				wait(0);
 			}
 			if(global.cancelOpen){exit;}
+			with(LevCont) {instance_destroy();}
 			if(!instance_exists(LevCont)){
 				instance_create(0,0,LevCont);
 				with(GenCont){instance_destroy();}
@@ -160,8 +161,7 @@
 
 #define draw_gui
 	with(instances_matching(LevCont, "name", "TokenShop")){
-		titley = 1000;
-		if(GameCont.skillpoints > 1){
+		/*if(GameCont.skillpoints > 1){
 			GameCont.skillpoints--;
 			with(splat){
 				depth = 0;
@@ -170,79 +170,76 @@
 				instance_destroy();
 			}
 			break;
+		}else*/
+		if(instance_number(SkillIcon) > 0 || instance_number(EGSkillIcon) > 0){
+			titley = 0;
 		}else{
+			titley = 1000;
 			with(splat){
 				depth = -1001;
 			}
-			//I should replace skillicons that show up with tokenshop mutation selections instead of destroying them
-			with(SkillIcon){
-				instance_destroy();
-			}
-			with(EGSkillIcon){
-				instance_destroy();
-			}
-		}
-		var _br = false;
-		with(instances_matching(CustomObject, "name", "tokenshopOption")){
-			if(_br){
-				break;
-			}
-			if(!other.altpick xor alt){
-				image_alpha = 1;
-				if(instance_exists(self) && instance_exists(creator)){
-					with(Player){
-						if(instance_exists(other)){
-							if(point_in_rectangle(mouse_x[index], mouse_y[index], other.bbox_left, other.bbox_top, other.bbox_right, other.bbox_bottom) || other.creator.select == other.num){
-								other.creator.select = other.num;
-								other.image_blend = c_white;
-								other.y = game_height-22;
-								if(other.alt || other.cost <= global.mutTokens){
-									if((button_pressed(index, "fire") && point_in_rectangle(mouse_x[index], mouse_y[index], other.bbox_left, other.bbox_top, other.bbox_right, other.bbox_bottom)) || 
-									button_pressed(index, "key" + string(other.num+1)) || 
-									(other.creator.select == other.num && button_pressed(index, "okay"))){
-										other.y++;
-										if(!other.alt){global.mutTokens -= other.cost;}
-										script_ref_call(other.on_select, other);
-										_br = true;
-										break;
+			var _br = false;
+			with(instances_matching(CustomObject, "name", "tokenshopOption")){
+				if(_br){
+					break;
+				}
+				if(!other.altpick xor alt){
+					image_alpha = 1;
+					if(instance_exists(self) && instance_exists(creator)){
+						with(Player){
+							if(instance_exists(other)){
+								if(point_in_rectangle(mouse_x[index], mouse_y[index], other.bbox_left, other.bbox_top, other.bbox_right, other.bbox_bottom) || other.creator.select == other.num){
+									other.creator.select = other.num;
+									other.image_blend = c_white;
+									other.y = game_height-22;
+									if(other.alt || other.cost <= global.mutTokens){
+										if((button_pressed(index, "fire") && point_in_rectangle(mouse_x[index], mouse_y[index], other.bbox_left, other.bbox_top, other.bbox_right, other.bbox_bottom)) || 
+										button_pressed(index, "key" + string(other.num+1)) || 
+										(other.creator.select == other.num && button_pressed(index, "okay"))){
+											other.y++;
+											if(!other.alt){global.mutTokens -= other.cost;}
+											script_ref_call(other.on_select, other);
+											_br = true;
+											break;
+										}
 									}
+								}else{
+									other.image_blend = c_gray;
+									other.y = game_height-21;
 								}
-							}else{
-								other.image_blend = c_gray;
-								other.y = game_height-21;
 							}
 						}
 					}
-				}
-			}else{
-				image_alpha = 0;
-				if(alt){
-					instance_destroy();
+				}else{
+					image_alpha = 0;
+					if(alt){
+						instance_destroy();
+					}
 				}
 			}
-		}
-		if(instance_exists(self)){
-			draw_set_halign(1);
-			draw_set_font(fntBigName);
-			draw_text_nt(game_width/2, 48, "@gTOKEN SHOP");
-			draw_set_font(fntM);
-			draw_text_nt(game_width/2, 88, "@wTokens: " + string(global.mutTokens));
-			draw_set_halign(0);
-			if(timer > 0){
-				timer--;
-			}
-			with(instances_matching(CustomObject, "name", "tokenshopOption")){
-				if(!other.altpick xor alt){
-					if(creator.select == num){
-						draw_set_halign(1);
-						draw_text_nt(game_width/2, game_height - 83, _name);
-						if(alt){
-							draw_text_nt(game_width/2, game_height - 74, "@s"+text);
-						}else{
-							draw_text_nt(game_width/2, game_height - 74, "@wCOST: "+string(cost));
-							draw_text_nt(game_width/2, game_height - 62, "@s"+text);
+			if(instance_exists(self)){
+				draw_set_halign(1);
+				draw_set_font(fntBigName);
+				draw_text_nt(game_width/2, 48, "@gTOKEN SHOP");
+				draw_set_font(fntM);
+				draw_text_nt(game_width/2, 88, "@wTokens: " + string(global.mutTokens));
+				draw_set_halign(0);
+				if(timer > 0){
+					timer--;
+				}
+				with(instances_matching(CustomObject, "name", "tokenshopOption")){
+					if(!other.altpick xor alt){
+						if(creator.select == num){
+							draw_set_halign(1);
+							draw_text_nt(game_width/2, game_height - 83, _name);
+							if(alt){
+								draw_text_nt(game_width/2, game_height - 74, "@s"+text);
+							}else{
+								draw_text_nt(game_width/2, game_height - 74, "@wCOST: "+string(cost));
+								draw_text_nt(game_width/2, game_height - 62, "@s"+text);
+							}
+							draw_set_halign(0);
 						}
-						draw_set_halign(0);
 					}
 				}
 			}
@@ -259,6 +256,12 @@
 		}
 		tokenIndex += current_time_scale * 0.4;
 	}
+	
+#define select_default(_button)
+	skill_set(_button.skill, 1);
+	with(LevCont){
+		altpick = false;
+	}
 
 #define tokenshop_option_create(chosenOption, optionNum, selectedOption)
 	with(instance_create(game_width / 2 - 14 * optionNum + 12 + 28*chosenOption, game_height-20, CustomObject)){
@@ -268,7 +271,7 @@
 		_name = selectedOption.name;
 		text = selectedOption.text;
 		cost = selectedOption.cost;
-		creator = other;
+		creator = LevCont.id;
 		sprite_index = selectedOption.icon;
 		mask_index = sprite_index;
 		on_select = selectedOption.on_select;
@@ -295,7 +298,7 @@
 			text = skill_get_text(_skill);
 		}
 		image_speed = 0;
-		creator = other;
+		creator = LevCont.id;
 		mask_index = sprite_index;
 		on_select = _on_select;
 		depth = -1002;
@@ -356,8 +359,8 @@
 #define tokenshop_ammo
 	with(Player){
 		for(var i = 0; i < array_length(ammo); i++){
-			ammo[i] += ceil(typ_amax[i] * 0.10);
-			typ_amax[i] += ceil(typ_amax[i] * 0.10);
+			ammo[i] += ceil(typ_amax[i] * 0.30);
+			ammo[i] = min(ammo[i], typ_amax[i]);
 		}
 	}
 
@@ -608,6 +611,7 @@
 		}else{
 			trace("you have no mutations, refunding");
 			global.mutTokens += 2;
+			altpick = false;
 		}
 	}
 
@@ -874,6 +878,9 @@
 	with(LevCont){
 		altpick = false;
 	}
+	with(instances_matching(instances_matching(CustomObject, "name", "tokenshopOption"), "alt", true)){
+		instance_destroy();
+	}
 
 #define tokenshop_reset
 	for(var i = 0; !is_undefined(skill_get_at(i)); i++){
@@ -913,7 +920,7 @@
 	var toChoose = []
 	for(var i = 0; !is_undefined(skill_get_at(i)); i++){
 		var _skill = skill_get_at(i);
-		if(skill_get_active(_skill)){
+		if(skill_get_active(_skill) && is_string(_skill)){
 			if(
 				mod_script_exists("skill", _skill, "skill_neural")
 			){
@@ -936,7 +943,12 @@
 		var _skills = mod_get_names("skill");
 		with(_skills){
 			if(!skill_get(self) && mod_script_exists("skill", self, "skill_neural")){
-				array_push(mutList, self);
+				var _n = mod_script_call("skill", s[f], "skill_neural");
+				if(_n == true ||
+				   (is_array(_n) && mod_exists(_n[0], _n[1]))||
+				   (is_string(_n) && mod_exists("mod", _n))) {
+					array_push(mutList, self);
+				}
 			}
 		}
 		

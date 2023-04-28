@@ -23,6 +23,9 @@ global.sprSkillHUD = sprite_add("../Sprites/Icons/Toxic Thoughts Icon.png", 1, 8
 #define skill_tip
 	return choose("Blame the player#not the game", "Indifferent to ballguys");
 	
+#define skill_type
+	return "outcast";
+	
 #define skill_take
 	sound_play(sndMutTriggerFingers)
 	

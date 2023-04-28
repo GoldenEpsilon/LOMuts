@@ -20,6 +20,9 @@ global.sprSkillHUD = sprite_add("../Sprites/Outcast/Telekinetic Tears Icon.png",
 #define skill_tip
 	return "Sweat and tears#on every shell";
 	
+#define skill_type
+	return "outcast";
+	
 #define skill_take
 	sound_play(sndMut);
 

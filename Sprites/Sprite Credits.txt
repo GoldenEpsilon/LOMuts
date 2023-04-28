@@ -1,3 +1,33 @@
+Monky:
+	(Icon) Groupthink
+
+APerson:
+	Bursted Chest
+	Shivering Spine
+	Friendly Eyelashes
+	Explosive Ears
+	Groupthink
+	Telekinetic Tears
+	(Icon) Energized Intestines
+
+WigglerCola:
+	Neural Network
+	(Icon) Duplicators
+	(Icon) Shocked Skin
+	(Icon) Staked Chest
+
+ricottakitten:
+	Explosive Gaze
+	Leprosy
+	Purist
+	Cruelty-Free Veganlust
+	Ruffled Feathers
+
+CringeRhombus:
+	Alchemic Stomach
+	Terrorism
+	Arcane Arts
+
 Jsburg:
 	Mimicry
 	Rocket Casings
@@ -43,6 +73,7 @@ soScary:
 	(Ultra) Galactic Style
 	(Ultra) Generalist
 	(Ultra) Union
+	(Ultra) Reincarnation
 	(Icon) Confidence
 	(Icon) Dynamic Calves
 	(Icon) Filtering Teeth
@@ -63,10 +94,10 @@ Golden Epsilon:
 	Steel Nerves
 	Thick Head
 	Unstable DNA
-	Neural Network
 	(Ultra) Adaptable
 	(Ultra) Intellect
-	(Ultra) Reincarnation
+	(Dev Icon, Ultra) Reincarnation
+	(Dev Icon) Neural Network
 	(Dev Icon) Brain Transfer
 	(Dev Icon) Double Vision
 	(Dev Icon) Dynamic Calves
@@ -93,14 +124,11 @@ Golden Epsilon:
 	(Dev Art) Waste Gland
 	(Icon) Brain Transfer
 	(Icon) Double Vision
-	(Icon) Duplicators
-	(Icon) Energized Intestines
 	(Icon) Muscle Memory
 	(Icon) Pressurized Lungs
 	(Icon) Rocket Casings
 	(Icon) Scrap Arms
 	(Icon) Sloppy Fingers
-	(Icon) Staked Chest
 	(Icon) Steel Nerves
 	(Icon) Thick Head
 	(Icon) Unstable DNA
@@ -115,4 +143,3 @@ Can't definitively find:
 	(this is the kind of reason I made this list in the first place -_-)
 	(if you know/remember who did it lmk, I literally can't find the message)
 	Shattered Skull
-	(Icon) Shocked Skin

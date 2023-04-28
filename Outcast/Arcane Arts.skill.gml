@@ -26,6 +26,9 @@ global.sprSkillHUD = sprite_add("../Sprites/Outcast/Blank Icon.png", 1, 8, 8)
 #define skill_tip
 	return "Flippity Floodle#Your weapon is now a noodle";
 	
+#define skill_type
+	return "outcast";
+	
 #define skill_take
 	sound_play(sndMut);
 	
@@ -39,6 +42,9 @@ with(Player){
 			}
 			var _t = other.team;
 			wait(0);
+			while(instance_exists(self) && "team" not in self){
+				wait(0);
+			}
 			if(instance_exists(self) && team == _t && "arcanecheck" not in self){
 				arcanecheck = true;
 				switch(irandom(2)){

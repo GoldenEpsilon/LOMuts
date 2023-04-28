@@ -18,6 +18,9 @@ global.skill = [];
 
 #define skill_tip
 	return "You've got loneliness#to share now";
+	
+#define skill_type
+	return "utility";
 
 #define skill_avail
 	return true;

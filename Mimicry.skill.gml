@@ -47,6 +47,9 @@ global.canActivate = 1;
 #define skill_tip
 	return choose("Don't listen to the mutation#@q@wBE WHO YOU ARE", "Time for wacky");
 	
+#define skill_type
+	return "utility";
+	
 #define skill_take
 	sound_play(sndMutant1Wrld);
 	sound_play(sndMutant2Wrld);

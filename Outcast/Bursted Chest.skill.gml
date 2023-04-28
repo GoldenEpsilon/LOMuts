@@ -15,7 +15,10 @@ global.sprSkillHUD = sprite_add("../Sprites/Outcast/Bursted Chest Icon.png", 1, 
 	return global.sprSkillHUD;
 
 #define skill_tip
-	return "Warm";
+	return "Grumbly Tummy";
+	
+#define skill_type
+	return "outcast";
 
 #define skill_outcast
 	return true;

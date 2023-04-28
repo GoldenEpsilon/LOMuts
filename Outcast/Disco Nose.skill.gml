@@ -21,6 +21,9 @@ global.sprDiscoLaser = sprite_add("../Sprites/DiscoLaser.png", 14, 2, 3)
 #define skill_tip
 	return "Dance 'till you're dead";
 	
+#define skill_type
+	return "outcast";
+	
 #define skill_take
 	sound_play(sndMut);
 

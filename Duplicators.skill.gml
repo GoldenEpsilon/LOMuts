@@ -18,6 +18,9 @@ global.modifier = 3;
 #define skill_tip
 	return "You don't want to know how it works.";
 	
+#define skill_type
+	return "ammo";
+	
 #define skill_take
 	sound_play(sndMutEagleEyes);
 	

@@ -27,6 +27,9 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 #define skill_tip
 	return "@qI CAN SEE YESTERDAY";
 	
+#define skill_type
+	return "outcast";
+	
 #define skill_take(_num)
 	sound_play(sndMut);
 

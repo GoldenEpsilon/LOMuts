@@ -27,6 +27,9 @@ global.stacks = 0;
 #define skill_tip
 	return "Sharp Pointy Teeth";
 	
+#define skill_type
+	return "outcast";
+	
 #define skill_take
 	sound_play(sndMut);
 	GameCont.hard += 10 * (skill_get(mod_current) - global.stacks);

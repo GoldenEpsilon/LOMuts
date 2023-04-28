@@ -24,6 +24,9 @@ global.burst = sprite_add("../Sprites/SteelNervesBurst.png", 4, 16, 16)
 #define skill_tip
 	return "You've got skin of iron.";
 	
+#define skill_type
+	return "outcast";
+	
 #define skill_take
 	sound_play(sndMut);
 	

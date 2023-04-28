@@ -25,6 +25,9 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 #define skill_tip
 	return choose("Reflexes", "Reflected bullets#are now faster!", "Reflected bullets#deal more damage!");
 	
+#define skill_type
+	return "offensive";
+	
 #define skill_take
 	sound_play(sndMut);
 	sound_play(sndMutant7Slct);

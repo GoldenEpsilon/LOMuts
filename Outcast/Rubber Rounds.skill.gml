@@ -23,7 +23,10 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 	return true;
 
 #define skill_tip
-	return "Shlorp";
+	return "Boing";
+	
+#define skill_type
+	return "outcast";
 	
 #define skill_take
 	sound_play(sndMut);

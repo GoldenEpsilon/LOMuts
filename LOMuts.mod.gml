@@ -20,19 +20,16 @@
 	}
 
 	global.canMutTokens = true;
-	global.canOutcast = false;
+	global.canOutcast = 0;
+	global.prevCanOutcast = 0;
 	while(!global.libLoaded){wait(1);}
 	call(scr.add_setting, "LOMuts", "canMutTokens", "Mutation Tokens");
 	call(scr.autoupdate, "LOMuts", "GoldenEpsilon/LOMuts");
 	game_start();
-
+	
 #define game_start
-	var _skills = mod_get_names("skill");
-	with(_skills){
-		if(!skill_get(self) && mod_script_exists("skill", self, "skill_outcast") && mod_script_call("skill", self, "skill_outcast")){
-			skill_set_active(self, false);
-		}
-	}
+	global.canOutcast = 0;
+	global.prevCanOutcast = 1;
 
 #define step
 	with(SkillIcon){
@@ -44,6 +41,24 @@
 				(other.creator.select == other.num && button_pressed(index, "okay"))){
 					//TODO: https://discord.com/channels/846661738803626014/882447494892642315/917906721538727957
 					mod_script_call("skill", other.skill, "skill_take");
+				}
+			}
+		}
+	}
+	if(global.canOutcast != global.prevCanOutcast){
+		global.prevCanOutcast = global.canOutcast;
+		if(global.canOutcast == 0){
+			var _skills = mod_get_names("skill");
+			with(_skills){
+				if(!skill_get(self) && mod_script_exists("skill", self, "skill_outcast") && mod_script_call("skill", self, "skill_outcast")){
+					skill_set_active(self, false);
+				}
+			}
+		}else{
+			var _skills = mod_get_names("skill");
+			with(_skills){
+				if(!skill_get(self) && mod_script_exists("skill", self, "skill_outcast") && mod_script_call("skill", self, "skill_outcast")){
+					skill_set_active(self, true);
 				}
 			}
 		}

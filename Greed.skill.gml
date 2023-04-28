@@ -25,6 +25,9 @@ global.greedsTaken = 0;
 
 #define skill_tip
 	return "Greed is good!";
+	
+#define skill_type
+	return "reusable";
 
 #define skill_temp
 	return 1;

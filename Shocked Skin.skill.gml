@@ -26,6 +26,9 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 #define skill_tip
 	return "Shock absorption";
 	
+#define skill_type
+	return "offensive";
+	
 #define skill_take
 	sound_play(sndMutTriggerFingers)
 	
@@ -56,7 +59,11 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 						nearest = creator;
 					}
 					if(nearest != noone){
-						image_angle = point_direction(x,y,nearest.x,nearest.y);
+						direction = point_direction(x,y,nearest.x,nearest.y);
+						image_angle = direction;
+					}else{
+						direction = random(360);
+						image_angle = direction;
 					}
 				}
 				with(instances_matching_ge(Lightning, "id", newID)){

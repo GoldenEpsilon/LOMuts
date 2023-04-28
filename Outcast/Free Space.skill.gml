@@ -22,12 +22,12 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 
 #define skill_outcast
 	return true;
-	
-#define skill_type
-	return "outcast";
 
 #define skill_tip
 	return "Free Real Estate";
+	
+#define skill_type
+	return "outcast";
 	
 #define skill_take
 	sound_play(sndMut);

@@ -19,6 +19,9 @@ global.acc = 20;
 #define skill_tip
 	return "Duplication is imprecise";
 	
+#define skill_type
+	return "offensive";
+	
 #define skill_take
 	sound_play(sndMutEagleEyes);
 	

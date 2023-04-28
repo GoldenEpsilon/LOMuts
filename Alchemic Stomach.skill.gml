@@ -18,6 +18,9 @@ global.alchemize = sprite_add("Sprites/AlchemicStomach.png", 7, 8, 8)
 #define skill_tip
 	return "Strange brew";
 	
+#define skill_type
+	return "ammo";
+	
 #define skill_take
 	sound_play(sndMut);
 	
