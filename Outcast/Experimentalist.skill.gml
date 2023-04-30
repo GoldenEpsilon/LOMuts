@@ -44,7 +44,7 @@ global.check = array_length(mod_get_names("weapon")) > 30;
 	with(instances_matching_ne(instances_matching_gt(WepPickup, "id", _id), "ammo", 0)){
 		repeat(2 * skill_get(mod_current)){
 			if(is_real(wep)){
-				wep = weapon_decide(0, (ammo > 0) + (2 * curse) + GameCont.hard, false, null);
+				wep = weapon_decide(0, (ammo > 0) + (2 * curse) + GameCont.hard, weapon_get_gold(wep), null);
 			}
 		}
 	}

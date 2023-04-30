@@ -12,7 +12,12 @@ spr_walk = global.spr_walk;
 sprite_index = global.spr_icon;
 
 #define step
-
+with(instances_matching_ne(enemy, "outcastCrownEffect", 1)){
+	outcastCrownEffect = 1;
+	if("raddrop" in self && raddrop > 0){
+		raddrop++;
+	}
+}
 
 #define game_start
 
@@ -20,7 +25,7 @@ sprite_index = global.spr_icon;
 return "CROWN OF OUTCASTS";
 
 #define crown_text // Description
-return "OUTCAST MUTATIONS APPEAR#IN THE MUTATION POOL";
+return `MORE @gRADS@s#@(color:${make_color_rgb(84, 58, 24)})OUTCAST MUTATIONS@s APPEAR#IN THE MUTATION POOL`;
 
 #define crown_tip // Loading Tip
 return "FREAKS COME OUT#UNTIL THE LIGHTS GO ON";

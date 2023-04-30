@@ -95,7 +95,7 @@
 				if((button_pressed(index, "fire") && point_in_rectangle(mouse_x[index], mouse_y[index], other.bbox_left, other.bbox_top, other.bbox_right, other.bbox_bottom)) || 
 				button_pressed(index, "key" + string(other.num+1)) || 
 				(other.creator.select == other.num && button_pressed(index, "okay"))){
-					global.mutTokens += 2;
+					global.mutTokens += 10;
 				}
 			}
 		}
@@ -104,7 +104,7 @@
 		if((global.prevLoops < GameCont.loops || global.forceShopOpen) && fork()){
 			global.cancelOpen = false;
 			global.forceShopOpen = false;
-			global.mutTokens += 3;
+			global.mutTokens += 5;
 			global.prevLoops = GameCont.loops;
 			global.openingShop = 1;
 			GameCont.endpoints++;

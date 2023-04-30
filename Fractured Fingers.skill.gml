@@ -75,7 +75,8 @@ with(instances_matching_le(enemy, "my_health", 0)){
 						exit;
 					}
 				}else{
-					with(instance_create(x + lengthdir_x(sprite_width,point_direction(x,y,_inst.x,_inst.y)),y + lengthdir_y(sprite_width,point_direction(x,y,_inst.x,_inst.y)),object_index)){
+					var dist = min(point_distance(x,y,_inst.x,_inst.y), sprite_width*image_xscale)
+					with(instance_create(x + lengthdir_x(dist,point_direction(x,y,_inst.x,_inst.y)),y + lengthdir_y(dist,point_direction(x,y,_inst.x,_inst.y)),object_index)){
 						if("name" in other){name = other.name}
 						FracturedFingers = other.FracturedFingers + 1;
 						damage = other.damage;
