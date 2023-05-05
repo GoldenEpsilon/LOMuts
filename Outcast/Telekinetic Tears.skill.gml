@@ -26,6 +26,9 @@ global.sprSkillHUD = sprite_add("../Sprites/Outcast/Telekinetic Tears Icon.png",
 #define skill_take
 	sound_play(sndMut);
 
+#define skill_avail
+	return true;
+
 #define step
 with(Player){
 	with(instances_matching(instances_matching(projectile, "ammo_type", 2), "creator", self)){

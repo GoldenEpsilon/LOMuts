@@ -1,3 +1,8 @@
+//THIS IS OUT OF DATE, I AM REMOVING THE UNUSED PLAYER SLOT FUNCTIONALITY SO THERE ARE SOME ULTRAS THAT THIS SAYS WORK THAT NO LONGER WORK.
+
+
+
+
 Note if you're reading this to know what mimicry can and can't do:
 The ones that say "already working" or "partially working" rely on unused player slots to function properly.
 There is no guarantee that they won't break player 3/4's ultras and possibly passives if you take them in a large lobby.

@@ -48,7 +48,7 @@ global.skill = [];
 			
 			var _skills = mod_get_names("skill");
 			with(_skills){
-				if(!skill_get(self) && mod_script_exists("skill", self, "skill_outcast") && mod_script_call("skill", self, "skill_outcast") && mod_script_exists("skill", self, "skill_avail") && mod_script_call("skill", self, "skill_avail")){
+				if(!skill_get(self) && mod_script_exists("skill", self, "skill_outcast") && mod_script_call("skill", self, "skill_outcast") && (!mod_script_exists("skill", self, "skill_avail") || mod_script_call("skill", self, "skill_avail"))){
 					array_push(mutList, self);
 				}
 			}

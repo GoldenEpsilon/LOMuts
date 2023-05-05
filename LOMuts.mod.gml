@@ -32,6 +32,7 @@
 	global.prevCanOutcast = 1;
 
 #define step
+	//TODO: If all skill icons are reusable skill icons, reroll one of them
 	with(SkillIcon){
 		if(is_string(skill) && mod_script_exists("skill", skill, "skill_reusable") && mod_script_call("skill", skill, "skill_reusable")){
 			noinput = 2;
@@ -41,6 +42,7 @@
 				(other.creator.select == other.num && button_pressed(index, "okay"))){
 					//TODO: https://discord.com/channels/846661738803626014/882447494892642315/917906721538727957
 					mod_script_call("skill", other.skill, "skill_take");
+					other.addy += 5;
 				}
 			}
 		}

@@ -22,4 +22,6 @@
 /loadskill Rubber Rounds
 /loadskill Bursted Chest
 /loadskill Shivering Spine
+/loadskill Toxic Thoughts
+/loadskill Aerodynamic Ankles
 //loadskill Bloated Back

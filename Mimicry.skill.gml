@@ -7,7 +7,7 @@ global.sprSkillHUD = sprite_add("Sprites/Icons/Mimicry Icon.png", 1, 8, 8)
 global.activations = 0;
 global.newLevel = true;
 global.takenUltras = [];
-global.uselessUltras = [[char_rogue, 2], [char_rogue, 1], [char_chicken, 1], [char_skeleton, 2], [char_crystal, 2], [char_chicken, 2]];
+global.implementedUltras = [[char_fish, 1], [char_fish, 2], [char_crystal, 1], [char_eyes, 1], [char_eyes, 2], [char_melting, 1], [char_venuz, 1], [char_venuz, 2], [char_rebel, 1], [char_rebel, 2]];
 global.tempEndpoints = GameCont.endpoints;
 global.tempSkillpoints = GameCont.skillpoints;
 global.canActivate = 1;
@@ -28,7 +28,13 @@ global.canActivate = 1;
 	return "Mimicry";
 	
 #define skill_text
-	return "At @gULTRA@s, also choose#@wANOTHER@s mutant's ultra#lose the last mutation you took";
+	var text = "At @gULTRA@s, also choose#@wANOTHER@s mutant's ultra";
+	//text += "#lose the last mutation you took";
+	with(global.takenUltras){
+		var desc = ultra_remake_get_desc(self[0], self[1]);
+		text += "#@w" + desc[0] + ":@s#" + desc[1];
+	}
+	return text;
 
 #define skill_button
 	sprite_index = global.sprSkillIcon;
@@ -58,7 +64,7 @@ global.canActivate = 1;
 	if(global.activations >= skill_get(mod_current)){
 		global.activations--;
 	}
-	var i = 0;
+	/*var i = 0;
 	while(!is_undefined(skill_get_at(i))){i++}
 	while(is_string(skill_get_at(i)) && 
 		(
@@ -71,7 +77,7 @@ global.canActivate = 1;
 		trace("Hey. You don't have any removable mutations.");
 		return;
 	}
-	skill_set(skill_get_at(i-2), 0);
+	skill_set(skill_get_at(i-2), 0);*/
 	
 
 #define game_start
@@ -135,10 +141,11 @@ global.takenUltras = [];
 								break;
 							}
 						}
-						if(global.safeMimicry){
-							with(global.uselessUltras){
+						if(global.safeMimicry && !skip){
+							skip = true;
+							with(global.implementedUltras){
 								if(race_get_id(self[0]) == i && i2 == self[1]){
-									skip = true;
+									skip = false;
 									break;
 								}
 							}
@@ -308,7 +315,7 @@ global.takenUltras = [];
 						}
 					}
 					if(chosen != -1){
-						player_set_race(3,chosen);
+						//player_set_race(3,chosen);
 						ultra_remake_take(chosen, chosenSkill);
 						GameCont.skillpoints++;
 						with(EGSkillIcon){
@@ -318,21 +325,21 @@ global.takenUltras = [];
 					}
 					with(EGSkillIcon){
 						for(var i = 0; i < maxp; i++){
-							if(num == 0 && button_pressed(i, "key1")){chosen = race;chosenSkill = skill;}
-							if(num == 1 && button_pressed(i, "key2")){chosen = race;chosenSkill = skill;}
-							if(num == 2 && button_pressed(i, "key3")){chosen = race;chosenSkill = skill;}
-							if(num == 3 && button_pressed(i, "key4")){chosen = race;chosenSkill = skill;}
-							if(num == 4 && button_pressed(i, "key5")){chosen = race;chosenSkill = skill;}
-							if(num == 5 && button_pressed(i, "key6")){chosen = race;chosenSkill = skill;}
-							if(num == 6 && button_pressed(i, "key7")){chosen = race;chosenSkill = skill;}
-							if(num == 7 && button_pressed(i, "key8")){chosen = race;chosenSkill = skill;}
-							if(num == 8 && button_pressed(i, "key9")){chosen = race;chosenSkill = skill;}
-							if(num == 9 && button_pressed(i, "key0")){chosen = race;chosenSkill = skill;}
-							if(addy == 0 && button_pressed(i, "fire")){chosen = race;chosenSkill = skill;}
+							if(num == 0 && button_pressed(i, "key1")){chosen = race;chosenSkill = mimicskill;}
+							if(num == 1 && button_pressed(i, "key2")){chosen = race;chosenSkill = mimicskill;}
+							if(num == 2 && button_pressed(i, "key3")){chosen = race;chosenSkill = mimicskill;}
+							if(num == 3 && button_pressed(i, "key4")){chosen = race;chosenSkill = mimicskill;}
+							if(num == 4 && button_pressed(i, "key5")){chosen = race;chosenSkill = mimicskill;}
+							if(num == 5 && button_pressed(i, "key6")){chosen = race;chosenSkill = mimicskill;}
+							if(num == 6 && button_pressed(i, "key7")){chosen = race;chosenSkill = mimicskill;}
+							if(num == 7 && button_pressed(i, "key8")){chosen = race;chosenSkill = mimicskill;}
+							if(num == 8 && button_pressed(i, "key9")){chosen = race;chosenSkill = mimicskill;}
+							if(num == 9 && button_pressed(i, "key0")){chosen = race;chosenSkill = mimicskill;}
+							if(addy == 0 && button_pressed(i, "fire")){chosen = race;chosenSkill = mimicskill;}
 						}
 					}
 					if(chosen != -1){
-						player_set_race(max(maxp - global.activations, 1),race_get_id(chosen));
+						//player_set_race(max(maxp - global.activations, 1),race_get_id(chosen));
 						ultra_remake_take(chosen, chosenSkill);
 						GameCont.endpoints++;
 						with(SkillIcon){
@@ -415,19 +422,118 @@ global.takenUltras = [];
 		race    = race_get_name(floor(_skill/3)+1);
 		num     = _num;
 		alarm0  = num + 3;
-		skill   = (_skill % 3) + 1;
+		skill   = -1;//(_skill % 3) + 1;
+		mimicskill = (_skill % 3) + 1;
 		mimic   = true;
 		
 		if(is_real(_skill)){
 			sprite_index = sprEGSkillIcon;
 			image_index = _skill;
-			name = loc_get("Races:"+string(floor(_skill/3)+1)+":Ultra:"+string(skill)+":Name");
-			text = loc_get("Races:"+string(floor(_skill/3)+1)+":Ultra:"+string(skill)+":Text");
+			var desc = ultra_remake_get_desc(race_get_name(floor(_skill/3)+1), (_skill % 3) + 1);
+			name = desc[0];
+			text = desc[1];
+			//name = loc_get("Races:"+string(floor(_skill/3)+1)+":Ultra:"+string(skill)+":Name");
+			//text = loc_get("Races:"+string(floor(_skill/3)+1)+":Ultra:"+string(skill)+":Text");
 		}
 	}
 
+#define ultra_remake_get_desc(_race, _skill)
+	if(is_real(_race)){_race = race_get_name(_race);}
+	_race = string_lower(_race);
+	if(is_string(_skill)){_skill = string_lower(_skill);}
+	switch(_race){
+		case "fish":
+			switch(_skill){
+				case 1: return ["CONFISCATE", "@wENEMIES @sSOMETIMES DROP @wCHESTS@s"] break;
+				case 2: return ["GUN WARRANT", "@yINFINITE AMMO@s THE FIRST 7 SECONDS#AFTER EXITING A @pPORTAL@s"] break;
+			}
+			break;
+		case "crystal":
+			switch(_skill){
+				case 1: return ["FORTRESS", "+4 MAX @rHP@s"] break; //OG: +6 MAX @rHP@s
+				case 2: return ["JUGGERNAUT", "GAIN A @wSHIELD@s#AFTER BEING HIT" + "#UNFINISHED"] break; //OG: MOVE WHILE @wSHIELDED@s
+			}
+			break;
+		case "eyes":
+			switch(_skill){
+				case 1: return ["PROJECTILE STYLE", "@wTELEKINESIS@s HOLDS YOUR @wPROJECTILES@s#WHILE FIRING"] break; //OG: @wTELEKINESIS@s HOLDS YOUR @wPROJECTILES@s
+				case 2: return ["MONSTER STYLE", "PUSH NEARBY @wENEMIES@s AWAY#WHEN NOT @wFIRING@s"] break; //OG: PUSH NEARBY @wENEMIES@s AWAY#WHEN NOT USING @wTELEKINESIS@s
+			}
+			break;
+		case "melting":
+			switch(_skill){
+				case 1: return ["BRAIN CAPACITY", "@rLOW HP @wENEMIES@s BLOW UP"] break; //OG: BLOW UP @rLOW HP @wENEMIES@s
+				case 2: return ["DETACHMENT", "3 MORE @gMUTATIONS@s#LOSE HALF OF YOUR @rHP@s" + "#NOT CHECKED"] break;
+			}
+			break;
+		case "plant":
+			switch(_skill){
+				case 1: return ["TRAPPER", "SOME @wENEMIES@s SPAWN @wSNARES@s ON DEATH#BIG @wSNARES@s" + "#UNFINISHED"] break; //OG: BIG @wSNARE@s
+				case 2: return ["KILLER", "@wSNARES@s SPAWN AROUND THE LEVEL#@wENEMIES@s KILLED ON @wSNARES@s#SPAWN @wSAPLINGS@s" + "#UNFINISHED"] break; //OG: @wENEMIES@s KILLED ON YOUR @wSNARE@s#SPAWN @wSAPLINGS@s
+			}
+			break;
+		case "venuz":
+			switch(_skill){
+				case 1: return ["IMA GUN GOD", "HIGHER @wRATE OF FIRE@s"] break;
+				case 2: return ["BACK 2 BIZNIZ", "RANDOM FREE @wPOP POP@s"] break; //OG: FREE @wPOP POP@s UPGRADE
+			}
+			break;
+		case "steroids":
+			switch(_skill){
+				case 1: return ["AMBIDEXTROUS", "DOUBLE @wWEAPONS@s FROM @wCHESTS@s" + "#UNFINISHED"] break;
+				case 2: return ["GET LOADED", "@yAMMO CHESTS@s CONTAIN ALL @yAMMO TYPES@s" + "#UNFINISHED"] break;
+			}
+			break;
+		case "robot":
+			switch(_skill){
+				case 1: return ["REFINED TASTE", "HIGH TIER @wWEAPONS@s ONLY#AUTO EAT @wWEAPONS@s LEFT BEHIND" + "#UNFINISHED"] break;
+				case 2: return ["REGURGITATE", "EATING @wWEAPONS@s CAN DROP @wCHESTS@s#AUTO EAT @wWEAPONS@s LEFT BEHIND" + "#UNFINISHED"] break;
+			}
+			break;
+		case "chicken":
+			switch(_skill){
+				case 1: return ["HARDER TO KILL", "HARD TO KILL#KILLS EXTEND BLEED TIME" + "#UNFINISHED"] break; //OG: KILLS EXTEND BLEED TIME
+				case 2: return ["DETERMINATION", "@wFIRE@s WHEN OUT OF @yAMMO@s TO THROW#THROWN @wWEAPONS@s CAN TELEPORT BACK#TO YOUR SECONDARY SLOT" + "#UNFINISHED"] break; //OG: THROWN @wWEAPONS@s CAN TELEPORT BACK#TO YOUR SECONDARY SLOT
+			}
+			break;
+		case "rebel":
+			switch(_skill){
+				case 1: return ["PERSONAL GUARD", "START A LEVEL WITH#LOOP + 2 @wALLIES@s#ALL @wALLIES@s HAVE MORE @rHP@s"] break; //OG: START A LEVEL WITH 2 @wALLIES@s#ALL @wALLIES@s HAVE MORE @rHP@s
+				case 2: return ["RIOT", "START A LEVEL WITH#LOOP X 2 @wALLIES@s"] break; //OG: DOUBLE @wALLY@s SPAWNS
+			}
+			break;
+		case "horror":
+			switch(_skill){
+				case 1: return ["STALKER", "@wENEMIES@s EXPLODE IN @gRADIATION@s ON DEATH" + "#UNFINISHED"] break;
+				case 2: return ["ANOMALY", "@pPORTALS@s APPEAR EARLIER" + "#UNFINISHED"] break;
+				case 3: return ["MELTDOWN", "DOUBLE @gRAD@s CAPACITY" + "#UNFINISHED"] break;
+			}
+			break;
+		case "rogue":
+			switch(_skill){
+				case 1: return ["SUPER PORTAL STRIKE", "TWO @wAUTOMATIC@s#@bPORTAL STRIKES@s PER LEVEL" + "#UNFINISHED"] break; //OG: DOUBLE @bPORTAL STRIKE@s PICKUPS#AND CAPACITY
+				case 2: return ["SUPER BLAST ARMOR", "SUPER BLAST ARMOR" + "#UNFINISHED"] break;
+			}
+			break;
+		case "skeleton":
+			switch(_skill){
+				case 1: return ["REDEMPTION", "BACK IN THE FLESH" + "#UNFINISHED"] break;
+				case 2: return ["DAMNATION", "FIRING WHEN EMPTY BLOOD GAMBLES#FAST RELOAD AFTER BLOOD GAMBLE" + "#UNFINISHED"] break; //OG: FAST RELOAD AFTER BLOOD GAMBLE
+			}
+			break;
+		case "frog":
+			switch(_skill){
+				case 1: return ["DISTANCE", "RADS CAN SPAWN TOXIC GAS" + "#UNFINISHED"] break;
+				case 2: return ["INTIMACY", "CONTINUOUSLY SPAWN TOXIC GAS" + "#UNFINISHED"] break;
+			}
+			break;
+	}
+	//fallback
+	var _id = race_get_id(_race);
+	return [loc_get("Races:"+string(_id)+":Ultra:"+string(_skill)+":Name"), loc_get("Races:"+string(_id)+":Ultra:"+string(_skill)+":Text")]
+
 #define ultra_remake_take(_race, _skill)
-if(is_real(_race)){_race = loc_get("Races:"+_race+":Name");trace(_race);}
+if(is_real(_race)){_race = race_get_name(_race);}
 _race = string_lower(_race);
 if(is_string(_skill)){_skill = string_lower(_skill);}
 array_push(global.takenUltras, [_race, _skill]);
@@ -436,7 +542,7 @@ switch(_race){
 		switch(_skill){
 			//Fortress
 			case 1:
-				with(Player){maxhealth+=6;my_health+=6;}
+				with(Player){maxhealth+=4;my_health+=4;}
 				break;
 		}
 		break;
@@ -447,6 +553,15 @@ switch(_race){
 				with Player {
 					maxhealth = ceil(maxhealth / 2);
 					if(my_health > maxhealth){my_health = maxhealth;lsthealth = maxhealth;}
+				}
+				GameCont.skillpoints += 3;
+				
+				if(instance_exists(LevCont)){
+					with(LevCont) {instance_destroy();}
+					if(!instance_exists(LevCont)){
+						instance_create(0,0,LevCont);
+						with(GenCont){instance_destroy();}
+					}
 				}
 		}
 		break;
@@ -467,7 +582,7 @@ with(global.takenUltras){
 			switch(self[1]){
 				//Gun Warrant
 				case 2:
-					with(Player){infammo += 7*30}
+					with(Player){infammo = 7*30}
 					break;
 			}
 			break;
@@ -476,9 +591,11 @@ with(global.takenUltras){
 				//Personal Guard
 				case 1:
 					with(Player){
-						repeat(2){
+						repeat(2 + GameCont.loops){
 							with(instance_create(x,y,Ally)){
 								creator = other;team = other.team;
+								my_health = 30;
+								maxhealth = 30;
 							}
 						}
 					}
@@ -486,7 +603,7 @@ with(global.takenUltras){
 				//Riot
 				case 2:
 					with(Player){
-						repeat(2 + 2 * GameCont.loops){
+						repeat(2 * GameCont.loops){
 							with(instance_create(x,y,Ally)){
 								creator = other;team = other.team;
 							}
@@ -516,40 +633,119 @@ with(global.takenUltras){
 #define ultra_remake_step
 with(global.takenUltras){
 	switch(self[0]){
+		case "fish":
+			switch(self[1]){
+				case 1:
+					// Confiscate
+					// Thanks Squiddy
+					if instance_exists(HPPickup) {
+						var _intoHpChests = instances_matching(HPPickup, "mimicry_fish_ultra_a", null);
+						
+						if array_length(_intoHpChests) {
+							with _intoHpChests {
+								mimicry_fish_ultra_a = true;
+								
+								if random(5) < 1
+								&& !position_meeting(xstart, ystart, ChestOpen) {
+									with instance_create(x, y, HealthChest) {
+										mimicry_fish_ultra_a = true;
+									}
+									
+									instance_delete(self);
+								}
+							}
+						}
+					}
+
+					if instance_exists(AmmoPickup) {
+						var _intoAmmoChests = instances_matching(AmmoPickup, "mimicry_fish_ultra_a", null);
+						
+						if array_length(_intoAmmoChests) {
+							with _intoAmmoChests {
+								mimicry_fish_ultra_a = true;
+								
+								if random(5) < 1
+								&& !position_meeting(xstart, ystart, ChestOpen) {
+									with instance_create(x, y, AmmoChest) {
+										mimicry_fish_ultra_a = true;
+									}
+									
+									instance_delete(self);
+								}
+							}
+						}
+					}
+
+					if instance_exists(AmmoPickup) {
+						var _intoAmmoChests = instances_matching(WepPickup, "mimicry_fish_ultra_a", null);
+						
+						if array_length(_intoAmmoChests) {
+							with _intoAmmoChests {
+								mimicry_fish_ultra_a = true;
+								
+								if random(5) < 1
+								&& roll
+								&& !position_meeting(xstart, ystart, ChestOpen) {
+									with instance_create(x, y, WeaponChest) {
+										mimicry_fish_ultra_a = true;
+									}
+									
+									instance_delete(self);
+								}
+							}
+						}
+					}
+			}
 		case "eyes":
 			switch(self[1]){
 				//Projectile Style
-				//Thanks x10
+				//Thanks Squiddy
 				case 1:
 					with(Player){
-						with instances_matching(instances_matching(projectile, "eyesmimicry", null),"creator",id)
-						{
-							eyesmimicry = 1;
-							if(fork()){
-								repeat(30){
-									if(instance_exists(self) && instance_exists(creator)){
-										x = creator.x + hspeed
-										y = creator.y + vspeed
-										speed += friction
-									}
-									wait(1);
-								}
-								exit;
+						if(button_check(index, "fire")) {
+							with instances_matching(projectile, "creator", id) {
+								x = lerp(x, other.x + lengthdir_x(16, direction), 0.4);
+								y = lerp(y, other.y + lengthdir_y(16, direction), 0.4);
 							}
 						}
 					}
 				//Monster Style
-				//Thanks x10
+				//Thanks Squiddy
 				case 2:
 					with(Player){
-						if !button_check(index, "spec")
-						{
-							with(enemy)
-							{
-								var _push = 1;
-								var _dir = point_direction(other.x, other.y, x, y);
-								x += lengthdir_x(_push, _dir);
-								y += lengthdir_y(_push, _dir);
+						if(button_check(index, "fire")) {
+							var _pushStrength = 1;
+							
+							with instance_rectangle(
+								x - 130,
+								y - 130,
+								x + 130,
+								y + 130,
+								instances_matching_ne(
+									instances_matching_ne(
+										hitme,
+										"team",
+										team,
+										0
+									),
+									"VAGGYBONDESPLSNOSHOOT",
+									true
+								)
+							) {
+								if !instance_is(self, prop)
+								&& point_distance(x, y, other.x, other.y) < 130 {
+									var _awayFromEyes = point_direction(other.x, other.y, x, y);
+									var _x = x + lengthdir_x(_pushStrength, _awayFromEyes);
+									var _y = y + lengthdir_y(_pushStrength, _awayFromEyes);
+									
+									if place_free(_x, y) {
+										x = _x;
+									}
+									
+									if place_free(x, _y) {
+										y = _y;
+									}
+								}
 							}
 						}
 					}
@@ -627,6 +823,14 @@ with(global.takenUltras){
 					}
 			}
 			break;
+		case "venuz":
+			switch(self[1]){
+				//Back 2 Bizniz
+				case 2:
+				script_bind_step(bizniz_step, 1);
+				break;
+			}
+			break;
 		case "horror":
 			switch(self[1]){
 				//Stalker
@@ -690,6 +894,49 @@ with(global.takenUltras){
 			break;
 	}
 }
+
+#define bizniz_step
+with(Player){
+	with(instances_matching(instances_matching_ne(instances_matching_ne(instances_matching_ne(instances_matching_ne(instances_matching_ne(projectile,"MimicryBizniz",true), "name", "Bone"), "pg", 1), "object_index", ThrownWep), "object_index", HorrorBullet),"team",team)){
+		MimicryBizniz = true;
+		if(random(2) < 1 && !("name" in self && is_string(name) && (string_count("vector", string_lower(name)) > 0))){
+			with(instance_clone()){
+				team = other.team;
+				//damage = other.damage / global.modifier;
+				if(object_index == BloodSlash){
+					creator = -4;
+				}
+				if(object_index != Laser){
+					var acc = 1;
+					if("creator" in self && instance_exists(creator) && "accuracy" in creator){
+						acc = creator.accuracy;
+					}
+					var r = random_range(-10 * acc,10 * acc);
+					direction += r;
+					image_angle += r;
+				}else{
+					x -= lengthdir_x(image_xscale*2,direction);
+					y -= lengthdir_y(image_xscale*2,direction);
+					with instance_create(x,y,Laser){
+						var acc = 1;
+						if("creator" in self && instance_exists(creator) && "accuracy" in creator){
+							acc = creator.accuracy;
+						}
+						alarm0 = 1;
+						var r = random_range(-10 * acc,10 * acc);
+						direction = other.direction + r;
+						image_angle = other.image_angle + r;
+						hitid = [sprite_index, "LASER"];
+						team = other.team;
+						creator = other;
+					}
+					instance_destroy();
+				}
+			}
+		}
+	}
+}
+instance_destroy();
 
 
 #define loc_get(_key)
@@ -767,3 +1014,125 @@ if(_irandom){
 }
 random_set_seed(_lastSeed);
 return rand;
+
+#define instance_rectangle(_x1, _y1, _x2, _y2, _obj)
+/*
+Returns all instances of `_obj` with their `x` and `y` inside the defined rectangle.
+*/
+return instances_matching_le(
+	instances_matching_le(
+		instances_matching_ge(
+			instances_matching_ge(
+				_obj,
+				"x",
+				_x1
+			),
+			"y",
+			_y1
+		),
+		"x",
+		_x2
+	),
+	"y",
+	_y2
+);
+
+#define instance_clone()
+	/*
+		Duplicates an instance like 'instance_copy(false)' and clones all of their data structures
+	*/
+	
+	with(instance_copy(false)){
+		with(variable_instance_get_names(self)){
+			var	_value = variable_instance_get(other, self),
+				_clone = data_clone(_value);
+				
+			if(_value != _clone){
+				variable_instance_set(other, self, _clone);
+			}
+		}
+		
+		return id;
+	}
+
+#define data_clone(_value)
+	/*
+		Returns an exact copy of the given value
+	*/
+	
+	if(is_array(_value)){
+		return array_clone(_value);
+	}
+	if(is_object(_value)){
+		return lq_clone(_value);
+	}
+	if(ds_list_valid(_value)){
+		return ds_list_clone(_value);
+	}
+	if(ds_map_valid(_value)){
+		return ds_map_clone(_value);
+	}
+	if(ds_grid_valid(_value)){
+		return ds_grid_clone(_value);
+	}
+	if(surface_exists(_value)){
+		return surface_clone(_value);
+	}
+	
+	return _value;
+
+#define ds_list_clone(_list)
+	/*
+		Returns an exact copy of the given ds_list
+	*/
+	
+	var _new = ds_list_create();
+	
+	ds_list_add_array(_new, ds_list_to_array(_list));
+	
+	return _new;
+	
+#define ds_map_clone(_map)
+	/*
+		Returns an exact copy of the given ds_map
+	*/
+	
+	var _new = ds_map_create();
+	
+	with(ds_map_keys(_map)){
+		_new[? self] = _map[? self];
+	}
+	
+	return _new;
+	
+#define ds_grid_clone(_grid)
+	/*
+		Returns an exact copy of the given ds_grid
+	*/
+	
+	var	_w = ds_grid_width(_grid),
+		_h = ds_grid_height(_grid),
+		_new = ds_grid_create(_w, _h);
+		
+	for(var _x = 0; _x < _w; _x++){
+		for(var _y = 0; _y < _h; _y++){
+			_new[# _x, _y] = _grid[# _x, _y];
+		}
+	}
+	
+	return _new;
+	
+#define surface_clone(_surf)
+	/*
+		Returns an exact copy of the given surface
+	*/
+	
+	var _new = surface_create(surface_get_width(_surf), surface_get_height(_surf));
+	
+	surface_set_target(_new);
+	draw_clear_alpha(0, 0);
+	draw_surface(_surf, 0, 0);
+	surface_reset_target();
+	
+	return _new;
+	

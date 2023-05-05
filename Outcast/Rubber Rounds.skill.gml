@@ -38,11 +38,13 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 				rubber = random_range(0, 1 + skill_get(mod_current)) > 1.5;
 				if(rubber){
 					rubberowner = other;
-					rubbercol = player_get_color(rubberowner.index);
+					rubbercol = make_color_rgb(255, 200, 24);
+					//rubbercol = player_get_color(rubberowner.index); //for pvp uncomment this line
 				}
 			}
 		}
 	}
+	//scrSuperHot(projectile, c_red);
 	with(instances_matching_ne(projectile, "rubberowner", null)){
 		if(instance_exists(rubberowner)){
 			if(rubber == 1){
@@ -59,6 +61,7 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 					sound_play_pitchvol(sndCanBounce2, random_range(0.3, 0.6), 1);
 				}
 			}else{
+				scrSuperHot(self, rubbercol);
 				with(instance_create(x, y, BoltTrail)){
 					image_blend = other.rubbercol;
 					image_xscale = other.speed;
@@ -71,3 +74,27 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 
 #macro call script_ref_call
 #macro scr global.scr
+
+#define scrSuperHot(_inst, _color)
+	with(_inst) if(visible){
+		//image_blend = _color;
+		if(_color != 0){
+			script_bind_draw(reset_visible, depth - 1, id, visible);
+			script_bind_draw(superhot_draw, depth, id, _color);
+		}
+	}
+
+#define superhot_draw(_id, _color)
+	d3d_set_fog(1, _color, 0, 0);
+	with(_id){
+		visible = 0;
+		if("right" in self || "rotation" in self) event_perform(ev_draw, 0);
+		else draw_self();
+		if(object_index == MeleeFake || object_index == JungleAssassinHide) draw_self();
+	}
+	d3d_set_fog(0, 0, 0, 0);
+	instance_destroy();
+
+#define reset_visible(_id, _visible)
+	with(_id) visible = _visible;
+	instance_destroy();
