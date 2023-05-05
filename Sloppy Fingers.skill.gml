@@ -35,8 +35,8 @@ script_ref_call(["mod", "lib", "getHooks"], "skill", mod_current);
 		if("sloppyaccuracyramp" not in self){sloppyaccuracyramp = 1;}
 		if("sloppyreloadramp" not in self){sloppyreloadramp = 1;}
 		
-		accuracy /= sloppyaccuracyramp;
-		reloadspeed /= sloppyreloadramp;
+		accuracy /= sloppyaccuracyramp * skill_get(mod_current);
+		reloadspeed /= sloppyreloadramp * skill_get(mod_current);
 		
 		if(reload > sloppyprevreload){
 			sloppyaccuracyramp = min(sloppyaccuracyramp + (abs(reload * 0.005) + 0.01) * 2, (4 * 3) / (3 + skill_get(mut_eagle_eyes)));
@@ -48,8 +48,8 @@ script_ref_call(["mod", "lib", "getHooks"], "skill", mod_current);
 		sloppyreloadramp = max(sloppyreloadramp - sloppyderampspeed, 1);
 		sloppyderampspeed = min(sloppyderampspeed + 0.00025, 1);
 	
-		accuracy *= sloppyaccuracyramp;
-		reloadspeed *= sloppyreloadramp;
+		accuracy *= sloppyaccuracyramp * skill_get(mod_current);
+		reloadspeed *= sloppyreloadramp * skill_get(mod_current);
 		
 		if(random(2) + 1 < sloppyreloadramp){
 			instance_create(x,y,Smoke).direction = random(360);

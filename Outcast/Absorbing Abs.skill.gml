@@ -87,7 +87,7 @@ global.bolts = [];
 					var prevDir = direction;
 					direction = global.bolts[i][@2]+180 + random_range(-60, 60);
 					image_angle += direction-prevDir;
-					trail_color = (instance_exists(other.creator) && "index" in other.creator) ? player_get_color(other.creator.index) : c_white
+					trail_color = (instance_exists(other.creator) && other.creator.team == 2) ? make_color_rgb(255, 200, 24) : (instance_exists(other.creator) && "index" in other.creator ? player_get_color(other.creator.index) : c_white);
 					prevObj = object_index;
 					deactivate_speed = speed;
 					deactivate_image_speed = image_speed;
@@ -105,6 +105,7 @@ global.bolts = [];
 		}
 	}
 	with(instances_matching(projectile, "abs_absorbed", true)){
+		scrSuperHot(self, trail_color);
 		with(instance_create(x, y, BoltTrail)){
 			image_blend = other.trail_color;
 			image_xscale = other.speed;
@@ -125,3 +126,27 @@ global.bolts = [];
 
 #macro call script_ref_call
 #macro scr global.scr
+
+#define scrSuperHot(_inst, _color)
+	with(_inst) if(visible){
+		//image_blend = _color;
+		if(_color != 0){
+			script_bind_draw(reset_visible, depth - 1, id, visible);
+			script_bind_draw(superhot_draw, depth, id, _color);
+		}
+	}
+
+#define superhot_draw(_id, _color)
+	d3d_set_fog(1, _color, 0, 0);
+	with(_id){
+		visible = 0;
+		if("right" in self || "rotation" in self) event_perform(ev_draw, 0);
+		else draw_self();
+		if(object_index == MeleeFake || object_index == JungleAssassinHide) draw_self();
+	}
+	d3d_set_fog(0, 0, 0, 0);
+	instance_destroy();
+
+#define reset_visible(_id, _visible)
+	with(_id) visible = _visible;
+	instance_destroy();

@@ -38,13 +38,11 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 				rubber = random_range(0, 1 + skill_get(mod_current)) > 1.5;
 				if(rubber){
 					rubberowner = other;
-					rubbercol = make_color_rgb(255, 200, 24);
-					//rubbercol = player_get_color(rubberowner.index); //for pvp uncomment this line
+					rubbercol = (rubberowner.team == 2) ? make_color_rgb(255, 200, 24) : ("index" in self ? player_get_color(rubberowner.index) : c_white);
 				}
 			}
 		}
 	}
-	//scrSuperHot(projectile, c_red);
 	with(instances_matching_ne(projectile, "rubberowner", null)){
 		if(instance_exists(rubberowner)){
 			if(rubber == 1){

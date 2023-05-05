@@ -44,7 +44,20 @@ with(Player){
 		var nearest = noone,
 			dist = -1;
 
-		with(instances_matching_ne(instances_matching_ne(hitme,"team",team), "team", 0)){
+		with(
+		instances_matching_ne(
+			instances_matching_ne(
+				instances_matching_le(
+					instances_matching_le(
+						instances_matching_ge(
+							instances_matching_ge(
+							hitme,
+							"x", x-100),
+						"y", y-100),
+					"x", x+100),
+				"y", y+100),
+			"team",team), 
+		"team", 0)){
 			var tempDist = point_distance(other.x, other.y, x, y);
 			if(tempDist < dist || dist == -1){
 				nearest = id;
