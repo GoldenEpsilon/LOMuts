@@ -43,6 +43,7 @@ with(instances_matching(Explosion, "explosiveearsdoubled", null)){
 				if(!instance_exists(self) || image_index > 8 || irandom(7) == 0){
 					with instance_create(_x,_y,_object_index) {
 						explosiveearsdoubled = 1;
+						WasteGland = 1; //Don't lag the game with toxic
 						sprite_index = _sprite_index;
 						var dir = random(360);
 						var len = sqrt(random_range(0.25, 1)) * sprite_width / 3 * image_xscale;
