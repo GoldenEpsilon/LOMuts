@@ -39,8 +39,8 @@ script_ref_call(["mod", "lib", "getHooks"], "skill", mod_current);
 		reloadspeed /= sloppyreloadramp * skill_get(mod_current);
 		
 		if(reload > sloppyprevreload){
-			sloppyaccuracyramp = min(sloppyaccuracyramp + (abs(reload * 0.005) + 0.01) * 2, (4 * 3) / (3 + skill_get(mut_eagle_eyes)));
-			sloppyreloadramp = min(sloppyreloadramp + abs(reload * 0.005) + 0.01, 2);
+			sloppyaccuracyramp = min(sloppyaccuracyramp + (abs(reload * 0.005) + 0.025) * 2, (4 * 3) / (3 + skill_get(mut_eagle_eyes)));
+			sloppyreloadramp = min(sloppyreloadramp + abs(reload * 0.005) + 0.025, 2);
 			sloppyderampspeed = 0;
 		}
 		sloppyprevreload = reload;
