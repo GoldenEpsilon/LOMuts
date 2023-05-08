@@ -28,8 +28,8 @@ global.sprDiscoLaser = sprite_add("../Sprites/DiscoLaser.png", 1, 2, 3)
 	sound_play(sndMut);
 
 #define step
-with(instances_matching(Explosion, "explosiveearsdoubled", null)){
-	explosiveearsdoubled = 1;
+with(instances_matching(Explosion, "explosiveearscluster", null)){
+	explosiveearscluster = 1;
 	repeat(skill_get(mod_current) * 5){
 		if(fork()){
 			var _object_index = object_index;
@@ -42,8 +42,7 @@ with(instances_matching(Explosion, "explosiveearsdoubled", null)){
 				wait(0)
 				if(!instance_exists(self) || image_index > 8 || irandom(7) == 0){
 					with instance_create(_x,_y,_object_index) {
-						explosiveearsdoubled = 1;
-						WasteGland = 1; //Don't lag the game with toxic
+						explosiveearscluster = 1;
 						sprite_index = _sprite_index;
 						var dir = random(360);
 						var len = sqrt(random_range(0.25, 1)) * sprite_width / 3 * image_xscale;
@@ -52,7 +51,7 @@ with(instances_matching(Explosion, "explosiveearsdoubled", null)){
 						image_xscale = image_xscale / 2
 						image_yscale = image_yscale / 2
 						laserdisco = null;
-						explosiveearsdoubled = 1;
+						explosiveearscluster = 1;
 						image_speed = _image_speed;
 						image_index = 0;
 						image_alpha = _image_alpha;

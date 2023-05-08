@@ -450,7 +450,7 @@ global.takenUltras = [];
 			break;
 		case "crystal":
 			switch(_skill){
-				case 1: return ["FORTRESS", "+4 MAX @rHP@s"] break; //OG: +6 MAX @rHP@s
+				case 1: return ["FORTRESS", "+3 MAX @rHP@s"] break; //OG: +6 MAX @rHP@s
 				case 2: return ["JUGGERNAUT", "GAIN A @wSHIELD@s#AFTER BEING HIT" + "#UNFINISHED"] break; //OG: MOVE WHILE @wSHIELDED@s
 			}
 			break;
@@ -542,7 +542,7 @@ switch(_race){
 		switch(_skill){
 			//Fortress
 			case 1:
-				with(Player){maxhealth+=4;my_health+=4;}
+				with(Player){maxhealth+=3;my_health+=3;}
 				break;
 		}
 		break;
@@ -563,6 +563,7 @@ switch(_race){
 						with(GenCont){instance_destroy();}
 					}
 				}
+				break;
 		}
 		break;
 	case "venuz":
@@ -695,7 +696,9 @@ with(global.takenUltras){
 							}
 						}
 					}
+					break;
 			}
+			break;
 		case "eyes":
 			switch(self[1]){
 				//Projectile Style
@@ -709,6 +712,7 @@ with(global.takenUltras){
 							}
 						}
 					}
+					break;
 				//Monster Style
 				//Thanks Squiddy
 				case 2:
@@ -749,6 +753,7 @@ with(global.takenUltras){
 							}
 						}
 					}
+					break;
 			}
 			break;
 		case "melting":
@@ -804,6 +809,7 @@ with(global.takenUltras){
 						}
 						mimcryplant = current_frame;
 					}
+					break;
 				//Killer
 				case 2:
 					with(instances_matching_ne(Player, "mimcryplant", current_frame)){
@@ -821,14 +827,15 @@ with(global.takenUltras){
 						}
 						mimcryplant = current_frame;
 					}
+					break;
 			}
 			break;
 		case "venuz":
 			switch(self[1]){
 				//Back 2 Bizniz
 				case 2:
-				script_bind_step(bizniz_step, 1);
-				break;
+					script_bind_step(bizniz_step, 1);
+					break;
 			}
 			break;
 		case "horror":
