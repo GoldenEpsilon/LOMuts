@@ -7,7 +7,7 @@ global.sprRocketExplo = sprite_add("Sprites/RocketExplo.png", 7, 12, 12)
 	return "Fractured Fingers";
 	
 #define skill_text
-	return "Enemies killed by explosions#@wexplode@s";
+	return "@wENEMIES @sKILLED BY EXPLOSIONS @wEXPLODE";
 
 #define skill_button
 	sprite_index = global.sprSkillIcon;

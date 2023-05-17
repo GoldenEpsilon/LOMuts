@@ -6,7 +6,7 @@ global.sprSkillHUD = sprite_add("Sprites/Icons/Sadism Icon.png", 1, 8, 8)
 	return "Sadism";
 	
 #define skill_text
-	return "Using ammo @rheals@s";
+	return "@wUSING @yAMMO @wREGENERATES @rHP";
 
 #define skill_button
 	sprite_index = global.sprSkillIcon;

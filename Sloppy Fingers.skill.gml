@@ -7,7 +7,7 @@ script_ref_call(["mod", "lib", "getHooks"], "skill", mod_current);
 	return "Sloppy Fingers";
 	
 #define skill_text
-	return "Faster Reload, Less Accuracy#This effect ramps up as you fire";
+	return "@wFASTER RELOAD, WORSE ACCURACY#@sEFFECT RAMPS UP WHEN FIRING";
 
 #define skill_button
 	sprite_index = global.sprSkillIcon;

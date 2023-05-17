@@ -1,4 +1,7 @@
 #define draw_gui
+	if(!mod_variable_get("mod", "LOMuts", "canMutTokens")){
+		return;
+	}
 	var player_count = 0;
 	var i = 0;
 

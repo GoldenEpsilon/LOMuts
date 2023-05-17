@@ -6,7 +6,7 @@ global.sprSkillHUD = sprite_add("Sprites/Icons/Dynamic Calves Icon.png", 1, 8, 8
 	return "Dynamic Calves";
 	
 #define skill_text
-	return "You move @wfaster@s#Moving fast @wslows@s enemies";
+	return "@wSLIGHTLY MORE SPEED#@sMOVING FAST @wSLOWS ENEMIES";
 
 #define skill_button
 	sprite_index = global.sprSkillIcon;

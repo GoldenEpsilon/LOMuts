@@ -35,7 +35,7 @@ with(Player){
 	with(instances_matching(instances_matching([PlasmaBall, PlasmaBig, PlasmaHuge, CustomObject],"plasmabounce",null),"team",team)){
 		plasmabounce = 0;
 		if(object_index != CustomObject || "is_plasma" in self && is_plasma){
-			plasmabounce = 1 + 1 * skill_get(mod_current);
+			plasmabounce = skill_get(mod_current);
 		}
 	}
 	with(instances_matching(instances_matching_ge(projectile,"plasmabounce",1),"team",team)){
@@ -44,7 +44,9 @@ with(Player){
 			plasmabounce--;
 			move_bounce_solid(false)
 			image_angle = direction
-			speed *= .9
+			speed *= .75;
+			image_xscale *= .75;
+			image_yscale *= .75;
 			sleep(5)
 			view_shake_at(x, y, 5)
 			direction += random_range(-2, 2);

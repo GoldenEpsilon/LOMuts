@@ -8,7 +8,7 @@ global.bind_step = noone;
 	return "Energized Intestines";
 	
 #define skill_text
-	return "Stuck @wBolts@s#@bzap@s enemies";
+	return "@sSTUCK BOLTS @bZAP @wENEMIES";
 
 #define skill_button
 	sprite_index = global.sprSkillIcon;

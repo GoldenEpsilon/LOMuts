@@ -12,7 +12,7 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 	return "Feed Forward Network";
 	
 #define skill_text
-	return "Energy @wMelee@s weapons#@wecho@s";
+	return "@wENERGY MELEE @sWEAPONS @wECHO";
 
 #define skill_button
 	sprite_index = global.sprButton;

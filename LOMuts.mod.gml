@@ -20,10 +20,12 @@
 	}
 
 	global.canMutTokens = true;
+	global.showStackIndicator = false;
 	global.canOutcast = 0;
 	global.prevCanOutcast = 0;
 	while(!global.libLoaded){wait(1);}
 	call(scr.add_setting, "LOMuts", "canMutTokens", "Mutation Tokens");
+	call(scr.add_setting, "LOMuts", "showStackIndicator", "Stack Indicator");
 	call(scr.autoupdate, "LOMuts", "GoldenEpsilon/LOMuts");
 	game_start();
 	

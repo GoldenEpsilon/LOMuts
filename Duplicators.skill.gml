@@ -7,7 +7,7 @@ global.modifier = 3;
 	return "Duplicators";
 	
 #define skill_text
-	return "@wRecover@s some of your @yammo@s#when you fire";
+	return "@wRECOVER @sSOME SPENT @yAMMO @sWHEN FIRING";
 
 #define skill_button
 	sprite_index = global.sprSkillIcon;

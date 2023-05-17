@@ -19,7 +19,7 @@
 	global.shopOptions = [
 		{name: "LEAVE", text: "FINISH SPENDING TOKENS#AND LEAVE", cost: 0, icon: global.spr_leave, on_select: script_ref_create(tokenshop_exit)},
 		{name: "RESTOCK", text: "REROLL ALL SHOP OPTIONS", cost: 0, icon: global.spr_restock, on_select: script_ref_create(tokenshop_restock)},
-		{name: "BUY ORDNANCE", text: "GET A#GIANT WEAPON CHEST", cost: 1, icon: global.spr_ordnance, on_select: script_ref_create(tokenshop_ordnance)},
+		{name: "BUY ORDNANCE", text: "GET A#LARGE WEAPON CHEST", cost: 1, icon: global.spr_ordnance, on_select: script_ref_create(tokenshop_ordnance)},
 		{name: "BUY SUPPLIES", text: "HEAL TO FULL#GAIN 250 RADS", cost: 1, icon: global.spr_supplies, on_select: script_ref_create(tokenshop_supplies)},
 		{name: "BUY AMMO", text: "GAIN AMMO", cost: 1, icon: global.spr_ammo, on_select: script_ref_create(tokenshop_ammo)},
 		{name: "RETRAIN", text: "CHOOSE A DIFFERENT#NEURAL NETWORK", cost: 1, icon: global.spr_blank, on_select: script_ref_create(tokenshop_retrain)},
@@ -59,7 +59,7 @@
 	if(global.ordnance > 0){
 		global.ordnance--;
 		with(call(scr.instance_random, Player)){
-			instance_create(x,y,GiantWeaponChest);
+			instance_create(x,y,BigWeaponChest);
 		}
 	}
 

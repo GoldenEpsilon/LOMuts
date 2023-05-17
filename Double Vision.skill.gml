@@ -8,7 +8,7 @@ global.acc = 20;
 	return "Double Vision";
 	
 #define skill_text
-	return "Chance to @wduplicate@s shots";
+	return "@wSOME SHOTS @sARE @wDUPLICATED";
 
 #define skill_button
 	sprite_index = global.sprSkillIcon;

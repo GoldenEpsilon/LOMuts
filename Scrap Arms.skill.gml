@@ -9,7 +9,7 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 	return "Scrap Arms";
 	
 #define skill_text
-	return "@wscraps@s @y(+bullets +firerate)@s#drop from enemies";
+	return "@wSOME KILLS DROP @ySCRAPS#@y(+bullets +firerate)@s";
 
 #define skill_button
 	sprite_index = global.sprSkillIcon;

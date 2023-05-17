@@ -6,7 +6,7 @@ global.sprSkillHUD = sprite_add("Sprites/Icons/Staked Chest Icon.png", 1, 8, 8)
 	return "Staked Chest";
 	
 #define skill_text
-	return "Piercing @wbolts@s#create @wsplinters@s";
+	return "@wPIERCING BOLTS @sCREATE @wSPLINTERS";
 
 #define skill_button
 	sprite_index = global.sprSkillIcon;

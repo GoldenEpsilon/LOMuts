@@ -168,14 +168,14 @@ var e = instance_nearest(x,y,enemy);
 size = floor((homunculusNum - 1) / positionNum) + 2;
 if(e != noone){var dist = distance_to_point(e.x,e.y);}
 if(z > 0){zspeed -= grav;}else{zspeed = 0; z = 0;}
-actionspeed = 1 + skill_get(mut_throne_butt);
+actionspeed = 2 + skill_get(mut_throne_butt);
 if(timer <= 0){
 	switch(state){
 		case "idle":
 			timer = 15;
 			if(e != noone && dist < 150){
 				direction = point_direction(x,y,e.x,e.y);
-				if(dist < 75 && homunculusNum > 6){
+				if(dist < 75 && homunculusNum > 6 && !collision_line(x, y, e.x,e.y, Wall, false, false)){
 					state = "punch";
 					animspeed = 8;
 					timer = 10;
@@ -185,7 +185,7 @@ if(timer <= 0){
 							team = other.team;
 							direction = other.direction + ang;
 							image_angle = direction + ang;
-							speed = 4;
+							speed = 6;
 						}
 						ang *= -1;
 						ang += 5/size * sign(ang);
@@ -194,7 +194,15 @@ if(timer <= 0){
 					state = "jumpsquat";
 				}
 			}else{
-				if(instance_exists(owner)){
+				if(instance_exists(e) and distance_to_point(owner.x,owner.y) < 250){
+					direction = point_direction(x,y,e.x,e.y);
+					if(dist > 75){
+						state = "walk";
+						speed = 4;
+						friction = 0.25;
+						timer = 15;
+					}
+				}else if(instance_exists(owner) and instance_exists(e) and dist > 100){
 					direction = point_direction(x,y,owner.x,owner.y);
 					if(distance_to_point(owner.x,owner.y) > 75){
 						state = "walk";
@@ -225,7 +233,15 @@ if(timer <= 0){
 			state = "idle";
 			timer = 5+random(5);
 			instance_create(x,y,PortalClear);
-			if(instance_exists(owner)){
+			if(instance_exists(e) and distance_to_point(owner.x,owner.y) < 250){
+				direction = point_direction(x,y,e.x,e.y);
+				if(dist > 75){
+					state = "walk";
+					speed = 4;
+					friction = 0.25;
+					timer = 15;
+				}
+			}else if(instance_exists(owner) and instance_exists(e) and dist > 100){
 				direction = point_direction(x,y,owner.x,owner.y);
 				if(distance_to_point(owner.x,owner.y) > 75){
 					state = "walk";
@@ -255,7 +271,7 @@ if(timer <= 0){
 						team = other.team;
 						direction = other.direction + ang;
 						image_angle = direction + ang;
-						speed = 4;
+						speed = 6;
 					}
 					ang *= -1;
 					ang += 5/size * sign(ang);
@@ -287,7 +303,7 @@ if(timer <= 0){
 				image_yscale = log2(other.size);
 			}
 			var ang = 0;
-			repeat(12*size * actionspeed){
+			repeat(12*size){
 				with(instance_create(x,y,AllyBullet)){
 					team = other.team;
 					direction = other.direction + ang;

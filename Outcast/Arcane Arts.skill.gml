@@ -6,7 +6,7 @@ global.sprSkillHUD = sprite_add("../Sprites/Outcast/Blank Icon.png", 1, 8, 8)
 	return "Arcane Arts";
 	
 #define skill_text
-	return "Reflected bullets#gain an @welement@s";
+	return "Reflected bullets#can gain an @welement@s";
 
 #define skill_button
 	sprite_index = global.sprSkillIcon;
@@ -47,37 +47,40 @@ with(Player){
 			}
 			if(instance_exists(self) && team == _t && "arcanecheck" not in self){
 				arcanecheck = true;
-				switch(irandom(2)){
-					case 0:
-						image_blend = merge_color(image_blend, c_red, 0.5);
-						with(instance_create(x,y,CustomObject)){
-							name = "Fire Element";
-							on_step = fire_step;
-							creator = other;
-							team = other.team;
-							size = floor(log2(other.damage))+skill_get(mod_current)-1;
-						}
-						break;
-					case 1:
-						image_blend = merge_color(image_blend, c_aqua, 0.5);
-						with(instance_create(x,y,CustomObject)){
-							name = "Electric Element";
-							on_step = electric_step;
-							creator = other;
-							team = other.team;
-							size = floor(log2(other.damage))+skill_get(mod_current)-1;
-						}
-						break;
-					case 2:
-						image_blend = merge_color(image_blend, c_lime, 0.5);
-						with(instance_create(x,y,CustomObject)){
-							name = "Toxic Element";
-							on_step = toxic_step;
-							creator = other;
-							team = other.team;
-							size = floor(log2(other.damage))+skill_get(mod_current)-1;
-						}
-						break;
+				//25% chance with one stack, 33% with two
+				if(irandom(max(0, 5 - skill_get(mod_current))) == 0){
+					switch(irandom(2)){
+						case 0:
+							image_blend = merge_color(image_blend, c_red, 0.5);
+							with(instance_create(x,y,CustomObject)){
+								name = "Fire Element";
+								on_step = fire_step;
+								creator = other;
+								team = other.team;
+								size = floor(log2(other.damage))+skill_get(mod_current)-1;
+							}
+							break;
+						case 1:
+							image_blend = merge_color(image_blend, c_aqua, 0.5);
+							with(instance_create(x,y,CustomObject)){
+								name = "Electric Element";
+								on_step = electric_step;
+								creator = other;
+								team = other.team;
+								size = floor(log2(other.damage))+skill_get(mod_current)-1;
+							}
+							break;
+						case 2:
+							image_blend = merge_color(image_blend, c_lime, 0.5);
+							with(instance_create(x,y,CustomObject)){
+								name = "Toxic Element";
+								on_step = toxic_step;
+								creator = other;
+								team = other.team;
+								size = floor(log2(other.damage))+skill_get(mod_current)-1;
+							}
+							break;
+					}
 				}
 			}
 			exit;

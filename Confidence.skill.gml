@@ -6,7 +6,7 @@ global.sprSkillHUD = sprite_add("Sprites/Icons/Confidence Icon.png", 1, 8, 8)
 	return "Confidence";
 	
 #define skill_text
-	return "@wPower boost@s#at full health";
+	return "@wPOWER BOOST @sWHILE AT @rMAX HP";
 
 #define skill_button
 	sprite_index = global.sprSkillIcon;

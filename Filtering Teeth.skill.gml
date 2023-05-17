@@ -6,7 +6,7 @@ global.sprSkillHUD = sprite_add("Sprites/Icons/Filtering Teeth Icon.png", 1, 8, 
 	return "Filtering Teeth";
 	
 #define skill_text
-	return "Pickups and Rads#last longer";
+	return "@wDROPS @wLAST LONGER BEFORE DISAPPEARING";
 
 #define skill_button
 	sprite_index = global.sprSkillIcon;

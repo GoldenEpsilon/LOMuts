@@ -11,7 +11,7 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 	return "Pressurized Lungs";
 	
 #define skill_text
-	return "@wFlames@s knock back enemies";
+	return "@wFLAMES @sKNOCK BACK @wENEMIES";
 
 #define skill_button
 	sprite_index = global.sprSkillIcon;

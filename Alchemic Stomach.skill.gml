@@ -7,7 +7,7 @@ global.alchemize = sprite_add("Sprites/AlchemicStomach.png", 7, 8, 8)
 	return "Alchemic Stomach";
 	
 #define skill_text
-	return "Firing while out of ammo#@yconverts@s ammo";
+	return "@wFIRING @sWHEN OUT OF @yAMMO#@wCONVERTS @yAMMO";
 
 #define skill_button
 	sprite_index = global.sprSkillIcon;

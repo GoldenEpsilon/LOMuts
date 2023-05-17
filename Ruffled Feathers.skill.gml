@@ -10,7 +10,7 @@ global.stacks = 0;
 	return "Ruffled Feathers";
 	
 #define skill_text
-	return `+2 @wmutation options@s#@(color:${make_color_rgb(84, 58, 24)})outcast@s mutations appear#this rerolls at level @gultra@s`;
+	return `+2 @gmutation@s options#@(color:${make_color_rgb(84, 58, 24)})outcast@s @gmutations@s appear#this rerolls at level @gultra@s`;
 
 #define skill_button
 	sprite_index = global.sprSkillIcon;

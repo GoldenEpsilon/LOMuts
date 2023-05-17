@@ -7,7 +7,7 @@ global.troll = false;
 	return "Brain Transfer";
 	
 #define skill_text
-	return "@wReroll@s all weapon mutations#(This mutation is also refunded)";
+	return "@wREROLL @sALL @wWEAPON MUTATIONS#@s(THIS MUTATION IS ALSO REROLLED)";
 
 #define skill_button
 	sprite_index = global.sprSkillIcon;
