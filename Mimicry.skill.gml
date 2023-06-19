@@ -68,7 +68,7 @@ global.canActivate = 1;
 	while(!is_undefined(skill_get_at(i))){i++}
 	while(is_string(skill_get_at(i)) && 
 		(
-			(mod_script_exists("skill", skill_get_at(i-2), "skill_sacrifice") && mod_script_call("skill", skill_get_at(i-2), "skill_sacrifice")) ||
+			(mod_script_exists("skill", skill_get_at(i-2), "skill_sacrifice") && !mod_script_call("skill", skill_get_at(i-2), "skill_sacrifice")) ||
 			(mod_script_exists("skill", skill_get_at(i-2), "skill_outcast") && mod_script_call("skill", skill_get_at(i-2), "skill_outcast")) ||
 			(mod_script_exists("skill", skill_get_at(i-2), "skill_blight") && mod_script_call("skill", skill_get_at(i-2), "skill_blight"))
 		))

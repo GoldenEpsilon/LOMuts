@@ -943,7 +943,7 @@
 		var _skills = mod_get_names("skill");
 		with(_skills){
 			if(!skill_get(self) && mod_script_exists("skill", self, "skill_neural")){
-				var _n = mod_script_call("skill", s[f], "skill_neural");
+				var _n = mod_script_call("skill", self, "skill_neural");
 				if(_n == true ||
 				   (is_array(_n) && mod_exists(_n[0], _n[1]))||
 				   (is_string(_n) && mod_exists("mod", _n))) {
