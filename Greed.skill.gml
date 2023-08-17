@@ -10,7 +10,7 @@ global.greedsTaken = 0;
 	return "Greed";
 	
 #define skill_text
-	return "@wGAIN +"+ string(greed_calc()) +" @rRADS#@wTAKE 1 DAMAGE#@s(THIS DOES NOT TAKE A MUTATION)";
+	return "@wGAIN +"+ string(greed_calc()) +" @gRADS@s#@wTAKE 1 @rDAMAGE@s#@s(THIS DOES NOT TAKE A MUTATION)";
 
 #define skill_button
 	sprite_index = global.sprSkillIcon;

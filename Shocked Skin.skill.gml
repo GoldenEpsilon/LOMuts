@@ -46,6 +46,7 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 					_t = team;
 					wait(0);
 				}
+				wait(random(5));
 				var newID = instance_create(0, 0, DramaCamera);
 				with instance_create(_x,_y,Lightning){
 					ammo = min(max(_damage/2, 1), 20);
