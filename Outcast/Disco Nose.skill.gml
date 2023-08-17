@@ -44,7 +44,7 @@ with(instances_matching(Explosion, "laserdisco", null)){
 			var amount = random_range(baseAmount - 2, baseAmount + 1)
 			if(amount > 0){
 				for(var i = 0; i < 360; i += 360 / amount){
-					with instance_create(x,y,EnemyLaser){
+					with instance_create(x,y,Laser){
 						direction = other.direction + i + ang;
 						image_angle = other.direction + i + ang;
 						hitid = [sprite_index, "THE DISCO"];
