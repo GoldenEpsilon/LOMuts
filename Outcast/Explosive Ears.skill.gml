@@ -50,6 +50,7 @@ with(instances_matching(Explosion, "explosiveearscluster", null)){
 						y = _y + lengthdir_y(len, dir);
 						image_xscale = image_xscale / 2
 						image_yscale = image_yscale / 2
+						damage = 2;
 						laserdisco = null;
 						explosiveearscluster = 1;
 						image_speed = _image_speed;
