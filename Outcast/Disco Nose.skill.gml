@@ -40,24 +40,28 @@ with(instances_matching(Explosion, "laserdisco", null)){
 			}
 			var ang = random(360);
 			sound_play(sndLaser);
-			for(var i = 0; i < 360; i += 360 / ((sprite_width * image_xscale / 16) * skill_get(mod_current))){
-				with instance_create(x,y,EnemyLaser){
-					direction = other.direction + i + ang;
-					image_angle = other.direction + i + ang;
-					hitid = [sprite_index, "THE DISCO"];
-					team = other.team;
-					creator = other;
-					sprite_index = global.sprDiscoLaser;
-					image_index = irandom(image_number);
-					event_perform(ev_alarm, 0)
-					x -= lengthdir_x(max(0, image_xscale-40), direction) * 2;
-					y -= lengthdir_y(max(0, image_xscale-40), direction) * 2;
-					image_xscale = min(image_xscale, 40);
-					x += lengthdir_x(other.sprite_width, direction)/12;
-					y += lengthdir_y(other.sprite_width, direction)/12;
-					image_xscale = max(image_xscale - other.sprite_width/6, 1);
-					damage = 2;
-					alarm0 = -1;
+			var baseAmount = (sprite_width * image_xscale / 16) * skill_get(mod_current);
+			var amount = random_range(baseAmount - 2, baseAmount + 1)
+			if(amount > 0){
+				for(var i = 0; i < 360; i += 360 / amount){
+					with instance_create(x,y,EnemyLaser){
+						direction = other.direction + i + ang;
+						image_angle = other.direction + i + ang;
+						hitid = [sprite_index, "THE DISCO"];
+						team = other.team;
+						creator = other;
+						sprite_index = global.sprDiscoLaser;
+						image_index = irandom(image_number);
+						event_perform(ev_alarm, 0)
+						x -= lengthdir_x(max(0, image_xscale-40), direction) * 2;
+						y -= lengthdir_y(max(0, image_xscale-40), direction) * 2;
+						image_xscale = min(image_xscale, 40);
+						x += lengthdir_x(other.sprite_width, direction)/12;
+						y += lengthdir_y(other.sprite_width, direction)/12;
+						image_xscale = max(image_xscale - other.sprite_width/6, 1);
+						damage = 2;
+						alarm0 = -1;
+					}
 				}
 			}
 		}

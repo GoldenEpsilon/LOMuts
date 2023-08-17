@@ -16,7 +16,7 @@
 	
 	global.ordnance = 0;
 	
-	global.shopOptions = [
+	/*global.shopOptions = [
 		{name: "LEAVE", text: "FINISH SPENDING TOKENS#AND LEAVE", cost: 0, icon: global.spr_leave, on_select: script_ref_create(tokenshop_exit)},
 		{name: "RESTOCK", text: "REROLL ALL SHOP OPTIONS", cost: 0, icon: global.spr_restock, on_select: script_ref_create(tokenshop_restock)},
 		{name: "BUY ORDNANCE", text: "GET A#LARGE WEAPON CHEST", cost: 1, icon: global.spr_ordnance, on_select: script_ref_create(tokenshop_ordnance)},
@@ -42,6 +42,15 @@
 		//{name: "TRANSMUTE", text: "IF YOU HAVE SOMEONE ELSE'S ULTRA MUTATION#REROLL IT", cost: 6, icon: global.spr_blank, on_select: script_ref_create(tokenshop_transmute)},
 		//{name: "INFUSE", text: "LOSE 2 MUTATIONS#GAIN SOMEONE ELSE'S ULTRA MUTATION", cost: 8, icon: global.spr_blank, on_select: script_ref_create(tokenshop_infuse)},
 		//{name: "ASCEND", text: "LOSE 3 MUTATIONS#GAIN ANOTHER ULTRA", cost: 8, icon: global.spr_blank, on_select: script_ref_create(tokenshop_ascend)},
+	];*/
+	
+	global.shopOptions = [
+		{name: "LEAVE", text: "FINISH SPENDING TOKENS#AND LEAVE", cost: 0, icon: global.spr_leave, on_select: script_ref_create(tokenshop_exit)},
+		{name: "RETRAIN", text: "CHOOSE A DIFFERENT#NEURAL NETWORK", cost: 1, icon: global.spr_blank, on_select: script_ref_create(tokenshop_retrain)},
+		{name: "DISRESPECT", text: "GAIN AN OUTCAST MUTATION#AND A BLIGHT", cost: 1, icon: global.spr_blank, on_select: script_ref_create(tokenshop_disrespect)},
+		//{name: "REROLL", text: "CHOOSE A MUTATION#TO RANDOMLY REROLL", cost: 1, icon: global.spr_experiment, on_select: script_ref_create(tokenshop_reroll)},
+		{name: "EVOLVE", text: "LOSE A MUTATION#GAIN A MUTATION", cost: 1, icon: global.spr_experiment, on_select: script_ref_create(tokenshop_evolve)},
+		{name: "EMPOWER", text: "LOSE 1 MUTATION#POWER UP 1 MUTATION", cost: 2, icon: global.spr_blank, on_select: script_ref_create(tokenshop_empower)},
 	];
 	
 	while(!mod_exists("mod", "lib")){wait(1);}
@@ -95,16 +104,15 @@
 				if((button_pressed(index, "fire") && point_in_rectangle(mouse_x[index], mouse_y[index], other.bbox_left, other.bbox_top, other.bbox_right, other.bbox_bottom)) || 
 				button_pressed(index, "key" + string(other.num+1)) || 
 				(other.creator.select == other.num && button_pressed(index, "okay"))){
-					global.mutTokens += 10;
+					global.mutTokens += 1;
 				}
 			}
 		}
 	}
 	if(!global.openingShop){
-		if((global.prevLoops < GameCont.loops || global.forceShopOpen) && fork()){
+		if((global.prevLoops < GameCont.loops || global.forceShopOpen) && global.mutTokens > 0 && fork()){
 			global.cancelOpen = false;
 			global.forceShopOpen = false;
-			global.mutTokens += 5;
 			global.prevLoops = GameCont.loops;
 			global.openingShop = 1;
 			GameCont.endpoints++;
@@ -197,8 +205,14 @@
 										button_pressed(index, "key" + string(other.num+1)) || 
 										(other.creator.select == other.num && button_pressed(index, "okay"))){
 											other.y++;
-											if(!other.alt){global.mutTokens -= other.cost;}
-											script_ref_call(other.on_select, other);
+											var c = 0;
+											if("cost" in other){
+												c = other.cost;
+											}
+											if(!other.alt){global.mutTokens -= c;}
+											if(script_ref_call(other.on_select, other) == "REFUND"){
+												global.mutTokens += c;
+											}
 											_br = true;
 											break;
 										}
@@ -333,8 +347,12 @@
 #define stock_shop
 	//leave
 	tokenshop_option_create(array_length(instances_matching(CustomObject, "name", "tokenshopOption")), 5, global.shopOptions[0]);
+	tokenshop_option_create(array_length(instances_matching(CustomObject, "name", "tokenshopOption")), 5, global.shopOptions[1]);
+	tokenshop_option_create(array_length(instances_matching(CustomObject, "name", "tokenshopOption")), 5, global.shopOptions[2]);
+	tokenshop_option_create(array_length(instances_matching(CustomObject, "name", "tokenshopOption")), 5, global.shopOptions[3]);
+	tokenshop_option_create(array_length(instances_matching(CustomObject, "name", "tokenshopOption")), 5, global.shopOptions[4]);
 	
-	var possibleOptions = [];
+	/*var possibleOptions = [];
 	with(global.shopOptions){if(cost == 1){array_push(possibleOptions, self);}}
 	tokenshop_option_create(array_length(instances_matching(CustomObject, "name", "tokenshopOption")), 5, possibleOptions[irandom(array_length(possibleOptions)-1)]);
 	possibleOptions = [];
@@ -345,7 +363,7 @@
 	tokenshop_option_create(array_length(instances_matching(CustomObject, "name", "tokenshopOption")), 5, possibleOptions[irandom(array_length(possibleOptions)-1)]);
 	
 	//restock
-	tokenshop_option_create(array_length(instances_matching(CustomObject, "name", "tokenshopOption")), 5, global.shopOptions[1]).cost = 1;
+	tokenshop_option_create(array_length(instances_matching(CustomObject, "name", "tokenshopOption")), 5, global.shopOptions[1]).cost = 1;*/
 
 #define tokenshop_ordnance
 	global.ordnance++;
@@ -374,7 +392,7 @@
 	}
 	if(!array_length(_outcasts)){
 		trace("No muts left in outcast pool, refunding");
-		global.mutTokens += 2;
+		return "REFUND";
 	}
 	with(LevCont){
 		altpick = true;
@@ -498,8 +516,7 @@
 	}
 	if(array_length(toChoose) < 1){
 		trace("Not enough applicable mutations, refunding");
-		global.mutTokens += 2;
-		return;
+		return "REFUND";
 	}
 	var chosen = toChoose[irandom(array_length(toChoose) - 1)];
 	skill_set(chosen, skill_get(chosen) - 1);
@@ -610,8 +627,8 @@
 			}
 		}else{
 			trace("you have no mutations, refunding");
-			global.mutTokens += 2;
 			altpick = false;
+			return "REFUND";
 		}
 	}
 
@@ -644,8 +661,7 @@
 	}
 	if(array_length(toChoose) < 2){
 		trace("Not enough applicable mutations, refunding");
-		global.mutTokens += 5;
-		return;
+		return "REFUND";
 	}
 	with(LevCont){
 		altpick = true;
@@ -688,7 +704,7 @@
 			}
 		}else{
 			trace("you have no mutations, refunding");
-			global.mutTokens += 2;
+			return "REFUND"
 		}
 	}
 
@@ -780,8 +796,7 @@
 	}
 	if(array_length(toChoose) < 2){
 		trace("Not enough applicable mutations, refunding");
-		global.mutTokens += 4;
-		return;
+		return "REFUND";
 	}
 	with(LevCont){
 		altpick = true;
@@ -824,7 +839,7 @@
 			}
 		}else{
 			trace("you have no mutations, refunding");
-			global.mutTokens += 2;
+			return "REFUND";
 		}
 	}
 
@@ -930,8 +945,7 @@
 	}
 	if(array_length(toChoose) < 1){
 		trace("Not enough applicable mutations, refunding");
-		global.mutTokens += 1;
-		return;
+		return "REFUND";
 	}
 	var chosen = toChoose[irandom(array_length(toChoose) - 1)];
 	skill_set(chosen, skill_get(chosen) - 1);
