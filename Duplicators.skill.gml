@@ -8,6 +8,9 @@ global.modifier = 3;
 	
 #define skill_text
 	return "@wRECOVER @sSOME SPENT @yAMMO @sWHEN FIRING";
+	
+#define stack_text
+	return "@wRECOVER @sMORE SPENT @yAMMO @sWHEN FIRING";
 
 #define skill_button
 	sprite_index = global.sprSkillIcon;

@@ -80,6 +80,10 @@ with(instances_matching(enemy, "superbackup", true)){
 				 // Not Shielding:
 				if(!instance_exists(PopoShield) || !array_length(instances_matching(PopoShield, "creator", self))){
 					alarm1 = max(alarm1 - _aggroSpeed, 1);
+				}else{
+					with(instances_matching(PopoShield, "creator", self)){
+						team = creator.team;
+					}
 				}
 			}
 		}

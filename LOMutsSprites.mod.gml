@@ -10,7 +10,7 @@ lq_set(global.sprites, "Double Vision", [sprite_add("Sprites/Main/Double Vision.
 lq_set(global.sprites, "Duplicators", [sprite_add("Sprites/Main/Duplicators.png", 1, 12, 16),sprite_add("Sprites/Dev Art/Duplicators.png", 1, 12, 16)]);
 lq_set(global.sprites, "Dynamic Calves", [sprite_add("Sprites/Main/Dynamic Calves.png", 1, 12, 16), sprite_add("Sprites/Dev Icon/Dynamic Calves.png", 1, 12, 16), sprite_add("Sprites/Dev Art/Dynamic Calves.png", 1, 12, 16), sprite_add("Sprites/Alt/Dynamic Calves.png", 1, 12, 16)]);
 lq_set(global.sprites, "Energized Intestines", [sprite_add("Sprites/Main/Energized Intestines.png", 1, 12, 16),sprite_add("Sprites/Dev Icon/Energized Intestines.png", 1, 12, 16), sprite_add("Sprites/Alt/Energized Intestines.png", 1, 12, 16)]);
-lq_set(global.sprites, "Filtering Teeth", [sprite_add("Sprites/Main/Filtering Teeth.png", 1, 12, 16), sprite_add("Sprites/Dev Icon/Filtering Teeth.png", 1, 12, 16)]);
+lq_set(global.sprites, "Filtering Teeth", [sprite_add("Sprites/Main/Filtering Teeth.png", 1, 12, 16), sprite_add("Sprites/Alt/Filtering Teeth.png", 1, 12, 16), sprite_add("Sprites/Dev Icon/Filtering Teeth.png", 1, 12, 16)]);
 lq_set(global.sprites, "Fractured Fingers", [sprite_add("Sprites/Main/Fractured Fingers.png", 1, 12, 16), sprite_add("Sprites/Dev Art/Fractured Fingers.png", 1, 12, 16), sprite_add("Sprites/Dev Icon/Fractured Fingers.png", 1, 12, 16), sprite_add("Sprites/Alt/Fractured Fingers.png", 1, 12, 16)]);
 lq_set(global.sprites, "Garment Regenerator", [sprite_add("Sprites/Main/Garment Regenerator.png", 1, 12, 16), sprite_add("Sprites/Dev Art/Garment Regenerator.png", 1, 12, 16)]);
 lq_set(global.sprites, "Mimicry", [sprite_add("Sprites/Main/Mimicry.png", 1, 12, 16), sprite_add("Sprites/Dev Art/Mimicry.png", 1, 12, 16), sprite_add("Sprites/Alt/Mimicry.png", 1, 12, 16), sprite_add("Sprites/Alt/Mimicry 2.png", 1, 12, 16)]);
@@ -21,7 +21,7 @@ lq_set(global.sprites, "Sadism", [sprite_add("Sprites/Main/Sadism.png", 1, 12, 1
 lq_set(global.sprites, "Scrap Arms", [sprite_add("Sprites/Main/Scrap Arms.png", 1, 12, 16), sprite_add("Sprites/Dev Art/Scrap Arms.png", 1, 12, 16), sprite_add("Sprites/Dev Icon/Scrap Arms.png", 1, 12, 16)]);
 lq_set(global.sprites, "Shattered Skull", [sprite_add("Sprites/Main/Shattered Skull.png", 1, 12, 16), sprite_add("Sprites/Dev Icon/Shattered Skull.png", 1, 12, 16)]);
 lq_set(global.sprites, "Shocked Skin", [sprite_add("Sprites/Main/Shocked Skin.png", 1, 12, 16), sprite_add("Sprites/Dev Art/Shocked Skin.png", 1, 12, 16), sprite_add("Sprites/Alt/Shocked Skin.png", 1, 12, 16)]);
-lq_set(global.sprites, "Sloppy Fingers", [sprite_add("Sprites/Main/Sloppy Fingers.png", 1, 12, 16), sprite_add("Sprites/Dev Art/Sloppy Fingers.png", 1, 12, 16)]);
+lq_set(global.sprites, "Sloppy Fingers", [sprite_add("Sprites/Main/Sloppy Fingers.png", 1, 12, 16), sprite_add("Sprites/Alt/Sloppy Fingers.png", 1, 12, 16), sprite_add("Sprites/Dev Art/Sloppy Fingers.png", 1, 12, 16)]);
 lq_set(global.sprites, "Staked Chest", [sprite_add("Sprites/Main/Staked Chest.png", 1, 12, 16), sprite_add("Sprites/Dev Art/Staked Chest.png", 1, 12, 16)]);
 lq_set(global.sprites, "Steel Nerves", [sprite_add("Sprites/Main/Steel Nerves.png", 1, 12, 16), sprite_add("Sprites/Dev Art/Steel Nerves.png", 1, 12, 16)]);
 lq_set(global.sprites, "Thick Head", [sprite_add("Sprites/Main/Thick Head.png", 1, 12, 16), sprite_add("Sprites/Dev Art/Thick Head.png", 1, 12, 16)]);
@@ -38,12 +38,13 @@ lq_set(global.sprites, "Markov Chain", [sprite_add("Sprites/Main/Neural Network/
 lq_set(global.sprites, "Recurrent Neural Network", [sprite_add("Sprites/Main/Neural Network/Recurrent Neural Network.png", 1, 12, 16), sprite_add("Sprites/Dev Icon/Neural Network/Recurrent Neural Network.png", 1, 12, 16)]);
 lq_set(global.sprites, "Support Vector Machines", [sprite_add("Sprites/Main/Neural Network/Support Vector Machines.png", 1, 12, 16), sprite_add("Sprites/Dev Icon/Neural Network/Support Vector Machines.png", 1, 12, 16)]);
 
-lq_set(global.sprites, "Fast Food", [{icon:sprite_add("Sprites/Main/Ultras/Fast Food.png", 1, 12, 16),anim:sprite_add("Sprites/Main/Ultras/Fast Food Anim.png", 11, 21, 26)}, sprite_add("Sprites/Alt/Ultras/Fast Food.png", 1, 12, 16), sprite_add("Sprites/Main/Ultras/Fast Food.png", 1, 12, 16)]);
+lq_set(global.sprites, "Fast Food", [sprite_add("Sprites/Main/Ultras/Fast Food.png", 1, 12, 16), {icon:sprite_add("Sprites/Alt/Ultras/Fast Food.png", 1, 12, 16),anim:sprite_add("Sprites//Ultras/Fast Food Anim.png", 11, 21, 26)}, sprite_add("Sprites/Alt/Ultras/Fast Food.png", 1, 12, 16), sprite_add("Sprites/Alt/Ultras/Fast Food 2.png", 1, 12, 16)]);
 lq_set(global.sprites, "Intellect", [sprite_add("Sprites/Main/Ultras/Intellect.png", 1, 12, 16), sprite_add("Sprites/Dev Art/Ultras/Intellect.png", 1, 12, 16)]);
+lq_set(global.sprites, "Galactic Style", [sprite_add("Sprites/Main/Ultras/Galactic Style.png", 1, 12, 16), sprite_add("Sprites/Alt/Ultras/Galactic Style.png", 1, 12, 16)]);
 lq_set(global.sprites, "Armory", [sprite_add("Sprites/Main/Ultras/Armory.png", 1, 12, 16), sprite_add("Sprites/Alt/Ultras/Armory.png", 1, 12, 16)]);
 lq_set(global.sprites, "Generalist", [sprite_add("Sprites/Main/Ultras/Generalist.png", 1, 12, 16), sprite_add("Sprites/Alt/Ultras/Generalist.png", 1, 12, 16)]);
 lq_set(global.sprites, "Union", [sprite_add("Sprites/Main/Ultras/Union.png", 1, 12, 16), sprite_add("Sprites/Alt/Ultras/Union.png", 1, 12, 16)]);
-lq_set(global.sprites, "Existence", [sprite_add("Sprites/Main/Ultras/Existence.png", 1, 12, 16), sprite_add("Sprites/Alt/Ultras/Existence.png", 1, 12, 16)]);
+lq_set(global.sprites, "Existence", [sprite_add("Sprites/Main/Ultras/Existence.png", 1, 12, 16), sprite_add("Sprites/Alt/Ultras/Existence 2.png", 1, 12, 16), sprite_add("Sprites/Alt/Ultras/Existence.png", 1, 12, 16)]);
 lq_set(global.sprites, "Reincarnation", [sprite_add("Sprites/Main/Ultras/Reincarnation.png", 1, 12, 16), sprite_add("Sprites/Alt/Ultras/Reincarnation.png", 1, 12, 16)]);
 
 lq_set(global.sprites, "Laser Focus", [sprite_add("Sprites/Outcast/Laser Focus.png", 1, 12, 16), sprite_add("Sprites/Outcast/Alt/Laser Focus.png", 1, 12, 16)]);

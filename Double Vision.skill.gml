@@ -9,6 +9,9 @@ global.acc = 20;
 	
 #define skill_text
 	return "@wSOME SHOTS @sARE @wDUPLICATED";
+	
+#define stack_text
+	return "@wMORE SHOTS @sARE @wDUPLICATED";
 
 #define skill_button
 	sprite_index = global.sprSkillIcon;

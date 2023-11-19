@@ -7,6 +7,9 @@ global.sprSkillHUD = sprite_add("Sprites/Icons/Confidence Icon.png", 1, 8, 8)
 	
 #define skill_text
 	return "@wPOWER BOOST @sWHILE AT @rMAX HP";
+	
+#define stack_text
+	return "MORE @wPOWER@s AT MAX HP"
 
 #define skill_button
 	sprite_index = global.sprSkillIcon;

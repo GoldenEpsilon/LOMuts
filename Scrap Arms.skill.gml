@@ -73,8 +73,10 @@ with(instances_matching_le(enemy, "my_health", 0)){
 	other.ammo[1] = min(other.ammo[1], other.typ_amax[1]);
 	var ismax = other.ammo[1] >= other.typ_amax[1];
 	with(instance_create(other.x, other.y, PopupText)) {
-		if(ismax) mytext = "MAX BULLETS";
-		else mytext = "+"+string(amount)+" BULLETS"
+		if(ismax) mytext = loc("Pickups:MaxAmmo:1", "");
+		else if(loc("Pickups:AddAmmo:1", "") != ""){
+			mytext = string_replace(loc("Pickups:AddAmmo:1", ""), "%", string(amount));
+		}else mytext = "+"+string(amount)+" BULLETS"
 	}
 	return false;
 

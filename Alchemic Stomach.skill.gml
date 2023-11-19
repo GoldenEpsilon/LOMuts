@@ -8,6 +8,9 @@ global.alchemize = sprite_add("Sprites/AlchemicStomach.png", 7, 8, 8)
 	
 #define skill_text
 	return "@wFIRING @sWHEN OUT OF @yAMMO#@wCONVERTS @yAMMO";
+	
+#define stack_text
+	return "@yAMMO@s CONVERSION IS MORE EFFICIENT";
 
 #define skill_button
 	sprite_index = global.sprSkillIcon;

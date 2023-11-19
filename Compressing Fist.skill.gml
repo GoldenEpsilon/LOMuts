@@ -7,6 +7,9 @@ global.sprSkillHUD = sprite_add("Sprites/Icons/Compressing Fist Icon.png", 1, 8,
 	
 #define skill_text
 	return "@s1.5X @wDAMAGE#@s1.5X @yAMMO @wUSAGE#@wWIDER @sPROJECITLES";
+	
+#define stack_text
+	return "@s0.5X ADDED TO @wDAMAGE#@s0.5X ADDED TO @AMMO USAGE#EVEN @wWIDER@s PROJECTILES"
 
 #define skill_button
 	sprite_index = global.sprSkillIcon;
@@ -62,11 +65,11 @@ with(Player){
 		}
 	}
 }
-with(instances_matching(instances_matching_ne(instances_matching_ne(projectile, "ammo_type", -1),"comp_fist",true),"team",2)){
+with(instances_matching(instances_matching_ne(instances_matching_ne(instances_matching_ge(projectile, "damage", 0), "ammo_type", -1),"comp_fist",true),"team",2)){
 	if(!(skill_get("powderedgums") && object_index == HyperSlug)){
-		damage = floor(damage * 1.5 * skill_get(mod_current));
+		damage = floor(damage * (1 + 0.5 * skill_get(mod_current)));
 			//if creator != noone && instance_is(creator, Player) && weapon_get_type(creator.wep) != 0 spazFistEffects();
-		image_yscale *= 1.5;
+		image_yscale *= 1.25 + 0.25 * skill_get(mod_current);
 	}
 	comp_fist = true;
 }

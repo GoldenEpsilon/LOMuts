@@ -14,7 +14,6 @@
 /loadskill Shattered Skull
 /loadskill Energized Intestines
 /loadskill Fractured Fingers
-/loadskill Dynamic Calves
 /loadskill Sadism
 /loadskill Filtering Teeth
 /loadskill Brain Transfer

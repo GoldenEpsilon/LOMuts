@@ -221,7 +221,11 @@ global.surfIcon = sprite_add("surfIcon.png", 1, 8, 8);
 			 // Apply relevant scripts
 			mod_script_call("skill", _skill, "skill_button");
 			name = mod_script_call("skill", _skill, "skill_name");
-			text = mod_script_call("skill", _skill, "skill_text");
+			if(mod_script_exists("skill", _skill, "stack_text")){
+				text = mod_script_call("skill", _skill, "stack_text");
+			}else{
+				text = mod_script_call("skill", _skill, "skill_text");
+			}
 		}else if(is_real(_skill)){
 			sprite_index = sprSkillIcon;
 			image_index = _skill;
