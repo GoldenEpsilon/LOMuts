@@ -109,6 +109,7 @@
 			}
 		}
 	}
+	/*
 	if(!global.openingShop){
 		if((global.prevLoops < GameCont.loops || global.forceShopOpen) && global.mutTokens > 0 && fork()){
 			global.cancelOpen = false;
@@ -166,6 +167,7 @@
 	if(!instance_exists(LevCont) && GameCont.area != 0){
 		global.openingShop = 0;
 	}
+	*/
 
 #define draw_gui
 	with(instances_matching(LevCont, "name", "TokenShop")){

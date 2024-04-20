@@ -21,7 +21,7 @@
 /loadskill Muscle Memory
 /loadskill Double Vision
 /loadskill Thick Head
-/loadskill Mimicry
+//loadskill Mimicry
 /loadskill Neural Network
 /loadskill Neural Network/Deep Convolutional Network
 /loadskill Neural Network/Deep Residual Network
@@ -36,27 +36,27 @@
 /loadskill Ruffled Feathers
 /loadskill Slim Pickings
 /loadskill Loner
-/loadskill Leprosy
-/loadskill Leprosy2
+//loadskill Leprosy
+//loadskill Leprosy2
 
-/loadmod Ultras/cultra
-/loadskill Ultras/Adaptable
-/loadskill Ultras/Armory
-/loadskill Ultras/Galactic Style
-/loadskill Ultras/Existence
-/loadskill Ultras/Generalist
-/loadskill Ultras/Dolla Dolla
-/loadskill Ultras/Intellect
-/loadskill Ultras/Fast Food
-/loadskill Ultras/Enlightenment
-/loadskill Ultras/Union
-/loadskill Ultras/Fission
-/loadskill Ultras/Super Backup
-/loadskill Ultras/Reincarnation
-/loadskill Ultras/Positivity
+//loadmod Ultras/cultra
+//loadskill Ultras/Adaptable
+//loadskill Ultras/Armory
+//loadskill Ultras/Galactic Style
+//loadskill Ultras/Existence
+//loadskill Ultras/Generalist
+//loadskill Ultras/Dolla Dolla
+//loadskill Ultras/Intellect
+//loadskill Ultras/Fast Food
+//loadskill Ultras/Enlightenment
+//loadskill Ultras/Union
+//loadskill Ultras/Fission
+//loadskill Ultras/Super Backup
+//loadskill Ultras/Reincarnation
+//loadskill Ultras/Positivity
 
 /loadmod GuiPackLoader
-/loadmod Extra Mutation Options
+//loadmod Extra Mutation Options
 /loadmod LOMuts
 /loadmod LOMutsSprites
 /loadmod LOMutsMutTokens
