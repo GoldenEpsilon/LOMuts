@@ -8,7 +8,7 @@ lq_set(global.sprites, "Compressing Fist", [sprite_add("Sprites/Main/Compressing
 lq_set(global.sprites, "Confidence", [sprite_add("Sprites/Main/Confidence.png", 1, 12, 16), sprite_add("Sprites/Dev Art/Confidence.png", 1, 12, 16)]);
 lq_set(global.sprites, "Double Vision", [sprite_add("Sprites/Main/Double Vision.png", 1, 12, 16), sprite_add("Sprites/Dev Icon/Double Vision.png", 1, 12, 16)]);
 lq_set(global.sprites, "Duplicators", [sprite_add("Sprites/Main/Duplicators.png", 1, 12, 16),sprite_add("Sprites/Dev Art/Duplicators.png", 1, 12, 16)]);
-lq_set(global.sprites, "Dynamic Calves", [sprite_add("Sprites/Main/Dynamic Calves.png", 1, 12, 16), sprite_add("Sprites/Dev Icon/Dynamic Calves.png", 1, 12, 16), sprite_add("Sprites/Dev Art/Dynamic Calves.png", 1, 12, 16), sprite_add("Sprites/Alt/Dynamic Calves.png", 1, 12, 16)]);
+lq_set(global.sprites, "Dynamic Calves", [/*sprite_add("Sprites/Main/Dynamic Calves.png", 1, 12, 16), */sprite_add("Sprites/Alt/Dynamic Calves.png", 1, 12, 16), sprite_add("Sprites/Dev Art/Dynamic Calves.png", 1, 12, 16)]);
 lq_set(global.sprites, "Energized Intestines", [sprite_add("Sprites/Main/Energized Intestines.png", 1, 12, 16),sprite_add("Sprites/Dev Icon/Energized Intestines.png", 1, 12, 16), sprite_add("Sprites/Alt/Energized Intestines.png", 1, 12, 16)]);
 lq_set(global.sprites, "Filtering Teeth", [sprite_add("Sprites/Main/Filtering Teeth.png", 1, 12, 16), sprite_add("Sprites/Alt/Filtering Teeth.png", 1, 12, 16), sprite_add("Sprites/Dev Icon/Filtering Teeth.png", 1, 12, 16)]);
 lq_set(global.sprites, "Fractured Fingers", [sprite_add("Sprites/Main/Fractured Fingers.png", 1, 12, 16), sprite_add("Sprites/Dev Art/Fractured Fingers.png", 1, 12, 16), sprite_add("Sprites/Dev Icon/Fractured Fingers.png", 1, 12, 16), sprite_add("Sprites/Alt/Fractured Fingers.png", 1, 12, 16)]);
@@ -38,7 +38,7 @@ lq_set(global.sprites, "Markov Chain", [sprite_add("Sprites/Main/Neural Network/
 lq_set(global.sprites, "Recurrent Neural Network", [sprite_add("Sprites/Main/Neural Network/Recurrent Neural Network.png", 1, 12, 16), sprite_add("Sprites/Dev Icon/Neural Network/Recurrent Neural Network.png", 1, 12, 16)]);
 lq_set(global.sprites, "Support Vector Machines", [sprite_add("Sprites/Main/Neural Network/Support Vector Machines.png", 1, 12, 16), sprite_add("Sprites/Dev Icon/Neural Network/Support Vector Machines.png", 1, 12, 16)]);
 
-lq_set(global.sprites, "Fast Food", [sprite_add("Sprites/Main/Ultras/Fast Food.png", 1, 12, 16), {icon:sprite_add("Sprites/Alt/Ultras/Fast Food.png", 1, 12, 16),anim:sprite_add("Sprites//Ultras/Fast Food Anim.png", 11, 21, 26)}, sprite_add("Sprites/Alt/Ultras/Fast Food.png", 1, 12, 16), sprite_add("Sprites/Alt/Ultras/Fast Food 2.png", 1, 12, 16)]);
+lq_set(global.sprites, "Fast Food", [sprite_add("Sprites/Main/Ultras/Fast Food.png", 1, 12, 16), {icon:sprite_add("Sprites/Alt/Ultras/Fast Food.png", 1, 12, 16),anim:sprite_add("Sprites/Ultras/Fast Food Anim.png", 11, 21, 26)}, sprite_add("Sprites/Alt/Ultras/Fast Food.png", 1, 12, 16), sprite_add("Sprites/Alt/Ultras/Fast Food 2.png", 1, 12, 16)]);
 lq_set(global.sprites, "Intellect", [sprite_add("Sprites/Main/Ultras/Intellect.png", 1, 12, 16), sprite_add("Sprites/Dev Art/Ultras/Intellect.png", 1, 12, 16)]);
 lq_set(global.sprites, "Galactic Style", [sprite_add("Sprites/Main/Ultras/Galactic Style.png", 1, 12, 16), sprite_add("Sprites/Alt/Ultras/Galactic Style.png", 1, 12, 16)]);
 lq_set(global.sprites, "Armory", [sprite_add("Sprites/Main/Ultras/Armory.png", 1, 12, 16), sprite_add("Sprites/Alt/Ultras/Armory.png", 1, 12, 16)]);
