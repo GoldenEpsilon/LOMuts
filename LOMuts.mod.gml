@@ -19,7 +19,7 @@
 		exit;
 	}
 
-	global.canMutTokens = true;
+	global.canMutTokens = false;
 	global.showStackIndicator = false;
 	global.canOutcast = 0;
 	global.prevCanOutcast = 0;
