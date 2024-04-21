@@ -56,7 +56,7 @@
 //loadskill Ultras/Positivity
 
 /loadmod GuiPackLoader
-//loadmod Extra Mutation Options
+/loadmod Extra Mutation Options
 /loadmod LOMuts
 /loadmod LOMutsSprites
 /loadmod LOMutsMutTokens
