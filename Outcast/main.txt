@@ -7,7 +7,7 @@
 /loadskill Arcane Arts
 /loadskill Laser Focus
 /loadskill Explosive Gaze
-/loadskill Rabbit Ears
+//loadskill Rabbit Ears
 /loadskill Buckshot Back
 /loadskill Absorbing Abs
 /loadskill Friendly Eyelashes
