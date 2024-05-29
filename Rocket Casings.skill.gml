@@ -4,6 +4,8 @@ global.sprSkillIcon = sprite_add("Sprites/Main/Rocket Casings.png", 1, 12, 16);
 global.sprSkillHUD = sprite_add("Sprites/Icons/Rocket Casings Icon.png", 1, 8, 8);
 global.sprRocketExplo = sprite_add("Sprites/RocketExplo.png", 7, 12, 12);
 global.sprRocketExploGreen = sprite_add("Sprites/RocketExploGreen.png", 7, 12, 12);
+global.sprBlastS = sprite_add("Sprites/sprSmallYellowExplosion.png", 7, 12, 12);
+global.sprBlastM = sprite_add("Sprites/sprYellowExplosion.png", 9, 24, 24);
 
 global.casings_cont = noone;
 
@@ -109,38 +111,37 @@ global.casings_cont = noone;
 	rc_general();
 	
 	//wrap projectile
-	casings_old_destroy = on_destroy;
-	on_destroy = script_ref_create(rc_on_destroy_wrapped);
+	casings_damage			= damage; //compat for projectiles that pierce and lose damage (ie, magnums)
+	casings_old_destroy 	= on_destroy;
+	on_destroy				= script_ref_create(rc_on_destroy_wrapped);
 
 #define rc_on_destroy_wrapped
-	rocket_casings_blast(damage,x,y,xprevious,yprevious,speed,direction,team,creator,depth);
+	rocket_casings_blast(casings_damage,x,y,xprevious,yprevious,speed,direction,team,creator,depth);
 	script_ref_call(casings_old_destroy);
 
 #define rc_general
 	rocketcasings = true;
 	if speed > 0 {
-		speed += 3;
+		speed += 4;
 	}
 	if "force" in self {
 		force *= 2;
 	}
 
 #define rocket_casings_blast(_damage,_x,_y,_xp,_yp,_spd,_dir,_team,_creator,_depth) //some of these arguments are unused
-	/*to do:
-		- Sound scaling
-	*/
 	
-	#macro spr_S					sprSmallExplosion
-	#macro spr_M					sprExplosion
+	#macro spr_S					global.sprBlastS
+	#macro spr_M					global.sprBlastM
 	
 	#macro radius_ExplosionS		12
 	#macro radius_ExplosionM		24
-	
-	#macro damage_size_ratio		2 //ratio of projectile damage to radius, ie how many pixels of radius 1 point of damage provides 
 
 	var sg = skill_get(mod_current);
 
 	with instance_create(_x,_y,CustomProjectile){
+		xprevious			= x;
+		yprevious			= y;
+		
 		name				= "rocketCasingsBlast";
 		ammo_type			= 1;
 		rocketcasings		= true; //please no recursion
@@ -149,17 +150,23 @@ global.casings_cont = noone;
 		creator				= _creator;
 		
 		//assign explosion sprite and size based on damage
-		var _r = _damage * damage_size_ratio * sqrt(sg); //diminishing return radius boost for stacking muts
+		//i used mycurvefit to fit some points: (3,7.6), (7,12), (25,18), (60,24), to give smooth damage to ratio scaling
+		var _r = 1074.829 + (-19.87905 - 1074.829)/(1 + power(_damage/29061220000.000004,0.1589779));
+		
 		if _r <= radius_ExplosionS {
 			sprite_index		= spr_S;
 			image_xscale		= (_r/radius_ExplosionS);
-			image_yscale		= image_xscale;
+			image_yscale		= image_xscale; //something wierdy going on here
+			sound				= sndExplosionS;
 		}
 		else {
 			sprite_index		= spr_M;
 			image_xscale		= (_r/radius_ExplosionM);
 			image_yscale		= image_xscale;
+			sound				= sndExplosion;
 		}
+		
+		radius				= _r; //we track this for dynamic wall damage later
 		
 		mask_index			= sprite_index;
 		
@@ -171,23 +178,23 @@ global.casings_cont = noone;
         anim_alpha			= 1;
 		
 		hitlist             = [];
+		hitwalls			= [];
 		damage				= _damage * (sg/3);
 		force				= 3 * sg;
 		
-		wall_maxhp			= 5;
+		wall_maxhp			= 20;
 		wallpower_mod		= 1;
 		
-		smoke				= _damage;
-		shake				= _damage;
+		smoke				= max(1,ceil(sqrt(_damage)) - 2);
+		shake				= _damage/1.5;
 		
-		sound				= sndExplosionS;
-		sound_p				= 1;
+		sound_p				= 1.5 * (1/power(_damage,0.2));
 		
 		typ					= 0; //immune to shields
 		nopopo				= 2; //immune to IDPD blasts
 		speed				= 0;
 		
-        appear_timer        = 2;
+        appear_timer        = 1;
         has_blasted         = false;
         
         hitid				= [sprite_index, "ROCKET CASINGS BLAST"];
@@ -213,7 +220,7 @@ global.casings_cont = noone;
         image_alpha = anim_alpha;
         
         //sound, smoke, shake
-        sound_play_pitchvol(sound,(1 + random(0.2)) * sound_p,0.8);
+        sound_play_pitchvol(sound,(1.2 + random(0.2)) * sound_p,0.7);
         smoke_burst(x,y,smoke);
         view_shake_at(x,y,shake);
     }
@@ -238,17 +245,22 @@ global.casings_cont = noone;
 			rc_wall_durability_max = rc_wall_durability;
 			instance_create(x,y,FloorExplo);
 		}
-		else{
-			rc_wall_durability -= other.damage * other.wallpower_mod;
-			var _c = min(color_get_value(image_blend),128 + 128 * (rc_wall_durability/rc_wall_durability_max));
+
+		if array_find_index(other.hitwalls,self) == -1 {
+			array_push(other.hitwalls,self);
+			
+			var d = (point_distance(x + 8,y + 8,other.x,other.y)/other.radius);
+			rc_wall_durability -= other.damage * other.wallpower_mod * random_range(0.9,1.1) / d;
+			var m = 90;
+			var _c = min(color_get_value(image_blend), (256 - m) + m * (rc_wall_durability/rc_wall_durability_max));
 			image_blend = make_color_hsv(0,0,_c);
-		}
-		
-		if !rc_wall_durability{
-			with instance_create(x,y,FloorExplo){
+			
+			if !rc_wall_durability{
+				with instance_create(x,y,FloorExplo){
+					instance_destroy();
+				}
 				instance_destroy();
 			}
-			instance_destroy();
 		}
 	}
 
