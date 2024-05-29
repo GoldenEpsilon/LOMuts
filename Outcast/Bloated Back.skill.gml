@@ -188,7 +188,7 @@ if(is_real(_skill)){
 }else if(is_string(_skill) && mod_exists("skill", _skill)){
 	draw_sprite(mod_script_call("skill", _skill, "skill_icon"), 0, 8, 8);
 }
-draw_sprite(global.sprSkillHUDMini, 0, 10, 4);
+//draw_sprite(global.sprSkillHUDMini, 0, 10, 4);
 surface_reset_target();
 surface_save(surf, "surfIcon.png");
 surface_destroy(surf);
