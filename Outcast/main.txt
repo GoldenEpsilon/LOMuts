@@ -7,7 +7,7 @@
 /loadskill Laser Focus
 /loadskill Explosive Gaze
 //loadskill Rabbit Ears
-//loadskill Buckshot Back
+/loadskill Buckshot Back
 /loadskill Friendly Eyelashes
 /loadskill Cruelty-Free Veganlust
 /loadskill Groupthink

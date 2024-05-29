@@ -27,7 +27,6 @@
 /loadskill Absorbing Abs
 /loadskill Alchemic Stomach
 /loadskill Shell Cellulite
-/loadskill Buckshot Back
 /loadskill Ruffled Feathers
 /loadskill Slim Pickings
 /loadskill Loner

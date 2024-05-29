@@ -10,7 +10,7 @@ script_ref_call(["mod", "lib", "getHooks"], "skill", mod_current);
 	return "Buckshot Back";
 	
 #define skill_text
-	return "Bullets have a @w50%@s chance#to get @wUPGRADED@s";
+	return "Bullets have a @w33%@s chance#to get @wUPGRADED@s";
 	
 #define stack_text
 	return "@wUPGRADES@s GET ROLLED#MORE THAN ONCE";
@@ -26,6 +26,9 @@ script_ref_call(["mod", "lib", "getHooks"], "skill", mod_current);
 	
 #define skill_wepspec
 	return 1;
+	
+#define skill_outcast
+	return true;
 
 #define skill_tip
 	return "You don't wanna know#what it costs to fire this gun.";
@@ -39,7 +42,7 @@ script_ref_call(["mod", "lib", "getHooks"], "skill", mod_current);
 #define update(_id)
 	repeat(skill_get(mod_current)){
 		with(instances_matching_gt([Bullet1, HeavyBullet, UltraBullet], "id", _id)){
-			if(irandom(1) == 0){
+			if(irandom(2) == 0){
 				if "buckshotupgrade" not in self {
 					buckshotupgrade = 1;
 				}else {
@@ -48,7 +51,7 @@ script_ref_call(["mod", "lib", "getHooks"], "skill", mod_current);
 			}
 		}
 		with(instances_matching_gt(BouncerBullet, "id", _id)){
-			if(irandom(1) == 0){
+			if(irandom(2) == 0){
 				damage *= 2;
 				damage = ceil(damage);
 				image_xscale += 0.5;
@@ -56,7 +59,7 @@ script_ref_call(["mod", "lib", "getHooks"], "skill", mod_current);
 			}
 		}
 		with(instances_matching_gt(instances_matching(CustomProjectile, "is_bullet", 1), "id", _id)){
-			if(irandom(1) == 0){
+			if(irandom(2) == 0){
 				if("buckshot_upgrade" in self){
 					script_ref_call(buckshot_upgrade, x, y);
 				}else{
