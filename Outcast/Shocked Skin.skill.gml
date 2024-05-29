@@ -1,6 +1,6 @@
 #define init
-global.sprSkillIcon = sprite_add("Sprites/Main/Shocked Skin.png", 1, 12, 16)
-global.sprSkillHUD = sprite_add("Sprites/Icons/Shocked Skin Icon.png", 1, 8, 8)
+global.sprSkillIcon = sprite_add("../Sprites/Main/Shocked Skin.png", 1, 12, 16)
+global.sprSkillHUD = sprite_add("../Sprites/Icons/Shocked Skin Icon.png", 1, 8, 8)
 while(!mod_exists("mod", "lib")){wait(1);}
 script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 
@@ -22,6 +22,9 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 	
 #define skill_wepspec
 	return 1;
+	
+#define skill_outcast
+	return true;
 
 #define skill_tip
 	return "Shock absorption";
@@ -35,7 +38,10 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 #define update(_id)
 	with(Player){
 		with(instances_matching_ne(instances_matching_gt(instances_matching([Bullet2, FlameShell, HeavySlug, UltraShell, Slug, HyperSlug, CustomProjectile], "creator", int64(self)), "id", _id), "ShockedSkin", true)){
-			if((object_index != CustomProjectile || ("is_shell" in self && is_shell)) && fork()){
+			if(((object_index != CustomProjectile && object_index != CustomSlash) || 
+				(variable_instance_get(self, "ammo_type", 0) == 2 || 
+				variable_instance_get(self, "is_shell", false) || 
+				variable_instance_get(self, "is_slug", false))) && fork()){
 				var _x = x + hspeed + lengthdir_x(sprite_width/4, direction);
 				var _y = y + vspeed + lengthdir_y(sprite_width/4, direction);
 				var _t = team;

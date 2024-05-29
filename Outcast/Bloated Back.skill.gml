@@ -134,7 +134,7 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 				if(chosen != -1){
 					var amnt = skill_get(chosen);
 					wait(0);
-					array_push(global.skill, chosen);
+					array_push(global.chosen, chosen);
 					skill_set(chosen, amnt+1);
 					make_surf(chosen);
 				}

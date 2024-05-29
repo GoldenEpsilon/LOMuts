@@ -104,7 +104,8 @@
 				if((button_pressed(index, "fire") && point_in_rectangle(mouse_x[index], mouse_y[index], other.bbox_left, other.bbox_top, other.bbox_right, other.bbox_bottom)) || 
 				button_pressed(index, "key" + string(other.num+1)) || 
 				(other.creator.select == other.num && button_pressed(index, "okay"))){
-					global.mutTokens += 1;
+					GameCont.rad += 50;
+					//global.mutTokens += 1;
 				}
 			}
 		}

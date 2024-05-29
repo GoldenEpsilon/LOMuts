@@ -7,7 +7,7 @@ global.alchemize = sprite_add("Sprites/AlchemicStomach.png", 7, 8, 8)
 	return "Alchemic Stomach";
 	
 #define skill_text
-	return "@wFIRING @sWHEN OUT OF @yAMMO#@wCONVERTS @yAMMO";
+	return "@wFIRING @sWHEN OUT OF @yAMMO#@wCONVERTS @yAMMO (INEFFICIENTLY)";
 	
 #define stack_text
 	return "@yAMMO@s CONVERSION IS MORE EFFICIENT";
@@ -30,7 +30,7 @@ global.alchemize = sprite_add("Sprites/AlchemicStomach.png", 7, 8, 8)
 #define step
 	//took some code from Brass Blood from minimod here
 	with(Player){
-		if(button_pressed(index, "fire") && canfire && can_shoot && visible){
+		if(player_will_fire){
 			var desired_amount = weapon_get_cost(wep)*2*max(1, 30/max(weapon_get_load(wep),1));
 			if(array_length(ammo) > 2 && (weapon_get_cost(wep) > ammo[weapon_get_type(wep)] || ammo[weapon_get_type(wep)] <= 0)){
 				var alchemized = false;
@@ -43,7 +43,8 @@ global.alchemize = sprite_add("Sprites/AlchemicStomach.png", 7, 8, 8)
 						alchemized = true;
 						var amnt = floor((min(min(ammo[type], ceil(typ_amax[type]/10)), (desired_amount - ammo[weapon_get_type(wep)])*typ_amax[type])/typ_amax[type])*typ_amax[weapon_get_type(wep)]);
 						ammo[type] -= ceil((amnt/typ_amax[weapon_get_type(wep)])*typ_amax[type]);
-						ammo[weapon_get_type(wep)] += ceil(amnt * (skill_get(mod_current))/2);
+						if "sadismOldAmmo" in self {sadismOldAmmo[type] -= ceil((amnt/typ_amax[weapon_get_type(wep)])*typ_amax[type]);}
+						ammo[weapon_get_type(wep)] += ceil(amnt * (skill_get(mod_current))/3);
 					}
 				}
 				if(alchemized){
@@ -63,7 +64,7 @@ global.alchemize = sprite_add("Sprites/AlchemicStomach.png", 7, 8, 8)
 				}
 			}
 		}
-		if(race == "steroids" && button_pressed(index, "spec") && canfire && bcan_shoot && visible){
+		if(steroids_will_fire){
 			var desired_amount = weapon_get_cost(bwep)*2*max(1, 30/max(weapon_get_load(wep),1));
 			if(array_length(ammo) > 2 && (weapon_get_cost(bwep) > ammo[weapon_get_type(bwep)] || ammo[weapon_get_type(bwep)] <= 0)){
 				var alchemized = false;
@@ -75,8 +76,9 @@ global.alchemize = sprite_add("Sprites/AlchemicStomach.png", 7, 8, 8)
 					if(ammo[type] > 0){
 						alchemized = true;
 						var amnt = floor((min(min(ammo[type], ceil(typ_amax[type]/10)), (desired_amount - ammo[weapon_get_type(bwep)])*typ_amax[type])/typ_amax[type])*typ_amax[weapon_get_type(bwep)]);
-						ammo[type] -= amnt;
-						ammo[weapon_get_type(bwep)] += ceil(amnt * (skill_get(mod_current))/2);
+						ammo[type] -= ceil((amnt/typ_amax[weapon_get_type(bwep)])*typ_amax[type]);
+						if "sadismOldAmmo" in self {sadismOldAmmo[type] -= ceil((amnt/typ_amax[weapon_get_type(bwep)])*typ_amax[type]);}
+						ammo[weapon_get_type(bwep)] += ceil(amnt * (skill_get(mod_current))/3);
 					}
 				}
 				if(alchemized){
@@ -97,3 +99,41 @@ global.alchemize = sprite_add("Sprites/AlchemicStomach.png", 7, 8, 8)
 			}
 		}
 	}
+
+#macro player_will_fire
+/*
+	Used with a Player to check if they’re about to shoot their primary weapon
+	Only works in the .mod, .skill, and .crown step events due to event order
+*/
+
+canfire
+&& can_shoot == true
+&& (
+	((race == "steroids") ? (weapon_get_auto(wep) >= 0) : weapon_get_auto(wep))
+	? button_check(index, "fire")
+	: (clicked == true || (button_pressed(index, "fire") && reload < 15))
+)
+&& visible
+&& !instance_exists(GenCont)
+&& !instance_exists(LevCont)
+&& !instance_exists(PlayerSit)
+&& !array_length(instances_matching(CrystalShield, "creator", self))
+
+#macro steroids_will_fire
+/*
+	STEROIDDDDDDDDDSSSSS
+*/
+
+race == "steroids" &&
+canspec
+&& bcan_shoot == true
+&& (
+	((race == "steroids") ? (weapon_get_auto(bwep) >= 0) : weapon_get_auto(bwep))
+	? button_check(index, "spec")
+	: ((button_pressed(index, "spec") && breload < 15))
+)
+&& visible
+&& !instance_exists(GenCont)
+&& !instance_exists(LevCont)
+&& !instance_exists(PlayerSit)
+&& !array_length(instances_matching(CrystalShield, "creator", self))

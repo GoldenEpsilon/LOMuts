@@ -1,6 +1,6 @@
 #define init
-global.sprSkillIcon = sprite_add("../Sprites/Outcast/Blank.png", 1, 12, 16)
-global.sprSkillHUD = sprite_add("../Sprites/Outcast/Blank Icon.png", 1, 8, 8)
+global.sprSkillIcon = sprite_add("../Sprites/Outcast/" + mod_current + ".png", 1, 12, 16)
+global.sprSkillHUD = sprite_add("../Sprites/Outcast/" + mod_current + " Icon.png", 1, 8, 8)
 global.sprDiscoLaser = sprite_add("../Sprites/DiscoLaser.png", 14, 2, 3)
 
 #define skill_name

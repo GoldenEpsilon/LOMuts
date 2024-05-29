@@ -30,7 +30,7 @@ global.skill = [];
 	return "utility";
 
 #define skill_avail
-	return skill_get_at(4) != null;
+	return skill_get_at(3) != null;
 
 #define skill_temp
 	return 1;

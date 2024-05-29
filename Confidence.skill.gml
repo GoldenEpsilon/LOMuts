@@ -70,6 +70,8 @@ with(instances_matching(Player, "confidence", 1)){
 		confidence = 1;
 		speed *= 1 + 0.3 * skill_get(mod_current);
 		damage = floor(damage * 1.25);
-		image_xscale *= 1.1;
+		if object_index != Laser && object_index != EnemyLaser {
+			image_xscale *= 1.1;
+		}
 	}
 }

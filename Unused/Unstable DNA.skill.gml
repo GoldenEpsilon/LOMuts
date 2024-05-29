@@ -17,7 +17,7 @@ global.sprSkillHUD = sprite_add("Sprites/Icons/Unstable DNA Icon.png", 1, 8, 8)
 #define skill_sacrifice return false; //metamorphosis compat thing
 
 #define skill_avail
-	return GameCont.level >= 5 && (!instance_is(self, CustomObject) && !instance_is(self, CustomProp)) || instance_exists(Loadout);
+	return GameCont.level >= 5 && (instance_exists(LevCont) || instance_exists(Loadout));
 
 #define skill_tip
 	return "I don't feel so good...";

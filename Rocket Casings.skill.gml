@@ -1,14 +1,17 @@
+#define nothing //dragonstrive says hi
 #define init
-global.sprSkillIcon = sprite_add("Sprites/Main/Rocket Casings.png", 1, 12, 16)
-global.sprSkillHUD = sprite_add("Sprites/Icons/Rocket Casings Icon.png", 1, 8, 8)
-global.sprRocketExplo = sprite_add("Sprites/RocketExplo.png", 7, 12, 12)
-global.sprRocketExploGreen = sprite_add("Sprites/RocketExploGreen.png", 7, 12, 12)
+global.sprSkillIcon = sprite_add("Sprites/Main/Rocket Casings.png", 1, 12, 16);
+global.sprSkillHUD = sprite_add("Sprites/Icons/Rocket Casings Icon.png", 1, 8, 8);
+global.sprRocketExplo = sprite_add("Sprites/RocketExplo.png", 7, 12, 12);
+global.sprRocketExploGreen = sprite_add("Sprites/RocketExploGreen.png", 7, 12, 12);
+
+global.casings_cont = noone;
 
 #define skill_name
 	return "Rocket Casings";
 	
 #define skill_text
-	return "@wBullets@s go @wfaster@s and @wexplode@s";
+	return "@wFASTER BULLETS#@wBULLETS @sCREATE @wBLASTS";
 
 #define skill_button
 	sprite_index = global.sprSkillIcon;
@@ -20,108 +23,261 @@ global.sprRocketExploGreen = sprite_add("Sprites/RocketExploGreen.png", 7, 12, 1
 	return 1;
 
 #define skill_tip
-	return "WHOOSH";
+	return "ESCAPE VELOCITY";//"WHOOSH"; //feel free to revert the tip i just think this is neat
 	
 #define skill_type
 	return "offensive";
-	
+
 #define skill_take
-	sound_play(sndMut); sound_mutation_play();
-	
+//sounds only play if in the loading screen
+    if(argument0 > 0 && instance_exists(LevCont)){
+        
+         // Sound:
+        var _area = GameCont.area;
+        if(_area == 101 || (is_string(_area) && mod_script_call("area", _area, "area_underwater"))){
+            sound_play(sndOasisShoot);
+        }
+        else{
+            sound_mutation_play();
+        }
+    }
+
 #define step
-script_bind_step(custom_step, 0);
+	if instance_exists(Player) && !instance_exists(global.casings_cont){
+		global.casings_cont = script_bind_step(custom_step, 0);
+	}
+	
 #define custom_step
-with(Player){
-	with(instances_matching(instances_matching_ne([Bullet1,UltraBullet,HeavyBullet,BouncerBullet,CustomProjectile],"rocketcasings",true),"team",team)){
-		if(object_index == Bullet1 && skill_get("excitedneurons")){continue;}
-		if((object_index == CustomProjectile || object_index == CustomSlash)){
-			if(!((("ammo_type" in self && ammo_type == 1) || ("is_bullet" in self && is_bullet == true)))){
-				rocketcasings = true;
-			}else{
-				speed = speed + 3;
-				force = force * 2;
-				rocketcasings = true;
-				rocket_on_destroy = on_destroy;
-				on_destroy = customRocketCasings;
-			}
-			continue;
+	//clear step cont if uneeded
+	if !instance_exists(Player) || !skill_get(mod_current) {
+		instance_destroy();
+		exit;
+	}
+	
+	if instance_exists(projectile){
+		//vanilla projectiles
+		var v = instances_matching([Bullet1,UltraBullet,HeavyBullet,BouncerBullet],"rocketcasings",null);
+		if array_length(v) with v {
+			rc_vanilla();
 		}
-		speed = speed + 3;
-		force = force * 2;
-		rocketcasings = true;
-		if(fork()){
-			var _x = x + hspeed;
-			var _dirx = lengthdir_x(sprite_width/4, direction);
-			var _y = y + vspeed;
-			var _diry = lengthdir_y(sprite_width/4, direction);
-			var _t = team;
-			var _d = damage;
-			while(instance_exists(self)){
-				_x = x + hspeed;
-				_y = y + vspeed;
-				_dirx = lengthdir_x(sprite_width/4, direction);
-				_diry = lengthdir_y(sprite_width/4, direction);
-				_t = team;
-				wait(0);
-			}
-			with(instance_create(_x + _dirx,_y + _diry,CustomProjectile)){
-				hitframe = -1;
-				rocketcasings = true;
-				duplicators = true;
-				pyroflammable = true;
-				damage = 1 * skill_get(mod_current);
-				force = 3 * skill_get(mod_current);
-				timer = 8;
-				team = _t;
-				image_speed = 0.4;
-				sprite_index = global.sprRocketExplo;
-				if(_d > 20){
-					force *= 2;
-					damage = 4 * skill_get(mod_current);
-					sprite_index = global.sprRocketExploGreen;
-				}else if(_d > 5){
-					force *= 1.5;
-					damage = 2 * skill_get(mod_current);
-				}
-				hitid = [sprite_index, "ROCKET AMMO"];
-				mask_index = mskSmallExplosion;
-				on_wall = rocketWall;
-				on_hit = rocketHit;
-				on_step = rocketStep;
-				with(instance_create(_x - _dirx * 2,_y - _diry * 2,SmallExplosion)){
-					image_alpha = 0;
-					image_speed = 0.4;
-					sprite_index = global.sprRocketExplo;
-					mask_index = mskNone;
-				}
-			}
-			exit;
+		
+		//modded projectiles
+		var m = instances_matching(instances_matching(CustomProjectile,"ammo_type",1),"rocketcasings",null);
+		if array_length(m) with m {
+			rc_modded();
 		}
 	}
-}
-instance_destroy();
-
-#define customRocketCasings
-	with(instance_create(x,y,SmallExplosion)){
-		image_alpha = 0;
-		image_speed = 0.4;
-		sprite_index = global.sprRocketExplo;
-		mask_index = mskNone;
+	
+#define rc_vanilla
+	//general effects
+	rc_general();
+	
+	//fork
+	if fork() {
+		var _x = x + hspeed_raw;
+		var _y = y + vspeed_raw;
+		var _xp = xprevious;
+		var _yp = yprevious;
+		var _team = team;
+		var _creator = creator;
+		var _damage = damage;
+		var _dir = direction;
+		var _spd = speed;
+		var _depth = depth;
+		while instance_exists(self) {
+			_x = x + hspeed_raw;
+			_y = y + vspeed_raw;
+//			_xp = xprevious + hspeed_raw;
+//			_yp = yprevious + vspeed_raw;
+			_dir = direction;
+//			_spd = speed;
+			_team = team;
+			_creator = creator;
+			_damage = damage;
+			_depth = depth;
+			wait 0;
+		}
+		
+		//explosion
+		rocket_casings_blast(_damage,_x,_y,_xp,_yp,_spd,_dir,_team,_creator,_depth);
+		
+		exit;
 	}
-	script_ref_call(on_destroy);
 
-#define rocketWall
-#define rocketHit
-if(hitframe == -1 || hitframe == current_frame){
-	projectile_hit(other, damage, force, direction);
-	hitframe = current_frame;
-}
-#define rocketStep
-timer--;
-if(timer < 0 && instance_exists(self)){
-	instance_destroy();
-}
+#define rc_modded
+	//general effects
+	rc_general();
+	
+	//wrap projectile
+	casings_old_destroy = on_destroy;
+	on_destroy = script_ref_create(rc_on_destroy_wrapped);
 
+#define rc_on_destroy_wrapped
+	rocket_casings_blast(damage,x,y,xprevious,yprevious,speed,direction,team,creator,depth);
+	script_ref_call(casings_old_destroy);
+
+#define rc_general
+	rocketcasings = true;
+	if speed > 0 {
+		speed += 3;
+	}
+	if "force" in self {
+		force *= 2;
+	}
+
+#define rocket_casings_blast(_damage,_x,_y,_xp,_yp,_spd,_dir,_team,_creator,_depth) //some of these arguments are unused
+	/*to do:
+		- Sound scaling
+	*/
+	
+	#macro spr_S					sprSmallExplosion
+	#macro spr_M					sprExplosion
+	
+	#macro radius_ExplosionS		12
+	#macro radius_ExplosionM		24
+	
+	#macro damage_size_ratio		2 //ratio of projectile damage to radius, ie how many pixels of radius 1 point of damage provides 
+
+	var sg = skill_get(mod_current);
+
+	with instance_create(_x,_y,CustomProjectile){
+		name				= "rocketCasingsBlast";
+		ammo_type			= 1;
+		rocketcasings		= true; //please no recursion
+		
+		team				= _team;
+		creator				= _creator;
+		
+		//assign explosion sprite and size based on damage
+		var _r = _damage * damage_size_ratio * sqrt(sg); //diminishing return radius boost for stacking muts
+		if _r <= radius_ExplosionS {
+			sprite_index		= spr_S;
+			image_xscale		= (_r/radius_ExplosionS);
+			image_yscale		= image_xscale;
+		}
+		else {
+			sprite_index		= spr_M;
+			image_xscale		= (_r/radius_ExplosionM);
+			image_yscale		= image_xscale;
+		}
+		
+		mask_index			= sprite_index;
+		
+		depth				= _depth;
+        image_index         = 0;
+        image_alpha         = 0;
+        
+        anim_speed			= 0.6;
+        anim_alpha			= 1;
+		
+		hitlist             = [];
+		damage				= _damage * (sg/3);
+		force				= 3 * sg;
+		
+		wall_maxhp			= 5;
+		wallpower_mod		= 1;
+		
+		smoke				= _damage;
+		shake				= _damage;
+		
+		sound				= sndExplosionS;
+		sound_p				= 1;
+		
+		typ					= 0; //immune to shields
+		nopopo				= 2; //immune to IDPD blasts
+		speed				= 0;
+		
+        appear_timer        = 2;
+        has_blasted         = false;
+        
+        hitid				= [sprite_index, "ROCKET CASINGS BLAST"];
+        
+        on_step				= script_ref_create(rocketCasingsBlast_step);
+        on_hit				= script_ref_create(rocketCasingsBlast_hit);
+        on_wall				= script_ref_create(rocketCasingsBlast_wall);
+        on_destroy			= nothing;
+		
+		return self;
+	}
+
+#define rocketCasingsBlast_step
+    if appear_timer >= 0 {
+        appear_timer -= current_time_scale;
+        image_speed = 0;
+        image_alpha = 0;
+    }
+    else if !has_blasted{
+        has_blasted = true;
+        image_index = 0;
+        image_speed = anim_speed;
+        image_alpha = anim_alpha;
+        
+        //sound, smoke, shake
+        sound_play_pitchvol(sound,(1 + random(0.2)) * sound_p,0.8);
+        smoke_burst(x,y,smoke);
+        view_shake_at(x,y,shake);
+    }
+    
+    if (image_index + image_speed_raw >= image_number || image_index + image_speed_raw < 0) instance_destroy();
+
+#define rocketCasingsBlast_hit
+	if !has_blasted exit;
+    if array_find_index(hitlist,other) == -1{
+    	var _d = (instance_is(other,Player) ? ceil(damage) : damage); //round damage for players
+        projectile_hit(other,_d,force,point_direction(x,y,other.x,other.y));
+        array_push(hitlist,other);
+    }
+
+#define rocketCasingsBlast_wall
+	if !has_blasted exit;
+	
+	//over time wall destruction
+	with other {
+		if "rc_wall_durability" not in self{
+			rc_wall_durability = other.wall_maxhp;
+			rc_wall_durability_max = rc_wall_durability;
+			instance_create(x,y,FloorExplo);
+		}
+		else{
+			rc_wall_durability -= other.damage * other.wallpower_mod;
+			var _c = min(color_get_value(image_blend),128 + 128 * (rc_wall_durability/rc_wall_durability_max));
+			image_blend = make_color_hsv(0,0,_c);
+		}
+		
+		if !rc_wall_durability{
+			with instance_create(x,y,FloorExplo){
+				instance_destroy();
+			}
+			instance_destroy();
+		}
+	}
+
+#define smoke_burst
+var xx = argument[0], yy = argument[1];
+var num = argument_count > 2 ? argument[2] : 6;
+	var r = [];
+
+	repeat num {
+		with instance_create(xx,yy,Smoke){
+			speed		= 1 + random(3);
+			direction	= random(360);
+			depth		+= 1;
+			array_push(r,self);
+		}
+		
+		with instance_create(xx,yy,Dust){
+			speed		= 3 + random(3);
+			direction	= random(360);
+			depth		+= 1;
+			array_push(r,self);
+		}
+	}
+	
+	return r;
+
+
+
+//-------------Mutation Sounds---------------//
 #define sound_mutation_play()
 	sound_play(sndMut);
 	with instance_create(0, 0, CustomObject){
@@ -171,3 +327,6 @@ if(timer < 0 && instance_exists(self)){
 		sound_play(sndBanditDie)
 		sound_play_pitchvol(sndExplosionXL, 1.1, 0.9)
 }
+
+
+

@@ -1,15 +1,13 @@
-/loadskill Precision Incision
 /loadskill Iron Skin
 //loadskill Diplomacy
 //loadskill Terrorism
 /loadskill Free Space
 /loadskill Cranial Valve
-/loadskill Arcane Arts
+//loadskill Arcane Arts
 /loadskill Laser Focus
 /loadskill Explosive Gaze
 //loadskill Rabbit Ears
-/loadskill Buckshot Back
-/loadskill Absorbing Abs
+//loadskill Buckshot Back
 /loadskill Friendly Eyelashes
 /loadskill Cruelty-Free Veganlust
 /loadskill Groupthink
@@ -25,4 +23,6 @@
 /loadskill Toxic Thoughts
 /loadskill Aerodynamic Ankles
 /loadskill Dynamic Calves
-//loadskill Bloated Back
+/loadskill Shocked Skin
+/loadskill Energized Intestines
+/loadskill Bloated Back

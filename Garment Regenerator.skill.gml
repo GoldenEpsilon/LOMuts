@@ -7,6 +7,9 @@ global.sprSkillHUD = sprite_add("Sprites/Icons/Garment Regenerator Icon.png", 1,
 	
 #define skill_text
 	return "When you take damage,#@rheal@s half of it back after a second.";
+	
+#define stack_text
+	return "HEAL BACK @wFASTER@s";
 
 #define skill_button
 	sprite_index = global.sprSkillIcon;

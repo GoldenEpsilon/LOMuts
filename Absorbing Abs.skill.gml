@@ -1,7 +1,7 @@
 #define init
-global.sprSkillIcon = sprite_add("../Sprites/Outcast/Blank.png", 1, 12, 16)
-global.sprSkillHUD = sprite_add("../Sprites/Outcast/Blank Icon.png", 1, 8, 8)
-global.absorb = sprite_add("../Sprites/absorb.png", 5, 24, 24)
+global.sprSkillIcon = sprite_add("Sprites/Main/Absorbing Abs.png", 1, 12, 16)
+global.sprSkillHUD = sprite_add("Sprites/Outcast/Blank Icon.png", 1, 8, 8)
+global.absorb = sprite_add("Sprites/absorb.png", 5, 24, 24)
 while(!mod_exists("mod", "lib")){wait(1);}
 script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 global.bolts = [];
@@ -11,6 +11,9 @@ global.bolts = [];
 	
 #define skill_text
 	return "Bolts @wabsorb@s projectiles#and release them on hit";
+	
+#define stack_text
+	return "Bolts @wabsorb@s from#further away";
 
 #define skill_button
 	sprite_index = global.sprSkillIcon;
@@ -19,9 +22,6 @@ global.bolts = [];
 	return global.sprSkillHUD;
 
 #define skill_avail
-	return true;
-
-#define skill_outcast
 	return true;
 
 #define skill_tip
@@ -78,7 +78,7 @@ global.bolts = [];
 				global.bolts[i][@0] = x;
 				global.bolts[i][@1] = y;
 				global.bolts[i][@2] = direction;
-				with(call(scr.instances_meeting, x, y, instances_matching_ne(projectile, "team", team))){
+				with(instances_in_circle(instances_matching_ne(projectile, "team", team), x, y, damage * (1 + skill_get(mod_current))/2)){
 					if("team" not in self){
 						continue;
 					}

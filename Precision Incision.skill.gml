@@ -1,6 +1,6 @@
 #define init
-global.sprSkillIcon = sprite_add("../Sprites/Outcast/Precision Incision.png", 1, 12, 16)
-global.sprSkillHUD = sprite_add("../Sprites/Outcast/Precision Incision Icon.png", 1, 8, 8)
+global.sprSkillIcon = sprite_add("Sprites/Outcast/Precision Incision.png", 1, 12, 16)
+global.sprSkillHUD = sprite_add("Sprites/Outcast/Precision Incision Icon.png", 1, 8, 8)
 while(!mod_exists("mod", "lib")){wait(1);}
 script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 
@@ -17,9 +17,6 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 	return global.sprSkillHUD;
 
 #define skill_avail
-	return true;
-
-#define skill_outcast
 	return true;
 	
 #define skill_wepspec
@@ -41,21 +38,13 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 	
 #define update(_id)
 	with(Player){
-		if(weapon_get_type(wep) == 5){
-			with(instances_matching(instances_matching_ne(instances_matching_ne(instances_matching_gt(projectile, "id", _id), "ammo_type", -1), "PIhitscan_check", true), "creator", self)){
-				PIhitscan_check = true;
+		with(instances_matching(instances_matching_ne(instances_matching_gt([CustomProjectile, PlasmaBall, PlasmaBig, PlasmaHuge, PlasmaImpact, LightningBall, Lightning, IonBurst, LaserCannon, Laser, Devastator, LightningSlash, EnergyHammerSlash, EnergyShank, EnergySlash], "id", _id), "PIhitscan_check", true), "creator", self)){
+			PIhitscan_check = true;
+			if(!(object_index == CustomSlash || object_index == CustomProjectile) || "ammo_type" in self && ammo_type == 5){
 				PIhitscan = 1;
 				run_hitscan(self);
-			}
-		}else{
-			with(instances_matching(instances_matching_ne(instances_matching_gt(projectile, "id", _id), "PIhitscan_check", true), "creator", self)){
-				PIhitscan_check = true;
-				if("ammo_type" in self && ammo_type == 5){
-					PIhitscan = 1;
-					run_hitscan(self);
-				}else{
-					PIhitscan = 0;
-				}
+			}else{
+				PIhitscan = 0;
 			}
 		}
 	}
@@ -117,7 +106,7 @@ with(creator){
 			y += vspeed_raw;
 			var _inst = call(scr.instances_meeting, x, y, [projectile, hitme, Wall]);
 			with(_inst){
-				if(!instance_exists(_proj)){continue;}
+				if(!instance_exists(_proj) || !place_meeting(x,y,_proj)){continue;}
 				if("nexthurt" in self){nexthurt -= current_time_scale;}
 				with(_proj){
 					event_perform(ev_collision, other.object_index);

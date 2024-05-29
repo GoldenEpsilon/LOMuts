@@ -31,7 +31,7 @@ return `MORE @gRADS@s#@(color:${make_color_rgb(84, 58, 24)})OUTCAST MUTATIONS@s 
 return "FREAKS COME OUT#UNTIL THE LIGHTS GO ON";
 
 #define crown_avail // L0
-if(GameCont.loops == 0) return 1;
+if(GameCont.loops == 0) return true;
 
 #define crown_take
 	sound_play_crown()

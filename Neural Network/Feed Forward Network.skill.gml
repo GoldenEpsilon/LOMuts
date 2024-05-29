@@ -13,6 +13,9 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 	
 #define skill_text
 	return "@wENERGY MELEE @sWEAPONS @wECHO";
+	
+#define stack_text
+	return "Another @wEcho";
 
 #define skill_button
 	sprite_index = global.sprButton;
@@ -58,6 +61,16 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 				var _direction = direction;
 				var _image_angle = image_angle;
 				var _f = feed_forward;
+				var _varstorage = {};
+				if object_index == CustomSlash {
+					with(variable_instance_get_names(self)){
+						var	_value = variable_instance_get(other, self),
+							_clone = call(scr.data_clone, _value, 0);
+							
+						variable_struct_set(_varstorage, self, call(scr.data_clone, _value, 0));
+					}
+					_varstorage.sprite_index = sprite_index;
+				}
 				while(instance_exists(self) && speed > 0){
 					_x = x + hspeed + lengthdir_x(sprite_width/4, direction);
 					_y = y + vspeed + lengthdir_y(sprite_width/4, direction);
@@ -66,7 +79,11 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 					_t = team;
 					wait(0);
 				}
+				
 				with(instance_create(_x,_y,_oi)){
+					with(variable_struct_get_names(_varstorage)){
+						variable_instance_set(other, self, variable_struct_get(_varstorage, self));
+					}
 					feed_forward = _f + 1;
 					image_alpha = (skill_get(mod_current) + 1 - feed_forward) / (skill_get(mod_current) + 1)
 					if(feed_forward >= skill_get(mod_current)){

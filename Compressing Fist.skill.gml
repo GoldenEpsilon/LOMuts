@@ -9,7 +9,7 @@ global.sprSkillHUD = sprite_add("Sprites/Icons/Compressing Fist Icon.png", 1, 8,
 	return "@s1.5X @wDAMAGE#@s1.5X @yAMMO @wUSAGE#@wWIDER @sPROJECITLES";
 	
 #define stack_text
-	return "@s0.5X ADDED TO @wDAMAGE#@s0.5X ADDED TO @AMMO USAGE#EVEN @wWIDER@s PROJECTILES"
+	return "@s0.5X ADDED TO @wDAMAGE#@s0.5X ADDED TO @wAMMO USAGE#EVEN @wWIDER@s PROJECTILES"
 
 #define skill_button
 	sprite_index = global.sprSkillIcon;

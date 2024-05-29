@@ -21,7 +21,7 @@ global.greedsTaken = 0;
 #define skill_sacrifice return false; //metamorphosis compat thing
 
 #define skill_avail
-	return (!instance_is(self, CustomObject) && !instance_is(self, CustomProp)) || instance_exists(Loadout);
+	return instance_exists(LevCont) || instance_exists(Loadout);
 
 #define skill_tip
 	return "Greed is good!";

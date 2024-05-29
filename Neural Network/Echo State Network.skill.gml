@@ -7,6 +7,9 @@ global.sprIcon = sprite_add("../Sprites/Icons/Neural Network/" + mod_current + "
 	
 #define skill_text
 	return "@bELECTRICITY @wARCS @sTOWARDS @wENEMIES";
+	
+#define stack_text
+	return "Electricity arcs from further away";
 
 #define skill_button
 	sprite_index = global.sprButton;

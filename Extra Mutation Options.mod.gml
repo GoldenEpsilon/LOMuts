@@ -5,18 +5,18 @@
 global.stacks = 0;
 global.extrastacks = 0;
 global.target=global.stacks + global.extrastacks + 4 + 1;
-if(!file_loaded("settings.txt")){wait file_load("settings.txt");}
+/*if(!file_loaded("settings.txt")){wait file_load("settings.txt");}
 var s = string_load("settings.txt");
 if(is_string(s) && is_real(real(s))){
 	global.stacks = real(s);
-}
+}*/
 global.timer = 0;
 global.stackSet = 0;
 
 chat_comp_add("extramuts", "sets the number of extra mutation choices");
 wait(18);
-trace("Extra mutation options: " + string(global.stacks));
-trace("Use /extramuts [value] to set the number of extra mutation choices");
+//trace("Extra mutation options: " + string(global.stacks));
+//trace("Use /extramuts [value] to set the number of extra mutation choices");
 
 #define game_start
 	global.extrastacks = 0;

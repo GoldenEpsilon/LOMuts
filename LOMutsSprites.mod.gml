@@ -52,6 +52,7 @@ lq_set(global.sprites, "Cruelty-Free Veganlust", [sprite_add("Sprites/Outcast/Cr
 lq_set(global.sprites, "Iron Skin", [sprite_add("Sprites/Outcast/Iron Skin.png", 1, 12, 16), sprite_add("Sprites/Outcast/Alt/Iron Skin.png", 1, 12, 16)]);
 lq_set(global.sprites, "Bursted Chest", [sprite_add("Sprites/Outcast/Bursted Chest.png", 1, 12, 16), sprite_add("Sprites/Outcast/Alt/Bursted Chest.png", 1, 12, 16)]);
 lq_set(global.sprites, "Groupthink", [sprite_add("Sprites/Outcast/Groupthink.png", 1, 12, 16), sprite_add("Sprites/Outcast/Alt/Groupthink.png", 1, 12, 16)]);
+lq_set(global.sprites, "Cranial Valve", [sprite_add("Sprites/Outcast/Cranial Valve.png", 1, 12, 16), sprite_add("Sprites/Outcast/Alt/Cranial Valve.png", 1, 12, 16)]);
 
 lq_set(global.sprites, "Terrorism", [sprite_add("Sprites/Blights/Terrorism.png", 1, 12, 16), sprite_add("Sprites/Blights/Alt/Terrorism.png", 1, 12, 16)]);
 
@@ -68,10 +69,26 @@ for(var i = 0; i < lq_size(global.sprites); i++){
 chat_comp_add("mutart", "opens the Mutation Art menu");
 chat_comp_add("mutartname", "Changes the mutation art for the typed LOMuts mutation");
 wait(20);
-trace("Type /mutart to bring up a menu to change mutation art!");
+//trace("Type /mutart to bring up a menu to change mutation art!");
+
+while(!mod_variable_get("mod", "LOMuts", "libLoaded")){wait(1);}
+script_ref_call(mod_variable_get("mod", "LOMuts", "scr").add_setting, "LOMuts", ["mod", mod_current, "open_mut_art"], "Mutation Art");
 
 #define chat_command
 if (argument0 == "mutart"){
+	open_mut_art();
+	return true;
+}
+if (argument0 == "mutartname"){
+	if(string(real(argument1)) == argument1){
+		changeArt(real(argument1), 1);
+	}else{
+		changeArt(argument1, 1);
+	}
+	return true;
+}
+
+#define open_mut_art
 	with(mod_script_call_nc("mod", "GuiPack", "gp_create_object", "gp_window", "LOMuts Art")){
 		x = 80;
 		y = 50;
@@ -91,38 +108,30 @@ if (argument0 == "mutart"){
 		var _scr3 = script_ref_create(buttonClick);
 		var _scr4 = script_ref_create(buttonSprite);
 		array_push(gpmarkup, mod_script_call_nc("mod", "GuiPack", "gpsurf_ticker_setup", " Click on a mutation button to change the art! This change persists through reloads. ", 1));
-		for(var i = 0; i < lq_size(global.sprites); i++){
+		var spr_arr = variable_struct_get_names(global.sprites)
+		array_sort(spr_arr, true)
+		with(spr_arr){
 			var b = mod_script_call_nc("mod", "GuiPack", "gpsurf_obj_setBorder", 
 						mod_script_call_nc("mod", "GuiPack", "gpsurf_obj_setSameLine", 
 							mod_script_call_nc("mod", "GuiPack", "gpsurf_button_setup", global.sprites.Sadism[0], 0)
 						), 
 					2, 2, 2, 2);
-			b.hoverText = lq_get_key(global.sprites, i);
+			b.hoverText = self;
 			b.hoverScr = _scr;
 			b.stepScr = _scr2;
 			b.clickScr = _scr3;
 			b.spriteScr = _scr4;
 			b.hover = -1;
 			b.animated = false;
-			array_push(gpmarkup, b);
+			array_push(other.gpmarkup, b);
 		}
 	}
-	return true;
-}
-if (argument0 == "mutartname"){
-	if(string(real(argument1)) == argument1){
-		changeArt(real(argument1), 1);
-	}else{
-		changeArt(argument1, 1);
-	}
-	return true;
-}
 
 #define buttonSprite
-	if(is_real(argument1.hoverText)){
-		argument1.subimg = argument1.hoverText;
-		argument1.mutNum = argument1.hoverText;
-		argument1.hoverText = skill_get_name(argument1.hoverText);
+	if(string(real(argument1.hoverText)) == argument1.hoverText){
+		argument1.subimg = real(argument1.hoverText);
+		argument1.mutNum = real(argument1.hoverText);
+		argument1.hoverText = skill_get_name(real(argument1.hoverText));
 		return sprSkillIcon;
 	}
 	if("mutNum" in argument1 && is_real(argument1.mutNum)){

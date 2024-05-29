@@ -7,12 +7,12 @@
 /loadskill Steel Nerves
 //loadskill Unstable DNA
 /loadskill Staked Chest
-/loadskill Shocked Skin
+//loadskill Shocked Skin
 /loadskill Waste Gland
 /loadskill Scrap Arms
 //loadskill Toxic Thoughts
 /loadskill Shattered Skull
-/loadskill Energized Intestines
+//loadskill Energized Intestines
 /loadskill Fractured Fingers
 /loadskill Sadism
 /loadskill Filtering Teeth
@@ -21,7 +21,17 @@
 /loadskill Muscle Memory
 /loadskill Double Vision
 /loadskill Thick Head
-//loadskill Mimicry
+/loadskill Mimicry
+/loadskill Precision Incision
+/loadskill Arcane Arts
+/loadskill Absorbing Abs
+/loadskill Alchemic Stomach
+/loadskill Shell Cellulite
+/loadskill Buckshot Back
+/loadskill Ruffled Feathers
+/loadskill Slim Pickings
+/loadskill Loner
+
 /loadskill Neural Network
 /loadskill Neural Network/Deep Convolutional Network
 /loadskill Neural Network/Deep Residual Network
@@ -31,29 +41,26 @@
 /loadskill Neural Network/Markov Chain
 /loadskill Neural Network/Recurrent Neural Network
 /loadskill Neural Network/Support Vector Machines
-/loadskill Alchemic Stomach
-//loadskill Greed
-//loadskill Ruffled Feathers
-//loadskill Slim Pickings
-//loadskill Loner
-//loadskill Leprosy
-//loadskill Leprosy2
 
-//loadmod Ultras/cultra
-//loadskill Ultras/Adaptable
-//loadskill Ultras/Armory
-//loadskill Ultras/Galactic Style
-//loadskill Ultras/Existence
-//loadskill Ultras/Generalist
-//loadskill Ultras/Dolla Dolla
-//loadskill Ultras/Intellect
-//loadskill Ultras/Fast Food
-//loadskill Ultras/Enlightenment
-//loadskill Ultras/Union
-//loadskill Ultras/Fission
-//loadskill Ultras/Super Backup
-//loadskill Ultras/Reincarnation
-//loadskill Ultras/Positivity
+/loadskill Greed
+/loadskill Leprosy
+/loadskill Leprosy2
+
+/loadmod Ultras/cultra
+/loadskill Ultras/Adaptable
+/loadskill Ultras/Armory
+/loadskill Ultras/Galactic Style
+/loadskill Ultras/Existence
+/loadskill Ultras/Generalist
+/loadskill Ultras/Dolla Dolla
+/loadskill Ultras/Intellect
+/loadskill Ultras/Fast Food
+/loadskill Ultras/Enlightenment
+/loadskill Ultras/Union
+/loadskill Ultras/Fission
+/loadskill Ultras/Super Backup
+/loadskill Ultras/Reincarnation
+/loadskill Ultras/Positivity
 
 /loadmod GuiPackLoader
 /loadmod Extra Mutation Options

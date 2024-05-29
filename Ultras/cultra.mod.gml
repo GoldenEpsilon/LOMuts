@@ -19,11 +19,12 @@
 		}
 	}
 	
+	//Whether a custom ultra was taken
+	var _take = false;
 	 // Mutation Point Fix:
 	if(instance_exists(SkillIcon)){
 		var _inst = instances_matching_le(instances_matching(SkillIcon, "custom_ultra", true), "noinput", 1);
 		if(array_length(_inst)){
-			var _take = false;
 			with(_inst){
 				for(var i = 0; i < maxp; i++){
 					if(player_is_active(i)){
@@ -57,6 +58,34 @@
 			if(_take){
 				GameCont.skillpoints++;
 				GameCont.mutindex--;
+			}
+		}
+	}
+
+	with(instances_matching(EGSkillIcon, "custom_ultra", true)){
+		if(_take){
+			break;
+		}
+		for(var i = 0; i < maxp; i++){
+			if(player_is_active(i)){
+				var	_mx = mouse_x_nonsync,
+					_my = mouse_y_nonsync;
+					
+					// No Co-op Desync (Mouse is 1 frame behind in co-op, don't click too fast bro):
+				for(var j = 0; j < maxp; j++){
+					if(player_is_active(j) && player_get_uid(j) != player_get_uid(i)){
+						_mx = mouse_x[i];
+						_my = mouse_y[i];
+						break;
+					}
+				}
+				
+					// Give Mutation Point When Selected:
+				if((button_pressed(i, "fire") && position_meeting(_mx, _my, self))){
+					skill_set(ultraskill, 1);
+					_take = true;
+					break;
+				}
 			}
 		}
 	}
@@ -342,10 +371,11 @@
 			custom_ultra = true;
 			creator      = other;
 			skill        = 0;
+			ultraskill   = _skill;
 			num          = _num;
 			alarm0       = num + 1;
-			name         = "";
-			text         = "";
+			name         = skill_get_name(_skill);
+			text         = skill_get_text(_skill);
 			
 			 // Set Character:
 			if(race_get_id(_race) != char_random){

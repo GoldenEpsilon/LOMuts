@@ -16,7 +16,7 @@ global.troll = false;
 	return global.sprSkillHUD;
 
 #define skill_avail
-	return GameCont.wepmuts >= 2 && (!instance_is(self, CustomObject) && !instance_is(self, CustomProp)) || instance_exists(Loadout);
+	return GameCont.wepmuts >= 3 && (instance_exists(LevCont) || instance_exists(Loadout));
 
 #define skill_tip
 	return "Time to @qchange your mind";

@@ -10,7 +10,7 @@
 		script_ref_call(["mod", "lib", "getRef"], "mod", mod_current, "scr");
 
 		//This is where you put what modules you want to load.
-		var modules = ["libMuts", "libStats"/*, "libSettings"*/, "libWeps", "libPickups", "libAutoUpdate"];
+		var modules = ["libMuts", "libStats", "libSettings", "libWeps", "libPickups", "libAutoUpdate"];
 		with(modules) {
 			call(scr.import, self);
 		}
@@ -19,14 +19,14 @@
 		exit;
 	}
 
-	global.canMutTokens = false;
+	global.canMutTokens = true;
 	global.showStackIndicator = false;
 	global.canOutcast = 0;
 	global.prevCanOutcast = 0;
 	while(!global.libLoaded){wait(1);}
-	//call(scr.add_setting, "LOMuts", "canMutTokens", "Mutation Tokens");
-	//call(scr.add_setting, "LOMuts", "showStackIndicator", "Stack Indicator");
-	//call(scr.autoupdate, "LOMuts", "GoldenEpsilon/LOMuts");
+	call(scr.add_setting, "LOMuts", "canMutTokens", "Mutation Tokens");
+	call(scr.add_setting, "LOMuts", "showStackIndicator", "Stack Indicator");
+	call(scr.autoupdate, "LOMuts", "GoldenEpsilon/LOMuts");
 	game_start();
 	
 #define game_start

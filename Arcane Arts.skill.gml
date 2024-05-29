@@ -1,12 +1,15 @@
 #define init
-global.sprSkillIcon = sprite_add("../Sprites/Outcast/Arcane Arts.png", 1, 12, 16)
-global.sprSkillHUD = sprite_add("../Sprites/Outcast/Blank Icon.png", 1, 8, 8)
+global.sprSkillIcon = sprite_add("Sprites/Main/Arcane Arts.png", 1, 12, 16)
+global.sprSkillHUD = sprite_add("Sprites/Outcast/Blank Icon.png", 1, 8, 8)
 
 #define skill_name
 	return "Arcane Arts";
 	
 #define skill_text
-	return "Reflected bullets#can gain an @welement@s";
+	return "Reflected bullets#gain an @welement@s";
+	
+#define stack_text
+	return "More Powerful @welements@s";
 
 #define skill_button
 	sprite_index = global.sprSkillIcon;
@@ -15,9 +18,6 @@ global.sprSkillHUD = sprite_add("../Sprites/Outcast/Blank Icon.png", 1, 8, 8)
 	return global.sprSkillHUD;
 
 #define skill_avail
-	return true;
-
-#define skill_outcast
 	return true;
 	
 #define skill_wepspec
@@ -47,40 +47,37 @@ with(Player){
 			}
 			if(instance_exists(self) && team == _t && "arcanecheck" not in self){
 				arcanecheck = true;
-				//25% chance with one stack, 33% with two
-				if(irandom(max(0, 5 - skill_get(mod_current))) == 0){
-					switch(irandom(2)){
-						case 0:
-							image_blend = merge_color(image_blend, c_red, 0.5);
-							with(instance_create(x,y,CustomObject)){
-								name = "Fire Element";
-								on_step = fire_step;
-								creator = other;
-								team = other.team;
-								size = floor(log2(other.damage))+skill_get(mod_current)-1;
-							}
-							break;
-						case 1:
-							image_blend = merge_color(image_blend, c_aqua, 0.5);
-							with(instance_create(x,y,CustomObject)){
-								name = "Electric Element";
-								on_step = electric_step;
-								creator = other;
-								team = other.team;
-								size = floor(log2(other.damage))+skill_get(mod_current)-1;
-							}
-							break;
-						case 2:
-							image_blend = merge_color(image_blend, c_lime, 0.5);
-							with(instance_create(x,y,CustomObject)){
-								name = "Toxic Element";
-								on_step = toxic_step;
-								creator = other;
-								team = other.team;
-								size = floor(log2(other.damage))+skill_get(mod_current)-1;
-							}
-							break;
-					}
+				switch(irandom(2)){
+					case 0:
+						image_blend = merge_color(image_blend, c_red, 0.5);
+						with(instance_create(x,y,CustomObject)){
+							name = "Fire Element";
+							on_step = fire_step;
+							creator = other;
+							team = other.team;
+							size = floor(log2(other.damage))+skill_get(mod_current)-1;
+						}
+						break;
+					case 1:
+						image_blend = merge_color(image_blend, c_aqua, 0.5);
+						with(instance_create(x,y,CustomObject)){
+							name = "Electric Element";
+							on_step = electric_step;
+							creator = other;
+							team = other.team;
+							size = floor(log2(other.damage))+skill_get(mod_current)-1;
+						}
+						break;
+					case 2:
+						image_blend = merge_color(image_blend, c_lime, 0.5);
+						with(instance_create(x,y,CustomObject)){
+							name = "Toxic Element";
+							on_step = toxic_step;
+							creator = other;
+							team = other.team;
+							size = floor(log2(other.damage))+skill_get(mod_current)-1;
+						}
+						break;
 				}
 			}
 			exit;
@@ -96,7 +93,7 @@ with(Player){
 				team = creator.team;
 				image_blend = c_gray;
 			}
-		}else if(size >= 1){
+		}else if(size >= 2){
 			with(instance_create(x,y,SmallExplosion)){
 				creator = other;
 				team = creator.team;
@@ -110,7 +107,7 @@ with(Player){
 	y = creator.y;
 	xstart = x;
 	ystart = y;
-	if(script_ref_call(mod_variable_get("mod", "LOMuts", "scr").chance_ct, max(size, 1), 2)){
+	if(script_ref_call(mod_variable_get("mod", "LOMuts", "scr").chance_ct, max(size, 0.25), 2)){
 		with(instance_create(x,y,Flame)){
 			creator = other;
 			team = creator.team;
@@ -130,7 +127,7 @@ with(Player){
 				image_angle = direction;
 				speed = 0;
 			}
-		}else if(size >= 1){
+		}else if(size >= 2){
 			repeat(3){
 				with(instance_create(x,y,Lightning)){
 					creator = other;
@@ -147,7 +144,7 @@ with(Player){
 	y = creator.y;
 	xstart = x;
 	ystart = y;
-	if(script_ref_call(mod_variable_get("mod", "LOMuts", "scr").chance_ct, max(size, 1), 10)){
+	if(script_ref_call(mod_variable_get("mod", "LOMuts", "scr").chance_ct, max(size, 0.25), 10)){
 		with(instance_create(x,y,Lightning)){
 			creator = other;
 			team = creator.team;
@@ -171,7 +168,7 @@ with(Player){
 					image_blend = c_green;
 				}
 			}
-		}else if(size >= 1){
+		}else if(size >= 2){
 			repeat(5){
 				with(instance_create(x,y,ToxicGas)){
 					creator = other;
@@ -190,7 +187,7 @@ with(Player){
 	y = creator.y;
 	xstart = x;
 	ystart = y;
-	if(script_ref_call(mod_variable_get("mod", "LOMuts", "scr").chance_ct, max(size, 1), 5)){
+	if(script_ref_call(mod_variable_get("mod", "LOMuts", "scr").chance_ct, max(size, 0.25), 5)){
 		with(instance_create(x,y,ToxicGas)){
 			creator = other;
 			direction = random(360);

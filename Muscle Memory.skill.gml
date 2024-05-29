@@ -12,6 +12,9 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 	
 #define skill_text
 	return "Reflected bullets @wtarget@s#Reflected bullets are @wpowerful@s";
+	
+#define stack_text
+	return "REFLECTED BULLETS ARE @wFASTER@s#AND DEAL EVEN MORE @wDAMAGE@s";
 
 #define skill_button
 	sprite_index = global.sprSkillIcon;
