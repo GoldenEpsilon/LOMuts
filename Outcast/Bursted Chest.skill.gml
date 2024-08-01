@@ -7,6 +7,9 @@ global.sprSkillHUD = sprite_add("../Sprites/Outcast/Bursted Chest Icon.png", 1, 
 	
 #define skill_text
 	return "When you take damage,#create an @wally@s";
+	
+#define stack_text
+	return "You can have more than one @wally@s#from bursted chest";
 
 #define skill_button
 	sprite_index = global.sprSkillIcon;
@@ -39,7 +42,7 @@ with Player {
 		var OldHealth = my_health;
 		var tempTeam = team;
 		wait 0
-		if(instance_exists(self) && my_health < OldHealth && array_length(instances_matching(instances_matching(Ally, "name", "Bursted"), "creator", self)) < skill_get(mod_current) * 4){
+		if(instance_exists(self) && my_health < OldHealth && array_length(instances_matching(instances_matching(Ally, "name", "Bursted"), "creator", self)) < skill_get(mod_current) && array_length(instances_matching(CustomObject, "name", "HomonculusLead")) == 0){
 			with(instance_create(x,y,Ally)){
 				creator = other;
 				team = tempTeam;

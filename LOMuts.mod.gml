@@ -35,6 +35,7 @@
 
 #define step
 	//TODO: If all skill icons are reusable skill icons, reroll one of them
+	var allreusable = true;
 	with(SkillIcon){
 		if(is_string(skill) && mod_script_exists("skill", skill, "skill_reusable") && mod_script_call("skill", skill, "skill_reusable")){
 			noinput = 2;
@@ -46,6 +47,29 @@
 					mod_script_call("skill", other.skill, "skill_take");
 					other.addy += 5;
 				}
+			}
+		} else {
+			allreusable = false;
+		}
+	}
+	if allreusable {
+		with(SkillIcon){
+			tskill = call(scr.skill_decide);
+			while(array_length_1d(instances_matching(SkillIcon,"skill",tskill)) > 0 || skill_get(tskill) > 0 || !skill_get_active(tskill)){
+				tskill = call(scr.skill_decide);
+			}
+			skill=tskill
+
+			name  = skill_get_name(skill)
+			if is_real(skill){
+				if(skill >= 0){
+					sprite_index = sprSkillIcon
+					image_index = skill
+					text = skill_get_text(skill);
+				}
+			}else{
+				mod_script_call("skill",skill,"skill_button")
+				text = mod_script_call("skill",skill,"skill_text")
 			}
 		}
 	}

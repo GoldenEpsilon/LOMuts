@@ -58,9 +58,31 @@
 		    if(crown_current = 8) { // Crown of Destiny stuff
 		    	LevCont.maxselect++;
 
-		    	//skill_create("fantasticrefractions", 0.5);
-		    	if(array_length(instances_matching(Player, "race", "horror")) > 0) {
-		    		//skill_create("warpedperspective", 1.5);
+	            var s = mod_get_names("skill"); // Store all skills
+				var neural = [];
+
+	             // Find all skills that have something to do with this
+	            for(var f = 0; f < array_length(s); f++) {
+	            	 // Checks for if a modded skill happens to have a script for being an neural mutation,
+	            	if(mod_exists("skill", s[f]) and
+	            	   mod_script_exists("skill", s[f], "skill_neural")){
+						var _n = mod_script_call("skill", s[f], "skill_neural");
+					    if(_n == true ||
+						   (is_array(_n) && mod_exists(_n[0], _n[1]))||
+						   (is_string(_n) && mod_exists("mod", _n))) {
+							array_push(neural, s[f])
+						}
+					}
+	            }
+				var r = irandom(array_length(neural)-1);
+				skill_create(neural[r], instance_number(mutbutton) + 2);
+				
+		    	if(array_length(instances_matching(Player, "race", "horror")) > 0 && array_length(neural) > 1) {
+					var r2 = irandom(array_length(neural)-1);
+					while(r2 == r) {
+						r2 = irandom(array_length(neural)-1);
+					}
+					skill_create(neural[r2], instance_number(mutbutton) + 2);
 		    	}
 		    }
 

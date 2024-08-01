@@ -60,7 +60,9 @@ global.skill = [];
 			var mutNum = 0;
 			while(skill_get_at(mutNum + 1) != null){ //add 1 to make sure you don't boost Thick Head
 				//check to make sure it's not a modded ultra
-				if(is_real(skill_get_at(mutNum)) || (is_string(skill_get_at(mutNum)) && mod_exists("skill", skill_get_at(mutNum)) && !mod_script_exists("skill", skill_get_at(mutNum), "skill_ultra"))){
+				if(is_real(skill_get_at(mutNum)) || (is_string(skill_get_at(mutNum)) && mod_exists("skill", skill_get_at(mutNum)) && 
+				!mod_script_exists("skill", skill_get_at(mutNum), "skill_ultra") &&
+				!(mod_script_exists("skill", skill_get_at(mutNum), "skill_unstackable") && mod_script_call("skill", skill_get_at(mutNum), "skill_unstackable")))){
 					array_push(mutList, skill_get_at(mutNum));
 				}
 				mutNum++;

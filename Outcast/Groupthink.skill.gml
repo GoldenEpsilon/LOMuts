@@ -10,6 +10,9 @@ global.alarms = [0,0,0,0,0,0,0,0,0,0,0,0];
 	
 #define skill_text
 	return "All enemies#share @ractions@s";
+	
+#define stack_text
+	return "enemies act#@wslower@s";
 
 #define skill_button
 	sprite_index = global.sprSkillIcon;
@@ -75,9 +78,13 @@ global.alarms = [0,0,0,0,0,0,0,0,0,0,0,0];
 		}
 	}
 	for(var i = 0; i < 7; i++){
-		global.alarms[i] -= current_time_scale * max(1,3 - skill_get(mod_current) * 0.5);
+		if global.alarms[i] > 0 {
+			global.alarms[i] = max(current_time_scale, global.alarms[i] - current_time_scale * max(1,3 - skill_get(mod_current) * 0.5));
+		}
 	}
-	global.alarms[11] -= current_time_scale * max(1,3 - skill_get(mod_current) * 0.5);
+	if global.alarms[11] > 0 {
+		global.alarms[11] = max(current_time_scale, global.alarms[11] - current_time_scale * max(1,3 - skill_get(mod_current) * 0.5));
+	}
 
 //These are macros to slot in to make it easier to call lib functions.
 #macro scr global.scr

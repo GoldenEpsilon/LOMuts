@@ -13,7 +13,7 @@
 
 #define step
 with(Player){
-	if(button_check(p, "spec")){
+	if(button_check(index, "spec")){
 		//I'mma counteract the regular telekinesis with x10 code
 		var d, _x, _y, tb = -(0.5+skill_get(mut_throne_butt))*current_time_scale;
 		// pull all the things:

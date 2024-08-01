@@ -6,7 +6,10 @@ global.sprSkillHUD = sprite_add("Sprites/Icons/Garment Regenerator Icon.png", 1,
 	return "Garment Regenerator";
 	
 #define skill_text
-	return "When you take damage,#@rheal@s half of it back after a second.";
+	return "When you take damage#@rheal@s half of it back after some time";
+	
+#define stack_text
+	return "HEAL BACK @wFASTER@s";
 
 #define skill_button
 	sprite_index = global.sprSkillIcon;
@@ -38,7 +41,7 @@ with Player {
 		wait 0
 		if(instance_exists(self) && my_health < OldHealth && my_health != lsthealth){
 			var healHealth = floor((OldHealth - max(my_health,0))/2)
-			wait(60 / skill_get(mod_current));
+			wait(240 / skill_get(mod_current));
 			if(instance_exists(self)){
 				my_health += healHealth;
 				my_health = min(my_health, maxhealth);
