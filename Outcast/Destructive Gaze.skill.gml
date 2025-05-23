@@ -1,11 +1,11 @@
 #define init
-global.sprSkillIcon = sprite_add("../Sprites/Outcast/Explosive Gaze.png", 1, 12, 16)
-global.sprSkillHUD = sprite_add("../Sprites/Outcast/Explosive Gaze Icon.png", 1, 8, 8)
+global.sprSkillIcon = sprite_add("../Sprites/Outcast/Destructive Gaze.png", 1, 12, 16)
+global.sprSkillHUD = sprite_add("../Sprites/Outcast/Destructive Gaze Icon.png", 1, 8, 8)
 while(!mod_exists("mod", "lib")){wait(1);}
 script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 
 #define skill_name
-	return "Explosive Gaze";
+	return "Destructive Gaze";
 	
 #define skill_text
 	return "Five enemies are @rmarked@s per level#@rMarked@s enemies @wexplode@s on death";

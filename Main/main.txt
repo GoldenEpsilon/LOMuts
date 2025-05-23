@@ -1,33 +1,34 @@
+/loadskill Alchemic Stomach
+/loadskill Arcane Arts
+/loadskill Brain Transfer
 /loadskill Compressing Fist
 /loadskill Confidence
-/loadskill Duplicators
-/loadskill Garment Regenerator
-/loadskill Rocket Casings
-/loadskill Sloppy Fingers
-/loadskill Steel Nerves
-//loadskill Unstable DNA
-/loadskill Staked Chest
-/loadskill Shocked Skin
-/loadskill Waste Gland
-/loadskill Scrap Arms
-//loadskill Toxic Thoughts
-/loadskill Shattered Skull
-/loadskill Energized Intestines
-/loadskill Fractured Fingers
-/loadskill Sadism
-/loadskill Filtering Teeth
-/loadskill Brain Transfer
-/loadskill Pressurized Lungs
-/loadskill Muscle Memory
 /loadskill Double Vision
-/loadskill Shell Cellulite
-/loadskill Thick Head
-/loadskill Mimicry
-/loadskill Neural Network
-/loadskill Alchemic Stomach
+/loadskill Duplicators
+/loadskill Filtering Teeth
+/loadskill Fractured Fingers
+/loadskill Garment Regenerator
 /loadskill Greed
-/loadskill Ruffled Feathers
-/loadskill Slim Pickings
-/loadskill Loner
 /loadskill Leprosy
 /loadskill Leprosy2
+/loadskill Loner
+/loadskill Mimicry
+/loadskill Muscle Memory
+/loadskill Neural Network
+/loadskill Precision Incision
+/loadskill Pressurized Lungs
+/loadskill Rocket Casings
+/loadskill Ruffled Feathers
+/loadskill Sadism
+/loadskill Scrap Arms
+/loadskill Shell Cellulite
+/loadskill Shocked Skin
+/loadskill Slim Pickings
+/loadskill Sloppy Fingers
+/loadskill Staked Chest
+/loadskill Steel Nerves
+/loadskill Thick Head
+/loadskill Waste Gland
+
+//If you know, you know.
+//loadskill Unstable DNA

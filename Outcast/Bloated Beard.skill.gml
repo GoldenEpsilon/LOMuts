@@ -7,7 +7,7 @@ while(!mod_exists("mod", "lib")){wait(1);}
 script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 
 #define skill_name
-	return "Bloated Back";
+	return "Bloated Beard";
 	
 #define skill_text
 	return "Get a mutation#and a @gBlight@s";

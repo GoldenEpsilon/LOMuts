@@ -10,7 +10,7 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 	return "Wormhole Eyes";
 	
 #define skill_text
-	return 'Portal Canisters spawn,#which activate @w"start of level"@s effects';
+	return 'Portal Canisters spawn,#which restart the level (leaving enemies dead and chests opened)';
 
 #define skill_button
 	sprite_index = global.sprSkillIcon;
@@ -41,44 +41,6 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 		global.spawnChest = false;
 		with(call(scr.instance_random, Floor)){
 			instance_create(x + sprite_width/2,y + sprite_height/2,CustomProp).sprite_index = global.sprCanister;
-		}
-	}
-	if(instance_number(GoldChest) == 0){
-		with(call(scr.instance_random, Floor)){
-			instance_create(x,y,GoldChest);
-		}
-		with(Player){
-			tempx = x;
-			tempy = y;
-		}
-		var newID = instance_create(0, 0, DramaCamera);
-		with(instance_create(0,0,GameObject)){
-			spawn_y = 0;
-			safedist = 0;
-			agol = 0;
-			rgol = 0;
-			gol = 0;
-			wgol = 0;
-			spawn_x = 0;
-			safespawn = 0;
-			tip = "";
-			goal = 0;
-			visible = false;
-			instance_change(GenCont, 0);
-			visible = false;
-			wait(0);
-			visible = false;
-			wait(0);
-			trace(visible);
-			event_perform(ev_alarm, 1);
-			while(instance_exists(GenCont)){
-				wait(0);
-			}
-			//with(instances_matching_ge(GameObject, "id", newID)){instance_destroy();}
-		}
-		with(Player){
-			x = tempx;
-			y = tempy;
 		}
 	}
 

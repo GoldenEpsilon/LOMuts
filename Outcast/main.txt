@@ -1,28 +1,34 @@
-/loadskill Precision Incision
+/loadskill Absorbing Abs
+/loadskill Aerodynamic Ankles
+/loadskill Bloated Beard
+/loadskill Buckshot Back
+/loadskill Bursted Chest
+/loadskill Cranial Valve
+/loadskill Cruelty-Free Veganlust
+/loadskill Destructive Gaze
+/loadskill Disco Nose
+/loadskill Dynamic Calves
+/loadskill Energized Intestines
+/loadskill Experimentalist
+/loadskill Explosive Ears
+/loadskill Free Space
+/loadskill Friendly Eyelashes
+/loadskill Groupthink
 /loadskill Iron Skin
+/loadskill Laser Focus
+/loadskill Purist
+/loadskill Putrid Haze
+/loadskill Rabbit Ears
+/loadskill Rubber Rounds
+/loadskill Shattered Skull
+/loadskill Shivering Spine
+/loadskill Survivor's Instinct
+/loadskill Telekinetic Tears
+/loadskill Toxic Thoughts
+
+//BAD
 //loadskill Diplomacy
 //loadskill Terrorism
-/loadskill Free Space
-/loadskill Cranial Valve
-/loadskill Arcane Arts
-/loadskill Laser Focus
-/loadskill Explosive Gaze
-/loadskill Rabbit Ears
-/loadskill Buckshot Back
-/loadskill Absorbing Abs
-/loadskill Friendly Eyelashes
-/loadskill Cruelty-Free Veganlust
-/loadskill Groupthink
-/loadskill Survivor's Instinct
-/loadskill Disco Nose
-/loadskill Explosive Ears
-/loadskill Telekinetic Tears
-/loadskill Purist
-/loadskill Experimentalist
-/loadskill Rubber Rounds
-/loadskill Bursted Chest
-/loadskill Shivering Spine
-/loadskill Toxic Thoughts
-/loadskill Aerodynamic Ankles
-/loadskill Dynamic Calves
-//loadskill Bloated Back
+
+//NOT IMPLEMENTED
+//loadskill Wormhole Eyes
