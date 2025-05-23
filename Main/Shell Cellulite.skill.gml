@@ -53,12 +53,21 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 			var is_blocking = false;
 			with(call(scr.instances_meeting, x, y, instances_matching_ne(projectile, "team", team))){
 				if(place_meeting(x,y,other)){
+					var cell_damage = damage
+					if "cellulite_damage" in self {
+						cell_damage = cellulite_damage
+					}
+					var proj_damage = other.damage;
 					is_blocking = true;
-					other.damage -= damage*4/skill_get(mod_current);
+					other.damage -= damage/skill_get(mod_current);
 					if other.speed > 0 {
 						other.speed -= min(other.speed, damage);
 					}
-					instance_destroy();
+					if other.damage > 0 || cell_damage - proj_damage*skill_get(mod_current) < 0 {
+						instance_destroy();
+					} else {
+						cellulite_damage = cell_damage - proj_damage*skill_get(mod_current)
+					}
 					if other.damage <= 0 {
 						break;
 					}
@@ -75,12 +84,25 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 			var is_blocking = false;
 			with(call(scr.instances_meeting, x, y, instances_matching_ne(projectile, "team", team))){
 				if(place_meeting(x,y,other)){
+					var cell_damage = damage
+					if "cellulite_damage" in self {
+						cell_damage = cellulite_damage
+					}
+					var proj_damage = other.damage;
 					is_blocking = true;
-					other.damage -= damage*4/skill_get(mod_current);
+					other.damage -= damage/skill_get(mod_current);
 					if other.speed > 0 {
 						other.speed -= min(other.speed, damage);
 					}
-					instance_destroy();
+					
+					if other.damage > 0 || cell_damage - proj_damage*skill_get(mod_current) < 0 {
+						instance_destroy();
+					} else {
+						cellulite_damage = cell_damage - proj_damage*skill_get(mod_current)
+					}
+					if other.damage <= 0 {
+						break;
+					}
 					break;
 				}
 			}
