@@ -45,7 +45,7 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 	
 #define step
 with(instances_matching_le(enemy, "my_health", 0)){
-	if("ScrapArms" not in self && instance_nearest(x,y,Player) != noone && (irandom(25 / (skill_get(mut_rabbit_paw)*0.4+1)) == 0)){
+	if("ScrapArms" not in self && instance_nearest(x,y,Player) != noone && (irandom(24 / (skill_get(mut_rabbit_paw)*0.4+1)) == 0)){
 		ScrapArms = true;
 		with(call(scr.obj_create, x, y, "LibPickup")){
 			name = "ScrapArmsPickup";

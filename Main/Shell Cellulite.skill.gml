@@ -144,8 +144,8 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 		}
 		
 		//stall projectile without actually slowing it
-		x -= lengthdir_x(setback,direction);
-		y -= lengthdir_y(setback,direction);
+		x -= lengthdir_x(setback * current_time_scale,direction);
+		y -= lengthdir_y(setback * current_time_scale,direction);
 	}
 	
 

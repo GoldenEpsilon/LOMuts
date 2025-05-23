@@ -29,7 +29,7 @@ global.canActivate = 1;
 	
 #define skill_text
 	var text = "At @gULTRA@s, also choose#@wANOTHER@s mutant's ultra";
-	//text += "#lose the last mutation you took";
+	text += "#lose the last mutation you took";
 	with(global.takenUltras){
 		var desc = ultra_remake_get_desc(self[0], self[1]);
 		text += "#@w" + desc[0] + ":@s#" + desc[1];
@@ -51,7 +51,7 @@ global.canActivate = 1;
 	return 0;
 
 #define skill_tip
-	return choose("Don't listen to the mutation#@q@wBE WHO YOU ARE", "Time for wacky");
+	return "Costume party!";
 	
 #define skill_type
 	return "utility";
@@ -64,7 +64,7 @@ global.canActivate = 1;
 	if(global.activations >= skill_get(mod_current)){
 		global.activations--;
 	}
-	/*var i = 0;
+	var i = 0;
 	while(!is_undefined(skill_get_at(i))){i++}
 	while(is_string(skill_get_at(i)) && 
 		(
@@ -77,7 +77,7 @@ global.canActivate = 1;
 		trace("Hey. You don't have any removable mutations.");
 		return;
 	}
-	skill_set(skill_get_at(i-2), 0);*/
+	skill_set(skill_get_at(i-2), 0);
 	
 
 #define game_start
@@ -542,7 +542,7 @@ switch(_race){
 		switch(_skill){
 			//Fortress
 			case 1:
-				with(Player){maxhealth+=3;my_health+=3;}
+				with(Player){maxhealth+=6;my_health+=6;}
 				break;
 		}
 		break;

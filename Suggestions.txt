@@ -1,0 +1,28 @@
+https://discord.com/channels/145126902074441729/218608636010692608/1353194784579125300
+
+Shell Cellulite - missing existing sprite, shells gain negative velocity constantly
+
+Neural Network, bouncing plasma - no Spin compat
+
+Buckshot Back - missing existing sprite
+
+Toxic Thoughts - no Spin compat
+
+Slim Pickings - missing existing sprite
+
+Loner - missing existing sprite
+
+Precision Incision - missing existing sprite, detrimental synergy with Gluon projectiles (not the slash)
+
+https://discord.com/channels/145126902074441729/218608636010692608/1353208571860484180
+
+Dragonstrive feedback:
+(!) greed, heavy heart, brain transfer, and leprosy should all add onto a set instead of replacing a mut. I think cassieopia made a mod that does this but adaptation also does this if you need a ref,
+(!) mimicry should take two mutations like it used to instead of 1, and ultras should be at full power.,
+(!) scrap arms drop rate needs checking: i could have sworn it was too low,
+(!) shocked skin should be made outcast if cellulite is staying as a mainline. But with the skin rework, i think cellulite should become an outcast. I may reclaim it in this case. Also, cellulite needs timescale fixing.,
+(!) check carefully to make sure the number of weapon muts are the same for each category.,
+switch the outcast/mainline status of iron skin and steel nerves and give iron skin a fuckton of I frames when you take your first hit from full.,
+i think it would be cool shocked skin made a custom hitscan shot with custom properties instead of actual lightning (i can program this LOL). If this happens, you would make shell cellulite and energized intestines outcast, and make absorbing abs and shocked skin mainline,
+
+Things with (!) i think should definitely be changed and everything else is nit picks/personal preference

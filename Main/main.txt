@@ -28,7 +28,5 @@
 /loadskill Staked Chest
 /loadskill Steel Nerves
 /loadskill Thick Head
+/loadskill Unstable DNA
 /loadskill Waste Gland
-
-//If you know, you know.
-//loadskill Unstable DNA
