@@ -1,0 +1,9 @@
+
+/loadskill Deep Convolutional Network
+/loadskill Deep Residual Network
+/loadskill Echo State Network
+/loadskill Feed Forward Network
+/loadskill Generative Adversarial Network
+/loadskill Markov Chain
+/loadskill Recurrent Neural Network
+/loadskill Support Vector Machines

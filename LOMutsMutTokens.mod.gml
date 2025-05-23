@@ -104,11 +104,13 @@
 				if((button_pressed(index, "fire") && point_in_rectangle(mouse_x[index], mouse_y[index], other.bbox_left, other.bbox_top, other.bbox_right, other.bbox_bottom)) || 
 				button_pressed(index, "key" + string(other.num+1)) || 
 				(other.creator.select == other.num && button_pressed(index, "okay"))){
-					global.mutTokens += 1;
+					GameCont.rad += 50;
+					//global.mutTokens += 1;
 				}
 			}
 		}
 	}
+	/*
 	if(!global.openingShop){
 		if((global.prevLoops < GameCont.loops || global.forceShopOpen) && global.mutTokens > 0 && fork()){
 			global.cancelOpen = false;
@@ -166,6 +168,7 @@
 	if(!instance_exists(LevCont) && GameCont.area != 0){
 		global.openingShop = 0;
 	}
+	*/
 
 #define draw_gui
 	with(instances_matching(LevCont, "name", "TokenShop")){
