@@ -114,6 +114,9 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 	}
 
 #define stall_shell_step
+	if !instance_exists(self){
+		return;
+	}
 	if "cellulite_init" not in self {
 		cellulite_init		= true;
 		cellulite_frames	= random_range(10,20) + 15 * skill_get(mod_current);
