@@ -20,7 +20,7 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 	return "SHELL CELLULITE";
 	
 #define skill_text
-	return "@wSHELL@s VELOCITY UP#@sSHELLS @wLINGER @sAFTER SLOWING DOWN#SHELLS @wABSORB@s PROJECTILES";
+	return "@sSHELLS @wLINGER @sAFTER SLOWING DOWN#LINGERING SHELLS @wABSORB@s PROJECTILES";
 	
 #define stack_text
 	return "@wSHELLS@s ABSORB @wMORE@s";
@@ -51,64 +51,68 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 		if array_length(inst) with inst {
 			stall_shell_step()
 			var is_blocking = false;
-			with(call(scr.instances_meeting, x, y, instances_matching_ne(projectile, "team", team))){
-				if(place_meeting(x,y,other)){
-					var cell_damage = damage
-					if "cellulite_damage" in self {
-						cell_damage = cellulite_damage
-					}
-					var proj_damage = other.damage;
-					is_blocking = true;
-					other.damage -= damage/skill_get(mod_current);
-					if other.speed > 0 {
-						other.speed -= min(other.speed, damage);
-					}
-					if other.damage > 0 || cell_damage - proj_damage*skill_get(mod_current) < 0 {
-						instance_destroy();
-					} else {
-						cellulite_damage = cell_damage - proj_damage*skill_get(mod_current)
-					}
-					if other.damage <= 0 {
-						break;
+			if setback + current_time_scale >= prev_speed {
+				with(call(scr.instances_meeting, x, y, instances_matching_ne(projectile, "team", team))){
+					if(place_meeting(x,y,other)){
+						var cell_damage = damage
+						if "cellulite_damage" in self {
+							cell_damage = cellulite_damage
+						}
+						var proj_damage = other.damage;
+						is_blocking = true;
+						other.damage -= damage/skill_get(mod_current);
+						if other.speed > 0 {
+							other.speed -= min(other.speed, damage);
+						}
+						if other.damage > 0 || cell_damage - proj_damage*skill_get(mod_current) < 0 {
+							instance_destroy();
+						} else {
+							cellulite_damage = cell_damage - proj_damage*skill_get(mod_current)
+						}
+						if other.damage <= 0 {
+							break;
+						}
 					}
 				}
-			}
-			if is_blocking && damage <= 0 {
-				instance_destroy();
-				continue;
+				if is_blocking && damage <= 0 {
+					instance_destroy();
+					continue;
+				}
 			}
 		}
 		
 		if array_length(cust) with cust {
 			stall_shell_step()
 			var is_blocking = false;
-			with(call(scr.instances_meeting, x, y, instances_matching_ne(projectile, "team", team))){
-				if(place_meeting(x,y,other)){
-					var cell_damage = damage
-					if "cellulite_damage" in self {
-						cell_damage = cellulite_damage
-					}
-					var proj_damage = other.damage;
-					is_blocking = true;
-					other.damage -= damage/skill_get(mod_current);
-					if other.speed > 0 {
-						other.speed -= min(other.speed, damage);
-					}
-					
-					if other.damage > 0 || cell_damage - proj_damage*skill_get(mod_current) < 0 {
-						instance_destroy();
-					} else {
-						cellulite_damage = cell_damage - proj_damage*skill_get(mod_current)
-					}
-					if other.damage <= 0 {
+			if setback + current_time_scale >= prev_speed {
+				with(call(scr.instances_meeting, x, y, instances_matching_ne(projectile, "team", team))){
+					if(place_meeting(x,y,other)){
+						var cell_damage = damage
+						if "cellulite_damage" in self {
+							cell_damage = cellulite_damage
+						}
+						var proj_damage = other.damage;
+						is_blocking = true;
+						other.damage -= damage/skill_get(mod_current);
+						if other.speed > 0 {
+							other.speed -= min(other.speed, damage);
+						}
+						
+						if other.damage > 0 || cell_damage - proj_damage*skill_get(mod_current) < 0 {
+							instance_destroy();
+						} else {
+							cellulite_damage = cell_damage - proj_damage*skill_get(mod_current)
+						}
+						if other.damage <= 0 {
+							break;
+						}
 						break;
 					}
-					break;
 				}
-			}
-			if is_blocking && damage <= 0 {
-				instance_destroy();
-				continue;
+				if is_blocking && damage <= 0 {
+					instance_destroy();
+					continue;
+				}
 			}
 		}
 	}
@@ -151,12 +155,21 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 			x = xprevious;
 			y = yprevious;
 		}
+
+		var t = (setback/prev_speed);
+		image_xscale = start_xscale * lerp(xs_srt,xs_end,t);
+		image_yscale = start_yscale * lerp(ys_srt,ys_end,t);
+		
+		if setback + current_time_scale >= prev_speed {
+			direction += current_time_scale*30;
+			image_angle += current_time_scale*30;
+		}
 		
 		if setback == prev_speed {
 			cellulite_frames -= current_time_scale;
-			var t = 1 - (cellulite_frames/cellulite_max);
-			image_xscale = start_xscale * lerp(xs_srt,xs_end,t);
-			image_yscale = start_yscale * lerp(ys_srt,ys_end,t);
+			// var t = 1 - (cellulite_frames/cellulite_max);
+			// image_xscale = start_xscale * lerp(xs_srt,xs_end,t);
+			// image_yscale = start_yscale * lerp(ys_srt,ys_end,t);
 			
 			bonus = max(bonus,2); //shells deal more damage when stationary
 			
