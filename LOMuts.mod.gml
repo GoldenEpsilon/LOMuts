@@ -26,7 +26,7 @@
 	while(!global.libLoaded){wait(1);}
 	call(scr.add_setting, "LOMuts", "canMutTokens", "Mutation Tokens");
 	call(scr.add_setting, "LOMuts", "showStackIndicator", "Stack Indicator");
-	call(scr.autoupdate, "LOMuts", "GoldenEpsilon/LOMuts");
+	call(scr.autoupdate, "LOMuts", "GoldenEpsilon/LOMuts/master");
 	game_start();
 	
 #define game_start
