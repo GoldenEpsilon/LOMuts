@@ -15,6 +15,9 @@ global.bind_step = noone;
 	
 #define skill_icon
 	return global.sprSkillHUD;
+
+#define skill_outcast
+	return true;
 	
 #define skill_wepspec
 	return 1;

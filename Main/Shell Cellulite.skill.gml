@@ -60,14 +60,15 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 						}
 						var proj_damage = other.damage;
 						is_blocking = true;
-						other.damage -= damage/skill_get(mod_current);
+						other.damage -= damage/(skill_get(mod_current)*2);
 						if other.speed > 0 {
 							other.speed -= min(other.speed, damage);
 						}
-						if other.damage > 0 || cell_damage - proj_damage*skill_get(mod_current) < 0 {
+
+						cellulite_damage = cell_damage - proj_damage*2*skill_get(mod_current)
+
+						if other.damage > 0 || cellulite_damage < 0 {
 							instance_destroy();
-						} else {
-							cellulite_damage = cell_damage - proj_damage*skill_get(mod_current)
 						}
 						if other.damage <= 0 {
 							break;
@@ -93,15 +94,15 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 						}
 						var proj_damage = other.damage;
 						is_blocking = true;
-						other.damage -= damage/skill_get(mod_current);
+						other.damage -= damage/(skill_get(mod_current)*2);
 						if other.speed > 0 {
 							other.speed -= min(other.speed, damage);
 						}
 						
-						if other.damage > 0 || cell_damage - proj_damage*skill_get(mod_current) < 0 {
+						cellulite_damage = cell_damage - proj_damage*2*skill_get(mod_current)
+
+						if other.damage > 0 || cellulite_damage < 0 {
 							instance_destroy();
-						} else {
-							cellulite_damage = cell_damage - proj_damage*skill_get(mod_current)
 						}
 						if other.damage <= 0 {
 							break;
@@ -123,7 +124,7 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 	}
 	if "cellulite_init" not in self {
 		cellulite_init		= true;
-		cellulite_frames	= random_range(10,20) + 15 * skill_get(mod_current);
+		cellulite_frames	= random_range(10,30) + 60 * skill_get(mod_current);
 		cellulite_max		= cellulite_frames;
 		setback 			= 0;
 		faux_friction		= friction;

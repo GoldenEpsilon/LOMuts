@@ -20,7 +20,7 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 	return true;
 
 #define skill_outcast
-	return true;
+	return false;
 	
 #define skill_wepspec
 	return 1;

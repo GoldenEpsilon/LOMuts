@@ -14,6 +14,9 @@ global.sprSkillHUD = sprite_add("../Sprites/Outcast/Dynamic Calves Icon.png", 1,
 #define skill_icon
 	return global.sprSkillHUD;
 
+#define skill_outcast
+	return true;
+
 #define skill_tip
 	return "CHOO CHOO#I'M A TRAIN";
 	
