@@ -1,6 +1,6 @@
+/loadskill Absorbing Abs
 /loadskill Alchemic Stomach
 /loadskill Arcane Arts
-/loadskill Brain Transfer
 /loadskill Compressing Fist
 /loadskill Confidence
 /loadskill Double Vision
@@ -9,10 +9,7 @@
 /loadskill Fractured Fingers
 /loadskill Garment Regenerator
 /loadskill Greed
-/loadskill Leprosy
-/loadskill Leprosy2
-/loadskill Loner
-/loadskill Mimicry
+/loadskill Hyperthermia
 /loadskill Muscle Memory
 /loadskill Neural Network
 /loadskill Precision Incision
@@ -21,12 +18,10 @@
 /loadskill Ruffled Feathers
 /loadskill Sadism
 /loadskill Scrap Arms
-/loadskill Shell Cellulite
+/loadskill Shattered Skull
 /loadskill Shocked Skin
 /loadskill Slim Pickings
 /loadskill Sloppy Fingers
 /loadskill Staked Chest
 /loadskill Steel Nerves
 /loadskill Thick Head
-/loadskill Unstable DNA
-/loadskill Waste Gland

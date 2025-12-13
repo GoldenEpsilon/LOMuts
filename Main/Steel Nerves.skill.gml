@@ -7,7 +7,10 @@ global.burst = sprite_add("../Sprites/SteelNervesBurst.png", 4, 16, 16)
 	return "Steel Nerves";
 	
 #define skill_text
-	return "You can only take @wdamage@s#up to @w2/3@s your max @rHP@s per hit";
+	return "Protection from strong hits";
+	
+#define stack_text
+	return "Protects from weaker hits as well"
 
 #define skill_button
 	sprite_index = global.sprSkillIcon;
@@ -82,8 +85,10 @@ with Player {
 	if("steelNerves" in self && "changedCanDie" in self && "OldHealth" in self){
 		if (my_health < OldHealth){
 			if(my_health < ceil(OldHealth-steelNerves) && OldHealth > floor(OldHealth-steelNerves)){
-				nexthurt += 6;
+				nexthurt += 12;
 				sound_play_pitchvol(sndHitMetal, 0.3, 3);
+				sound_play_pitchvol(sndHitMetal, 0.4, 3);
+				sound_play_pitchvol(sndHitMetal, 0.2, 3);
 				with(instance_create(x,y,Effect)){
 					sprite_index = global.burst;
 					image_speed = 0.4;

@@ -54,7 +54,7 @@ lq_set(global.sprites, "Iron Skin", [sprite_add("Sprites/Outcast/Iron Skin.png",
 lq_set(global.sprites, "Bursted Chest", [sprite_add("Sprites/Outcast/Bursted Chest.png", 1, 12, 16), sprite_add("Sprites/Outcast/Alt/Bursted Chest.png", 1, 12, 16)]);
 lq_set(global.sprites, "Groupthink", [sprite_add("Sprites/Outcast/Groupthink.png", 1, 12, 16), sprite_add("Sprites/Outcast/Alt/Groupthink.png", 1, 12, 16)]);
 
-lq_set(global.sprites, "Terrorism", [sprite_add("Sprites/Blights/Terrorism.png", 1, 12, 16), sprite_add("Sprites/Blights/Alt/Terrorism.png", 1, 12, 16)]);
+// lq_set(global.sprites, "Terrorism", [sprite_add("Sprites/Blights/Terrorism.png", 1, 12, 16), sprite_add("Sprites/Blights/Alt/Terrorism.png", 1, 12, 16)]);
 
 global.spriteChoices = {}
 wait(file_load("MutArt.txt"));

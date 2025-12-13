@@ -1,6 +1,0 @@
-/loadskill Terrorism
-/loadskill Diplomacy
-/loadskill Wiggle Waist
-/loadskill Damocles Tendon
-/loadskill Angry Eyebrows
-/loadskill Roulette Trigger

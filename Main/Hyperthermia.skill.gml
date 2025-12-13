@@ -5,10 +5,10 @@ while(!mod_exists("mod", "lib")){wait(1);}
 script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 
 #define skill_name
-	return "Precision Incision";
+	return "Hyperthermia";
 	
 #define skill_text
-	return "All @wEnergy weapons@s are#@bPseudo-Hitscan@s";
+	return "All @wExplosive weapons@s are#@bRapid@s";
 
 #define skill_button
 	sprite_index = global.sprSkillIcon;
@@ -29,32 +29,32 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 	return "Pew Pew";
 	
 #define skill_type
-	return "outcast";
+	return "offensive";
 	
 #define skill_take
 	sound_play(sndMut);
 	
 #define step
-	with(instances_matching(projectile, "PIhitscan", 1)){
+	with(instances_matching(projectile, "HThitscan", 1)){
 		run_hitscan(self);
 	}
 	
 #define update(_id)
 	with(Player){
-		if(weapon_get_type(wep) == 5){
-			with(instances_matching(instances_matching_ne(instances_matching_ne(instances_matching_gt(projectile, "id", _id), "ammo_type", -1), "PIhitscan_check", true), "creator", self)){
-				PIhitscan_check = true;
-				PIhitscan = 1;
+		if(weapon_get_type(wep) == 4){
+			with(instances_matching(instances_matching_ne(instances_matching_ne(instances_matching_gt(projectile, "id", _id), "ammo_type", -1), "HThitscan_check", true), "creator", self)){
+				HThitscan_check = true;
+				HThitscan = 1;
 				run_hitscan(self);
 			}
 		}else{
-			with(instances_matching(instances_matching_ne(instances_matching_gt(projectile, "id", _id), "PIhitscan_check", true), "creator", self)){
-				PIhitscan_check = true;
-				if("ammo_type" in self && ammo_type == 5){
-					PIhitscan = 1;
+			with(instances_matching(instances_matching_ne(instances_matching_gt(projectile, "id", _id), "HThitscan_check", true), "creator", self)){
+				HThitscan_check = true;
+				if("ammo_type" in self && ammo_type == 4){
+					HThitscan = 1;
 					run_hitscan(self);
 				}else{
-					PIhitscan = 0;
+					HThitscan = 0;
 				}
 			}
 		}
@@ -64,13 +64,14 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 with(creator){
 	with(_proj){
 		var size = 0.8;
-		repeat(5 * skill_get(mod_current)){
+		repeat(2 * skill_get(mod_current)){
 			if(!instance_exists(self)){continue;}
 			event_perform(ev_step, ev_step_begin);
 			if(!instance_exists(self)){continue;}
 			event_perform(ev_step, ev_step_normal);
 			if(!instance_exists(self)){continue;}
 			for(var i = 0; i < 4; i++){//alarms for projectiles don't go past 3
+				if(!instance_exists(self)){continue;}
 				if(alarm_get(i) > 0){
 					alarm_set(i, alarm_get(i) - current_time_scale);
 					if(alarm_get(i) <= 0){
@@ -78,6 +79,7 @@ with(creator){
 					}
 				}
 			}
+			if(!instance_exists(self)){continue;}
 			with(instance_create(x,y,Effect)){
 				sprite_index = other.sprite_index;
 				image_index = other.image_index;
@@ -118,7 +120,11 @@ with(creator){
 			var _inst = call(scr.instances_meeting, x, y, [projectile, hitme, Wall]);
 			with(_inst){
 				if(!instance_exists(_proj)){continue;}
-				if("nexthurt" in self){nexthurt -= current_time_scale;}
+				if("nexthurt" in self && (("iframeburn" not in self || "iframeburnid" not in self) || (iframeburn != current_frame || iframeburnid == other))){
+					nexthurt -= current_time_scale;
+					iframeburn = current_frame;
+					iframeburnid = other;
+				}
 				with(_proj){
 					event_perform(ev_collision, other.object_index);
 					if(!instance_exists(self)){continue;}

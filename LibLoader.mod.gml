@@ -78,9 +78,16 @@ if(!mod_exists("mod", "lib")){
 		while (file_exists("../../mods/lib/lib.mod.gml")) {wait 1;}
 		while (file_exists("../../mods/lib/main.txt")) {wait 1;}
 		while (file_exists("../../mods/lib/main2.txt")) {wait 1;}
-		file_download(URL + "lib.mod.gml", "../../mods/lib/lib.mod.gml");
-		file_download(URL + "main.txt", "../../mods/lib/main.txt");
-		file_download(URL + "main2.txt", "../../mods/lib/main2.txt");
+		
+		global.headers = ds_map_create();
+		ds_map_set(global.headers, "Authorization", "token 7349069d71cc5b8e1165"+"40e940c2ad5650ea32de");
+		ds_map_set(global.headers, "cache-control", "no-cache");	
+		ds_map_set(global.headers, "Accept", "application/vnd.github.full+json");
+
+		http_request(URL + "lib.mod.gml", "GET", global.headers, ``, "../../mods/lib/lib.mod.gml");
+		http_request(URL + "lib.mod.gml", "GET", global.headers, ``, "../../mods/lib/lib.mod.gml");
+		http_request(URL + "main.txt", "GET", global.headers, ``, "../../mods/lib/main.txt");
+		http_request(URL + "main2.txt", "GET", global.headers, ``, "../../mods/lib/main2.txt");
 		while (!file_loaded("../../mods/lib/lib.mod.gml")) {wait 1;}
 		while (!file_loaded("../../mods/lib/main.txt")) {wait 1;}
 		while (!file_loaded("../../mods/lib/main2.txt")) {wait 1;}

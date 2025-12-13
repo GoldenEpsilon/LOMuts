@@ -12,7 +12,7 @@ global.shock_skin_cont	= noone;
 #macro eulers				2.7182818284; //don't ask
 
 #define skill_name
-	return "SHOCKED SKIN 2";
+	return "SHOCKED SKIN";
 	
 #define skill_text
 	return "@wSHELLS @yZAP @sNEARBY @wENEMIES#@sWHEN THEY @wEXPIRE";

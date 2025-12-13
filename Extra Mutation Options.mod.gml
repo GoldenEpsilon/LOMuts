@@ -95,6 +95,9 @@ if(!("mutation_animation" in LevCont)){
 
 		}
 		with SkillIcon{
+			if("extramuts" not in self && is_string(skill) && mod_script_exists("skill", skill, "skill_temp") && mod_script_call("skill", skill, "skill_temp")){
+				global.target += 1;
+			}
 			extramuts = 1;
 			if("bonusbutton" in self && bonusbutton == 1){
 				with(LevCont){maxselect = instance_number(SkillIcon)-1;}

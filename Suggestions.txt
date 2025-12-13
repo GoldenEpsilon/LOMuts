@@ -1,7 +1,5 @@
 https://discord.com/channels/145126902074441729/218608636010692608/1353194784579125300
 
-Shell Cellulite - missing existing sprite, shells gain negative velocity constantly
-
 Neural Network, bouncing plasma - no Spin compat
 
 Buckshot Back - missing existing sprite

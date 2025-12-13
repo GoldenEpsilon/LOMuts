@@ -1,9 +1,5 @@
 /load Main
 /load Neural Network
-/load Outcast
-/load Blights
-/load Crowns
-/load Ultras
 
 /loadmod GuiPackLoader
 /loadmod Extra Mutation Options

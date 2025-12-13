@@ -1,5 +1,5 @@
 #define draw_gui
-	if(!mod_variable_get("mod", "LOMuts", "canMutTokens")){
+	if(!mod_variable_get("mod", "LOMuts", "showStackIndicator")){
 		return;
 	}
 	var player_count = 0;
