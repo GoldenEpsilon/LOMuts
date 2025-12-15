@@ -203,9 +203,10 @@ if(string(real(_name)) == string(_name) && array_length(_sprites) > 0){
 	}else{
 		mod_variable_set("skill", _name, "sprSkillIcon", _sprites[_spr]);
 	}
-}else {
-	trace(_name + " does not have art to change. Did you type it correctly? (caps and spaces matter)");
 }
+//else {
+// 	trace(_name + " does not have art to change. Did you type it correctly? (caps and spaces matter)");
+// }
 string_save(json_encode(global.spriteChoices), "MutArt.txt");
 
 #define step

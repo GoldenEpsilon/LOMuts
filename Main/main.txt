@@ -1,27 +1,42 @@
-/loadskill Absorbing Abs
+//DEFENSIVE
+/loadskill Garment Regenerator
+/loadskill Sadism
+/loadskill Steel Nerves
+
+//AMMO
 /loadskill Alchemic Stomach
-/loadskill Arcane Arts
+/loadskill Duplicators
+/loadskill Filtering Teeth
+
+//GENERAL
 /loadskill Compressing Fist
 /loadskill Confidence
 /loadskill Double Vision
-/loadskill Duplicators
-/loadskill Filtering Teeth
-/loadskill Fractured Fingers
-/loadskill Garment Regenerator
-/loadskill Greed
-/loadskill Hyperthermia
+/loadskill Sloppy Fingers
+/loadskill Thick Head
+
+//MELEE
+/loadskill Arcane Arts
 /loadskill Muscle Memory
-/loadskill Neural Network
-/loadskill Precision Incision
-/loadskill Pressurized Lungs
+
+//BULLET
 /loadskill Rocket Casings
-/loadskill Ruffled Feathers
-/loadskill Sadism
 /loadskill Scrap Arms
+
+//SHELL
 /loadskill Shattered Skull
 /loadskill Shocked Skin
-/loadskill Slim Pickings
-/loadskill Sloppy Fingers
+
+//BOLT
+/loadskill Absorbing Abs
 /loadskill Staked Chest
-/loadskill Steel Nerves
-/loadskill Thick Head
+
+//EXPLOSIVE
+/loadskill Fractured Fingers
+/loadskill Hyperthermia
+
+//ENERGY
+/loadskill Neural Network
+
+//MISC
+/loadskill Greed
