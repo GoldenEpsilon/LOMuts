@@ -39,40 +39,43 @@ global.bolts = [];
 #define step
 	for(var i = 0; i < array_length(global.bolts); i++){
 		if(!instance_exists(global.bolts[i][@3]) || !object_is_ancestor(global.bolts[i][@3].object_index, projectile)){
-			with(global.bolts[i][@4]){
-				if(!instance_exists(self)){
-					break;
-				}
-				if(prevObj == undefined){
-					instance_destroy();
-					break;
-				}
-				x = global.bolts[i][@0];
-				y = global.bolts[i][@1];
-				instance_change(prevObj, 0);
-				prevObj = null;
-				speed = deactivate_speed;
-				image_speed = deactivate_image_speed;
-				sprite_index = deactivate_sprite_index;
-				image_index = deactivate_image_index;
-				image_alpha = deactivate_image_alpha;
-				abs_absorbed = true;
-				image_blend = trail_color;
-				if(skill_get(mod_current) > 1){
-					repeat(skill_get(mod_current) - 1){
-						with(instance_copy(self)){
-							team = other.team;
-							abs_absorbed = true;
-							trail_color = other.trail_color;
-							image_blend = trail_color;
-							var prevDir = direction;
-							direction = global.bolts[i][@2]+180 + random_range(-10, 10);
-							image_angle += direction-prevDir;
+			var local_array = array_clone(global.bolts[i]);
+			global.bolts = call(scr.array_delete, global.bolts, i);
+			if(fork()){
+				with(local_array[@4]){
+					if(!instance_exists(self)){
+						break;
+					}
+					if(prevObj == undefined){
+						instance_destroy();
+						break;
+					}
+					x = local_array[@0];
+					y = local_array[@1];
+					instance_change(prevObj, 0);
+					prevObj = null;
+					speed = deactivate_speed;
+					image_speed = deactivate_image_speed;
+					sprite_index = deactivate_sprite_index;
+					image_index = deactivate_image_index;
+					image_alpha = deactivate_image_alpha;
+					abs_absorbed = true;
+					if(skill_get(mod_current) > 1){
+						repeat(skill_get(mod_current) - 1){
+							with(instance_copy(self)){
+								team = other.team;
+								abs_absorbed = true;
+								trail_color = other.trail_color;
+								var prevDir = direction;
+								direction = local_array[@2]+180 + random_range(-10, 10);
+								image_angle += direction-prevDir;
+							}
 						}
 					}
+					wait(2);
 				}
+				exit;
 			}
-			global.bolts = call(scr.array_delete, global.bolts, i);
 		}else{
 			with(global.bolts[i][@3]){
 				global.bolts[i][@0] = x;
@@ -106,12 +109,6 @@ global.bolts = [];
 	}
 	with(instances_matching(projectile, "abs_absorbed", true)){
 		scrSuperHot(self, trail_color);
-		with(instance_create(x, y, BoltTrail)){
-			image_blend = other.trail_color;
-			image_xscale = other.speed;
-			image_yscale = other.sprite_width / 5;
-			image_angle = other.direction;
-		}
 	}
 	
 #define update(_id)
@@ -131,22 +128,20 @@ global.bolts = [];
 	with(_inst) if(visible){
 		//image_blend = _color;
 		if(_color != 0){
-			script_bind_draw(reset_visible, depth - 1, id, visible);
-			script_bind_draw(superhot_draw, depth, id, _color);
+			script_bind_draw(superhot_draw, depth + 2, id, _color);
 		}
 	}
 
 #define superhot_draw(_id, _color)
 	d3d_set_fog(1, _color, 0, 0);
 	with(_id){
-		visible = 0;
+		image_xscale += 0.2;
+		image_yscale += 0.2;
 		if("right" in self || "rotation" in self) event_perform(ev_draw, 0);
 		else draw_self();
 		if(object_index == MeleeFake || object_index == JungleAssassinHide) draw_self();
+		image_xscale -= 0.2;
+		image_yscale -= 0.2;
 	}
 	d3d_set_fog(0, 0, 0, 0);
-	instance_destroy();
-
-#define reset_visible(_id, _visible)
-	with(_id) visible = _visible;
 	instance_destroy();
