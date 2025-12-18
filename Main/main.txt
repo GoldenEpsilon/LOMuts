@@ -8,12 +8,20 @@
 /loadskill Duplicators
 /loadskill Filtering Teeth
 
-//GENERAL
+//UTILITY
+/loadskill Thick Head
+/loadskill Shivering Spine
+/loadskill Rubber Rounds
+
+//OFFENSIVE
 /loadskill Compressing Fist
 /loadskill Confidence
 /loadskill Double Vision
 /loadskill Sloppy Fingers
-/loadskill Thick Head
+/loadskill Laser Focus
+
+//MISC
+/loadskill Greed
 
 //MELEE
 /loadskill Arcane Arts
@@ -34,9 +42,7 @@
 //EXPLOSIVE
 /loadskill Fractured Fingers
 /loadskill Hyperthermia
+/loadskill Pressurized Lungs
 
 //ENERGY
 /loadskill Neural Network
-
-//MISC
-/loadskill Greed

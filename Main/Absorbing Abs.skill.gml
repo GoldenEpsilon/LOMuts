@@ -21,14 +21,11 @@ global.bolts = [];
 #define skill_avail
 	return true;
 
-#define skill_outcast
-	return true;
-
 #define skill_tip
 	return "Shlorp";
 	
 #define skill_type
-	return "outcast";
+	return "utility";
 	
 #define skill_take
 	sound_play(sndMut);
@@ -65,7 +62,7 @@ global.bolts = [];
 							with(instance_copy(self)){
 								team = other.team;
 								abs_absorbed = true;
-								trail_color = other.trail_color;
+								outline_color = other.outline_color;
 								var prevDir = direction;
 								direction = local_array[@2]+180 + random_range(-10, 10);
 								image_angle += direction-prevDir;
@@ -90,7 +87,7 @@ global.bolts = [];
 					var prevDir = direction;
 					direction = global.bolts[i][@2]+180 + random_range(-60, 60);
 					image_angle += direction-prevDir;
-					trail_color = (instance_exists(other.creator) && other.creator.team == 2) ? make_color_rgb(255, 200, 24) : (instance_exists(other.creator) && "index" in other.creator ? player_get_color(other.creator.index) : c_white);
+					outline_color = (instance_exists(other.creator) && other.creator.team == 2) ? make_color_rgb(255, 200, 24) : (instance_exists(other.creator) && "index" in other.creator ? player_get_color(other.creator.index) : c_white);
 					prevObj = object_index;
 					deactivate_speed = speed;
 					deactivate_image_speed = image_speed;
@@ -108,7 +105,7 @@ global.bolts = [];
 		}
 	}
 	with(instances_matching(projectile, "abs_absorbed", true)){
-		scrSuperHot(self, trail_color);
+		scrOutline(self, outline_color);
 	}
 	
 #define update(_id)
@@ -124,15 +121,15 @@ global.bolts = [];
 #macro call script_ref_call
 #macro scr global.scr
 
-#define scrSuperHot(_inst, _color)
+#define scrOutline(_inst, _color)
 	with(_inst) if(visible){
 		//image_blend = _color;
 		if(_color != 0){
-			script_bind_draw(superhot_draw, depth + 2, id, _color);
+			script_bind_draw(outline_draw, depth + 1, id, _color);
 		}
 	}
 
-#define superhot_draw(_id, _color)
+#define outline_draw(_id, _color)
 	d3d_set_fog(1, _color, 0, 0);
 	with(_id){
 		image_xscale += 0.2;

@@ -13,9 +13,6 @@ global.sprSkillHUD = sprite_add("../Sprites/Icons/Shattered Skull Icon.png", 1, 
 	
 #define skill_icon
 	return global.sprSkillHUD;
-
-#define skill_outcast
-	return true;
 	
 #define skill_wepspec
 	return 1;

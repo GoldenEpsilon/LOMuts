@@ -9,6 +9,9 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 	
 #define skill_text
 	return "All @wExplosive weapons@s are#@bRapid@s";
+	
+#define stack_text
+	return "@bRapider@s explosives";
 
 #define skill_button
 	sprite_index = global.sprSkillIcon;
@@ -18,9 +21,6 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 
 #define skill_avail
 	return true;
-
-#define skill_outcast
-	return false;
 	
 #define skill_wepspec
 	return 1;

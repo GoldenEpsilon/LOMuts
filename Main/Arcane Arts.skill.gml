@@ -6,7 +6,7 @@ global.sprSkillHUD = sprite_add("../Sprites/Outcast/Blank Icon.png", 1, 8, 8)
 	return "Arcane Arts";
 	
 #define skill_text
-	return "Reflected bullets#can gain an @welement@s";
+	return "Reflected bullets#can be @wfirey@s";
 
 #define skill_button
 	sprite_index = global.sprSkillIcon;
@@ -16,9 +16,6 @@ global.sprSkillHUD = sprite_add("../Sprites/Outcast/Blank Icon.png", 1, 8, 8)
 
 #define skill_avail
 	return true;
-
-#define skill_outcast
-	return false;
 	
 #define skill_wepspec
 	return 1;
@@ -27,7 +24,7 @@ global.sprSkillHUD = sprite_add("../Sprites/Outcast/Blank Icon.png", 1, 8, 8)
 	return "Flippity Floodle#Your weapon is now a noodle";
 	
 #define skill_type
-	return "outcast";
+	return "offensive";
 	
 #define skill_take
 	sound_play(sndMut);
@@ -49,7 +46,9 @@ with(Player){
 				arcanecheck = true;
 				//25% chance with one stack, 33% with two
 				if(irandom(max(0, 5 - skill_get(mod_current))) == 0){
-					switch(irandom(2)){
+					// switch(irandom(2)){
+					//Fire Only
+					switch(0){
 						case 0:
 							image_blend = merge_color(image_blend, c_red, 0.5);
 							with(instance_create(x,y,CustomObject)){
