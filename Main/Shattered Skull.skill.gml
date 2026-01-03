@@ -6,7 +6,7 @@ global.sprSkillHUD = sprite_add("../Sprites/Icons/Shattered Skull Icon.png", 1, 
 	return "Shattered Skull";
 	
 #define skill_text
-	return "@wSHELLS @sSPLIT INTO @wEXTRA SHOTS";
+	return "@wSHELLS @sSPLIT INTO @wEXTRA LINGERING SHOTS";
 
 #define skill_button
 	sprite_index = global.sprSkillIcon;
@@ -33,33 +33,50 @@ global.sprSkillHUD = sprite_add("../Sprites/Icons/Shattered Skull Icon.png", 1, 
 	
 #define step
 script_bind_step(custom_step, 0);
+if instance_exists(projectile){
+	var inst = instances_matching([Bullet2,FlameShell,UltraShell,FlakBullet,SuperFlakBullet,Slug,HeavySlug],"Cellulite", 1); //vanilla
+	var cust = instances_matching(CustomProjectile,"Cellulite", 1); //custom shells
+	
+	if array_length(inst) with inst {
+		stall_shell_step()
+	}
+	
+	if array_length(cust) with cust {
+		stall_shell_step()
+	}
+}
+
 #define custom_step
 with(instances_matching_ne(instances_matching_ne([Bullet2, FlameShell, HeavySlug, UltraShell, Slug], "ShatteredSkull", 1), "pg", 1)){
 	ShatteredSkull = 1;
 	if(damage >= 1){
-		repeat(max(irandom(sqrt(damage)), 0) * skill_get(mod_current)){
-			var split = instance_clone();
-			split.team = team;
-			split.direction = direction + random_range(-10, 10);
-			split.image_angle = direction;
-			split.ShatteredSkull = 1;
-			split.damage = round(damage/2);
-			split.image_xscale = image_xscale/2;
-			split.image_yscale = image_yscale/2;
+		var rand = irandom(sqrt(damage)) * skill_get(mod_current)
+		if(rand){
+			repeat(rand){
+				var split = instance_clone();
+				split.team = team;
+				split.direction = direction + random_range(-10, 10);
+				split.image_angle = direction;
+				split.ShatteredSkull = 1;
+				split.speed = 7.5;
+				split.Cellulite = 1;
+			}
 		}
 	}
 }
 with(instances_matching_ne(CustomProjectile, "ShatteredSkull", 1)){
 	ShatteredSkull = 1;
 	if(("is_slug" in self && is_slug || "is_shell" in self && is_shell) && damage >= 1){
-		repeat(max(irandom(sqrt(damage)), 0) * skill_get(mod_current)){
-			var split = instance_clone();
-			split.team = team;
-			split.direction = direction + random_range(-10, 10);
-			split.ShatteredSkull = 1;
-			split.damage = round(damage/2);
-			split.image_xscale = image_xscale/2;
-			split.image_yscale = image_yscale/2;
+		var rand = irandom(sqrt(damage)) * skill_get(mod_current);
+		if(rand){
+			repeat(rand){
+				var split = instance_clone();
+				split.team = team;
+				split.direction = direction + random_range(-10, 10);
+				split.ShatteredSkull = 1;
+				split.speed = 7.5;
+				split.Cellulite = 1;
+			}
 		}
 	}
 }
@@ -164,3 +181,78 @@ instance_destroy();
 	
 	return _new;
 	
+
+#define stall_shell_step
+	if !instance_exists(self){
+		return;
+	}
+	if "cellulite_init" not in self {
+		cellulite_init		= true;
+		cellulite_frames	= random_range(10,30) + 60 * skill_get(mod_current);
+		cellulite_max		= cellulite_frames;
+		setback 			= 0;
+		faux_friction		= friction;
+		friction			= 0;
+		start_xscale		= image_xscale;
+		start_yscale		= image_yscale;
+		image_xscale		*= xs_srt;
+		image_yscale		*= ys_srt;
+		speed				*= 1.2;
+		
+		if "wallbounce" not in self wallbounce = 0;
+		
+		
+		if !wallbounce {
+			safebounce = false;
+			wallbounce ++;
+		}
+		else safebounce = true;
+	}
+
+	if cellulite_frames {
+		prev_speed = speed;
+		setback = min(setback + faux_friction * current_time_scale, prev_speed);
+		
+		//shells that coudn't bounce prior will just hug the wall
+		//makes flame shells and toxic flechettes more effective
+		if !wallbounce && !safebounce {
+			setback = prev_speed;
+			x = xprevious;
+			y = yprevious;
+		}
+
+		var t = (setback/prev_speed);
+		image_xscale = start_xscale * lerp(xs_srt,xs_end,t);
+		image_yscale = start_yscale * lerp(ys_srt,ys_end,t);
+		
+		if setback + current_time_scale >= prev_speed {
+			direction += current_time_scale*30;
+			image_angle += current_time_scale*30;
+		}
+		
+		if setback == prev_speed {
+			cellulite_frames -= current_time_scale;
+			// var t = 1 - (cellulite_frames/cellulite_max);
+			// image_xscale = start_xscale * lerp(xs_srt,xs_end,t);
+			// image_yscale = start_yscale * lerp(ys_srt,ys_end,t);
+			
+			bonus = max(bonus,2); //shells deal more damage when stationary
+			
+			if !cellulite_frames {
+				x += hspeed_raw;
+				y += vspeed_raw;
+				speed = 0;
+				sound_play_pitchvol(sndFlakExplode,4 + random(1),0.15);
+			}
+		}
+		
+		//stall projectile without actually slowing it
+		x -= lengthdir_x(setback * current_time_scale,direction);
+		y -= lengthdir_y(setback * current_time_scale,direction);
+	}
+
+#macro xs_srt		1.2
+#macro ys_srt		0.7
+
+#macro xs_end		0.5		
+#macro ys_end		1.15

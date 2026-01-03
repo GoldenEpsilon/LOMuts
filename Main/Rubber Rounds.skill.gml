@@ -48,7 +48,24 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 					team = rubberowner.team;
 					instance_create(x, y, ImpactWrists).image_blend = rubbercol;
 					rubber = 0;
-					move_bounce_solid(false);
+					var flipped = false;
+					if(place_meeting(x + hspeed, y, Wall)){
+						hspeed *= -1;
+						flipped = true;
+					}
+					if(place_meeting(x, y + vspeed, Wall)){
+						vspeed *= -1;
+						flipped = true;
+					}
+					if (!flipped){
+						var wall = instance_nearest(x+hspeed,y+vspeed,Wall)
+						if(sign(wall.x - (x + hspeed)) == sign(hspeed)) {
+							hspeed *= -1;
+						}
+						if(sign(wall.y - (y + vspeed)) == sign(vspeed)) {
+							vspeed *= -1;
+						}
+					}
 					image_angle = direction;
 					sleep(5);
 					view_shake_at(x, y, 5);
