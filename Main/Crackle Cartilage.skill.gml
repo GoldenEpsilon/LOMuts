@@ -8,14 +8,14 @@ global.sprHit			= sprite_add("../Sprites/sprSkinHit.png",4,12,12);
 
 global.shock_skin_cont	= noone;
 
-#macro energy_compat		true;
+#macro energy_compat		false;
 #macro eulers				2.7182818284; //don't ask
 
 #define skill_name
-	return "SHOCKED SKIN";
+	return "Crackle Cartilage";
 	
 #define skill_text
-	return "@wSHELLS @yZAP @sNEARBY @wENEMIES#@sWHEN THEY @wEXPIRE";
+	return "@wBULLETS @yBLAST @sNEARBY @wENEMIES#@sWHEN THEY @wEXPIRE";
 
 #define skill_button
 	sprite_index = global.sprSkillIcon;
@@ -61,13 +61,13 @@ global.shock_skin_cont	= noone;
 	
 	if instance_exists(projectile){
 		//vanilla projectiles
-		var v = instances_matching([Bullet2,Slug,FlakBullet,SuperFlakBullet,UltraShell,FlameShell,HeavySlug,HyperSlug],"shockedskin",null);
+		var v = instances_matching([Bullet1, BouncerBullet, UltraBullet],"shockedskin",null);
 		if array_length(v) with v {
 			shocktrack_vanilla();
 		}
 		
 		//modded projectiles
-		var m = instances_matching(instances_matching(CustomProjectile,"ammo_type",2),"shockedskin",null);
+		var m = instances_matching(instances_matching(CustomProjectile,"ammo_type",1),"shockedskin",null);
 		if array_length(m) with m {
 			shocktrack_modded();
 		}

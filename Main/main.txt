@@ -4,7 +4,6 @@
 /loadskill Steel Nerves
 
 //AMMO
-/loadskill Alchemic Stomach
 /loadskill Duplicators
 /loadskill Filtering Teeth
 
@@ -15,7 +14,6 @@
 
 //OFFENSIVE
 /loadskill Compressing Fist
-/loadskill Confidence
 /loadskill Double Vision
 /loadskill Sloppy Fingers
 /loadskill Laser Focus
@@ -28,12 +26,11 @@
 /loadskill Muscle Memory
 
 //BULLET
-/loadskill Rocket Casings
+/loadskill Crackle Cartilage
 /loadskill Scrap Arms
 
 //SHELL
 /loadskill Shattered Skull
-/loadskill Shocked Skin
 
 //BOLT
 /loadskill Absorbing Abs
@@ -46,3 +43,4 @@
 
 //ENERGY
 /loadskill Neural Network
+/loadskill Fusion Gut
