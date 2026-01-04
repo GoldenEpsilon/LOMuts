@@ -27,7 +27,7 @@ global.shock_skin_cont	= noone;
 	return 1;
 
 #define skill_tip
-	if energy_compat && random(100) < 33 return "@wSHOCKED SKIN @sWORKS WITH @gENERGY @wMUTATIONS";
+	if energy_compat && random(100) < 33 return "@wCRACKLE CARTILAGE @sWORKS WITH @gENERGY @wMUTATIONS";
 	return "SHOCK ABSORPTION";
 	
 #define skill_type

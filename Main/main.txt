@@ -31,6 +31,7 @@
 
 //SHELL
 /loadskill Shattered Skull
+/loadskill Pressurized Lungs
 
 //BOLT
 /loadskill Absorbing Abs
@@ -39,7 +40,6 @@
 //EXPLOSIVE
 /loadskill Fractured Fingers
 /loadskill Hyperthermia
-/loadskill Pressurized Lungs
 
 //ENERGY
 /loadskill Neural Network
