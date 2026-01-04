@@ -8,7 +8,7 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 	return "Laser Focus";
 	
 #define skill_text
-	return "One enemy is @rmarked@s per level#@rMarked@s enemies take @wextra damage@s#and the mark @wshifts@s when they die";
+	return "Some enemies are @rmarked@s#@rMarked@s enemies take @wextra damage@s#The Mark @wshifts@s when they die";
 
 #define skill_button
 	sprite_index = global.sprSkillIcon;
@@ -29,7 +29,7 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 	sound_play(sndMut);
 
 #define level_start
-	repeat(skill_get(mod_current)){
+	repeat(skill_get(mod_current) * max(1, instance_number(enemy)/50)){
 		with(call(scr.instance_random, instances_matching_ne(enemy, "marked", true))){
 			marked = true;
 		}
