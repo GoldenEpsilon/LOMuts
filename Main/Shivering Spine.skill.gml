@@ -20,7 +20,7 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 	return true;
 
 #define skill_tip
-	return "It's beginning to look a lot like#@qTHE DEMISE OF YOUR ENEMIES";
+	return "So Cold";
 	
 #define skill_type
 	return "utility";

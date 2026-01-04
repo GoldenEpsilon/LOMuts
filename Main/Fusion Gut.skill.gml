@@ -30,7 +30,7 @@ global.alchemize = sprite_add("../Sprites/AlchemicStomach.png", 7, 8, 8)
 #define step
 	//took some code from Brass Blood from minimod here
 	with(Player){
-		if(button_pressed(index, "fire") && canfire && can_shoot && visible){
+		if((button_pressed(index, "fire") || ((race == "steroids" || weapon_get_auto(wep)) && button_check(index, "fire"))) && canfire && can_shoot && visible){
 			var desired_amount = weapon_get_cost(wep)*2*max(1, 30/max(weapon_get_load(wep),1));
 			if(array_length(ammo) > 2 && weapon_get_type(wep) == 5 && (weapon_get_cost(wep) > ammo[weapon_get_type(wep)] || ammo[weapon_get_type(wep)] <= 0)){
 				var alchemized = false;
@@ -63,7 +63,7 @@ global.alchemize = sprite_add("../Sprites/AlchemicStomach.png", 7, 8, 8)
 				}
 			}
 		}
-		if(race == "steroids" && button_pressed(index, "spec") && canfire && bcan_shoot && visible){
+		if(race == "steroids" && button_check(index, "spec") && canfire && bcan_shoot && visible){
 			var desired_amount = weapon_get_cost(bwep)*2*max(1, 30/max(weapon_get_load(wep),1));
 			if(array_length(ammo) > 2 && weapon_get_type(bwep) == 5 && (weapon_get_cost(bwep) > ammo[weapon_get_type(bwep)] || ammo[weapon_get_type(bwep)] <= 0)){
 				var alchemized = false;
