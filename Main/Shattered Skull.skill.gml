@@ -6,7 +6,7 @@ global.sprSkillHUD = sprite_add("../Sprites/Icons/Shattered Skull Icon.png", 1, 
 	return "Shattered Skull";
 	
 #define skill_text
-	return "@wSHELLS @sSPLIT INTO @wEXTRA LINGERING SHOTS";
+	return "@wSHELLS @sMAKE#@wLINGERING SHOTS";
 
 #define skill_button
 	sprite_index = global.sprSkillIcon;
