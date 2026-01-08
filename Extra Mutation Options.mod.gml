@@ -57,7 +57,15 @@ if(!("mutation_animation" in LevCont)){
 
 		var sis=instance_number(SkillIcon)
 
-		if sis<global.target && sis >= 4 && skill_decide() != -1 {
+		var modifier = 0;
+		
+		with SkillIcon{
+			if(is_string(skill) && mod_script_exists("skill", skill, "skill_reusable") && mod_script_call("skill", skill, "skill_reusable")){
+				modifier += 1;
+			}
+		}
+
+		if sis<global.target + modifier && sis >= 4 && skill_decide() != -1 {
 		
 			with instance_create(0,0,SkillIcon){
 				bonusbutton=1
@@ -95,9 +103,6 @@ if(!("mutation_animation" in LevCont)){
 
 		}
 		with SkillIcon{
-			if("extramuts" not in self && is_string(skill) && mod_script_exists("skill", skill, "skill_reusable") && mod_script_call("skill", skill, "skill_reusable")){
-				global.target += 1;
-			}
 			extramuts = 1;
 			if("bonusbutton" in self && bonusbutton == 1){
 				with(LevCont){maxselect = instance_number(SkillIcon)-1;}
