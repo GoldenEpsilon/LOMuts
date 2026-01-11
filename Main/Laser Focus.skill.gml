@@ -42,12 +42,12 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 				prevHealth = my_health;
 			}
 			if(my_health < prevHealth){
-				//my_health -= (prevHealth - my_health) * skill_get(mod_current);
-				my_health -= skill_get(mod_current)
+				my_health -= (prevHealth - my_health) * skill_get(mod_current) * 0.5;
+				// my_health -= skill_get(mod_current)
 			}
 			prevHealth = my_health;
 			if(my_health <= 0){
-				with(call(scr.instance_random, instances_matching_ne(enemy, "marked", true))){
+				with(instance_nearest_from(x, y, instances_matching_ne(enemy, "marked", true))){
 					marked = true;
 				}
 			}
