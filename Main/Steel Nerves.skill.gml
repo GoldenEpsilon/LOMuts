@@ -3,6 +3,8 @@ global.sprSkillIcon = sprite_add("../Sprites/Main/Steel Nerves.png", 1, 12, 16)
 global.sprSkillHUD = sprite_add("../Sprites/Icons/Steel Nerves Icon.png", 1, 8, 8)
 global.burst = sprite_add("../Sprites/SteelNervesBurst.png", 4, 16, 16)
 
+global.nervesID = 0;
+
 #define skill_name
 	return "Steel Nerves";
 	
@@ -28,11 +30,11 @@ global.burst = sprite_add("../Sprites/SteelNervesBurst.png", 4, 16, 16)
 	sound_play(sndMut);
 	with(Player){
 		nervesMax = maxhealth;
-		steelNerves = (nervesMax+skill_get(mod_current)-1)/(1+skill_get(mod_current));
+		steelNerves = undefined;
 	}
 	with(Revive){
 		nervesMax = maxhealth;
-		steelNerves = (nervesMax+skill_get(mod_current)-1)/(1+skill_get(mod_current));
+		steelNerves = undefined;
 	}
 	sound_play_pitchvol(sndEnemyFire, 1, 2);
 	wait(6);
@@ -65,13 +67,13 @@ script_bind_end_step(custom_step2, 0);
 
 #define custom_step1
 with Player {
-	if("steelNerves" not in self){
+	if("steelNerves" not in self || steelNerves == undefined){
 		nervesMax = maxhealth;
-		steelNerves = (nervesMax+skill_get(mod_current))/(2+skill_get(mod_current));
+		steelNerves = (nervesMax)*1/(1+skill_get(mod_current));
+		global.nervesID++;
 	}
 	if(maxhealth != nervesMax){
-		steelNerves += (maxhealth - nervesMax)*2/3;
-		nervesMax = maxhealth;
+		steelNerves = undefined;
 	}
 	OldHealth = my_health;
 	if(my_health > 0 && candie == 1){
@@ -82,7 +84,7 @@ with Player {
 instance_destroy();
 #define custom_step2
 with Player {
-	if("steelNerves" in self && "changedCanDie" in self && "OldHealth" in self){
+	if("steelNerves" in self && steelNerves != undefined && "changedCanDie" in self && "OldHealth" in self){
 		if (my_health < OldHealth){
 			if(my_health < ceil(OldHealth-steelNerves) && OldHealth > floor(OldHealth-steelNerves)){
 				nexthurt += 12;
@@ -106,10 +108,11 @@ with Player {
 			my_health = min(max(my_health, floor(OldHealth-steelNerves)), maxhealth);
 		}
 		var nervesTemp = my_health - OldHealth;
+		var tempNervesID = global.nervesID;
 		steelNerves += nervesTemp;
 		if(fork()){
 			wait(2);
-			if(instance_exists(self)){
+			if(instance_exists(self) && steelNerves != undefined && global.nervesID == tempNervesID){
 				steelNerves -= nervesTemp;
 			}
 			exit;

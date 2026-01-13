@@ -41,21 +41,18 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 	
 #define update(_id)
 	with(Player){
-		if(weapon_get_type(wep) == 4){
-			with(instances_matching(instances_matching_ne(instances_matching_ne(instances_matching_gt(projectile, "id", _id), "ammo_type", -1), "HThitscan_check", true), "creator", self)){
-				HThitscan_check = true;
+		with(instances_matching(instances_matching_ne(instances_matching_gt([Flame, FlameBall, FlameBurst, FlameShell, FireBall, TrapFire, Grenade, HyperGrenade, JockRocket, PopoRocket, Rocket, Nuke], "id", _id), "HThitscan_check", true), "creator", self)){
+			HThitscan_check = true;
+			HThitscan = 1;
+			run_hitscan(self);
+		}
+		with(instances_matching(instances_matching_ne(instances_matching_gt(CustomProjectile, "id", _id), "HThitscan_check", true), "creator", self)){
+			HThitscan_check = true;
+			if("ammo_type" in self && ammo_type == 4){
 				HThitscan = 1;
 				run_hitscan(self);
-			}
-		}else{
-			with(instances_matching(instances_matching_ne(instances_matching_gt(projectile, "id", _id), "HThitscan_check", true), "creator", self)){
-				HThitscan_check = true;
-				if("ammo_type" in self && ammo_type == 4){
-					HThitscan = 1;
-					run_hitscan(self);
-				}else{
-					HThitscan = 0;
-				}
+			}else{
+				HThitscan = 0;
 			}
 		}
 	}
