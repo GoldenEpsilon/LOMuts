@@ -1,6 +1,7 @@
 #define init
-global.sprSkillIcon = sprite_add("../Sprites/Main/Sloppy Fingers.png", 1, 12, 16)
-global.sprSkillHUD = sprite_add("../Sprites/Icons/Sloppy Fingers Icon.png", 1, 8, 8)
+global.sprSkillIcon = sprite_add("Sprites/Main/Sloppy Fingers.png", 1, 12, 16)
+global.sprSkillHUD = sprite_add("Sprites/Icons/Sloppy Fingers Icon.png", 1, 8, 8)
+while(!mod_exists("mod", "lib")){wait(1);}
 script_ref_call(["mod", "lib", "getHooks"], "skill", mod_current);
 
 #define skill_name
