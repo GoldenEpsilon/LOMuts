@@ -46,6 +46,7 @@ with Player {
 				my_health += healHealth;
 				my_health = min(my_health, maxhealth);
 				instance_create(x, y-10, HealFX)
+				sound_play(sndBloodlustProc);
 			}
 		}
 		exit
