@@ -47,7 +47,6 @@ with(Laser){
 		sprite_index = global.sprBurningLaser;
 	}else if(sprite_index != global.sprBurningLaser){
 		image_blend = make_color_rgb(255,125,0);
-		trace(sprite_index);
 	}
 	with(hitme){
 		if(team != laser.team && place_meeting(x,y,laser)){

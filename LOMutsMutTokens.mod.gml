@@ -17,11 +17,8 @@
 #define step
 	if(GameCont.level >= 10){
 		with(global.rerolls){
-			trace(self);
-			trace(skill_get(self));
 			GameCont.skillpoints += 1;
 			skill_set(self, skill_get(self) - 1);
-			trace(skill_get(self));
 		}
 		global.rerolls = [];
 	}
