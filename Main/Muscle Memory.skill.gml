@@ -50,7 +50,7 @@ with(Player){
 			direction = point_direction(x,y,i.x,i.y);
 			image_angle = direction;
 			speed *= 2 + 0.5 * skill_get(mod_current);
-			damage += skill_get(mod_current) * 3;
+			damage += skill_get(mod_current) * 9;
 			image_blend = merge_color(image_blend, c_red, 0.35);
 			image_xscale *= 1.25;
 			image_yscale *= 0.75;
