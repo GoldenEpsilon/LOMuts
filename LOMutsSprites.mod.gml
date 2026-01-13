@@ -120,7 +120,7 @@ if (argument0 == "mutartname"){
 }
 
 #define buttonSprite
-	if(is_real(argument1.hoverText)){
+	if(string(real(argument1.hoverText)) == argument1.hoverText){
 		argument1.subimg = argument1.hoverText;
 		argument1.mutNum = argument1.hoverText;
 		argument1.hoverText = skill_get_name(argument1.hoverText);

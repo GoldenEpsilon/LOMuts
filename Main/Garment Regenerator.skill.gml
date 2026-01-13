@@ -41,10 +41,11 @@ with Player {
 		wait 0
 		if(instance_exists(self) && my_health < OldHealth && my_health != lsthealth){
 			var healHealth = floor((OldHealth - max(my_health,0))/2)
-			wait(240 / skill_get(mod_current));
-			if(instance_exists(self)){
+			wait(120 / skill_get(mod_current));
+			if(instance_exists(self) && healHealth > 0){
 				my_health += healHealth;
 				my_health = min(my_health, maxhealth);
+				instance_create(x, y-10, HealFX)
 			}
 		}
 		exit
