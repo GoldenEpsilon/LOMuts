@@ -125,6 +125,8 @@
 		alarm0  = num + 3;
 		skill   = _skill;
 
+		foldermut = true;
+
 		 // Apply relevant scripts
         mod_script_call("skill", _skill, "skill_button");
         name = mod_script_call("skill", _skill, "skill_name");

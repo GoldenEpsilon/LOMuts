@@ -61,7 +61,7 @@ global.shock_skin_cont	= noone;
 	
 	if instance_exists(projectile){
 		//vanilla projectiles
-		var v = instances_matching([Bullet1, BouncerBullet, UltraBullet],"shockedskin",null);
+		var v = instances_matching([Bullet1, BouncerBullet, HeavyBullet, UltraBullet],"shockedskin",null);
 		if array_length(v) with v {
 			shocktrack_vanilla();
 		}
@@ -149,7 +149,7 @@ global.shock_skin_cont	= noone;
 		nearest_valid		= noone;
 		
 		animate				= false;
-		anim_max			= 7 + irandom_range(-1,1);
+		anim_max			= 12 + irandom_range(-1,1);
 		zap_width			= image_xscale;
 		
 		shockedskin			= true; //just in case.
@@ -220,19 +220,21 @@ global.shock_skin_cont	= noone;
 	//effects
 	with instance_create(zapx,zapy,LightningSpawn){
 		sprite_index = global.sprShock;
-		image_angle = other.zap_dir;
+		image_angle = other.zap_dir+180;
 		image_speed = 0.5;
 		image_xscale = 0.75 * max(1,(other.image_xscale/2));
 		image_yscale = image_xscale;
 		depth = other.depth;
 	}
-	with instance_create(zapx_end,zapy_end,LightningHit){
-		sprite_index = global.sprHit;
-		image_angle = random(360);
-		image_speed = 0.5;
-		image_xscale = 0.75 * max(1,(other.image_xscale/2));
-		image_yscale = image_xscale;
-		depth = other.depth;
+	repeat(2){
+		with instance_create(zapx_end,zapy_end,PortalL){
+			// sprite_index = global.sprHit;
+			// image_angle = random(360);
+			image_speed = 0.5;
+			image_xscale = 1;
+			image_yscale = image_xscale;
+			depth = other.depth;
+		}
 	}
 	
 	//sound
@@ -246,17 +248,17 @@ global.shock_skin_cont	= noone;
 	}
 	
 	if !hashit {
-			with instance_create(zapx_end,zapy_end,LightningHit){
-				sprite_index = global.sprHit;
-				image_angle = random(360);
-				image_speed = 0.5;
-				image_xscale = 0.75 * max(1,(other.image_xscale/2));
-				image_yscale = image_xscale;
-				depth = other.depth;
-			}
+		with instance_create(zapx_end,zapy_end,PortalL){
+			// sprite_index = global.sprHit;
+			image_angle = random(360);
+			image_speed = 0.5;
+			image_xscale = 0.75 * max(1,(other.image_xscale/2));
+			image_yscale = image_xscale;
+			depth = other.depth;
+		}
 			
-	sound_play_pitchvol(sndLightningCannon,1.5 + random(0.25),(image_xscale/3) - 0.4);
-	sound_play_pitchvol(sndLightningReload,1.5 + random(0.25),1);
+		sound_play_pitchvol(sndLightningCannon,1.5 + random(0.25),(image_xscale/3) - 0.4);
+		sound_play_pitchvol(sndLightningReload,1.5 + random(0.25),1);
 	}
 	
 	if !animate { instance_destroy(); exit;}
@@ -266,7 +268,15 @@ global.shock_skin_cont	= noone;
 		animate -= current_time_scale;
 		var col = (animate/anim_max) <= 0.6 ? c_white : c_black
 		var len = point_distance(zapx,zapy,zapx_end,zapy_end);
-		draw_sprite_ext(sprBoltTrail,1,zapx,zapy,len,zap_width * (animate/anim_max),zap_dir,col,1);
+		var offset = 5;
+		for(var i = offset; i < len; i += 10/damage){
+			if(i/len < 1-(animate/anim_max)){
+				continue;
+			}
+			draw_sprite_ext(sprWepSwap, sprite_get_number(sprWepSwap) - (animate/anim_max) * sprite_get_number(sprWepSwap), 
+			lerp(zapx, zapx_end, i/len) + cos((x+y*1024+i)*641863)*damage, lerp(zapy, zapy_end, i/len) + sin((x+y*1024+i)*641863)*damage, 1, 1, 0, col, 1)
+		}
+		// draw_sprite_ext(sprBoltTrail,1,zapx,zapy,len,zap_width * (animate/anim_max),zap_dir,col,1);
 	}
 	else instance_destroy();
 	

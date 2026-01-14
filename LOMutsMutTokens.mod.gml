@@ -35,7 +35,7 @@
 				if(irandom(1) > 0 && GameCont.level < 10){
 					var choice = irandom(instance_number(SkillIcon) - 1);
 					with(SkillIcon){
-						if(choice == 0 && noinput <= 0 && (is_real(skill) || !mod_script_call("skill", skill, "skill_reusable")) && !("NoToken" in self && NoToken)){
+						if(("foldermut" not in self || foldermut != true) && choice == 0 && noinput <= 0 && (is_real(skill) || !mod_script_call("skill", skill, "skill_reusable")) && !("NoToken" in self && NoToken)){
 							MutationToken = true;
 							MutationTokenType = irandom(1);
 						}

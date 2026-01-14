@@ -219,6 +219,8 @@ global.surfIcon = sprite_add("surfIcon.png", 1, 8, 8);
 		alarm0  = num + 3;
 		skill   = _skill;
 
+		foldermut = true;
+
 		if(is_string(_skill) && mod_exists("skill", _skill)){
 			 // Apply relevant scripts
 			mod_script_call("skill", _skill, "skill_button");
