@@ -42,7 +42,7 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 				prevHealth = my_health;
 			}
 			if(my_health < prevHealth){
-				my_health -= (prevHealth - my_health) * skill_get(mod_current) * 0.5;
+				my_health -= (prevHealth - my_health) * skill_get(mod_current);
 				// my_health -= skill_get(mod_current)
 			}
 			prevHealth = my_health;

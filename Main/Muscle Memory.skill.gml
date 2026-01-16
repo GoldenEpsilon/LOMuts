@@ -11,7 +11,7 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 	return "Muscle Memory";
 	
 #define skill_text
-	return "Reflected bullets are @wpowerful@s and @wtarget@s#Enemy shots @wbounce@s";
+	return "Reflected bullets are @wpowerful@s and @wtarget@s#Enemy shots can @wbounce@s";
 
 #define skill_button
 	sprite_index = global.sprSkillIcon;
@@ -45,7 +45,7 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 with(Player){
 	with(instances_matching(instances_matching_ne(instances_matching_ne(projectile, "team", 0), "team", team),"rubber",null)){
 		if(object_index != TrapFire && object_index != EnemySlash && object_index != EnemyLaser){
-			rubber = true;//random_range(0, 1 + skill_get(mod_current)) > 1;
+			rubber = random_range(0, 1 + skill_get(mod_current)) > 1;
 			if(rubber){
 				rubberowner = other;
 				rubbercol = (rubberowner.team == 2) ? make_color_rgb(255, 200, 24) : ("index" in self ? player_get_color(rubberowner.index) : c_white);
