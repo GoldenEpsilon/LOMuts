@@ -9,7 +9,6 @@
 
 //UTILITY
 /loadskill Thick Head
-/loadskill Shivering Spine
 
 //OFFENSIVE
 /loadskill Compressing Fist
@@ -23,13 +22,13 @@
 //MELEE
 /loadskill Arcane Arts
 /loadskill Muscle Memory
+/loadskill Fractured Fingers
 
 //BULLET
 /loadskill Crackle Cartilage
 /loadskill Scrap Arms
 
 //SHELL
-//loadskill Shattered Skull
 /loadskill Telekinetic Tears
 /loadskill Pressurized Lungs
 
@@ -38,7 +37,6 @@
 /loadskill Staked Chest
 
 //EXPLOSIVE
-/loadskill Fractured Fingers
 /loadskill Hyperthermia
 
 //ENERGY
