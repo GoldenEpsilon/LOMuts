@@ -39,7 +39,7 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 #define update(_id)
 with(instances_matching_ne(WepPickup, "neural", true)){
 	neural = true;
-	if(weapon_get_type(wep) != 5 || !weapon_is_melee(wep)) {
+	if(roll == 1 && (weapon_get_type(wep) != 5 || !weapon_is_melee(wep))) {
 		wep = weapon_random(weapon_get_area(wep), weapon_get_area(wep));
 	}
 }

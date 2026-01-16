@@ -36,7 +36,7 @@ script_bind_step(custom_step, 0);
 with(instances_matching_ne(WepPickup, "neural", true)){
 	neural = true;
 	var name = weapon_get_name(wep);
-	if(string_count("Plasma", name) == 0) {
+	if(roll == 1 && string_count("Plasma", name) == 0) {
 		wep = weapon_random(weapon_get_area(wep), weapon_get_area(wep));
 	}
 }

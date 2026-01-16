@@ -34,7 +34,7 @@ global.sprIcon = sprite_add("../Sprites/Icons/Neural Network/" + mod_current + "
 with(instances_matching_ne(WepPickup, "neural", true)){
 	neural = true;
 	var name = weapon_get_name(wep);
-	if(string_count("Lightning", name) == 0 && string_count("Electric", name) == 0 && string_count("Zap", name) == 0) {
+	if(roll == 1 && string_count("Lightning", name) == 0 && string_count("Electric", name) == 0 && string_count("Zap", name) == 0) {
 		wep = weapon_random(weapon_get_area(wep), weapon_get_area(wep));
 	}
 }
