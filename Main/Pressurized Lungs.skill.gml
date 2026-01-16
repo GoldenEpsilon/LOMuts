@@ -159,7 +159,6 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 	if superforce > 4 {
 		with creator {
 			if(size >= 2){
-				trace(1);
 				with(instance_create(x, y, PortalClear)){
 					mask_index = other.mask_index;
 					image_xscale = 2;

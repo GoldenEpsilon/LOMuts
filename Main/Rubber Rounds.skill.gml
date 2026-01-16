@@ -50,8 +50,8 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 					rubber = 0;
 					move_bounce_solid(false);
 					image_angle = direction;
-					sleep(5);
-					view_shake_at(x, y, 5);
+					// sleep(5);
+					// view_shake_at(x, y, 5);
 					direction += random_range(-2, 2);
 					sound_play_pitchvol(sndCanBounce2, random_range(0.3, 0.6), 1);
 				}
