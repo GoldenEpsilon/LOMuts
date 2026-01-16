@@ -41,7 +41,8 @@ with(instances_matching_le(enemy, "my_health", 0)){
 				if((object_index == CustomProjectile || object_index == CustomSlash) && ("ammo_type" not in self || ammo_type != 3)){
 					continue;
 				}
-				for(var i = 36; i < 396; i += 72 / skill_get(mod_current)){
+				var rotations = (360 / damage) * 2;
+				for(var i = rotations/2; i < 360 + rotations/2; i += rotations / skill_get(mod_current)){
 					if(speed > 0){
 						with(instance_create(x,y,Splinter)){
 							direction = other.direction + i;

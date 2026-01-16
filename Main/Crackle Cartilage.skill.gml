@@ -274,7 +274,7 @@ global.shock_skin_cont	= noone;
 				continue;
 			}
 			draw_sprite_ext(sprWepSwap, sprite_get_number(sprWepSwap) - (animate/anim_max) * sprite_get_number(sprWepSwap), 
-			lerp(zapx, zapx_end, i/len) + cos((x+y*1024+i)*641863)*damage, lerp(zapy, zapy_end, i/len) + sin((x+y*1024+i)*641863)*damage, 1, 1, 0, col, 1)
+			lerp(zapx, zapx_end, i/len) + cos((current_frame+i)*641863)*damage, lerp(zapy, zapy_end, i/len) + sin((current_frame+i)*641863)*damage, 1, 1, 0, col, 1)
 		}
 		// draw_sprite_ext(sprBoltTrail,1,zapx,zapy,len,zap_width * (animate/anim_max),zap_dir,col,1);
 	}
