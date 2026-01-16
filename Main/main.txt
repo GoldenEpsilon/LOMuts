@@ -10,7 +10,6 @@
 //UTILITY
 /loadskill Thick Head
 /loadskill Shivering Spine
-//loadskill Rubber Rounds
 
 //OFFENSIVE
 /loadskill Compressing Fist

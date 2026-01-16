@@ -5,6 +5,7 @@
 	global.mutTokens = 0;
 
 	global.rerolls = [];
+	global.rerolled = [];
 	
 	while(!mod_exists("mod", "lib")){wait(1);}
 	script_ref_call(["mod", "lib", "getRef"], "mod", mod_current, "scr");
@@ -13,12 +14,16 @@
 	global.mutindex = 0;
 	global.mutTokens = 0;
 	global.rerolls = [];
+	global.rerolled = [];
 
 #define step
 	if(GameCont.level >= 10){
 		with(global.rerolls){
-			GameCont.skillpoints += 1;
-			skill_set(self, skill_get(self) - 1);
+			if(skill_get(self) > 0){
+				GameCont.skillpoints += 1;
+				skill_set(self, skill_get(self) - 1);
+				array_push(global.rerolled, self);
+			}
 		}
 		global.rerolls = [];
 	}
@@ -31,6 +36,19 @@
 				if(GameCont.mutindex < global.mutindex){
 					global.mutindex = GameCont.mutindex;
 					exit;
+				}
+				var retake = false;
+				with(SkillIcon){
+					if(("foldermut" not in self || foldermut != true) && choice == 0 && noinput <= 0 && array_length(global.rerolled) > 0){
+						retake = true;
+						if(skill == global.rerolled[0]) {
+							retake = false;
+							break;
+						}
+					}
+				}
+				if(retake && array_length(global.rerolled) > 0){
+					skill_create(array_shift(global.rerolled), instance_number(mutbutton));
 				}
 				if(irandom(1) > 0 && GameCont.level < 10){
 					var choice = irandom(instance_number(SkillIcon) - 1);
