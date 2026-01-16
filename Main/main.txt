@@ -29,7 +29,8 @@
 /loadskill Scrap Arms
 
 //SHELL
-/loadskill Shattered Skull
+//loadskill Shattered Skull
+/loadskill Telekinetic Tears
 /loadskill Pressurized Lungs
 
 //BOLT

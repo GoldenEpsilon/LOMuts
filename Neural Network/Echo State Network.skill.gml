@@ -31,6 +31,13 @@ global.sprIcon = sprite_add("../Sprites/Icons/Neural Network/" + mod_current + "
 	return true;
 	
 #define step
+with(instances_matching_ne(WepPickup, "neural", true)){
+	neural = true;
+	var name = weapon_get_name(wep);
+	if(string_count("Lightning", name) == 0 && string_count("Electric", name) == 0 && string_count("Zap", name) == 0) {
+		wep = weapon_random(weapon_get_area(wep), weapon_get_area(wep));
+	}
+}
 
 with(instances_matching_ne(Lightning, "echostate", true)){
 	if(instance_exists(self) && object_index == Lightning){
@@ -53,3 +60,22 @@ with(instances_matching_ne(Lightning, "echostate", true)){
 		}
 	}
 }
+
+#define weapon_random(_hardMin, _hardMax)
+	/*
+		Returns a random weapon that spawns within the given difficulties
+		
+		Ex:
+			wep = weapon_random(0, GameCont.hard);
+	*/
+	
+	var	_list = ds_list_create(),
+		_size = weapon_get_list(_list, _hardMin, _hardMax),
+		_pick = wep_none;
+		
+	if(_size > 0){
+		_pick = ds_list_find_value(_list, irandom(_size - 1));
+		ds_list_destroy(_list);
+	}
+	
+	return _pick;

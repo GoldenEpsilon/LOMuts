@@ -31,6 +31,15 @@ global.sprIcon = sprite_add("../Sprites/Icons/Neural Network/" + mod_current + "
 	return true;
 	
 #define step
+script_bind_step(custom_step, 0);
+#define custom_step
+with(instances_matching_ne(WepPickup, "neural", true)){
+	neural = true;
+	var name = weapon_get_name(wep);
+	if(string_count("Plasma", name) == 0) {
+		wep = weapon_random(weapon_get_area(wep), weapon_get_area(wep));
+	}
+}
 with(Player){
 	with(instances_matching(instances_matching([PlasmaBall, PlasmaBig, PlasmaHuge, CustomObject],"plasmabounce",null),"team",team)){
 		plasmabounce = 0;
@@ -55,3 +64,23 @@ with(Player){
 		}
 	}
 }
+instance_destroy();
+
+#define weapon_random(_hardMin, _hardMax)
+	/*
+		Returns a random weapon that spawns within the given difficulties
+		
+		Ex:
+			wep = weapon_random(0, GameCont.hard);
+	*/
+	
+	var	_list = ds_list_create(),
+		_size = weapon_get_list(_list, _hardMin, _hardMax),
+		_pick = wep_none;
+		
+	if(_size > 0){
+		_pick = ds_list_find_value(_list, irandom(_size - 1));
+		ds_list_destroy(_list);
+	}
+	
+	return _pick;

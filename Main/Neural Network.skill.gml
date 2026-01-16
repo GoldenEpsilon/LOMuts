@@ -48,7 +48,7 @@
 		 // Increase important GameCont variables to account for a new selection of mutations
 		GameCont.skillpoints++;
 		GameCont.endpoints++;
-		LevCont.maxselect = 0;
+		// LevCont.maxselect = 0;
 
 		if(fork()){
 		    wait(0); // Very miniscule pause so the game can catch up
