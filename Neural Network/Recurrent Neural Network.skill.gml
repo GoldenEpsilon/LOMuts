@@ -6,7 +6,7 @@ global.sprIcon = sprite_add("../Sprites/Icons/Neural Network/" + mod_current + "
 	return "Recurrent Neural Network";
 	
 #define skill_text
-	return "@gPlasma@w bounces@s";
+	return "@gPLASMA@w BOUNCES@s#MORE @gPLASMA@s WEAPONS";
 
 #define skill_button
 	sprite_index = global.sprButton;

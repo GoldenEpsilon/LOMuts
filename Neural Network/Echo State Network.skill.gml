@@ -6,7 +6,7 @@ global.sprIcon = sprite_add("../Sprites/Icons/Neural Network/" + mod_current + "
 	return "Echo State Network";
 	
 #define skill_text
-	return "@bELECTRICITY @wARCS @sTOWARDS @wENEMIES";
+	return "@bELECTRICITY @wARCS @sTOWARDS @wENEMIES#@sMORE @bELECTRIC@s weapons";
 
 #define skill_button
 	sprite_index = global.sprButton;

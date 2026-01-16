@@ -7,7 +7,7 @@ global.sprBurningLaser = sprite_add("../Sprites/BurningLaser.png", 6, 2, 3)
 	return "Generative Adversarial Network";
 	
 #define skill_text
-	return "@wLasers@s @rBURN@s#and are @wWIDER@s";
+	return "@wLasers@s @rBURN@s and are @wWIDER@s#MORE @wLASER@s WEAPONS";
 
 #define skill_button
 	sprite_index = global.sprButton;

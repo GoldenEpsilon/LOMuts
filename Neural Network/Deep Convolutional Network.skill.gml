@@ -6,7 +6,7 @@ global.sprIcon = sprite_add("../Sprites/Icons/Neural Network/" + mod_current + "
 	return "Deep Convolutional Network";
 	
 #define skill_text
-	return `@(color:${c_orange})Quazar@s beams are @pHOMING@s`;
+	return `@(color:${c_orange})Quazar@s beams are @pHOMING@s#More @(color:${c_orange})Quazar@s weapons`;
 
 #define skill_button
 	sprite_index = global.sprButton;

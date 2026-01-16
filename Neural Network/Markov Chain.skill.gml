@@ -6,7 +6,7 @@ global.sprIcon = sprite_add("../Sprites/Icons/Neural Network/" + mod_current + "
 	return "Markov Chain";
 	
 #define skill_text
-	return "@pElectroplasma@s tethers to @wenemies@s";
+	return "@pElectroplasma@s tethers to @wenemies@s#MORE @pELECTROPLASMA@s WEAPONS";
 
 #define skill_button
 	sprite_index = global.sprButton;

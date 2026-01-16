@@ -6,7 +6,7 @@ global.sprIcon = sprite_add("../Sprites/Icons/Neural Network/" + mod_current + "
 	return "Deep Residual Network";
 	
 #define skill_text
-	return `@(color:${c_lime})Plasmites@s duplicate on @wkill@s`;
+	return `@(color:${c_lime})Plasmites@s duplicate on @wkill@s#More @(color:${c_lime})Plasmite@s weapons`;
 
 #define skill_button
 	sprite_index = global.sprButton;
