@@ -1,8 +1,8 @@
 #define init
 global.sprSkillIcon = sprite_add("../Sprites/Main/Pressurized Lungs.png", 1, 12, 16)
 global.sprSkillHUD = sprite_add("../Sprites/Icons/Pressurized Lungs Icon.png", 1, 8, 8)
-global.sprPressurizedBlast = sprite_add("../Sprites/PressurizedBlast.png", 3, 0, 24)
-global.mskPressurizedBlast = sprite_add("../Sprites/PressurizedBlastMask.png", 3, 0, 24)
+global.sprPressurizedBlast = sprite_add("../Sprites/PressurizedBlast.png", 3, 20, 24)
+global.mskPressurizedBlast = sprite_add("../Sprites/PressurizedBlastMask.png", 3, 20, 24)
 while(!mod_exists("mod", "lib")){wait(1);}
 script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 
@@ -64,7 +64,7 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
         mask_index        = global.mskPressurizedBlast;
         image_speed       = 0.4;
         
-        speed             = 2;
+        speed             = 4;
         force             = 10;
         
         walled            = 0;
