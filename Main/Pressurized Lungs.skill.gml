@@ -75,6 +75,7 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
         is_melee          = false;
         candeflect        = false;
         
+        hitlist            = [];
         hitid             = [sprite_index, "SLASH"];
         
         on_hit            = script_ref_create(airSlash_hit);
@@ -87,15 +88,18 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 #define airSlash_projectile
 
 #define airSlash_hit
-	if projectile_canhit_melee(other) {
+	var a = array_find_index(hitlist,other);
+	if a == -1 {
         projectile_hit(other,damage,force,direction);
-    }
-	var _team = team;
-	with(other){
-		with(call(scr.superforce_push, self, 4 + 8 * skill_get(mod_current), other.direction, 0.1, 1, 0, 1)){
-			hook_step = script_ref_create(pressurized_step);
-			hook_wallhit = script_ref_create(pressurized_wall);
-			realTeam = _team;
+		array_push(hitlist,other);
+		var _team = team;
+		with(other){
+			with(call(scr.superforce_push, self, 8 + 12 * skill_get(mod_current), other.direction, 0.1, 1, 0, 1)){
+				hook_step = script_ref_create(pressurized_step);
+				hook_wallhit = script_ref_create(pressurized_wall);
+				hook_bounce = script_ref_create(pressurized_bounce);
+				realTeam = _team;
+			}
 		}
 	}
 
@@ -105,53 +109,6 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
         with instance_create(other.x,other.y,MeleeHitWall){ image_angle = other.direction};
         sound_play_pitch(sndMeleeWall,0.95 + random(0.1));
     }
-
-// #define late_step
-// var teams = [];
-// /*with(instances_matching_ne([Flame, TrapFire], "pressurized", true)){
-// 	pressurized = true;
-// 	damage = round(damage/2);
-// }*/
-// with(Player){
-// 	array_push(teams, team);
-// 	with(instances_matching(Flame, "creator", self)){
-// 		pressurizedPush();
-// 	}
-// 	with(instances_matching(instances_matching(CustomProjectile, "is_fire", true), "creator", self)){
-// 		pressurizedPush();
-// 	}
-// }
-// with(instances_matching(Flame, "creator", -4)){
-// 	if(array_find_index(teams, team) >= 0){
-// 		pressurizedPush();
-// 	}
-// }
-// with(instances_matching(instances_matching(CustomProjectile, "is_fire", true), "creator", -4)){
-// 	if(array_find_index(teams, team) >= 0){
-// 		pressurizedPush();
-// 	}
-// }
-// with(enemy){
-// 	if("pressurized" not in self){pressurized = 0;}
-// 	pressurized = max(pressurized-1 * current_time_scale, 0);
-// }
-
-// #define pressurizedPush
-// 	var _team = team;
-// 	with(call(scr.instance_rectangle_bbox, bbox_left, bbox_top, bbox_right, bbox_bottom, instances_matching_ne(enemy, "team", team))){
-// 		if("pressurized" not in self){pressurized = 0;}
-// 		pressurized += 2 * current_time_scale;
-// 		if(pressurized > 30){
-// 			with(call(scr.superforce_push, self, 4 + 8 * skill_get(mod_current), other.direction, 0.2, 1, 0.5, 1)){
-// 				hook_step = script_ref_create(pressurized_step);
-// 				hook_wallhit = script_ref_create(pressurized_wall);
-// 				realTeam = _team;
-// 				other.pressurized = -60;
-// 			}
-// 		}else if(speed > 1 && angle_difference(direction, other.direction) > 90){
-// 			speed = max(speed - skill_get(mod_current) * current_time_scale, 1);
-// 		}
-// 	}
 
 #define pressurized_step
 	// if(floor(superforce) > 0){
@@ -170,4 +127,45 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 	// }
 
 #define pressurized_wall
+	projectile_hit(self,round(ceil(other.superforce * 1)), 0.5, direction+180)
+	with(instance_create(x + lengthdir_x(other.superforce, direction), y + lengthdir_y(other.superforce, direction), ImpactWrists)){
+		depth = -3;
+	}
+	other.superforce = 0;
+	if my_health <= 0
+	{
+		var pass_wallkill = false
+		if("hook_wallkill" in other){
+			pass_wallkill = script_ref_call(other.hook_wallkill);
+		}
+		if(!pass_wallkill){
+			sleep(30)
+			view_shake_at(x, y, 16)
+			repeat(3) instance_create(x, y, Dust){sprite_index = sprExtraFeet}
+		}
+	}
+	return 1;
+
+#define pressurized_bounce
+	with instance_create(x, y, MeleeHitWall){image_angle = other.direction} 
+	sound_play_pitchvol(sndImpWristKill, 1.2, .8)
+	sound_play_pitchvol(sndWallBreak, .7, .8)
+	sound_play_pitchvol(sndHitRock, .8, .8)
+	sleep(32)
+	if("size" in creator){
+		view_shake_at(x, y, 8 * clamp(creator.size, 1, 3))
+		repeat(creator.size) instance_create(x, y, Debris)
+	}
+	if superforce > 4 {
+		with creator {
+			if(size >= 2){
+				trace(1);
+				with(instance_create(x, y, PortalClear)){
+					mask_index = other.mask_index;
+					image_xscale = 2;
+					image_yscale = 2;
+				}
+			}
+		}
+	}
 	return 1;
