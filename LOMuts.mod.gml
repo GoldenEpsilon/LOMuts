@@ -97,11 +97,27 @@
 		if("markTimer" not in self){
 			markTimer = 10;
 		}
+
+		var drawx = x;
+		var drawy = y;
+		if("markmovefin" not in self || !markmovefin){
+			if("markx" in self && "marky" in self){
+				drawx = lerp(markx, drawx, 6*current_time_scale/point_distance(x,y,markx,marky));
+				markx = drawx;
+				
+				drawy = lerp(marky, drawy, 6*current_time_scale/point_distance(x,y,markx,marky));
+				marky = drawy;
+
+				if (point_distance(x,y,markx,marky) < 5){
+					markmovefin = true;
+				}
+			}
+		}
 		
-		draw_sprite_ext(global.marker, 0, bbox_left - markTimer, bbox_top - markTimer, 1, 1, 0, c_white, (10-markTimer)/10);
-		draw_sprite_ext(global.marker, 1, bbox_right + markTimer + 1, bbox_top - markTimer, 1, 1, 0, c_white, (10-markTimer)/10);
-		draw_sprite_ext(global.marker, 2, bbox_left - markTimer, bbox_bottom + markTimer + 2, 1, 1, 0, c_white, (10-markTimer)/10);
-		draw_sprite_ext(global.marker, 3, bbox_right + markTimer + 1, bbox_bottom + markTimer + 2, 1, 1, 0, c_white, (10-markTimer)/10);
+		draw_sprite_ext(global.marker, 0, bbox_left - markTimer - x + drawx, bbox_top - markTimer - y + drawy, 1, 1, 0, c_white, (10-markTimer)/10);
+		draw_sprite_ext(global.marker, 1, bbox_right + markTimer + 1 - x + drawx, bbox_top - markTimer - y + drawy, 1, 1, 0, c_white, (10-markTimer)/10);
+		draw_sprite_ext(global.marker, 2, bbox_left - markTimer - x + drawx, bbox_bottom + markTimer + 2 - y + drawy, 1, 1, 0, c_white, (10-markTimer)/10);
+		draw_sprite_ext(global.marker, 3, bbox_right + markTimer + 1 - x + drawx, bbox_bottom + markTimer + 2 - y + drawy, 1, 1, 0, c_white, (10-markTimer)/10);
 		
 		if(markTimer > 0){
 			markTimer -= current_time_scale;

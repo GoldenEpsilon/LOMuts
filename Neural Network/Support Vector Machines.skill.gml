@@ -6,7 +6,7 @@ global.sprIcon = sprite_add("../Sprites/Icons/Neural Network/" + mod_current + "
 	return "Support Vector Machines";
 	
 #define skill_text
-	return `@(color:${c_aqua})Vectors@s deal double @wdamage@s#MORE @(color:${c_aqua})Vectors@s WEAPONS`;
+	return `@(color:${c_aqua})Vectors@s deal double @wdamage@s#MORE @(color:${c_aqua})Vector@s WEAPONS`;
 
 #define skill_button
 	sprite_index = global.sprButton;

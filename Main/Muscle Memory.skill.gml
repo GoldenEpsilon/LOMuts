@@ -11,7 +11,7 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 	return "Muscle Memory";
 	
 #define skill_text
-	return "Reflected bullets are @wpowerful@s and @wtarget@s#Enemy shots can @wbounce@s";
+	return "Reflections are @wpowerful@s and @wtarget@s#Enemy shots can @wbounce@s";
 
 #define skill_button
 	sprite_index = global.sprSkillIcon;

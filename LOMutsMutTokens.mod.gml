@@ -1,6 +1,7 @@
 #define init
 	global.token_rad = sprite_add_weapon("Sprites/Token.png", 7, 7)
 	global.token_reroll = sprite_add_weapon("Sprites/Token_Reroll.png", 7, 7)
+	global.token_reroll_wepmut = sprite_add_weapon("Sprites/Token_Reroll_Wepmut.png", 10, 10)
 	global.mutindex = 0;
 	global.mutTokens = 0;
 
@@ -56,6 +57,25 @@
 						if(("foldermut" not in self || foldermut != true) && choice == 0 && noinput <= 0 && (is_real(skill) || !mod_script_call("skill", skill, "skill_reusable")) && !("NoToken" in self && NoToken)){
 							MutationToken = true;
 							MutationTokenType = irandom(1);
+							if(GameCont.wepmuts >= 1){
+								if((is_real(skill) && (skill == mut_long_arms || skill == mut_boiling_veins || skill == mut_shotgun_shoulders || skill == mut_recycle_gland || skill == mut_laser_brain || skill == mut_bolt_marrow)) || mod_script_call("skill", skill, "skill_wepspec")){
+									rerollmut = -4;
+									var i = 0;
+									var _skill = skill_get_at(i);
+									while(!is_undefined(_skill)){
+										if((is_real(_skill) && (_skill == mut_long_arms || _skill == mut_boiling_veins || _skill == mut_shotgun_shoulders || _skill == mut_recycle_gland || _skill == mut_laser_brain || _skill == mut_bolt_marrow)) || mod_script_call("skill", _skill, "skill_wepspec")) {
+											rerollmut = _skill;
+											break;
+										}
+										i++;
+										_skill = skill_get_at(i);
+									}
+									if(rerollmut != -4 && irandom(1)){
+										MutationTokenType = 2;
+										MutationTokenMut = rerollmut;
+									}
+								}
+							}
 						}
 						choice--;
 					}
@@ -90,6 +110,12 @@
 						case 1:
 							array_push(global.rerolls, other.skill);
 							break;
+						case 2:
+							if("MutationTokenMut" in other && skill_get(other.MutationTokenMut)){
+								skill_set(other.MutationTokenMut, skill_get(other.MutationTokenMut) - 1);
+								GameCont.skillpoints += 1;
+							}
+							break;
 						default:
 							global.mutTokens += 1;
 							break;
@@ -112,11 +138,27 @@
 			case 1:
 				spr = global.token_reroll;
 				break;
+			case 2:
+				if("MutationTokenMut" in self){
+					if(is_real(MutationTokenMut)){
+						draw_sprite_ext(sprSkillIconHUD, MutationTokenMut, bbox_right-1, bbox_top-1+(addy ? 1 : 0), 1, 1, 0, addy ? c_gray : c_white, 1);
+					}else if(is_string(MutationTokenMut) && mod_exists("skill", MutationTokenMut)){
+						draw_sprite_ext(mod_script_call("skill", MutationTokenMut, "skill_icon"), 0, bbox_right-1, bbox_top-1+(addy ? 1 : 0), 1, 1, 0, addy ? c_gray : c_white, 1);
+					}
+				}
+				spr = global.token_reroll_wepmut;
+				break;
 			default:
 				spr = global.token_rad;
 				break;
 		}
 		draw_sprite_ext(spr, max(tokenIndex, 0), bbox_right-1, bbox_top-1+(addy ? 1 : 0), 1, 1, 0, addy ? c_gray : c_white, 1);
+		switch(MutationTokenType){
+			case 2:
+				break;
+			default:
+				break;
+		}
 		if(tokenIndex > 7){
 			tokenIndex = -25;
 		}
