@@ -43,6 +43,33 @@ script_ref_call(["mod", "lib", "getRef"], "skill", mod_current, "scr");
 	
 #define step
 with(Player){
+	with(projectile){
+		if("orig_team" in self && orig_team != null && team != orig_team && instance_exists(self) && object_is_ancestor(object_index, projectile) && team == other.team){
+			orig_team = null;
+			if(instance_exists(enemy)){
+				var i = instance_nearest(x,y,enemy);
+				direction = point_direction(x,y,i.x,i.y);
+			}
+			image_angle = direction;
+			if(instance_place(x, y, instance_nearest_from(x, y, instances_matching([Slash, CustomSlash, GuitarSlash, EnergySlash, LightningSlash, Shank, EnergyShank], "team", team)))) {
+				speed *= 2 + 1.5 * skill_get(mod_current);
+				damage *= skill_get(mod_current) * 4;
+				image_blend = merge_color(image_blend, c_red, 0.35);
+				image_xscale *= 1.25;
+				image_yscale *= 0.75;
+			} else {
+				speed *= 1 + 1 * skill_get(mod_current);
+				damage += skill_get(mod_current) * 6;
+			}
+			sleep(5);
+			view_shake_at(x, y, 3);
+		}
+		if(("orig_team" not in self || (team != other.team && orig_team != null)) && instance_exists(self)){
+			orig_team = team;
+		}
+	}	
+}
+with(Player){
 	with(instances_matching(instances_matching_ne(instances_matching_ne(projectile, "team", 0), "team", team),"rubber",null)){
 		if(object_index != TrapFire && object_index != EnemySlash && object_index != EnemyLaser){
 			rubber = random_range(0, 1 + skill_get(mod_current)) > 1;
@@ -71,30 +98,6 @@ with(instances_matching_ne(projectile, "rubberowner", null)){
 		}else{
 			scrOutline(self, rubbercol);
 		}
-	}
-}
-with(Player){
-	with(instances_matching_ne(projectile, "orig_team", team)){
-		if("orig_team" in self && orig_team != null && instance_exists(self) && object_is_ancestor(object_index, projectile) && instance_exists(enemy) && team == other.team){
-			orig_team = null;
-			var i = instance_nearest(x,y,enemy);
-			direction = point_direction(x,y,i.x,i.y);
-			image_angle = direction;
-			speed *= 2 + 0.5 * skill_get(mod_current);
-			damage += skill_get(mod_current) * 9;
-			image_blend = merge_color(image_blend, c_red, 0.35);
-			image_xscale *= 1.25;
-			image_yscale *= 0.75;
-			sleep(5);
-			view_shake_at(x, y, 3);
-		}
-	}	
-}
-
-#define update(_id)
-with(Player){
-	with(instances_matching_ne(projectile, "team", team)){
-		orig_team = team;
 	}
 }
 
