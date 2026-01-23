@@ -29,6 +29,8 @@ lq_set(global.sprites, "Thick Head", [sprite_add("Sprites/Main/Thick Head.png", 
 //lq_set(global.sprites, "Unstable DNA", [sprite_add("Sprites/Main/Unstable DNA.png", 1, 12, 16), sprite_add("Sprites/Dev Art/Unstable DNA.png", 1, 12, 16)]);
 lq_set(global.sprites, "Waste Gland", [sprite_add("Sprites/Main/Waste Gland.png", 1, 12, 16), sprite_add("Sprites/Dev Art/Waste Gland.png", 1, 12, 16)]);
 lq_set(global.sprites, "Loner", [sprite_add("Sprites/Main/Loner.png", 1, 12, 16), sprite_add("Sprites/Dev Art/Loner.png", 1, 12, 16)]);
+lq_set(global.sprites, "Telekinetic Tears", [sprite_add("Sprites/Main/Telekinetic Tears.png", 1, 12, 16), sprite_add("Sprites/Alt/Telekinetic Tears.png", 1, 12, 16)]);
+
 lq_set(global.sprites, "Neural Network", [sprite_add("Sprites/Main/Neural Network.png", 1, 12, 16), sprite_add("Sprites/Dev Icon/Neural Network.png", 1, 12, 16)]);
 lq_set(global.sprites, "Deep Convolutional Network", [sprite_add("Sprites/Main/Neural Network/Deep Convolutional Network.png", 1, 12, 16), sprite_add("Sprites/Dev Icon/Neural Network/Deep Convolutional Network.png", 1, 12, 16)]);
 lq_set(global.sprites, "Deep Residual Network", [sprite_add("Sprites/Main/Neural Network/Deep Residual Network.png", 1, 12, 16), sprite_add("Sprites/Dev Icon/Neural Network/Deep Residual Network.png", 1, 12, 16)]);

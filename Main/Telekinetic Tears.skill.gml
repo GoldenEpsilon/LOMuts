@@ -1,6 +1,6 @@
 #define init
-global.sprSkillIcon = sprite_add("../Sprites/Outcast/Telekinetic Tears.png", 1, 12, 16)
-global.sprSkillHUD = sprite_add("../Sprites/Outcast/Telekinetic Tears Icon.png", 1, 8, 8)
+global.sprSkillIcon = sprite_add("../Sprites/Main/Telekinetic Tears.png", 1, 12, 16)
+global.sprSkillHUD = sprite_add("../Sprites/Icons/Telekinetic Tears Icon.png", 1, 8, 8)
 
 #define skill_name
 	return "Telekinetic Tears";
@@ -15,13 +15,13 @@ global.sprSkillHUD = sprite_add("../Sprites/Outcast/Telekinetic Tears Icon.png",
 	return global.sprSkillHUD;
 
 #define skill_outcast
-	return true;
+	return false;
 
 #define skill_tip
 	return "Sweat and tears#on every shell";
 	
 #define skill_type
-	return "outcast";
+	return "utility";
 	
 #define skill_take
 	sound_play(sndMut);

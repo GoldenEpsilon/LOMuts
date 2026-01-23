@@ -69,6 +69,7 @@ with(instances_matching(instances_matching_ne(instances_matching_ne(instances_ma
 	if(!(skill_get("powderedgums") && object_index == HyperSlug)){
 		damage = floor(damage * (1 + 0.5 * skill_get(mod_current)));
 			//if creator != noone && instance_is(creator, Player) && weapon_get_type(creator.wep) != 0 spazFistEffects();
+		comp_anim = 0;
 		image_yscale *= 1.25 + 0.25 * skill_get(mod_current);
 	}
 	comp_fist = true;

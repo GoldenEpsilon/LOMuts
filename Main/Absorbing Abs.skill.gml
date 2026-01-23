@@ -1,5 +1,5 @@
 #define init
-global.sprSkillIcon = sprite_add("../Sprites/Outcast/Blank.png", 1, 12, 16)
+global.sprSkillIcon = sprite_add("../Sprites/Main/Absorbing Abs.png", 1, 12, 16)
 global.sprSkillHUD = sprite_add("../Sprites/Outcast/Blank Icon.png", 1, 8, 8)
 global.absorb = sprite_add("../Sprites/absorb.png", 5, 24, 24)
 while(!mod_exists("mod", "lib")){wait(1);}
