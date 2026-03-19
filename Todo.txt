@@ -1,5 +1,8 @@
 Buglist:
 
+Todo:
+https://discord.com/channels/145126902074441729/218608636010692608/1469206987114938453
+
 Ideas for future update (NOT GUARANTEED IN ANY WAY, SHAPE, OR FORM.)
 (DONE) - Add visual effects to Steel Nerves
  - Add sounds to everything

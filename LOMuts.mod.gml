@@ -125,6 +125,114 @@
 			markTimer = 0;
 		}
 	}
+
+
+
+#define player_hud(_player, _hudIndex, _hudSide)
+	mod_script_call("skill", "Duplicators", "player_hud", _player, _hudIndex, _hudSide);
+	//  // Portal Strike Ammo:
+	// draw_sprite_ext(
+	// 	(ultra_get("rogue", 1) ? sprRogueAmmoHUDTB : sprRogueAmmoHUD),
+	// 	_player.rogueammo,
+	// 	(_hudSide ? 1 : 93),
+	// 	4,
+	// 	1,
+	// 	1,
+	// 	0,
+	// 	c_white,
+	// 	1
+	// );
+	
+	//  // Character Icon:
+	// draw_sprite(_player.sprite_index, 0.4 * current_frame, 8, 10);
+	
+#define draw_gui
+	 // Player HUD Management:
+	if(instance_exists(Player) && !instance_exists(PopoScene) && !instance_exists(MenuGen)){
+		if(instance_exists(TopCont) || instance_exists(GenCont) || instance_exists(LevCont)){
+			var _hudFade  = 0,
+			    _hudIndex = 0,
+			    _lastSeed = random_get_seed();
+			    
+			 // Game Win Fade Out:
+			if(array_length(instances_matching(TopCont, "fadeout", true))){
+				with(TopCont){
+					_hudFade = clamp(fade, 0, 1);
+				}
+			}
+			if(_hudFade > 0){
+				 // GMS1 Partial Fix:
+				try if(!null){}
+				catch(_error){
+					_hudFade = min(_hudFade, round(_hudFade));
+				}
+				
+				 // Dim Drawing:
+				if(_hudFade > 0){
+					draw_set_fog(true, c_black, 0, 16000 / _hudFade);
+				}
+			}
+			
+			 // Draw Player HUD:
+			for(var _isOnline = 0; _isOnline <= 1; _isOnline++){
+				for(var _index = 0; _index < maxp; _index++){
+					if(
+						player_is_active(_index)
+						&& (_hudIndex < 2 || !instance_exists(LevCont))
+						&& (player_is_local_nonsync(_index) ^^ _isOnline)
+					){
+						var _hudVisible = false;
+						
+						 // HUD Visibility:
+						for(var i = 0; true; i++){
+							var _local = player_find_local_nonsync(i);
+							if(!player_is_active(_local)){
+								break;
+							}
+							if(player_get_show_hud(_index, _local)){
+								_hudVisible = true;
+								break;
+							}
+						}
+						
+						 // Draw HUD:
+						if(_hudVisible || _isOnline == 0){
+							if(_hudVisible){
+								var _player = player_find(_index);
+								if(instance_exists(_player)){
+									 // Rad Canister / Co-op Offsets:
+									var _playerNum = 0;
+									for(var i = 0; i < maxp; i++){
+										_playerNum += player_is_active(i);
+									}
+									if(_playerNum <= 1){
+										d3d_set_projection_ortho(
+											view_xview_nonsync - 17,
+											view_yview_nonsync,
+											game_width,
+											game_height,
+											0
+										);
+									}
+									else draw_set_projection(2, _index);
+									
+									 // Draw:
+									player_hud(_player, _hudIndex, _hudIndex % 2);
+									
+									draw_reset_projection();
+								}
+							}
+							_hudIndex++;
+						}
+					}
+				}
+			}
+			if(_hudFade > 0){
+				draw_set_fog(false, 0, 0, 0);
+			}
+			random_set_seed(_lastSeed);
+		}
+	}
 	
 
 //These are macros to slot in to make it easier to call lib functions.
