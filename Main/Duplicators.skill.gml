@@ -57,6 +57,7 @@ with(Player){
 					dupAmmoRemainder[i]--;
 					if ammo[i] + 1 < typ_amax[i] {
 						ammo[i]++;
+						sound_play(sndRecGlandProc)
 						instance_create(x + random(20) - 10, y + random(20) - 10, RecycleGland)
 					}
 				}
