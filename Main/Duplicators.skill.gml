@@ -39,10 +39,6 @@ with(Player){
 			array_push(dupAmmoStored, 0);
 		}
 	}
-	OldAmmo = [];
-	for(var i = 0; i < array_length(ammo); i++){
-		array_push(OldAmmo, real(ammo[i]));
-	}
 
 	if("dupAmmoRemainder" not in self){
 		dupAmmoRemainder = [];
@@ -62,6 +58,11 @@ with(Player){
 				}
 			}
 		}
+	}
+	
+	OldAmmo = [];
+	for(var i = 0; i < array_length(ammo); i++){
+		array_push(OldAmmo, real(ammo[i]));
 	}
 }
 script_bind_step(custom_step, -5);
