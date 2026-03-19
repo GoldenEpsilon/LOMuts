@@ -130,21 +130,6 @@
 
 #define player_hud(_player, _hudIndex, _hudSide)
 	mod_script_call("skill", "Duplicators", "player_hud", _player, _hudIndex, _hudSide);
-	//  // Portal Strike Ammo:
-	// draw_sprite_ext(
-	// 	(ultra_get("rogue", 1) ? sprRogueAmmoHUDTB : sprRogueAmmoHUD),
-	// 	_player.rogueammo,
-	// 	(_hudSide ? 1 : 93),
-	// 	4,
-	// 	1,
-	// 	1,
-	// 	0,
-	// 	c_white,
-	// 	1
-	// );
-	
-	//  // Character Icon:
-	// draw_sprite(_player.sprite_index, 0.4 * current_frame, 8, 10);
 	
 #define draw_gui
 	 // Player HUD Management:
@@ -207,7 +192,7 @@
 									}
 									if(_playerNum <= 1){
 										d3d_set_projection_ortho(
-											view_xview_nonsync - 17,
+											view_xview_nonsync,
 											view_yview_nonsync,
 											game_width,
 											game_height,

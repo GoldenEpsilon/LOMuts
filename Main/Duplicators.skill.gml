@@ -1,7 +1,7 @@
 #define init
 global.sprSkillIcon = sprite_add("../Sprites/Main/Duplicators.png", 1, 12, 16)
 global.sprSkillHUD = sprite_add("../Sprites/Icons/Duplicators Icon.png", 1, 8, 8)
-global.modifier = 2;
+global.modifier = 3;
 
 #define skill_name
 	return "Duplicators";
@@ -53,7 +53,7 @@ with(Player){
 
 	if(current_frame - dupAmmoTimer > 30) {
 		for(var i = 0; i < array_length(dupAmmoStored); i++){
-			if(dupAmmoStored[i] > current_time_scale){
+			if(dupAmmoStored[i] >= current_time_scale){
 				dupAmmoStored[i] -= current_time_scale;
 				dupAmmoRemainder[i] += current_time_scale;
 				while(dupAmmoRemainder[i] >= 1){
@@ -78,10 +78,13 @@ with(Player){
 instance_destroy();
 
 #define player_hud(_player, _hudIndex, _hudSide)
-draw_set_font(fntSmall);
-for(var i = 0; i < array_length(_player.dupAmmoStored); i++){
-	if(_player.dupAmmoStored[i] > 0){
-		draw_text(i*10 - 20 - max(0, floor(log10(_player.dupAmmoStored[i]))*2.5), 36, floor(_player.dupAmmoStored[i]));
+if("dupAmmoTimer" in _player){
+	draw_set_font(fntSmall);
+	for(var i = 0; i < array_length(_player.dupAmmoStored); i++){
+		if(_player.dupAmmoStored[i] >= 1){
+			var num = floor(_player.dupAmmoStored[i] + _player.dupAmmoRemainder[i]);
+			draw_text(i*10 - 4 - max(0, floor(log10(num))*2), 36, num);
+		}
 	}
+	draw_set_font(fntM0);
 }
-draw_set_font(fntM0);
