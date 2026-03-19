@@ -30,9 +30,8 @@ global.modifier = 3;
 #define step
 
 with(Player){
-	if("dupAmmoTimer" not in self){
-		dupAmmoTimer = current_frame;
-	}
+	if("dupAmmoTimer" not in self){ dupAmmoTimer = current_frame; }
+	if("dupAmmoRegenFactor" not in self){ dupAmmoRegenFactor = 0; }
 	if("dupAmmoStored" not in self){
 		dupAmmoStored = [];
 		for(var i = 0; i < array_length(ammo); i++){
@@ -48,18 +47,25 @@ with(Player){
 	}
 
 	if(current_frame - dupAmmoTimer > 30) {
+		dupAmmoRegenFactor += 0.001 * current_time_scale;
 		for(var i = 0; i < array_length(dupAmmoStored); i++){
-			if(dupAmmoStored[i] >= current_time_scale){
-				dupAmmoStored[i] -= current_time_scale;
-				dupAmmoRemainder[i] += current_time_scale;
+			var amount = min(current_time_scale * dupAmmoRegenFactor * typ_ammo[i], dupAmmoStored[i]);
+			if(amount > 0){
+				dupAmmoStored[i] -= amount;
+				dupAmmoRemainder[i] += amount;
 				while(dupAmmoRemainder[i] >= 1){
 					dupAmmoRemainder[i]--;
-					ammo[i]++;
+					if ammo[i] + 1 < typ_amax[i] {
+						ammo[i]++;
+						instance_create(x + random(20) - 10, y + random(20) - 10, RecycleGland)
+					}
 				}
 			}
 		}
+	} else {
+		dupAmmoRegenFactor = 0;
 	}
-	
+
 	OldAmmo = [];
 	for(var i = 0; i < array_length(ammo); i++){
 		array_push(OldAmmo, real(ammo[i]));
@@ -72,7 +78,9 @@ with(Player){
 		if(ammo[i] < OldAmmo[i]){
 			dupAmmoTimer = current_frame;
 			var val = (OldAmmo[i] - ammo[i])/(global.modifier / skill_get(mod_current))
-			dupAmmoStored[i] += val
+			if dupAmmoStored[i] + val < typ_amax[i] {
+				dupAmmoStored[i] += val
+			}
 		}
 	}
 }
@@ -84,7 +92,8 @@ if("dupAmmoTimer" in _player){
 	for(var i = 0; i < array_length(_player.dupAmmoStored); i++){
 		if(_player.dupAmmoStored[i] >= 1){
 			var num = floor(_player.dupAmmoStored[i] + _player.dupAmmoRemainder[i]);
-			draw_text(i*10 - 4 - max(0, floor(log10(num))*2), 36, num);
+			var offset = 1 * (_player.dupAmmoTimer >= current_frame - current_time_scale)
+			draw_text(i*10 - 4 - max(0, floor(log10(num))*2), 45 + offset, num);
 		}
 	}
 	draw_set_font(fntM0);
