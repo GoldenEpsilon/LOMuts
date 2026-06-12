@@ -1,3 +1,4 @@
+#pragma gml 2
 #define init
 global.sprSkillIcon = sprite_add("../Sprites/Main/Double Vision.png", 1, 12, 16)
 global.sprSkillHUD = sprite_add("../Sprites/Icons/Double Vision Icon.png", 1, 8, 8)
@@ -41,6 +42,9 @@ with(Player){
 				//damage = other.damage / global.modifier;
 				if(object_index == BloodSlash){
 					creator = -4;
+				}
+				if(object_index == UltraBolt){
+					dig_walls = other.dig_walls;
 				}
 				if(object_index != Laser){
 					var acc = 1;
